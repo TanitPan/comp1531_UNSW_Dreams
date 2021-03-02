@@ -1,7 +1,8 @@
 import pytest
-from src.channel import channel_invite_v1, data
+from src.channel import channel_invite_v1
 from src.error import InputError, AccessError
 from src.other import clear_v1
+from storage.data import data
 
 
 
