@@ -20,7 +20,7 @@ def test_channels_listall_element_type():
     authorised_token = auth_register_v1('comp1531@student.com', 'student1531', 
                        'john', 'smith')
     dict_channel = channels_list_v1(authorised_token)
-    for element in dict_channel['channels']:
+    for element in dict_channel[channels]:
         assert(isinstance(element, dict) == True) 
         
 # Tests the function when there are no input parameters and raises an InputError
@@ -37,6 +37,7 @@ def test_channels_listall_multiplechannel_length():
     non_authorised_token = authorised_token['auth_user_id'] + 1
     channel_id1 = channels_create_v1(authorised_token, 'Channel0', True)
     channel_id2 = channels_create_v1(non_authorised_token, 'Channel1', True)
-    assert (len(channels_list_v1(authorised_token)) == 1)
+    length = len(channels_list_v1(authorised_token))
+    assert (length == 1)
 
 
