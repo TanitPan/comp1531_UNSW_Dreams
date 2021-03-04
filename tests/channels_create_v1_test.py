@@ -1,0 +1,38 @@
+import pytest
+
+from src.channels import channels_create_v1
+from src.error import InputError, AccessError
+from src.auth import auth_register_v1
+from src.other import clear_v1
+
+def test_channels_create_type():
+    authorised_token = auth_register_v1('john.smith@gmail.com', 'password', 'john', 'smith')
+    channel_id =  channels_create_v1(authorised_token, "Channel0", True) 
+    assert(isinstance(channel_id, dict) == True) 
+    
+def test_channels_create_firstvalue():
+    clear_v1()
+    authorised_token = auth_register_v1('annethomas@hotmail.com', 'pass1234', 'anne', 'thomas')
+    channel_id =  channels_create_v1(authorised_token, "Channel1", True) 
+    assert (channel_id == {'channel_id': 1})
+    
+def test_channels_create_long_name():
+    clear_v1()
+    authorised_token = auth_register_v1('jane.doe@me.com', 'janedoe1', 'jane', 'doe')
+    with pytest.raises(InputError):   
+        channels_create_v1(authorised_token, "thisisaverylongnameforthetestchannel", True) 
+    with pytest.raises(InputError):
+        channels_create_v1(authorised_token, "123456789012345678901", False)
+    with pytest.raises(InputError):
+        channels_create_v1(authorised_token, "#!!!!!!!!!!!!!!!!!!!!#", True)
+		
+def test_channels_create_first_id():
+    clear_v1()
+    authorised_token = auth_register_v1('rujanair4@yahoo.com', 'ruja1nair', 'ruja', 'nair')
+    channel2_id = channels_create_v1(authorised_token, 'Channel2', True)
+    channel2_key = channel2_id['channel_id']
+    assert (isinstance(channel2_key, int) == True)
+    channel3_id = channels_create_v1(authorised_token, 'Channel3', True)
+    channel3_key = channel3_id['channel_id']
+    assert (isinstance(channel3_key, int) == True)
+ 
