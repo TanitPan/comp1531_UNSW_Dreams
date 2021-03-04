@@ -38,6 +38,7 @@ def test_channels_listall_multiplechannel_length():
                        'anne', 'smith')
     channel_id1 = channels_create_v1(authorised_token, 'Channel0', True)
     channel_id2 = channels_create_v1(authorised_token, 'Channel1', True)
+    channel_list = [channel_id1, channel_id2]
     assert len(channels_listall_v1(authorised_token)) == 2
 
 
