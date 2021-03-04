@@ -8,6 +8,7 @@ from src.other import clear_v1
 # Test the type of the return value of channels_create to ensure it produces a
 # dictionary (Specs 6.1.1)
 def test_channels_create_type():
+    clear_v1()
     authorised_token = auth_register_v1('john.smith@gmail.com', 
                        'password', 'john', 'smith')
     channel_id =  channels_create_v1(authorised_token, "Channel0", True) 
