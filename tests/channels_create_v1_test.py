@@ -27,8 +27,8 @@ def test_channels_create_first_id():
     channel3_key = channel3_id['channel_id']
     assert (isinstance(channel3_key, int) == True)
 
-# Test the key value of the return value (assuming it is a dictionary) to ensure 
-# the channel_id is a integer value (Specs 6.1.1)    
+# Test the complete structure of the return value to ensure the channel_id is 
+# formatted properly  
 def test_channels_create_firstvalue():
     clear_v1()
     authorised_token = auth_register_v1('annethomas@hotmail.com', 'pass1234', 
