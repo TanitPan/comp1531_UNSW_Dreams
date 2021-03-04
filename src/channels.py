@@ -1,7 +1,7 @@
 from src.error import InputError, AccessError
 import data 
 from src.auth import auth_register_v1
-
+#from src.extra_functions import check_valid_user
 def channels_list_v1(auth_user_id):
     return {
         'channels': [
@@ -43,10 +43,13 @@ Return Value:
     Returns a dictionary consisting of the channel_id values provided that the 
     auth_user_id is valid and the name is less than 20 characters in length. 
 """
+authorised_users = []
 
 def channels_create_v1(auth_user_id, name, is_public):
     all_users = data.data['users']
     all_channels = data.data['channels']
+    #global authorised_users
+    #check_valid_user(auth_user_id, authorised_users)
     if len(name) > 20:
         raise InputError("The name input is more than 20 characters.")
     maximum_id = 0
