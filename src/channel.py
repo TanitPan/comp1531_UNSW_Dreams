@@ -1,17 +1,25 @@
 from src.error import InputError, AccessError
 from storage.data import data
 
-"""
-This function invite the user to given channel. 
-On success, add the user data to the channel.
-"""
+
 def channel_invite_v1(auth_user_id, channel_id, u_id):
-    # global data
+    """
+    This function invite the user to given channel. 
+    On success, add the user data to the channel.
+
+    """
 
     # Flags to check for invalid input or invalid access
     valid_channel = False
     valid_uid = False
     ismember = False
+    auth_valid = False
+
+    for user in data["users"]:
+        if user["auth_user_id"] == auth_user_id:
+            auth_valid = True
+            break 
+
     for channel in data["channels"]:
         if channel["channel_id"] == channel_id:
             valid_channel = True
@@ -21,6 +29,8 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
                     break
             break
     # Raise exception when detect invalid access/input
+    if auth_valid == False:
+        raise AccessError("authorised user ID is invalid")
     if valid_channel == False:
         raise InputError("channel_id is not a valid channel")
     if ismember == False:

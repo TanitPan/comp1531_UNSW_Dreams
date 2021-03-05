@@ -179,72 +179,72 @@ def test_channel_invite_except_channel():
 
     with pytest.raises(InputError):
         channel_invite_v1(1, 12, 2)
-        assert data["channels"] == [
-        {      
+        # assert data["channels"] == [
+        # {      
 
-            'channel_id' :  1, 
+        #     'channel_id' :  1, 
 
-            'name' :  'channel0', 
+        #     'name' :  'channel0', 
 
-            'owner_members' : [
-                { 
+        #     'owner_members' : [
+        #         { 
 
-                    'auth_user_id' : 1, 
+        #             'auth_user_id' : 1, 
 
-                    'name_first' : 'john', 
+        #             'name_first' : 'john', 
 
-                    'name_last' : 'smith', 
+        #             'name_last' : 'smith', 
 
-                    'handle_str' : 'johnsmith??', 
+        #             'handle_str' : 'johnsmith??', 
 
-                    'email': 'johnsmith@gmail.com', 
+        #             'email': 'johnsmith@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id' : 1, #1 for owner, 2 for member 
-                }
+        #             'permission_id' : 1, #1 for owner, 2 for member 
+        #         }
 
-            ], 
+        #     ], 
 
-            'all_members' : [
-                { 
+        #     'all_members' : [
+        #         { 
 
-                    'auth_user_id' : 1, 
+        #             'auth_user_id' : 1, 
 
-                    'name_first' : 'john', 
+        #             'name_first' : 'john', 
 
-                    'name_last' : 'smith', 
+        #             'name_last' : 'smith', 
 
-                    'handle_str' : 'johnsmith??', 
+        #             'handle_str' : 'johnsmith??', 
 
-                    'email': 'johnsmith@gmail.com', 
+        #             'email': 'johnsmith@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id'  : 1, #1 for owner, 2 for member 
-                },
-                { 
+        #             'permission_id'  : 1, #1 for owner, 2 for member 
+        #         },
+        #         { 
 
-                    'auth_user_id' : 2, 
+        #             'auth_user_id' : 2, 
 
-                    'name_first' : 'Mike', 
+        #             'name_first' : 'Mike', 
 
-                    'name_last' : 'Potato', 
+        #             'name_last' : 'Potato', 
 
-                    'handle_str' : 'potatomike??', 
+        #             'handle_str' : 'potatomike??', 
 
-                    'email': 'potatomike@gmail.com', 
+        #             'email': 'potatomike@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id'  : 2, #1 for owner, 2 for member 
-                }
+        #             'permission_id'  : 2, #1 for owner, 2 for member 
+        #         }
                 
-            ], 
+        #     ], 
 
-            'is_public' :  True, # Assumed to default to public 
-        }
-        ]
+        #     'is_public' :  True, # Assumed to default to public 
+        # }
+        # ]
 
 # Test error for invalid u_id
 def test_channel_invite_except_user():
@@ -340,74 +340,75 @@ def test_channel_invite_except_user():
 
     with pytest.raises(InputError):
         channel_invite_v1(1, 1, 2222)
-        assert data["channels"] == [
-        {      
+        # assert data["channels"] == [
+        # {      
 
-            'channel_id' :  1, 
+        #     'channel_id' :  1, 
 
-            'name' :  'channel0', 
+        #     'name' :  'channel0', 
 
-            'owner_members' : [
-                { 
+        #     'owner_members' : [
+        #         { 
 
-                    'auth_user_id' : 1, 
+        #             'auth_user_id' : 1, 
 
-                    'name_first' : 'john', 
+        #             'name_first' : 'john', 
 
-                    'name_last' : 'smith', 
+        #             'name_last' : 'smith', 
 
-                    'handle_str' : 'johnsmith??', 
+        #             'handle_str' : 'johnsmith??', 
 
-                    'email': 'johnsmith@gmail.com', 
+        #             'email': 'johnsmith@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id' : 1, #1 for owner, 2 for member 
-                }
+        #             'permission_id' : 1, #1 for owner, 2 for member 
+        #         }
 
-            ], 
+        #     ], 
 
-            'all_members' : [
-                { 
+        #     'all_members' : [
+        #         { 
 
-                    'auth_user_id' : 1, 
+        #             'auth_user_id' : 1, 
 
-                    'name_first' : 'john', 
+        #             'name_first' : 'john', 
 
-                    'name_last' : 'smith', 
+        #             'name_last' : 'smith', 
 
-                    'handle_str' : 'johnsmith??', 
+        #             'handle_str' : 'johnsmith??', 
 
-                    'email': 'johnsmith@gmail.com', 
+        #             'email': 'johnsmith@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id'  : 1, #1 for owner, 2 for member 
-                },
-                { 
+        #             'permission_id'  : 1, #1 for owner, 2 for member 
+        #         },
+        #         { 
 
-                    'auth_user_id' : 2, 
+        #             'auth_user_id' : 2, 
 
-                    'name_first' : 'Mike', 
+        #             'name_first' : 'Mike', 
 
-                    'name_last' : 'Potato', 
+        #             'name_last' : 'Potato', 
 
-                    'handle_str' : 'potatomike??', 
+        #             'handle_str' : 'potatomike??', 
 
-                    'email': 'potatomike@gmail.com', 
+        #             'email': 'potatomike@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id'  : 2, #1 for owner, 2 for member 
-                }
+        #             'permission_id'  : 2, #1 for owner, 2 for member 
+        #         }
                 
-            ], 
+        #     ], 
 
-            'is_public' :  True, # Assumed to default to public 
-        }
-        ]
+        #     'is_public' :  True, # Assumed to default to public 
+        # }
+        # ]
 
 
+# Auth_user_id not a member of channel
 def test_channel_invite_except_noaccess():
     data['users'].clear()
     data['channels'].clear()
@@ -500,72 +501,234 @@ def test_channel_invite_except_noaccess():
     
 
     with pytest.raises(AccessError):
-        channel_invite_v1(111, 1, 2222)
-        assert data["channels"] == [
-        {      
+        channel_invite_v1(2, 1, 2)
+        # assert data["channels"] == [
+        # {      
 
-            'channel_id' :  1, 
+        #     'channel_id' :  1, 
 
-            'name' :  'channel0', 
+        #     'name' :  'channel0', 
 
-            'owner_members' : [
-                { 
+        #     'owner_members' : [
+        #         { 
 
-                    'auth_user_id' : 1, 
+        #             'auth_user_id' : 1, 
 
-                    'name_first' : 'john', 
+        #             'name_first' : 'john', 
 
-                    'name_last' : 'smith', 
+        #             'name_last' : 'smith', 
 
-                    'handle_str' : 'johnsmith??', 
+        #             'handle_str' : 'johnsmith??', 
 
-                    'email': 'johnsmith@gmail.com', 
+        #             'email': 'johnsmith@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id' : 1, #1 for owner, 2 for member 
-                }
+        #             'permission_id' : 1, #1 for owner, 2 for member 
+        #         }
 
-            ], 
+        #     ], 
 
-            'all_members' : [
-                { 
+        #     'all_members' : [
+        #         { 
 
-                    'auth_user_id' : 1, 
+        #             'auth_user_id' : 1, 
 
-                    'name_first' : 'john', 
+        #             'name_first' : 'john', 
 
-                    'name_last' : 'smith', 
+        #             'name_last' : 'smith', 
 
-                    'handle_str' : 'johnsmith??', 
+        #             'handle_str' : 'johnsmith??', 
 
-                    'email': 'johnsmith@gmail.com', 
+        #             'email': 'johnsmith@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id'  : 1, #1 for owner, 2 for member 
-                },
-                { 
+        #             'permission_id'  : 1, #1 for owner, 2 for member 
+        #         },
+        #         { 
 
-                    'auth_user_id' : 2, 
+        #             'auth_user_id' : 2, 
 
-                    'name_first' : 'Mike', 
+        #             'name_first' : 'Mike', 
 
-                    'name_last' : 'Potato', 
+        #             'name_last' : 'Potato', 
 
-                    'handle_str' : 'potatomike??', 
+        #             'handle_str' : 'potatomike??', 
 
-                    'email': 'potatomike@gmail.com', 
+        #             'email': 'potatomike@gmail.com', 
 
-                    'password': 'pass123', 
+        #             'password': 'pass123', 
 
-                    'permission_id'  : 2, #1 for owner, 2 for member 
-                }
+        #             'permission_id'  : 2, #1 for owner, 2 for member 
+        #         }
                 
-            ], 
+        #     ], 
 
-            'is_public' :  True, # Assumed to default to public 
-        }
-        ]
+        #     'is_public' :  True, # Assumed to default to public 
+        # }
+        # ]
+
+
+# Test invalid auth_user_id case
+def test_channel_invite_except_invalid_auth():
+    data['users'].clear()
+    data['channels'].clear()
+    data['users'] =  [
+    { 
+
+	    'auth_user_id' : 1, 
+
+	    'name_first' : 'john', 
+
+	    'name_last' : 'smith', 
+
+        'handle_str' : 'johnsmith??', 
+
+	    'email': 'johnsmith@gmail.com', 
+
+	    'password': 'pass123', 
+
+        'permission_id'  : 1, #1 for owner, 2 for member 
+    },
+    { 
+
+	    'auth_user_id' : 2, 
+
+	    'name_first' : 'Mike', 
+
+	    'name_last' : 'Potato', 
+
+        'handle_str' : 'potatomike??', 
+
+	    'email': 'potatomike@gmail.com', 
+
+	    'password': 'pass123', 
+
+        'permission_id'  : 2, #1 for owner, 2 for member 
+    }
+
+    ]
+    data['channels'] = [
+    {      
+
+		'channel_id' :  1, 
+
+		'name' :  'channel0', 
+
+		'owner_members' : [
+            { 
+
+                'auth_user_id' : 1, 
+
+                'name_first' : 'john', 
+
+                'name_last' : 'smith', 
+
+                'handle_str' : 'johnsmith??', 
+
+                'email': 'johnsmith@gmail.com', 
+
+                'password': 'pass123', 
+
+                'permission_id' : 1, #1 for owner, 2 for member 
+            }
+
+        ], 
+
+        'all_members' : [
+            { 
+
+                'auth_user_id' : 1, 
+
+                'name_first' : 'john', 
+
+                'name_last' : 'smith', 
+
+                'handle_str' : 'johnsmith??', 
+
+                'email': 'johnsmith@gmail.com', 
+
+                'password': 'pass123', 
+
+                'permission_id'  : 1, #1 for owner, 2 for member 
+            }
+            
+        ], 
+
+        'is_public' :  True, # Assumed to default to public 
+    }
+    ]
+    
+    
+    
+    with pytest.raises(AccessError):
+        channel_invite_v1(222, 1, 2)
+        # assert data["channels"] == [
+        # {      
+
+        #     'channel_id' :  1, 
+
+        #     'name' :  'channel0', 
+
+        #     'owner_members' : [
+        #         { 
+
+        #             'auth_user_id' : 1, 
+
+        #             'name_first' : 'john', 
+
+        #             'name_last' : 'smith', 
+
+        #             'handle_str' : 'johnsmith??', 
+
+        #             'email': 'johnsmith@gmail.com', 
+
+        #             'password': 'pass123', 
+
+        #             'permission_id' : 1, #1 for owner, 2 for member 
+        #         }
+
+        #     ], 
+
+        #     'all_members' : [
+        #         { 
+
+        #             'auth_user_id' : 1, 
+
+        #             'name_first' : 'john', 
+
+        #             'name_last' : 'smith', 
+
+        #             'handle_str' : 'johnsmith??', 
+
+        #             'email': 'johnsmith@gmail.com', 
+
+        #             'password': 'pass123', 
+
+        #             'permission_id'  : 1, #1 for owner, 2 for member 
+        #         },
+        #         { 
+
+        #             'auth_user_id' : 2, 
+
+        #             'name_first' : 'Mike', 
+
+        #             'name_last' : 'Potato', 
+
+        #             'handle_str' : 'potatomike??', 
+
+        #             'email': 'potatomike@gmail.com', 
+
+        #             'password': 'pass123', 
+
+        #             'permission_id'  : 2, #1 for owner, 2 for member 
+        #         }
+                
+        #     ], 
+
+        #     'is_public' :  True, # Assumed to default to public 
+        # }
+        # ]
 
 # test_channel_invite()
