@@ -5,7 +5,7 @@ This file contains the implementation of auth_login_v1 and auth_register_v1
 from data import data
 from src.error import InputError
 import re
-import helper
+import src.helper as helper
 
 def auth_login_v1(email, password):
     return {
@@ -48,7 +48,7 @@ def auth_register_v1(email, password, name_first, name_last):
         'handle_str' : handle, 
 	    'email': email, 
 	    'password': password, 
-        'permission_id'  = permission_id, #1 for owner, 2 for member 
+        'permission_id': permission_id, #1 for owner, 2 for member 
     })
     
     return {

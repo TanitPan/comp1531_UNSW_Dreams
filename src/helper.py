@@ -70,7 +70,7 @@ def generate_handle(name_first, name_last):
     exceeding the 20 character limit. Description sourced from project specs
     '''
     handle = name_first + name_last
-    handle = handle.tolower()
+    handle = handle.lower()
     handle = handle[:20]
     # Check that no user already owns the handle
     if search_handle(handle) is not None: # If another user owns the handle
