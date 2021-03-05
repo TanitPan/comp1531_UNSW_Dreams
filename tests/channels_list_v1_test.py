@@ -2,6 +2,7 @@ from src.channels import channels_create_v1, channels_list_v1
 from src.channel import channel_join_v1
 from src.error import InputError, AccessError
 from src.auth import auth_register_v1
+import src.global_data 
 from src.other import clear_v1
 
 # Test the function's return value to ensure it produces the right type (list)
@@ -13,7 +14,14 @@ def test_channels_listall_channeltype():
     list_channel = dict_channel.values()
     for channel in list_channel:
         assert(isinstance(channel, list) == True)  
-
+        
+def test_channel_data_type():	
+    clear_v1()
+    src.global_data.users = [{'auth_user_id': 1, 'name':'jack'}]
+    src.global_data.all_channels = [{'id':1, 'name': 'channel1'}]
+    value =  channels_listall_v1(1) 	 
+    assert(isinstance(value,list) == True)  
+	
 # Tests the elements inside the return value to make sure they are a dictionary     
 def test_channels_listall_element_type():
     clear_v1()
@@ -23,11 +31,12 @@ def test_channels_listall_element_type():
     for element in dict_channel[channels]:
         assert(isinstance(element, dict) == True) 
         
-# Tests the function when there are no input parameters and raises an InputError
-# need to clarify if this is possible
-"""def channels_list_empty_parameters():
-    with pytest.raises(InputError):
-        assert channels_list_v1()"""
+# Tests how many channels have been created
+def test_number_of_channel():	
+	src.global_data.users = [{'auth_user_id': 1, 'name':'sree'}]
+	src.global_data.all_channels = [{'id':1, 'name': 'channel1'}]
+	value =  channels_listall_v1(1) 	 
+	assert(len(value) == 1)  			
 
 # Tests that the channels created by an unauthorised user is not listed as 
 def test_channels_listall_multiplechannel_length():
