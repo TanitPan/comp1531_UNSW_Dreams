@@ -1,12 +1,15 @@
-from src.error import InputError, AccessError
-#from src.auth import auth_register_v1
-#import data
+from src.error import AccessError
+from data import data
 
-def check_valid_user(auth_user_id, authorised_users):
-    valid_user_id = False
-    #authorised_users = data.data['users']
-    for user in authorised_users:
-        if user['auth_user_id'] == auth_user_id :
+def check_valid_user(user_token):
+    valid_user_id = False    
+    print("----------------")
+    print(user_token)
+    print("----------------")
+    print(data)
+    user_id = user_token['auth_user_id']
+    for user in data['users']:
+        if user['auth_user_id'] == user_id :
             valid_user_id = True
             break
     if valid_user_id == False:
