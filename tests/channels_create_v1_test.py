@@ -1,8 +1,8 @@
 import pytest
 
 from src.channels import channels_create_v1
-from src.error import InputError, AccessError
 from src.auth import auth_register_v1
+from src.error import InputError, AccessError
 from src.other import clear_v1
 
 # Test the type of the return value of channels_create to ensure it produces a
@@ -12,7 +12,10 @@ def test_channels_create_type():
     authorised_token = auth_register_v1('john.smith@gmail.com', 'password', 
                        'john', 'smith')
     channel_id =  channels_create_v1(authorised_token, "Channel0", True) 
+    return_value = channel_id['channel_id']
+    assert(return_value == 1)
     assert(isinstance(channel_id, dict) == True) 
+
 
 # Test the key value of the return value (assuming it is a dictionary) to ensure 
 # the channel_id is a integer value (Specs 6.1.1)
@@ -26,6 +29,7 @@ def test_channels_create_first_id():
     channel3_id = channels_create_v1(authorised_token, 'Channel2', True)
     channel3_key = channel3_id['channel_id']
     assert (isinstance(channel3_key, int) == True)
+
 
 # Test the complete structure of the return value to ensure the channel_id is 
 # formatted properly  
