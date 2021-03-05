@@ -25,8 +25,9 @@ def test_register():
         auth_register_v1("qwerty", "qwerty", "qwer", "ty")
     
     # flag InputError when an email is already registered
+    auth_register_v1("ebubekirclark@gmail.com", "123456", "ebubekir", "clark")
     with pytest.raises(InputError):
-        auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+        auth_register_v1("ebubekirclark@gmail.com", "123456", "ebubekir", "clark")
 
     # flag InputError when a password is less than 6 characters
     with pytest.raises(InputError):
