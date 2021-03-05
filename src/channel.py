@@ -1,5 +1,5 @@
 from src.error import InputError, AccessError
-from storage.data import data
+from data import data
 
 
 def channel_invite_v1(auth_user_id, channel_id, u_id):
@@ -15,19 +15,24 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
     ismember = False
     auth_valid = False
 
+    # Loop to check if auth_user_id is valid
     for user in data["users"]:
         if user["auth_user_id"] == auth_user_id:
             auth_valid = True
             break 
 
+    # Loop to check if channel id is valid
     for channel in data["channels"]:
         if channel["channel_id"] == channel_id:
             valid_channel = True
+
+            # Loop to check if auth_user_id is a member of channel
             for member in channel["all_members"]:
                 if member["auth_user_id"] == auth_user_id:
                     ismember = True
                     break
             break
+
     # Raise exception when detect invalid access/input
     if auth_valid == False:
         raise AccessError("authorised user ID is invalid")
@@ -36,6 +41,7 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
     if ismember == False:
         raise AccessError("authorised user not a member of channel")
 
+    # Loop to check if user id is valid
     for user in data["users"]:
         if user["auth_user_id"] == u_id:
             valid_uid = True
@@ -44,7 +50,7 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
         raise InputError("u_id is not valid user")
 
     new_member = {}
-  
+
     # Find the detail of that u_id user
     for user in data["users"]:
         if user["auth_user_id"] == u_id:
@@ -109,5 +115,3 @@ def channel_removeowner_v1(auth_user_id, channel_id, u_id):
     return {
     }
 
-# channel_invite_v1(1, 1, 2)
-print("HELLO")

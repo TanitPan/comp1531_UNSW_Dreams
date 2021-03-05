@@ -1,734 +1,146 @@
+"""
+This file contains test function for channel_invite function in channel.py
+"""
 import pytest
-from src.channel import channel_invite_v1
+from src.channel import channel_invite_v1, channel_details_v1
+from src.channels import channels_create_v1, channels_list_v1
+from src.auth import auth_register_v1
 from src.error import InputError, AccessError
 from src.other import clear_v1
-from storage.data import data
+from data import data
 
 
 
 def test_channel_invite():
+    """
+    This function checks if the new user 
+    detail added to the channel is correct.
+    """
     
-    # data_users = data["users"].deepcopy()
-    # data_channels = data["channels"].deepcopy()
+    # Clear the data structure
+    clear_v1()
+
+    # Call other functions to create the data and store in data structure
+    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+
+    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
+
+    channel_invite_v1(auth_id1["auth_user_id"], channel_id1["channel_id"], auth_id2["auth_user_id"])
    
-    channel_invite_v1(1, 1, 2)
-    # channel_invite_v1(1, 1, 21)
+    # Check if the new u_id is added to channel
+    assert channels_list_v1(auth_id2["auth_user_id"]) == {
+        'channels': [
+        	{
+        		'channel_id': 1, # channel id start at 1 or 0 is worth checking ?
+        		'name': 'Chill Soc',
+        	}
+        ],
+    }
 
-   
-  
-    # print(data_channels)
-    print(data["channels"])
-    assert data["channels"] == [
-    {      
-
-		'channel_id' :  1, 
-
-		'name' :  'channel0', 
-
-		'owner_members' : [
+    # Check if the new user detail added to the channel is correct
+    assert channel_details_v1(auth_id2["auth_user_id"], channel_id1["channel_id"]) == {
+        'name': 'Chill Soc',
+        'owner_members': [
             { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
+                'auth_user_id' : 0, 
+                'name_first' : 'john',
                 'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id' : 1, #1 for owner, 2 for member 
             }
-
-        ], 
-
-        'all_members' : [
+        ],
+        'all_members': [
             { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
+                'auth_user_id' : 0, 
+                'name_first' : 'john',
                 'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id'  : 1, #1 for owner, 2 for member 
             },
-            { 
-
-                'auth_user_id' : 2, 
-
-                'name_first' : 'Mike', 
-
-                'name_last' : 'Potato', 
-
-                'handle_str' : 'potatomike??', 
-
-                'email': 'potatomike@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id'  : 2, #1 for owner, 2 for member 
+            {
+                'auth_user_id': 1,
+                'name_first': 'harry',
+                'name_last': 'potter',
             }
-            
-        ], 
-
-        'is_public' :  True, # Assumed to default to public 
+        ],
     }
-    ]
+
+
+    
   
-# Test error for invalid channel
+
 def test_channel_invite_except_channel():
-    data['users'].clear()
-    data['channels'].clear()
-    data['users'] =  [
-    { 
+    """
+    This function tests error for invalid channel
+    being used as an input.
+    """
 
-	    'auth_user_id' : 1, 
+    # Clear the data structure
+    clear_v1()
+    # Call other functions to create the data and store in data structure
+    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
-	    'name_first' : 'john', 
+    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
 
-	    'name_last' : 'smith', 
-
-        'handle_str' : 'johnsmith??', 
-
-	    'email': 'johnsmith@gmail.com', 
-
-	    'password': 'pass123', 
-
-        'permission_id'  : 1, #1 for owner, 2 for member 
-    },
-    { 
-
-	    'auth_user_id' : 2, 
-
-	    'name_first' : 'Mike', 
-
-	    'name_last' : 'Potato', 
-
-        'handle_str' : 'potatomike??', 
-
-	    'email': 'potatomike@gmail.com', 
-
-	    'password': 'pass123', 
-
-        'permission_id'  : 2, #1 for owner, 2 for member 
-    }
-
-    ]
-    data['channels'] = [
-    {      
-
-		'channel_id' :  1, 
-
-		'name' :  'channel0', 
-
-		'owner_members' : [
-            { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
-                'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id' : 1, #1 for owner, 2 for member 
-            }
-
-        ], 
-
-        'all_members' : [
-            { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
-                'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id'  : 1, #1 for owner, 2 for member 
-            }
-            
-        ], 
-
-        'is_public' :  True, # Assumed to default to public 
-    }
-    ]
-    
-    
-
+    # Test error for invalid channel
     with pytest.raises(InputError):
-        channel_invite_v1(1, 12, 2)
-        # assert data["channels"] == [
-        # {      
+        channel_invite_v1(auth_id1["auth_user_id"], 12, auth_id2["auth_user_id"])
+       
 
-        #     'channel_id' :  1, 
 
-        #     'name' :  'channel0', 
-
-        #     'owner_members' : [
-        #         { 
-
-        #             'auth_user_id' : 1, 
-
-        #             'name_first' : 'john', 
-
-        #             'name_last' : 'smith', 
-
-        #             'handle_str' : 'johnsmith??', 
-
-        #             'email': 'johnsmith@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id' : 1, #1 for owner, 2 for member 
-        #         }
-
-        #     ], 
-
-        #     'all_members' : [
-        #         { 
-
-        #             'auth_user_id' : 1, 
-
-        #             'name_first' : 'john', 
-
-        #             'name_last' : 'smith', 
-
-        #             'handle_str' : 'johnsmith??', 
-
-        #             'email': 'johnsmith@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id'  : 1, #1 for owner, 2 for member 
-        #         },
-        #         { 
-
-        #             'auth_user_id' : 2, 
-
-        #             'name_first' : 'Mike', 
-
-        #             'name_last' : 'Potato', 
-
-        #             'handle_str' : 'potatomike??', 
-
-        #             'email': 'potatomike@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id'  : 2, #1 for owner, 2 for member 
-        #         }
-                
-        #     ], 
-
-        #     'is_public' :  True, # Assumed to default to public 
-        # }
-        # ]
-
-# Test error for invalid u_id
 def test_channel_invite_except_user():
-    data['users'].clear()
-    data['channels'].clear()
-    data['users'] =  [
-    { 
+    """
+    This function tests error for invalid u_id
+    being invited to the channel.
+    """
+    # Clear the data structure
+    clear_v1()
+    # Call other functions to create the data and store in data structure
+    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
-	    'auth_user_id' : 1, 
-
-	    'name_first' : 'john', 
-
-	    'name_last' : 'smith', 
-
-        'handle_str' : 'johnsmith??', 
-
-	    'email': 'johnsmith@gmail.com', 
-
-	    'password': 'pass123', 
-
-        'permission_id'  : 1, #1 for owner, 2 for member 
-    },
-    { 
-
-	    'auth_user_id' : 2, 
-
-	    'name_first' : 'Mike', 
-
-	    'name_last' : 'Potato', 
-
-        'handle_str' : 'potatomike??', 
-
-	    'email': 'potatomike@gmail.com', 
-
-	    'password': 'pass123', 
-
-        'permission_id'  : 2, #1 for owner, 2 for member 
-    }
-
-    ]
-    data['channels'] = [
-    {      
-
-		'channel_id' :  1, 
-
-		'name' :  'channel0', 
-
-		'owner_members' : [
-            { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
-                'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id' : 1, #1 for owner, 2 for member 
-            }
-
-        ], 
-
-        'all_members' : [
-            { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
-                'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id'  : 1, #1 for owner, 2 for member 
-            }
-            
-        ], 
-
-        'is_public' :  True, # Assumed to default to public 
-    }
-    ]
+    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
     
-    
-
+    # Test error for invalid u_id
     with pytest.raises(InputError):
-        channel_invite_v1(1, 1, 2222)
-        # assert data["channels"] == [
-        # {      
-
-        #     'channel_id' :  1, 
-
-        #     'name' :  'channel0', 
-
-        #     'owner_members' : [
-        #         { 
-
-        #             'auth_user_id' : 1, 
-
-        #             'name_first' : 'john', 
-
-        #             'name_last' : 'smith', 
-
-        #             'handle_str' : 'johnsmith??', 
-
-        #             'email': 'johnsmith@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id' : 1, #1 for owner, 2 for member 
-        #         }
-
-        #     ], 
-
-        #     'all_members' : [
-        #         { 
-
-        #             'auth_user_id' : 1, 
-
-        #             'name_first' : 'john', 
-
-        #             'name_last' : 'smith', 
-
-        #             'handle_str' : 'johnsmith??', 
-
-        #             'email': 'johnsmith@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id'  : 1, #1 for owner, 2 for member 
-        #         },
-        #         { 
-
-        #             'auth_user_id' : 2, 
-
-        #             'name_first' : 'Mike', 
-
-        #             'name_last' : 'Potato', 
-
-        #             'handle_str' : 'potatomike??', 
-
-        #             'email': 'potatomike@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id'  : 2, #1 for owner, 2 for member 
-        #         }
-                
-        #     ], 
-
-        #     'is_public' :  True, # Assumed to default to public 
-        # }
-        # ]
+        channel_invite_v1(auth_id1["auth_user_id"], channel_id1["channel_id"], 2222)
+        
 
 
-# Auth_user_id not a member of channel
 def test_channel_invite_except_noaccess():
-    data['users'].clear()
-    data['channels'].clear()
-    data['users'] =  [
-    { 
+    """
+    This function tests if  the auth_user_id
+    is a member of the channel.
+    """
 
-	    'auth_user_id' : 1, 
+    # Clear the data structure
+    clear_v1()
+    # Call other functions to create the data and store in data structure
+    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
-	    'name_first' : 'john', 
-
-	    'name_last' : 'smith', 
-
-        'handle_str' : 'johnsmith??', 
-
-	    'email': 'johnsmith@gmail.com', 
-
-	    'password': 'pass123', 
-
-        'permission_id'  : 1, #1 for owner, 2 for member 
-    },
-    { 
-
-	    'auth_user_id' : 2, 
-
-	    'name_first' : 'Mike', 
-
-	    'name_last' : 'Potato', 
-
-        'handle_str' : 'potatomike??', 
-
-	    'email': 'potatomike@gmail.com', 
-
-	    'password': 'pass123', 
-
-        'permission_id'  : 2, #1 for owner, 2 for member 
-    }
-
-    ]
-    data['channels'] = [
-    {      
-
-		'channel_id' :  1, 
-
-		'name' :  'channel0', 
-
-		'owner_members' : [
-            { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
-                'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id' : 1, #1 for owner, 2 for member 
-            }
-
-        ], 
-
-        'all_members' : [
-            { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
-                'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id'  : 1, #1 for owner, 2 for member 
-            }
-            
-        ], 
-
-        'is_public' :  True, # Assumed to default to public 
-    }
-    ]
+    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
     
-    
-
+    # Auth_user_id not a member of channel
     with pytest.raises(AccessError):
-        channel_invite_v1(2, 1, 2)
-        # assert data["channels"] == [
-        # {      
-
-        #     'channel_id' :  1, 
-
-        #     'name' :  'channel0', 
-
-        #     'owner_members' : [
-        #         { 
-
-        #             'auth_user_id' : 1, 
-
-        #             'name_first' : 'john', 
-
-        #             'name_last' : 'smith', 
-
-        #             'handle_str' : 'johnsmith??', 
-
-        #             'email': 'johnsmith@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id' : 1, #1 for owner, 2 for member 
-        #         }
-
-        #     ], 
-
-        #     'all_members' : [
-        #         { 
-
-        #             'auth_user_id' : 1, 
-
-        #             'name_first' : 'john', 
-
-        #             'name_last' : 'smith', 
-
-        #             'handle_str' : 'johnsmith??', 
-
-        #             'email': 'johnsmith@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id'  : 1, #1 for owner, 2 for member 
-        #         },
-        #         { 
-
-        #             'auth_user_id' : 2, 
-
-        #             'name_first' : 'Mike', 
-
-        #             'name_last' : 'Potato', 
-
-        #             'handle_str' : 'potatomike??', 
-
-        #             'email': 'potatomike@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id'  : 2, #1 for owner, 2 for member 
-        #         }
-                
-        #     ], 
-
-        #     'is_public' :  True, # Assumed to default to public 
-        # }
-        # ]
+        channel_invite_v1(auth_id2["auth_user_id"], channel_id1["channel_id"], auth_id2["auth_user_id"])
+       
 
 
-# Test invalid auth_user_id case
+
 def test_channel_invite_except_invalid_auth():
-    data['users'].clear()
-    data['channels'].clear()
-    data['users'] =  [
-    { 
+    """
+    This functions tests if the auth_user_id is 
+    a valid id.
+    """
+    # Clear the data structure
+    clear_v1()
+    # Call other functions to create the data and store in data structure
+    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
-	    'auth_user_id' : 1, 
+    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
 
-	    'name_first' : 'john', 
-
-	    'name_last' : 'smith', 
-
-        'handle_str' : 'johnsmith??', 
-
-	    'email': 'johnsmith@gmail.com', 
-
-	    'password': 'pass123', 
-
-        'permission_id'  : 1, #1 for owner, 2 for member 
-    },
-    { 
-
-	    'auth_user_id' : 2, 
-
-	    'name_first' : 'Mike', 
-
-	    'name_last' : 'Potato', 
-
-        'handle_str' : 'potatomike??', 
-
-	    'email': 'potatomike@gmail.com', 
-
-	    'password': 'pass123', 
-
-        'permission_id'  : 2, #1 for owner, 2 for member 
-    }
-
-    ]
-    data['channels'] = [
-    {      
-
-		'channel_id' :  1, 
-
-		'name' :  'channel0', 
-
-		'owner_members' : [
-            { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
-                'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id' : 1, #1 for owner, 2 for member 
-            }
-
-        ], 
-
-        'all_members' : [
-            { 
-
-                'auth_user_id' : 1, 
-
-                'name_first' : 'john', 
-
-                'name_last' : 'smith', 
-
-                'handle_str' : 'johnsmith??', 
-
-                'email': 'johnsmith@gmail.com', 
-
-                'password': 'pass123', 
-
-                'permission_id'  : 1, #1 for owner, 2 for member 
-            }
-            
-        ], 
-
-        'is_public' :  True, # Assumed to default to public 
-    }
-    ]
-    
-    
-    
+    # Test invalid auth_user_id case
     with pytest.raises(AccessError):
-        channel_invite_v1(222, 1, 2)
-        # assert data["channels"] == [
-        # {      
+        channel_invite_v1(222, channel_id1["channel_id"],  auth_id2["auth_user_id"])
+        
 
-        #     'channel_id' :  1, 
-
-        #     'name' :  'channel0', 
-
-        #     'owner_members' : [
-        #         { 
-
-        #             'auth_user_id' : 1, 
-
-        #             'name_first' : 'john', 
-
-        #             'name_last' : 'smith', 
-
-        #             'handle_str' : 'johnsmith??', 
-
-        #             'email': 'johnsmith@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id' : 1, #1 for owner, 2 for member 
-        #         }
-
-        #     ], 
-
-        #     'all_members' : [
-        #         { 
-
-        #             'auth_user_id' : 1, 
-
-        #             'name_first' : 'john', 
-
-        #             'name_last' : 'smith', 
-
-        #             'handle_str' : 'johnsmith??', 
-
-        #             'email': 'johnsmith@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id'  : 1, #1 for owner, 2 for member 
-        #         },
-        #         { 
-
-        #             'auth_user_id' : 2, 
-
-        #             'name_first' : 'Mike', 
-
-        #             'name_last' : 'Potato', 
-
-        #             'handle_str' : 'potatomike??', 
-
-        #             'email': 'potatomike@gmail.com', 
-
-        #             'password': 'pass123', 
-
-        #             'permission_id'  : 2, #1 for owner, 2 for member 
-        #         }
-                
-        #     ], 
-
-        #     'is_public' :  True, # Assumed to default to public 
-        # }
-        # ]
-
-# test_channel_invite()
