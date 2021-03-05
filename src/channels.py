@@ -1,5 +1,5 @@
-from src.error import InputError, AccessError
 from data import data
+from src.error import InputError, AccessError
 from src.auth import auth_register_v1
 from src.extra_functions import check_valid_user
 
@@ -39,27 +39,36 @@ def channels_create_v1(auth_user_id, name, is_public):
     Exceptions:
         InputError  - Occurs when the name input is consists of more than 20 
                       characters as determined by the len function. 
-        AccessError - Occurs when ...
-
+        AccessError - Occurs when the auth_user_id has not been authenicated
+                      (appended to the data['users'] file)
+        
     Return Value:
         Returns a dictionary consisting of the channel_id values provided the
         auth_user_id is valid and the name is less than 20 characters in length. 
     """
 
+    # Calls the check_valid_user function to ensure the user_id is validated 
+    # (has been added to the list of users). An AccessError is else raised. 
     check_valid_user(auth_user_id)
 
     if len(name) > 20:
         raise InputError("The name input is more than 20 characters.")
 
+    # Our assumptions began the channel_id at 1 and increase iteratively. To 
+    # give a new channel_id, loop through the channels, record the highest id  
+    # and set the new id as one greater than it. This allows for a unique id to 
+    # be established without assuming the same iterative process was used. 
     maximum_id = 0
     for channel in data['channels']:
         if channel['channel_id'] > maximum_id:
             maximum_id = channel['channel_id']       
     new_id = maximum_id + 1
 
+    # Only the channel creator has been added as user. 
     owner_list = [auth_user_id]
     all_member_list = [auth_user_id]
 
+    # Added new channel data to the dataframe.
     new_channels = {
 			    'channel_id': new_id, 
 			    'name': name, 
@@ -68,8 +77,7 @@ def channels_create_v1(auth_user_id, name, is_public):
 			    'ispublic': is_public,
     }
 
-    all_channels.append(new_channels)
-
+    data['channels'].append(new_channels)
     return ({
 	    'channel_id': new_id,
     })
