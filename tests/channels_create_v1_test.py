@@ -16,20 +16,25 @@ def test_channels_create_type():
     assert(return_value == 1)
     assert(isinstance(channel_id, dict) == True) 
 
-
 # Test the key value of the return value (assuming it is a dictionary) to ensure 
 # the channel_id is a integer value (Specs 6.1.1)
-def test_channels_create_first_id():
+def test_channels_create_multiple_channels():
     clear_v1()
     authorised_token = auth_register_v1('rujanair4@yahoo.com', 'ruja1nair',
                        'ruja', 'nair')
-    channel2_id = channels_create_v1(authorised_token, 'Channel1', True)
+    
+    channel1_id = channels_create_v1(authorised_token, 'Channel1', True)
+
+    # Created two channels, confirmed the channel_id was an integer and the 
+    # format was correct
+    channel1_key = channel1_id['channel_id']
+    assert (isinstance(channel1_key, int) == True)
+    assert (channel1_id == {'channel_id': 1})
+    
+    channel2_id = channels_create_v1(authorised_token, 'Channel2', True)
     channel2_key = channel2_id['channel_id']
     assert (isinstance(channel2_key, int) == True)
-    channel3_id = channels_create_v1(authorised_token, 'Channel2', True)
-    channel3_key = channel3_id['channel_id']
-    assert (isinstance(channel3_key, int) == True)
-
+    assert (channel2_id == {'channel_id': 2})
 
 # Test the complete structure of the return value to ensure the channel_id is 
 # formatted properly  
@@ -52,3 +57,16 @@ def test_channels_create_long_name():
         channels_create_v1(authorised_token, "123456789012345678901", False)
     with pytest.raises(InputError):
         channels_create_v1(authorised_token, "#!!!!!!!!!!!!!!!!!!!!#", True)
+        
+# Test multiple calls of channels_create_v1 to verify the dict has been updated
+    clear_v1()
+    authorised_token = auth_register_v1('comp1531student@email.com', 'comp15', 
+                       'comp', 'student')
+    # Tested each element separately
+    channel_id1 =  channels_create_v1(authorised_token, "Channel4", True) 
+    assert (channel_id1 == {'channel_id': 1})
+    channel_id2 =  channels_create_v1(authorised_token, "Channel5", True) 
+    assert (channel_id2 == {'channel_id': 2})
+    channel_id3 =  channels_create_v1(authorised_token, "Channel6", True) 
+    assert (channel_id3 == {'channel_id': 3})
+    
