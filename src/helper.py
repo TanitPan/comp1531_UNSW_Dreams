@@ -1,0 +1,86 @@
+'''
+This is a helper file containing useful functions used in other files
+'''
+
+from data import data
+import re
+from src.error import InputError, AccessError
+
+# Valid email input
+RE = '^[a-zA-Z0-9]+[\\._]?[a-zA-Z0-9]+[@]\\w+[.]\\w{2,3}$'
+
+def check_email_valid(email):
+    '''
+    Check that email is valid, given an email and using a regex, returns an
+    InputError otherwise
+    '''
+    if not re.search(RE, email):
+        raise InputError
+
+def search_email(email):
+    '''
+    A function which searches the database for a user with a given email, returns
+    their email if found, and None otherwise
+    '''
+    for user in data['users']:
+        if user['email'] == email:
+            return user
+    return None
+
+def check_password_valid(password):
+    '''
+    A function which checks if a password is valid, raises InputError if not
+    '''
+    if len(password) < 6:
+        raise InputError
+
+def check_name_length(name):
+    '''
+    A function which checks whether a name is between 1 and 50 characters inclusively,
+    raises InputError otherwise
+    '''
+    if len(name) not in range(1, 51):
+        raise InputError
+
+def generate_auth_user_id():
+    '''
+    A function which generates a new users auth_user_id and returns it,
+    simply giving users an id equal to the number of users already registered
+    '''
+    return len(data['users'])
+
+def search_handle(handle):
+    '''
+    A function which searches the user database for a user with a handle, 
+    and returns that user if found, otherwise, return None
+    '''
+    for user in data['users']:
+        if user['handle_str'] == handle:
+            return user
+    return None
+
+def generate_handle(name_first, name_last):
+    '''
+    Generates a handle_str that is the
+    concatenation of a lowercase-only first name and last name.If the concatenation is 
+    longer than 20 characters, it is cutoff at 20 characters. The handle will not include 
+    any whitespace or the '@' character. If the handle is already taken, append the 
+    concatenated names with the smallest number(starting at 0) that forms a new handle 
+    that isn't already taken. The addition of this final number may result in the handle 
+    exceeding the 20 character limit. Description sourced from project specs
+    '''
+    handle = name_first + name_last
+    handle = handle.lower()
+    handle = handle[:20]
+    # Check that no user already owns the handle
+    if search_handle(handle) is not None: # If another user owns the handle
+        i = 0
+        handle = handle + str(i)
+        while search_handle(handle) is not None:
+            # If the number resulted in a non-unique handle, remove it and iteratively
+            # add another one
+            if i != 0: 
+                handle = handle[-1]
+            i += 1
+            handle = handle + str(i)
+    return handle
