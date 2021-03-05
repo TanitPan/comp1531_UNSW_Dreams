@@ -21,7 +21,7 @@ def auth_register_v1(email, password, name_first, name_last):
     helper.check_email_valid(email)
     # Check that email isn't taken, return InputError if it is
     if helper.search_email(email) is not None:
-        return InputError
+        raise InputError
     # Check that the password is valid
     helper.check_password_valid(password)
     # Check the name_first and name_last length
