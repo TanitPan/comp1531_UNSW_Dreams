@@ -18,9 +18,6 @@ def channel_details_v1(auth_user_id, channel_id):
     is_member = False
 
     details = {}
-    name = []
-    owners = []
-    members = []
     
     # Checking channel_id is valid
     for channel in data["channels"]:
@@ -30,7 +27,7 @@ def channel_details_v1(auth_user_id, channel_id):
             # check if auth_user_id is member of channel_id
             for member in channel["all_members"]:
                 if member["auth_user_id"] == auth_user_id:
-                    is_member == True
+                    is_member = True
                     break
             break
               
@@ -43,14 +40,9 @@ def channel_details_v1(auth_user_id, channel_id):
     # append name, owner_members, and all_members into each variable
     for channel in data["channels"]:
          if channel["channel_id"] == channel_id:
-            name.append(channel['name'])
-            owners.append(channel['owner_members'])
-            members.append(channel['all_members'])
-
-    # store name, owner_members, and all_members into new dictionary
-    details['name'] = name
-    details['owner_members'] = owners
-    details['all_members'] = members
+            details['name'] = channel['name']
+            details['owner_members'] = channel['owner_members']
+            details['all_members'] = channel['all_members']
 
     # return the new dictionary
     return(details)
