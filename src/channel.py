@@ -21,6 +21,18 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
             auth_valid = True
             break 
 
+    new_member = {}
+    # Loop to check if user id is valid and store that user info
+    for user in data["users"]:
+        if user["auth_user_id"] == u_id:
+            valid_uid = True
+            new_member["auth_user_id"] = user["auth_user_id"]
+            break
+
+    # Raise exception for invalid u_id
+    if valid_uid == False:
+        raise InputError("u_id is not valid user")
+
     # Loop to check if channel id is valid
     for channel in data["channels"]:
         if channel["channel_id"] == channel_id:
@@ -31,6 +43,11 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
                 if member["auth_user_id"] == auth_user_id:
                     ismember = True
                     break
+            # Loop to check if u_id is already in channel
+            for member in channel["all_members"]:
+                if member["auth_user_id"] == u_id:
+                    raise AccessError("Repetitive invite! This u_id already in channel")
+
             break
 
     # Raise exception when detect invalid access/input
@@ -41,28 +58,11 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
     if ismember == False:
         raise AccessError("authorised user not a member of channel")
 
-    # Loop to check if user id is valid
-    for user in data["users"]:
-        if user["auth_user_id"] == u_id:
-            valid_uid = True
-            break
-    if valid_uid == False:
-        raise InputError("u_id is not valid user")
-
-    new_member = {}
-
-    # Find the detail of that u_id user
-    for user in data["users"]:
-        if user["auth_user_id"] == u_id:
-            new_member = user
-
-    # Loop over the target channel and add the u_id into
+    # Loop over the target channel and add u_id into channel
     for channel in data["channels"]:
         if channel_id == channel["channel_id"]:
             channel["all_members"].append(new_member)
         
-
-
     return {
     }
 

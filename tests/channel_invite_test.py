@@ -39,28 +39,28 @@ def test_channel_invite():
     }
 
     # Check if the new user detail added to the channel is correct
-    assert channel_details_v1(auth_id2["auth_user_id"], channel_id1["channel_id"]) == {
+    assert data["channels"] == [{
+        'channel_id' :  1,
         'name': 'Chill Soc',
         'owner_members': [
             { 
                 'auth_user_id' : 0, 
-                'name_first' : 'john',
-                'name_last' : 'smith', 
+         
             }
         ],
         'all_members': [
             { 
                 'auth_user_id' : 0, 
-                'name_first' : 'john',
-                'name_last' : 'smith', 
+              
             },
             {
                 'auth_user_id': 1,
-                'name_first': 'harry',
-                'name_last': 'potter',
+               
             }
         ],
+        'ispublic' :  True,
     }
+    ]
 
 
     
@@ -142,5 +142,22 @@ def test_channel_invite_except_invalid_auth():
     # Test invalid auth_user_id case
     with pytest.raises(AccessError):
         channel_invite_v1(222, channel_id1["channel_id"],  auth_id2["auth_user_id"])
-        
 
+
+
+def test_channel_invite_except_repetitive():
+    """
+    This functions tests if the auth_user_id is 
+    inviting a user already in the channel.
+    """
+    # Clear the data structure
+    clear_v1()
+    # Call other functions to create the data and store in data structure
+    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+
+    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
+
+    # Test invalid auth_user_id case
+    with pytest.raises(AccessError):
+        channel_invite_v1(auth_id1["auth_user_id"], channel_id1["channel_id"],  auth_id1["auth_user_id"])
