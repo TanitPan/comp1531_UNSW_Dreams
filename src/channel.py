@@ -58,8 +58,6 @@ def channel_join_v1(auth_user_id, channel_id):
             valid_auth = True
             global_permission = user["permission_id"]
             new_user_info["auth_user_id"] = user["auth_user_id"]
-            new_user_info["name_first"] = user["name_first"]
-            new_user_info["name_last"] = user["name_last"]
             break
 
     # Loop to check if channel id is valid and store channel privacy
