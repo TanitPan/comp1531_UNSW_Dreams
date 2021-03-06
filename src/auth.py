@@ -8,6 +8,10 @@ import re
 import src.helper as helper
 
 def auth_login_v1(email, password):
+    '''
+    This function returns the auth_user_id of a user given a valid
+    and existing email and password
+    '''
     # Check that the email is valid
     helper.check_email_valid(email)
 
