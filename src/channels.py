@@ -25,11 +25,10 @@ def channels_list_v1(auth_user_id):
     # authorised user has access to.
     authorised_channels = []
     for channel in data['channels']:
-        members = channel['all_members']
-        for member in members:
+        for member in channel['all_members']:
             # Checked for member, as owners will automatically be included as 
             # members of the channel. 
-            if auth_user_id == member: 
+            if auth_user_id == member['auth_user_id']: 
                 new_dict = {
                     'channel_id': channel['channel_id'], 
                     'name': channel['name'],}
@@ -93,8 +92,8 @@ def channels_create_v1(auth_user_id, name, is_public):
     new_id = maximum_id + 1
 
     # Only the channel creator has been added as user. 
-    owner_list = [auth_user_id]
-    all_member_list = [auth_user_id]
+    owner_list = [{'auth_user_id': auth_user_id}]
+    all_member_list = [{'auth_user_id': auth_user_id}]
 
     # Added new channel data to the dataframe.
     new_channels = {
