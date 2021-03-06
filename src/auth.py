@@ -8,8 +8,20 @@ import re
 import src.helper as helper
 
 def auth_login_v1(email, password):
+    # Check that the email is valid
+    helper.check_email_valid(email)
+
+    # Check that the email belongs to a user, raise InputError else
+    user = helper.search_email(email)
+    if user is None:
+        raise InputError
+    
+    # Check that the password is valid
+    id = helper.check_password(user, password)
+
+    # Return their auth_user_id
     return {
-        'auth_user_id': 1,
+        'auth_user_id': id,
     }
 
 def auth_register_v1(email, password, name_first, name_last):
@@ -19,7 +31,7 @@ def auth_register_v1(email, password, name_first, name_last):
     '''
     # Check that email is valid
     helper.check_email_valid(email)
-    # Check that email isn't taken, return InputError if it is
+    # Check that email isn't taken, raise InputError if it is
     if helper.search_email(email) is not None:
         raise InputError
     # Check that the password is valid
