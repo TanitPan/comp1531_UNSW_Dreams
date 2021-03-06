@@ -78,6 +78,6 @@ def channels_create_v1(auth_user_id, name, is_public):
     }
 
     data['channels'].append(new_channels)
-    return ({
+    return {
 	    'channel_id': new_id,
-    })
+    }
