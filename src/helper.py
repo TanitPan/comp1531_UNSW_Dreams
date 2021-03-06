@@ -101,15 +101,12 @@ def check_valid_user(user_token):
 
     # Flag to test if the user_id is valid
     valid_user_id = False 
-
-    # Extracts the user_token from the dictionary 
-    user_id = user_token['auth_user_id']
     
     # Loops through the data file to find the user_id, which would be appended 
     # to the list if auth_register_v1 was called. The flag changes to True once  
     # the user_token has been found. 
     for user in data['users']:
-        if user['auth_user_id'] == user_id:
+        if user['auth_user_id'] == user_token:
             valid_user_id = True 
             break
     
