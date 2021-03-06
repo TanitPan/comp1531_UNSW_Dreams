@@ -2,7 +2,7 @@
 This file contains test function for channel_invite function in channel.py
 """
 import pytest
-from src.channel import channel_invite_v1, channel_details_v1
+from src.channel import channel_invite_v1
 from src.channels import channels_create_v1, channels_list_v1
 from src.auth import auth_register_v1
 from src.error import InputError, AccessError
@@ -37,33 +37,6 @@ def test_channel_invite():
         	}
         ],
     }
-
-    # Check if the new user detail added to the channel is correct
-    assert data["channels"] == [{
-        'channel_id' :  1,
-        'name': 'Chill Soc',
-        'owner_members': [
-            { 
-                'auth_user_id' : 0, 
-         
-            }
-        ],
-        'all_members': [
-            { 
-                'auth_user_id' : 0, 
-              
-            },
-            {
-                'auth_user_id': 1,
-               
-            }
-        ],
-        'ispublic' :  True,
-    }
-    ]
-
-
-    
   
 
 def test_channel_invite_except_channel():
