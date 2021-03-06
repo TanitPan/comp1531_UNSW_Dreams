@@ -64,6 +64,7 @@ def test_channels_create_long_name():
         channels_create_v1(authorised_token, "#!!!!!!!!!!!!!!!!!!!!#", True)
         
 # Test multiple calls of channels_create_v1 to verify the dict has been updated
+def test_channels_create_multiple():
     clear_v1()
     authorised_dict = auth_register_v1('comp1531student@email.com', 'comp15', 
                        'comp', 'student')
@@ -75,4 +76,17 @@ def test_channels_create_long_name():
     assert (channel_id2 == {'channel_id': 2})
     channel_id3 =  channels_create_v1(authorised_token, "Channel6", True) 
     assert (channel_id3 == {'channel_id': 3})
-    
+
+ # Tests that the channels created by an unauthorised user is not listed 
+def test_channels_create_unauthorised():
+    clear_v1()
+    authorised_dict = auth_register_v1('user1@yahoo.com', 'password1234', 
+                       'anne', 'smith')
+    authorised_token = authorised_dict['auth_user_id']
+    # Generated a new number, which was one higher than the authorised token
+    # and tested if it would produce an AccessError when called
+    non_authorised_token = authorised_token + 1 
+    channel_id1 = channels_create_v1(authorised_token, 'Channel0', True)
+    with pytest.raises(AccessError):
+        channels_create_v1(non_authorised_token, 'Channel1', True)
+
