@@ -1,5 +1,5 @@
 from data import data 
-
+import pytest
 from src.channels import channels_create_v1, channels_list_v1, channels_listall_v1
 from src.error import InputError, AccessError
 from src.auth import auth_register_v1
@@ -7,7 +7,7 @@ from src.other import clear_v1
 
 # Test the type of the return value of channels_listall to ensure it produces a
 # dictionary (Specs 6.1.1)
-def test_channels_listall_channeltype():
+def test_channels_listall_type():
     # Clear the contents of the data file
     clear_v1()
     authorised_dict = auth_register_v1('janedoe@hotmail.com', '1234567', 
@@ -20,7 +20,7 @@ def test_channels_listall_channeltype():
 
 # Tests the contents of the return value to ensure it meets the specs of being a
 # list of dictionaries (Specs 6.1.1)        
-def test_channels_listall_type():
+def test_channels_listall_channeltype():
     clear_v1()
     authorised_dict = auth_register_v1('johnsmith@email.com', 'password', 
                        'john', 'smith')
@@ -35,7 +35,7 @@ def test_channels_listall_type():
  
 # Tests the function to make sure an AccessError arises when there's no 
 # appropriate authorised user
-def test_channels_listall_empty_test():
+def test_channels_listall_nonauthorised_user():
     clear_v1()
     authorised_dict = auth_register_v1('student@email.com', 'studunsw', 
                        'tom', 'student')
@@ -51,7 +51,7 @@ def test_channels_listall_empty_test():
 
 # Tests the number of lists are added to the channel once the channels_create 
 # function is called twice.  
-def test_channels_listall_multiplechannel_length():
+def test_channels_listall_multiplechannel():
     clear_v1()
     # Created two auth_user_ids 
     authorised_dict1 = auth_register_v1('user1@yahoo.com', 'password1234', 
