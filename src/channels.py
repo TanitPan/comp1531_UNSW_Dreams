@@ -4,15 +4,41 @@ from src.auth import auth_register_v1
 from src.helper import check_valid_user
 
 def channels_list_v1(auth_user_id):
-    return {
-        'channels': [
-        	{
-        		'channel_id': 1,
-        		'name': 'My Channel',
-        	}
-        ],
-    }
+    """ Taking in the auth_user_id, this function returns all channels the 
+    authorised user has access to 
+    Arguments:
+        auth_user_id (int) - an input token that hints that an authorised and
+                             valid user is requesting for this information 
+                                                  
+    Exceptions:
+        AccessError - Occurs when the auth_user_id is invalid and it doesn't 
+                      belong to the group
 
+    Return Value:
+        Returns a list consisting of dictionaries, with the information about a 
+        channel (likely to be 'channel_id' and 'name'
+    """ 
+    # Check the user_id to ensure that they were included as a channel member 
+    check_valid_user(auth_user_id)
+   
+    # Created an empty list to store the information of the channels the 
+    # authorised user has access to.
+    authorised_channels = []
+    for channel in data['channels']:
+        for member in channel['all_members']:
+            # Checked for member, as owners will automatically be included as 
+            # members of the channel. 
+            if auth_user_id == member['auth_user_id']: 
+                new_dict = {
+                    'channel_id': channel['channel_id'], 
+                    'name': channel['name'],}
+                authorised_channels.append(new_dict)
+                break 
+    # Return a dictionary structure with its value being a list of dictionaries
+    return {
+        'channels': authorised_channels
+        }
+       
 def channels_listall_v1(auth_user_id):
     return {
         'channels': [
@@ -51,6 +77,7 @@ def channels_create_v1(auth_user_id, name, is_public):
     # (has been added to the list of users). An AccessError is else raised. 
     check_valid_user(auth_user_id)
 
+    # Raises InputError if the length of the name is greater than 20 characters
     if len(name) > 20:
         raise InputError("The name input is more than 20 characters.")
 
@@ -65,8 +92,8 @@ def channels_create_v1(auth_user_id, name, is_public):
     new_id = maximum_id + 1
 
     # Only the channel creator has been added as user. 
-    owner_list = [auth_user_id]
-    all_member_list = [auth_user_id]
+    owner_list = [{'auth_user_id': auth_user_id}]
+    all_member_list = [{'auth_user_id': auth_user_id}]
 
     # Added new channel data to the dataframe.
     new_channels = {
@@ -81,3 +108,5 @@ def channels_create_v1(auth_user_id, name, is_public):
     return {
 	    'channel_id': new_id,
     }
+
+
