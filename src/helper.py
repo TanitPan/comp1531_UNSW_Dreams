@@ -84,3 +84,14 @@ def generate_handle(name_first, name_last):
             i += 1
             handle = handle + str(i)
     return handle
+
+def check_password(user, password):
+    '''
+    This is a function which checks if a given password matches the user's
+    password. Returns their auth_user_id value if correct and InputError
+    otherwise
+    '''
+    if user['password'] == password:
+        return user['auth_user_id']
+    raise InputError
+
