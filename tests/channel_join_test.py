@@ -25,7 +25,7 @@ def test_channel_join():
     auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
     channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
-    # print(channel_id1)
+    print(channel_id1)
     
     channel_join_v1(auth_id2["auth_user_id"], channel_id1["channel_id"])
 
@@ -34,34 +34,11 @@ def test_channel_join():
     assert channels_list_v1(auth_id2["auth_user_id"]) == {
         'channels': [
         	{
-        		'channel_id': 1, # channel id start at 1 or 0 is worth checking ?
+        		'channel_id': 1, # channel id start at 1 or 0 is worth checking ? It's currently start at 1.
         		'name': 'Chill Soc',
         	}
         ],
     }
-
-    # assert channel_details_v1(auth_id2["auth_user_id"], channel_id1["channel_id"]) == {
-    #     'name': 'Chill Soc',
-    #     'owner_members': [
-    #         { 
-    #             'auth_user_id' : 0, 
-    #             'name_first' : 'john',
-    #             'name_last' : 'smith', 
-    #         }
-    #     ],
-    #     'all_members': [
-    #         { 
-    #             'auth_user_id' : 0, 
-    #             'name_first' : 'john',
-    #             'name_last' : 'smith', 
-    #         },
-    #         {
-    #             'auth_user_id': 1,
-    #             'name_first': 'harry',
-    #             'name_last': 'potter',
-    #         }
-    #     ],
-    # }
 
 
 def test_channel_join_except_channel():
@@ -111,6 +88,51 @@ def test_channel_join_except_private():
     auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
     channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", False)
+
+    
+    with pytest.raises(AccessError):
+        channel_join_v1(auth_id2["auth_user_id"], channel_id1["channel_id"])
+
+def test_channel_join_private_global():
+    """
+    This function tests if the channel status
+    is private and user is global DREAM owner.
+    """
+    # Clear the data structure
+    clear_v1()
+    # Call other functions to create the data and store in data structure
+    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+
+    channel_id1 = channels_create_v1(auth_id2["auth_user_id"], "Chill Soc", False)
+
+    # Global DREAM owner attempt to join a private channel  
+    channel_join_v1(auth_id1["auth_user_id"], channel_id1["channel_id"])
+
+    # Check if the global owner successfully join private channel
+    assert channels_list_v1(auth_id1["auth_user_id"]) == {
+        'channels': [
+        	{
+        		'channel_id': 1, # channel id start at 1 or 0 is worth checking ? It's currently start at 1.
+        		'name': 'Chill Soc',
+        	}
+        ],
+    }
+
+
+
+def test_channel_join_except_repetitive():
+    """
+    This function tests if the user is already
+    a member in that channel.
+    """
+    # Clear the data structure
+    clear_v1()
+    # Call other functions to create the data and store in data structure
+    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+
+    channel_id1 = channels_create_v1(auth_id2["auth_user_id"], "Chill Soc", True)
 
     
     with pytest.raises(AccessError):

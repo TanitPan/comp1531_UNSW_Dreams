@@ -64,7 +64,7 @@ def channel_join_v1(auth_user_id, channel_id):
     for channel in data["channels"]:
         if channel["channel_id"] == channel_id:
             valid_channel = True
-            channel_privacy = channel["is_public"]
+            channel_privacy = channel["ispublic"]
 
             # Loop to check if member is already in channel 
             for member in channel["all_members"]:
