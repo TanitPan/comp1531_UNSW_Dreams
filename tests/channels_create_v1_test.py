@@ -11,8 +11,9 @@ def test_channels_create_type():
 	# Clear at the beginning of all test functions to prevent information from
 	# persisting
     clear_v1()
-    authorised_token = auth_register_v1('john.smith@gmail.com', 'password', 
+    authorised_dict = auth_register_v1('john.smith@gmail.com', 'password', 
                        'john', 'smith')
+    authorised_token = authorised_dict['auth_user_id']
     channel_id =  channels_create_v1(authorised_token, "Channel0", True) 
     return_value = channel_id['channel_id']
     assert(return_value == 1)
@@ -22,9 +23,9 @@ def test_channels_create_type():
 # the channel_id is a integer value (Specs 6.1.1)
 def test_channels_create_multiple_channels():
     clear_v1()
-    authorised_token = auth_register_v1('rujanair4@yahoo.com', 'ruja1nair',
+    authorised_dict = auth_register_v1('rujanair4@yahoo.com', 'ruja1nair',
                        'ruja', 'nair')
-    
+    authorised_token = authorised_dict['auth_user_id']
     channel1_id = channels_create_v1(authorised_token, 'Channel1', True)
 
     # Created two channels, confirmed the channel_id was an integer and the 
@@ -42,8 +43,9 @@ def test_channels_create_multiple_channels():
 # formatted properly  
 def test_channels_create_firstvalue():
     clear_v1()
-    authorised_token = auth_register_v1('annethomas@hotmail.com', 'pass1234', 
+    authorised_dict = auth_register_v1('annethomas@hotmail.com', 'pass1234', 
                        'anne', 'thomas')
+    authorised_token = authorised_dict['auth_user_id']
     channel_id =  channels_create_v1(authorised_token, "Channel3", True) 
     assert (channel_id == {'channel_id': 1})
 
@@ -51,8 +53,9 @@ def test_channels_create_firstvalue():
 # with a length greater than 20 (Specs 6.2)
 def test_channels_create_long_name():
     clear_v1()
-    authorised_token = auth_register_v1('jane.doe@me.com', 'janedoe2021',
+    authorised_dict = auth_register_v1('jane.doe@me.com', 'janedoe2021',
                        'jane', 'doe')
+    authorised_token = authorised_dict['auth_user_id']
     with pytest.raises(InputError):   
         channels_create_v1(authorised_token, "longnamefortestchannel", True) 
     with pytest.raises(InputError):
@@ -62,8 +65,9 @@ def test_channels_create_long_name():
         
 # Test multiple calls of channels_create_v1 to verify the dict has been updated
     clear_v1()
-    authorised_token = auth_register_v1('comp1531student@email.com', 'comp15', 
+    authorised_dict = auth_register_v1('comp1531student@email.com', 'comp15', 
                        'comp', 'student')
+    authorised_token = authorised_dict['auth_user_id']
     # Tested each element separately
     channel_id1 =  channels_create_v1(authorised_token, "Channel4", True) 
     assert (channel_id1 == {'channel_id': 1})
