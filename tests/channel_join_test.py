@@ -6,7 +6,7 @@ import pytest
 from data import data
 from src.other import clear_v1
 from src.error import InputError, AccessError
-from src.channel import channel_join_v1, channel_details_v1
+from src.channel import channel_join_v1
 from src.auth import auth_register_v1
 from src.channels import channels_create_v1, channels_list_v1
 
@@ -25,7 +25,7 @@ def test_channel_join():
     auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
     channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
-    print(channel_id1)
+    
     
     channel_join_v1(auth_id2["auth_user_id"], channel_id1["channel_id"])
 
