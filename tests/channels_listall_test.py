@@ -35,7 +35,7 @@ def test_channels_listall_type():
  
 # Tests the function to make sure an AccessError arises when there's no 
 # appropriate authorised user
-def channels_listall_empty_test():
+def test_channels_listall_empty_test():
     clear_v1()
     authorised_dict = auth_register_v1('student@email.com', 'studunsw', 
                        'tom', 'student')
