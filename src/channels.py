@@ -126,7 +126,7 @@ def channels_create_v1(auth_user_id, name, is_public):
 			    'name': name, 
 			    'owner_members': owner_list, 
 			    'all_members': all_member_list, 
-			    'ispublic': is_public,
+			    'is_public': is_public,
     }
 
     data['channels'].append(new_channels)
