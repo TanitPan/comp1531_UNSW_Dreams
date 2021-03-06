@@ -31,7 +31,7 @@ def test_channel_join():
 
     # Black box testing version in waiting
     # Check if the user is successfully added to the channel data frame
-    assert channels_list_v1(auth_id2["auth_user_id"]) = {
+    assert channels_list_v1(auth_id2["auth_user_id"]) == {
         'channels': [
         	{
         		'channel_id': 1, # channel id start at 1 or 0 is worth checking ?
@@ -95,7 +95,7 @@ def test_channel_join_except_invalid_auth():
     channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
 
     
-    with pytest.raises(InputError):
+    with pytest.raises(AccessError):
         channel_join_v1(999, channel_id1["channel_id"])
 
     
@@ -113,5 +113,5 @@ def test_channel_join_except_private():
     channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", False)
 
     
-    with pytest.raises(InputError):
+    with pytest.raises(AccessError):
         channel_join_v1(auth_id2["auth_user_id"], channel_id1["channel_id"])
