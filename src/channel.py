@@ -114,6 +114,19 @@ def channel_join_v1(auth_user_id, channel_id):
     """
     This function adds a auth_user_id to a
     channel_id provided.
+
+    Arguments:
+        auth_user_id (int) - the user ID of the person joining a channel
+        channel_id (int) - the ID of the channel the user want to join
+
+    Exceptions:
+        InputError - Occurs when channel_id is invalid.
+        AccessError - Occurs when the authorised user is not a valid ID or 
+                      the authorised user is joining a private channel without
+                      being a global DREAM owner or the authorised user is joining
+                      a channel he is already in
+    Return Value:
+        Returns an empty dictionary on completeion
     """
     # Flags to check for invalid input or invalid access
     valid_auth = False
@@ -132,14 +145,13 @@ def channel_join_v1(auth_user_id, channel_id):
     for channel in data["channels"]:
         if channel["channel_id"] == channel_id:
             valid_channel = True
-            channel_privacy = channel["ispublic"]
+            channel_privacy = channel["is_public"]
 
             # Loop to check if member is already in channel 
             for member in channel["all_members"]:
                 if member["auth_user_id"] == auth_user_id:
                     raise AccessError("Repetitive join! You are already a member of channel !")
             break
-
 
     # Raise exception when detect invalid auth_user_id
     if not valid_auth:

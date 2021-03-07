@@ -9,3 +9,5 @@ Assumptions:
 - Assume that a channel is public by default. 
 - Assume that if the authorised user is inviting a user already in channel (including himself),
     AccessError will be raised.
+- Assume that if the authorised user is joining a channel he is already a member of, AccessError
+    will be raised.
