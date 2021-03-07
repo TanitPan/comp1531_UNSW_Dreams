@@ -1,25 +1,34 @@
 from src.error import InputError, AccessError
 from data import data
+from src.helper import check_valid_user
 
 
 def channel_invite_v1(auth_user_id, channel_id, u_id):
     """
-    This function invite the user to given channel. 
+    This function invites the user to given channel. 
     On success, add the user data to the channel.
 
+    Arguments:
+        auth_user_id (int) - the user ID of the person inviting
+        channel_id (int) - the ID of the channel to invite a user to
+        u_id (int) - the ID of the user being invited to the channel
+
+    Exceptions:
+        InputError - Occurs when u_id or channel_id is invalid.
+        AccessError - Occurs when the authorised user is not a member of the channel
+                      or the authorised user is invalid or the authorised user is 
+                      inviting someone already in the channel.
+    Return Value:
+        Returns an empty dictionary on completeion
     """
 
     # Flags to check for invalid input or invalid access
     valid_channel = False
     valid_uid = False
     ismember = False
-    auth_valid = False
 
     # Loop to check if auth_user_id is valid
-    for user in data["users"]:
-        if user["auth_user_id"] == auth_user_id:
-            auth_valid = True
-            break 
+    check_valid_user(auth_user_id)
 
     new_member = {}
     # Loop to check if user id is valid and store that user info
@@ -51,8 +60,6 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
             break
 
     # Raise exception when detect invalid access/input
-    if auth_valid == False:
-        raise AccessError("authorised user ID is invalid")
     if valid_channel == False:
         raise InputError("channel_id is not a valid channel")
     if ismember == False:
@@ -114,4 +121,3 @@ def channel_addowner_v1(auth_user_id, channel_id, u_id):
 def channel_removeowner_v1(auth_user_id, channel_id, u_id):
     return {
     }
-

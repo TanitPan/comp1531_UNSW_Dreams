@@ -10,7 +10,6 @@ from src.other import clear_v1
 from data import data
 
 
-
 def test_channel_invite():
     """
     This function checks if the new user 
@@ -97,8 +96,6 @@ def test_channel_invite_except_noaccess():
         channel_invite_v1(auth_id2["auth_user_id"], channel_id1["channel_id"], auth_id2["auth_user_id"])
        
 
-
-
 def test_channel_invite_except_invalid_auth():
     """
     This functions tests if the auth_user_id is 
@@ -115,7 +112,6 @@ def test_channel_invite_except_invalid_auth():
     # Test invalid auth_user_id case
     with pytest.raises(AccessError):
         channel_invite_v1(222, channel_id1["channel_id"],  auth_id2["auth_user_id"])
-
 
 
 def test_channel_invite_except_repetitive():
