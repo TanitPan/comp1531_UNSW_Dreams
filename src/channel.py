@@ -1,6 +1,7 @@
 from data import data
 from src.error import InputError
 from src.error import AccessError
+from src.helper import *
 
 '''
 def channel_invite_v1(auth_user_id, channel_id, u_id):
@@ -37,17 +38,31 @@ def channel_details_v1(auth_user_id, channel_id):
     if is_member == False:
         raise AccessError("Authorised user is not a member of channel")
     
-    # append name, owner_members, and all_members into each variable
+    # assign name
     for channel in data["channels"]:
          if channel["channel_id"] == channel_id:
-            details['name'] = channel['name']
-            details['owner_members'] = channel['owner_members']
-            details['all_members'] = channel['all_members']
+            channel_data = channel
+    details['name'] = channel_data['name']
 
+    # assign owners data
+    owners = []
+    for id_owner in channel_data["owner_members"]:
+        owner = search_user(id_owner)
+        if owner['auth_user_id'] != -1:
+            owners.append(owner)
+    details['owner_members'] = owners
+
+    # assign members data
+    members = []
+    for id_member in channel_data["all_members"]:
+        member = search_user(id_member)
+        if member['auth_user_id'] != -1:
+            members.append(member)
+    details['all_members'] = members
+            
     # return the new dictionary
     return(details)
 
-    pass
     '''
     return {
         'name': 'Hayden',
