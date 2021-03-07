@@ -60,7 +60,7 @@ def test_channels_list_total_channels():
             {'channel_id': 2, 'name': 'Channel4'}]})
    
 # Tests that the channels created by an unauthorised user is not listed 
-def test_channels_listall_multiplechannel_length():
+def test_channels_list_multiplechannel_length():
     clear_v1()
     # Have two authorised users make a channel
     authorised_dict1 = auth_register_v1('user1@yahoo.com', 'password1234', 
