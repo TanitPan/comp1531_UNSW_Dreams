@@ -161,7 +161,6 @@ def channel_join_v1(auth_user_id, channel_id):
     if not valid_channel:
         raise InputError("invalid channel ID")
 
-    # if global_permission != 1 and not channel_privacy:
     # Check if the auth_user_id has permission to join channel
     if global_permission == 1 or channel_privacy:
         for channel in data["channels"]:
