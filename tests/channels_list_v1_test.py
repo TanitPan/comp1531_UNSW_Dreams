@@ -11,16 +11,19 @@ def test_channels_list_returntype():
     clear_v1()
     authorised_dict = auth_register_v1('smithjack@outlook.com', 'newpassword', 
                        'jack', 'smith') #Registers a dummy account
-    authorised_token = authorised_dict['auth_user_id'] #obtain numerical id
+    authorised_token = authorised_dict['auth_user_id'] # Obtain numerical id
     channels_create_v1(authorised_token, 'Channel0', True)
-    #check if created channel is stored in the return value
-    dict_channel = channels_list_v1(authorised_token) 
+    # Check if created channel is stored in the return value
+    dict_channel = channels_list_v1(authorised_token)
+    #  Check if the type of the dict_channel is a dictionary 
     assert(isinstance(dict_channel, dict) == True) 
     
 # Tested the channels returned by a function to ensure they were a list of 
 # dictionaries
 def test_channels_list_channeltype():
     clear_v1()
+    # Extracts an auth_user_id by calling the auth_register_v1 function and 
+    # extracting its value
     authorised_dict = auth_register_v1('comp1531@student.com', 'newpassword', 
                       'john', 'smith')
     authorised_token = authorised_dict['auth_user_id']
@@ -41,7 +44,8 @@ def test_channels_list_format():
     authorised_token = authorised_dict['auth_user_id']
     channels_create_v1(authorised_token, 'Channel2', True)
     dict_channel = channels_list_v1(authorised_token)
-    #list_channel = dict_channel.values()
+    # Confirms format of the channel to be a dictionary containing a list of 
+    # dictionaries
     assert (dict_channel == {'channels': [{'channel_id': 1, 'name': 'Channel2'}]})
         
 # Tests how many channels have been created
@@ -55,7 +59,7 @@ def test_channels_list_total_channels():
     dict_channel = channels_list_v1(authorised_token)
     # Firstly check the length to ensure two channels have been created
     assert(len(dict_channel['channels']) == 2)    
-    # Check if the format of multiple is approprriate as per the specs
+    # Check if the format of multiple is appropriate as per the specs
     assert (dict_channel == {'channels': [{'channel_id': 1, 'name': 'Channel3'}, 
             {'channel_id': 2, 'name': 'Channel4'}]})
    
@@ -73,6 +77,7 @@ def test_channels_list_multiplechannel_length():
     channel_id2 = channels_create_v1(authorised_token2, 'Channel6', True)
     # Call for the channel_list function for only the first user
     dict_channel = channels_list_v1(authorised_token1)
+    # Confirm only one channel (created by the first user) has been called
     assert(len(dict_channel['channels']) == 1)    
 
 
