@@ -11,12 +11,16 @@ def test_channels_create_type():
 	# Clear at the beginning of all test functions to prevent information from
 	# persisting
     clear_v1()
+    # Created a valid user and extracted their authorised user id
     authorised_dict = auth_register_v1('john.smith@gmail.com', 'password', 
                        'john', 'smith')
     authorised_token = authorised_dict['auth_user_id']
+    # Used the above authorised user id to generate a channel_id
     channel_id =  channels_create_v1(authorised_token, "Channel0", True) 
     return_value = channel_id['channel_id']
+    # Checked if the channel_id returned the expected output
     assert(return_value == 1)
+    # Confirmed the type was a dict
     assert(isinstance(channel_id, dict) == True) 
 
 # Test the key value of the return value (assuming it is a dictionary) to ensure 
@@ -43,10 +47,13 @@ def test_channels_create_multiple_channels():
 # formatted properly  
 def test_channels_create_firstvalue():
     clear_v1()
+    # Extract an auth_user_id by calling auth_register_v1
     authorised_dict = auth_register_v1('annethomas@hotmail.com', 'pass1234', 
                        'anne', 'thomas')
     authorised_token = authorised_dict['auth_user_id']
-    channel_id =  channels_create_v1(authorised_token, "Channel3", True) 
+    # Create a new channel and obtained the id, confirming it is of the expected
+    # format
+    channel_id =  channels_create_v1(authorised_token, "Channel3", True)   
     assert (channel_id == {'channel_id': 1})
 
 # Test the name value to see if the function raises an InputError for a name 
@@ -56,6 +63,7 @@ def test_channels_create_long_name():
     authorised_dict = auth_register_v1('jane.doe@me.com', 'janedoe2021',
                        'jane', 'doe')
     authorised_token = authorised_dict['auth_user_id']
+    # Checked if an InputError was raised for names greater than 20 characters
     with pytest.raises(InputError):   
         channels_create_v1(authorised_token, "longnamefortestchannel", True) 
     with pytest.raises(InputError):
@@ -69,7 +77,7 @@ def test_channels_create_multiple():
     authorised_dict = auth_register_v1('comp1531student@email.com', 'comp15', 
                        'comp', 'student')
     authorised_token = authorised_dict['auth_user_id']
-    # Tested each element separately
+    # Tested each element separately to ensure these have all increased in value
     channel_id1 =  channels_create_v1(authorised_token, "Channel4", True) 
     assert (channel_id1 == {'channel_id': 1})
     channel_id2 =  channels_create_v1(authorised_token, "Channel5", True) 
@@ -84,7 +92,8 @@ def test_channels_create_unauthorised():
                        'anne', 'smith')
     authorised_token = authorised_dict['auth_user_id']
     # Generated a new number, which was one higher than the authorised token
-    # and tested if it would produce an AccessError when called
+    # and tested if it would produce an AccessError when called as this was 
+    # a non authorised user id
     non_authorised_token = authorised_token + 1 
     channel_id1 = channels_create_v1(authorised_token, 'Channel0', True)
     with pytest.raises(AccessError):
