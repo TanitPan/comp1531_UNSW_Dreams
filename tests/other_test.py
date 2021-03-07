@@ -32,7 +32,8 @@ def test_clear_channels():
     # Clear the function to remove this information from the data['users']
     clear_v1()
     
-    # Raise an AccessError if a 
+    # Raise an AccessError if channels_create is called with an unauthorised 
+    # user
     with pytest.raises(AccessError):
         channels_create_v1(authorised_token, 'Channel1', True)
        
