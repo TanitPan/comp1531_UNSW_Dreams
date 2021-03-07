@@ -16,6 +16,7 @@ def test_channels_listall_type():
     authorised_token = authorised_dict['auth_user_id'] 
     channels_create_v1(authorised_token, 'Channel0', False)
     channel_dict = channels_listall_v1(authorised_token)
+    #  Confirms that the type of the channel is a dictionary 
     assert(isinstance(channel_dict, dict) == True)  
 
 # Tests the contents of the return value to ensure it meets the specs of being a
