@@ -11,6 +11,18 @@ def auth_login_v1(email, password):
     '''
     This function returns the auth_user_id of a user given a valid
     and existing email and password
+
+    Arguments:
+        email (str) - a string of the user's email
+        password (str) - a string of the user's password 
+
+    Exceptions:
+        InputError - Occurs when email doesn't match regex specs
+        InputError - Occurs when email doesn't belong to a user
+        InputError - Occurs when the password is incorrect
+
+    Return value: 
+        returns {auth_user_id : auth_user_id} on successful login
     '''
     # Check that the email is valid
     helper.check_email_valid(email)
@@ -32,6 +44,22 @@ def auth_register_v1(email, password, name_first, name_last):
     '''
     This function registers a user to the dataframe, given a valid email, password, first
     name and last name. Returns their auth_user_id
+
+    Arguments:
+        email (str) - a string of the user's email
+        password (str) - a string of the user's password
+        name_first (str) - a string of the user's first name
+        name_last (str) - a string of the user's last name
+
+    Exceptions:
+        InputError - Occurs when email doesn't match regex specs
+        InputError - Occurs when email is taken by another user
+        InputError - Occurs when password is less than 6 characters
+        InputError - Occurs when name_first and name_last are not within
+                     1 and 50 characters inclusively in length
+
+    Return value:
+        returns {auth_user_id : auth_user_id} on successful registration
     '''
     # Check that email is valid
     helper.check_email_valid(email)
