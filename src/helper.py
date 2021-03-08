@@ -84,3 +84,63 @@ def generate_handle(name_first, name_last):
             i += 1
             handle = handle + str(i)
     return handle
+
+def check_password(user, password):
+    '''
+    This is a function which checks if a given password matches the user's
+    password. Returns their auth_user_id value if correct and InputError
+    otherwise
+    '''
+    if user['password'] == password:
+        return user['auth_user_id']
+    raise InputError
+
+def check_valid_user(user_token):	
+    """ Checks the validity of the auth_user_id, by checking if it was added to
+    the data file as a part of the 'users' information."""
+
+    # Flag to test if the user_id is valid
+    valid_user_id = False 
+    
+    # Loops through the data file to find the user_id, which would be appended 
+    # to the list if auth_register_v1 was called. The flag changes to True once  
+    # the user_token has been found. 
+    for user in data['users']:
+        if user['auth_user_id'] == user_token:
+            valid_user_id = True
+            break
+    
+    # If the flag remains False, it is not in the authorised user list and an 
+    # AccessError is printed. 
+    if valid_user_id == False:
+        raise AccessError("The auth_user_id input is not a valid id.")
+
+
+def get_user_data(user_id):
+    ''' This function to search and return the user data (e.g., u_id, name, email,...) 
+        from the data file'''
+
+    # Loops through the data file to find the user_id, and return the user
+    for user in data['users']:
+        if user['auth_user_id'] == user_id['auth_user_id']:
+            return user
+
+    # Return False if there are no user
+    return None
+
+def search_user_data(user_id):
+    ''' This function is to return the user_data from '''
+    # Assign a new dictionary
+    user_data = {}
+    
+    # Call the function get_user_data to get the data of the user
+    user = get_user_data(user_id)
+
+    # Add the specific data from user into user_data dictionary
+    user_data['auth_user_id'] =  user['auth_user_id']
+    user_data['name_first'] = user['name_first']
+    user_data['name_last'] = user['name_last']
+    user_data['handle_str'] = user['handle_str']
+    user_data['email'] = user['email']
+    
+    return user_data
