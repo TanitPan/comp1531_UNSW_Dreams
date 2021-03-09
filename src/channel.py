@@ -79,8 +79,8 @@ def channel_details_v1(auth_user_id, channel_id):
         channel name, the owners data and the all members data 
         
     Arguments:
-        auth_user_id (int) - the user ID of the person inviting
-        channel_id (int) - the ID of the channel to invite a user to
+        auth_user_id (int) - the user ID of the members
+        channel_id (int) - the ID of the channel
 
     Exceptions:
         InputError - Occurs when u_id or channel_id is invalid.
@@ -147,6 +147,25 @@ def channel_details_v1(auth_user_id, channel_id):
     return(channel_details)
 
 def channel_messages_v1(auth_user_id, channel_id, start):
+
+    ''' 
+    This function is to return the upto 50 messages between start and end  
+        
+    Arguments:
+        auth_user_id (int) - the user ID of the members
+        channel_id (int) - the ID of the channel
+        start (int) - the start of an index
+
+    Exceptions:
+        InputError - Occurs when u_id or channel_id is invalid.
+        InputEror - Occurs when the start index is greater than the total number of messages
+        AccessError - Occurs when the authorised user is not a member of the channel
+                      or the authorised user is invalid or the authorised user is 
+                      inviting someone already in the channel.
+                      
+    Return Value:
+        Returns a dictionary return_msg that includes the message details, index start and the index end
+    '''
 
     # Assign new variables to check
     valid_channel = False
