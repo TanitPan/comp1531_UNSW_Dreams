@@ -15,7 +15,7 @@ def test_channel_details_1():
     auth_id1 = auth_register_v1("johnsmith@gmail.com", "pass123", "John", "Smith")
     channel1 = channels_create_v1(auth_id1['auth_user_id'], "Channel1", True)
 
-    assert channel_details_v1(auth_id1['auth_user_id'], channel1["channel_id"]) == {
+    assert channel_details_v1(auth_id1['auth_user_id'], channel1['channel_id']) == {
         'name': 'Channel1',
         'owner_members': [
             {

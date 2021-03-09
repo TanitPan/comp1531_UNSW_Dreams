@@ -1,7 +1,7 @@
 from data import data
 from src.error import InputError, AccessError
 from src.auth import auth_register_v1
-from src.extra_functions import check_valid_user
+from src.helper import check_valid_user
 
 def channels_list_v1(auth_user_id):
     return {
@@ -65,8 +65,9 @@ def channels_create_v1(auth_user_id, name, is_public):
     new_id = maximum_id + 1
 
     # Only the channel creator has been added as user. 
-    owner_list = [auth_user_id]
-    all_member_list = [auth_user_id]
+    owner_list = [{'auth_user_id': auth_user_id}]
+    all_member_list = [{'auth_user_id': auth_user_id}]
+
 
     # Added new channel data to the dataframe.
     new_channels = {

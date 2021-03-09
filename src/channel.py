@@ -104,14 +104,15 @@ def channel_details_v1(auth_user_id, channel_id):
     channel_details = {}
     
     # Loops to check if channel is in data file by looking from the channel_id
-    for channel in data["channels"]:
-        if channel["channel_id"] == channel_id:
+    for channel in data['channels']:
+        if channel['channel_id'] == channel_id:
             valid_channel = True
             # Assign the channel with the right channel_id into channel_data
             channel_data = channel
             # Loops to check if member is in data file by looking from the auth_user_id
-            for member in channel["all_members"]:
-                if member["auth_user_id"] == auth_user_id:
+            for member in channel['all_members']:
+                print(channel)
+                if member['auth_user_id'] == auth_user_id:
                     is_member = True
                     break
             break
@@ -162,7 +163,7 @@ def channel_messages_v1(auth_user_id, channel_id, start):
         AccessError - Occurs when the authorised user is not a member of the channel
                       or the authorised user is invalid or the authorised user is 
                       inviting someone already in the channel.
-                      
+
     Return Value:
         Returns a dictionary return_msg that includes the message details, index start and the index end
     '''
