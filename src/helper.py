@@ -144,3 +144,4 @@ def search_user_data(user_id):
     user_data['email'] = user['email']
     
     return user_data
+
