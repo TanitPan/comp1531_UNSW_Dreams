@@ -45,7 +45,7 @@ def test_channels_listall_nonauthorised_user():
     # Created a non authorised token, which had a value one higher than the 
     # authorised token. 
     non_authorised_token = authorised_token + 1
-    channel_dict = channels_listall_v1(authorised_token)  
+    channels_listall_v1(authorised_token)  
     # Expected that an AccessError will be raised  
     with pytest.raises(AccessError):
         assert (channels_listall_v1(non_authorised_token))
