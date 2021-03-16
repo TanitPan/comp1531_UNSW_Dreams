@@ -95,7 +95,7 @@ def test_channels_create_unauthorised():
     # and tested if it would produce an AccessError when called as this was 
     # a non authorised user id
     non_authorised_token = authorised_token + 1 
-    channel_id1 = channels_create_v1(authorised_token, 'Channel0', True)
+    channels_create_v1(authorised_token, 'Channel0', True)
     with pytest.raises(AccessError):
         channels_create_v1(non_authorised_token, 'Channel1', True)
 
