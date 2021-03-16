@@ -73,8 +73,8 @@ def test_channels_list_multiplechannel_length():
     authorised_dict2 = auth_register_v1('user2@yahoo.com', 'password1234', 
                        'anna', 'smiths')
     authorised_token2 = authorised_dict2['auth_user_id']
-    channel_id1 = channels_create_v1(authorised_token1, 'Channel5', True)
-    channel_id2 = channels_create_v1(authorised_token2, 'Channel6', True)
+    channels_create_v1(authorised_token1, 'Channel5', True)
+    channels_create_v1(authorised_token2, 'Channel6', True)
     # Call for the channel_list function for only the first user
     dict_channel = channels_list_v1(authorised_token1)
     # Confirm only one channel (created by the first user) has been called
