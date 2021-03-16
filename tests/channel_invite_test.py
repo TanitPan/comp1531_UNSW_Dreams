@@ -50,7 +50,7 @@ def test_channel_invite_except_channel():
     auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
     auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
-    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
+    channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
 
     # Test error for invalid channel
     with pytest.raises(InputError):
@@ -67,7 +67,7 @@ def test_channel_invite_except_user():
     clear_v1()
     # Call other functions to create the data and store in data structure
     auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
     channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
     
@@ -123,7 +123,7 @@ def test_channel_invite_except_repetitive():
     clear_v1()
     # Call other functions to create the data and store in data structure
     auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
 
     channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
 
