@@ -1,0 +1,272 @@
+============================= test session starts ==============================
+platform linux -- Python 3.7.3, pytest-6.1.0, py-1.9.0, pluggy-0.13.1
+rootdir: /tmp_amd/ravel/export/ravel/1/hsmith/automark/tempstore, configfile: pytest.ini
+plugins: hypothesis-5.36.1
+collected 76 items
+
+tests/echo_test.py FF                                                    [  2%]
+tests/auth_tests/auth_login_test.py ...                                  [  6%]
+tests/auth_tests/auth_register_test.py ................................  [ 48%]
+tests/channel_tests/channel_details_test.py FFFF                         [ 53%]
+tests/channel_tests/channel_invite_test.py FF....                        [ 61%]
+tests/channel_tests/channel_join_test.py FF..                            [ 67%]
+tests/channel_tests/channel_messages_test.py FFFFF                       [ 73%]
+tests/channels_tests/channels_create_test.py FF...                       [ 80%]
+tests/channels_tests/channels_list_test.py ..........                    [ 93%]
+tests/channels_tests/channels_listall_test.py .....                      [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_echo ___________________________________
+
+    def test_echo():
+>       assert echo.echo("1") == "1", "1 == 1"
+E       NameError: name 'echo' is not defined
+
+tests/echo_test.py:7: NameError
+_______________________________ test_echo_except _______________________________
+
+    def test_echo_except():
+        with pytest.raises(InputError):
+>           assert echo.echo("echo")
+E           NameError: name 'echo' is not defined
+
+tests/echo_test.py:14: NameError
+____________________________ test_member_successful ____________________________
+
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0)
+user_buzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', name_first='buzz', name_last='lightyear', u_id=1, token=1)
+
+    @util.resets_workspace
+    def test_member_successful(woodys_public_toybox, user_woody, user_buzz):
+        channel_join_v1(user_buzz.token, woodys_public_toybox.channel_id)
+    
+        ch_deets_1 = channel_details_v1(user_woody.token, woodys_public_toybox.channel_id)
+        ch_deets_2 = channel_details_v1(user_buzz.token, woodys_public_toybox.channel_id)
+    
+>       assert ch_deets_1['name'] == woodys_public_toybox.name
+E       AssertionError: assert 'Hayden' == 'woodys toybox'
+E         - woodys toybox
+E         + Hayden
+
+tests/channel_tests/channel_details_test.py:18: AssertionError
+________________________ test_non_member_not_successful ________________________
+
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+user_zerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', name_first='lord', name_last='zerg', u_id=1, token=1)
+
+    @util.resets_workspace
+    def test_non_member_not_successful(woodys_public_toybox, user_zerg):
+        with pytest.raises(err.AccessError):
+>           channel_details_v1(user_zerg.token, woodys_public_toybox.channel_id)
+E           Failed: DID NOT RAISE <class 'src.error.AccessError'>
+
+tests/channel_tests/channel_details_test.py:35: Failed
+___________________________ test_invalid_channel_id ____________________________
+
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0)
+
+    @util.resets_workspace
+    def test_invalid_channel_id(user_woody):
+        with pytest.raises(err.InputError):
+            # noinspection PyTypeChecker
+>           channel_details_v1(user_woody.token, None)
+E           Failed: DID NOT RAISE <class 'src.error.InputError'>
+
+tests/channel_tests/channel_details_test.py:42: Failed
+______________________________ test_invalid_token ______________________________
+
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+
+    @util.resets_workspace
+    def test_invalid_token(woodys_public_toybox):
+        with pytest.raises(err.AccessError):
+>           channel_details_v1(None, woodys_public_toybox.channel_id)
+E           Failed: DID NOT RAISE <class 'src.error.AccessError'>
+
+tests/channel_tests/channel_details_test.py:48: Failed
+___________________________ test_invite_global_owner ___________________________
+
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0)
+user_zerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', name_first='lord', name_last='zerg', u_id=1, token=1)
+zergs_private_lair = Channel(name='zergs lair', is_public=False, channel_id=1, owner_members=[1], all_members=[])
+
+    @util.resets_workspace
+    def test_invite_global_owner(user_woody, user_zerg, zergs_private_lair):
+        channel_invite_v1(user_zerg.token, zergs_private_lair.channel_id, user_woody.u_id)
+    
+        ch_deets = channel_details_v1(user_woody.token, zergs_private_lair.channel_id)
+    
+>       assert user_woody.u_id in [k['u_id'] for k in ch_deets['all_members']]
+E       AssertionError: assert 0 in [1]
+E        +  where 0 = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0).u_id
+
+tests/channel_tests/channel_invite_test.py:25: AssertionError
+__________________________ test_invite_global_member ___________________________
+
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0)
+user_buzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', name_first='buzz', name_last='lightyear', u_id=1, token=1)
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+
+    @util.resets_workspace
+    def test_invite_global_member(user_woody, user_buzz, woodys_public_toybox):
+        channel_invite_v1(user_woody.token, woodys_public_toybox.channel_id, user_buzz.u_id)
+    
+        ch_deets = channel_details_v1(user_buzz.token, woodys_public_toybox.channel_id)
+    
+        assert user_buzz.u_id in [k['u_id'] for k in ch_deets['all_members']]
+>       assert user_buzz.u_id not in [k['u_id'] for k in ch_deets['owner_members']]
+E       AssertionError: assert 1 not in [1]
+E        +  where 1 = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', name_first='buzz', name_last='lightyear', u_id=1, token=1).u_id
+
+tests/channel_tests/channel_invite_test.py:36: AssertionError
+____________________ test_global_owner_join_channel_private ____________________
+
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0)
+zergs_private_lair = Channel(name='zergs lair', is_public=False, channel_id=1, owner_members=[1], all_members=[])
+
+    @util.resets_workspace
+    def test_global_owner_join_channel_private(user_woody, zergs_private_lair):
+        channel_join_v1(user_woody.token, zergs_private_lair.channel_id)
+    
+        ch_deets = channel_details_v1(user_woody.token, zergs_private_lair.channel_id)
+    
+>       assert user_woody.u_id in [k['u_id'] for k in ch_deets['all_members']]
+E       AssertionError: assert 0 in [1]
+E        +  where 0 = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0).u_id
+
+tests/channel_tests/channel_join_test.py:17: AssertionError
+________________________ test_global_member_join_public ________________________
+
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+user_buzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', name_first='buzz', name_last='lightyear', u_id=1, token=1)
+
+    @util.resets_workspace
+    def test_global_member_join_public(woodys_public_toybox, user_buzz):
+        channel_join_v1(user_buzz.token, woodys_public_toybox.channel_id)
+    
+        ch_deets = channel_details_v1(user_buzz.token, woodys_public_toybox.channel_id)
+    
+        assert user_buzz.u_id in [k['u_id'] for k in ch_deets['all_members']]
+>       assert user_buzz.u_id not in [k['u_id'] for k in ch_deets['owner_members']]
+E       AssertionError: assert 1 not in [1]
+E        +  where 1 = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', name_first='buzz', name_last='lightyear', u_id=1, token=1).u_id
+
+tests/channel_tests/channel_join_test.py:28: AssertionError
+_______________________________ test_no_messages _______________________________
+
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0)
+
+    @util.resets_workspace
+    def test_no_messages(woodys_public_toybox, user_woody):
+        ch_msgs = channel_messages_v1(user_woody.token, woodys_public_toybox.channel_id, 0)
+    
+        assert ch_msgs['start'] == 0
+>       assert ch_msgs['end'] == -1
+E       assert 50 == -1
+
+tests/channel_tests/channel_messages_test.py:16: AssertionError
+_____________ test_input_error_when_start_greate_than_message_num ______________
+
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0)
+
+    @util.resets_workspace
+    def test_input_error_when_start_greate_than_message_num(woodys_public_toybox, user_woody):
+        with pytest.raises(err.InputError):
+>           channel_messages_v1(user_woody.token, woodys_public_toybox.channel_id, 21389429)
+E           Failed: DID NOT RAISE <class 'src.error.InputError'>
+
+tests/channel_tests/channel_messages_test.py:23: Failed
+__________________ test_access_error_when_user_is_non_member ___________________
+
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+user_zerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', name_first='lord', name_last='zerg', u_id=1, token=1)
+
+    @util.resets_workspace
+    def test_access_error_when_user_is_non_member(woodys_public_toybox, user_zerg):
+        with pytest.raises(err.AccessError):
+>           channel_messages_v1(user_zerg.token, woodys_public_toybox.channel_id, 0)
+E           Failed: DID NOT RAISE <class 'src.error.AccessError'>
+
+tests/channel_tests/channel_messages_test.py:29: Failed
+___________________ test_input_error_when_channel_id_invalid ___________________
+
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=0, token=0)
+
+    @util.resets_workspace
+    def test_input_error_when_channel_id_invalid(user_woody):
+        with pytest.raises(err.InputError):
+>           channel_messages_v1(user_woody.token, None, 0)
+E           Failed: DID NOT RAISE <class 'src.error.InputError'>
+
+tests/channel_tests/channel_messages_test.py:35: Failed
+__________________ test_access_error_when_invalid_token_given __________________
+
+woodys_public_toybox = Channel(name='woodys toybox', is_public=True, channel_id=1, owner_members=[0], all_members=[])
+
+    @util.resets_workspace
+    def test_access_error_when_invalid_token_given(woodys_public_toybox):
+        with pytest.raises(err.AccessError):
+>           channel_messages_v1(None, woodys_public_toybox.channel_id, 0)
+E           Failed: DID NOT RAISE <class 'src.error.AccessError'>
+
+tests/channel_tests/channel_messages_test.py:41: Failed
+_____________________ test_create_channel[True-andys room] _____________________
+
+name = 'andys room', is_public = True
+user_zerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', name_first='lord', name_last='zerg', u_id=0, token=0)
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=1, token=1)
+
+    @pytest.mark.parametrize('name', ['andys room'])
+    @pytest.mark.parametrize('is_public', [True, False])
+    @util.resets_workspace
+    def test_create_channel(name, is_public, user_zerg, user_woody):
+        ch_id = channels_create_v1(user_zerg.token, name, is_public)['channel_id']
+        deets = channel_details_v1(user_zerg.token, ch_id)
+    
+>       assert deets['name'] == name
+E       AssertionError: assert 'Hayden' == 'andys room'
+E         - andys room
+E         + Hayden
+
+tests/channels_tests/channels_create_test.py:19: AssertionError
+____________________ test_create_channel[False-andys room] _____________________
+
+name = 'andys room', is_public = False
+user_zerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', name_first='lord', name_last='zerg', u_id=0, token=0)
+user_woody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', name_first='sheriff', name_last='woody', u_id=1, token=1)
+
+    @pytest.mark.parametrize('name', ['andys room'])
+    @pytest.mark.parametrize('is_public', [True, False])
+    @util.resets_workspace
+    def test_create_channel(name, is_public, user_zerg, user_woody):
+        ch_id = channels_create_v1(user_zerg.token, name, is_public)['channel_id']
+        deets = channel_details_v1(user_zerg.token, ch_id)
+    
+>       assert deets['name'] == name
+E       AssertionError: assert 'Hayden' == 'andys room'
+E         - andys room
+E         + Hayden
+
+tests/channels_tests/channels_create_test.py:19: AssertionError
+=========================== short test summary info ============================
+FAILED tests/echo_test.py::test_echo - NameError: name 'echo' is not defined
+FAILED tests/echo_test.py::test_echo_except - NameError: name 'echo' is not d...
+FAILED tests/channel_tests/channel_details_test.py::test_member_successful - ...
+FAILED tests/channel_tests/channel_details_test.py::test_non_member_not_successful
+FAILED tests/channel_tests/channel_details_test.py::test_invalid_channel_id
+FAILED tests/channel_tests/channel_details_test.py::test_invalid_token - Fail...
+FAILED tests/channel_tests/channel_invite_test.py::test_invite_global_owner
+FAILED tests/channel_tests/channel_invite_test.py::test_invite_global_member
+FAILED tests/channel_tests/channel_join_test.py::test_global_owner_join_channel_private
+FAILED tests/channel_tests/channel_join_test.py::test_global_member_join_public
+FAILED tests/channel_tests/channel_messages_test.py::test_no_messages - asser...
+FAILED tests/channel_tests/channel_messages_test.py::test_input_error_when_start_greate_than_message_num
+FAILED tests/channel_tests/channel_messages_test.py::test_access_error_when_user_is_non_member
+FAILED tests/channel_tests/channel_messages_test.py::test_input_error_when_channel_id_invalid
+FAILED tests/channel_tests/channel_messages_test.py::test_access_error_when_invalid_token_given
+FAILED tests/channels_tests/channels_create_test.py::test_create_channel[True-andys room]
+FAILED tests/channels_tests/channels_create_test.py::test_create_channel[False-andys room]
+======================== 17 failed, 59 passed in 0.41s =========================
