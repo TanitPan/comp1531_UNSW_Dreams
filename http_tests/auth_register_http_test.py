@@ -1,6 +1,5 @@
 '''
-This file contains the tests for the HTTP server of the functions auth_register and
-auth_login, and auth_logout
+This file contains the tests for the HTTP server of the functions auth_register
 '''
 
 import src.auth as auth
