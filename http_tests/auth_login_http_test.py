@@ -39,7 +39,7 @@ def test_email_unregistered():
     global url
     requests.delete(f"{url}/clear/v1") # clear the data first
     res = requests.post(f"{url}/auth/login/v2", json={
-        "email": "johnsmith@gmail.com", # unregistered email
+        "email": "doggo@gmail.com", # unregistered email
         "password": "123456",
     })
     payload = res.json()
