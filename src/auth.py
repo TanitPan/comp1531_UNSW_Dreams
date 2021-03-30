@@ -1,6 +1,7 @@
 '''
 This file contains the implementation of auth_login_v1 and auth_register_v1
 '''
+import jwt
 
 from data import data
 from src.error import InputError
@@ -97,7 +98,6 @@ def auth_register_v2(email, password, name_first, name_last):
 	    'password': password, 
         'permission_id': permission_id, #1 for owner, 2 for member 
     })
-    
     return {
         'auth_user_id': id,
         'token': helper.generate_token(id)

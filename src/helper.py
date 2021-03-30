@@ -122,5 +122,5 @@ def generate_token(auth_user_id):
     A function which given a auth_user_id, generates a token for that user and returns
     it
     """
-    return jwt.encode({"auth_user_id": auth_user_id}, SECRET, algorithm='HS256').decode('utf-8')
+    return jwt.encode({'auth_user_id': auth_user_id}, SECRET, algorithm='HS256')
     

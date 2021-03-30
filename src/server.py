@@ -6,6 +6,7 @@ from src.error import InputError
 from src import config
 
 from src.auth import auth_register_v2
+from src.other import clear_v1
 
 def defaultHandler(err):
     response = err.get_response()
@@ -36,7 +37,7 @@ def echo():
 
 @APP.route("/auth/register_v2", methods=['POST'])
 def auth_register_server():
-    payload = request.json()
+    payload = request.json
     
     email = payload['email']
     password = payload['password']
@@ -45,6 +46,13 @@ def auth_register_server():
 
     return dumps(
         auth_register_v2(email, password, name_first, name_last)
+    )
+    
+
+@APP.route("/clear_v1", methods=['DELETE'])
+def clear_server():
+    return dumps(
+        clear_v1
     )
 
 if __name__ == "__main__":
