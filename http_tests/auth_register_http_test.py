@@ -8,14 +8,12 @@ from src.helper import generate_token
 import pytest
 import requests
 import json
-import re
-from subprocess import Popen, PIPE
 from src.config import url
 
 def test_input_valid():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com", # valid email
         "password": "123456",
         "name_first": "john",
@@ -25,8 +23,8 @@ def test_input_valid():
 
 def test_email_invalid():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    res = requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    res = requests.post(f"{url}/auth/register/v2", json={
         "email": "john", # invalid email
         "password": "123456",
         "name_first": "john",
@@ -39,14 +37,14 @@ def test_email_invalid():
 
 def test_email_taken():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123456",
         "name_first": "john",
         "name_last": "smith",
     })
-    res = requests.post(f"{url}/auth/register_v2", json={
+    res = requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "654321",
         "name_first": "johnny",
@@ -57,8 +55,8 @@ def test_email_taken():
 
 def test_password_invalid():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    res = requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    res = requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123", #invalid password
         "name_first": "john",
@@ -69,8 +67,8 @@ def test_password_invalid():
 
 def test_name_first_invalid():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    res = requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    res = requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123456",
         "name_first": "", # invalid first name, too short
@@ -79,8 +77,8 @@ def test_name_first_invalid():
     payload = res.json()
     assert payload['code'] == 400 # InputError
 
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    res = requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    res = requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123456",
         "name_first": "a"*51, # invalid first name, too long
@@ -91,8 +89,8 @@ def test_name_first_invalid():
 
 def test_name_last_invalid():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    res = requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    res = requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123456",
         "name_first": "john",
@@ -101,8 +99,8 @@ def test_name_last_invalid():
     payload = res.json()
     assert payload['code'] == 400 # InputError
 
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    res = requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    res = requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123456",
         "name_first": "john", 
