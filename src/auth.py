@@ -22,8 +22,11 @@ def auth_login_v2(email, password):
         InputError - Occurs when email doesn't belong to a user
         InputError - Occurs when the password is incorrect
 
-    Return value: 
-        returns {auth_user_id : auth_user_id} on successful login
+    Return value:
+        returns {
+            'token' token,
+            'auth_user_id' : auth_user_id
+        } on successful login
     '''
     # Check that the email is valid
     helper.check_email_valid(email)
@@ -38,7 +41,8 @@ def auth_login_v2(email, password):
 
     # Return their auth_user_id
     return {
-        'auth_user_id': id,
+        'token': helper.generate_token(id),
+        'auth_user_id': id
     }
 
 def auth_register_v2(email, password, name_first, name_last):
@@ -61,8 +65,8 @@ def auth_register_v2(email, password, name_first, name_last):
 
     Return value:
         returns {
-            'auth_user_id' : auth_user_id,
-            'token' token
+            'token' token,
+            'auth_user_id' : auth_user_id
         } on successful registration
     '''
     # Check that email is valid
@@ -99,6 +103,6 @@ def auth_register_v2(email, password, name_first, name_last):
         'permission_id': permission_id, #1 for owner, 2 for member 
     })
     return {
-        'auth_user_id': id,
-        'token': helper.generate_token(id)
+        'token': helper.generate_token(id),
+        'auth_user_id': id
     }

@@ -39,7 +39,7 @@ def echo():
 AUTH ROUTES
 """
 
-@APP.route("/auth/register_v2", methods=['POST'])
+@APP.route("/auth/register/v2", methods=['POST'])
 def auth_register_server():
     payload = request.json
     
@@ -52,7 +52,7 @@ def auth_register_server():
         auth_register_v2(email, password, name_first, name_last)
     )
 
-@APP.route("/auth/login_v2", methods=['POST'])
+@APP.route("/auth/login/v2", methods=['POST'])
 def auth_login_server():
     payload = request.json
     
@@ -66,7 +66,7 @@ def auth_login_server():
 """
 OTHER ROUTES
 """
-@APP.route("/clear_v1", methods=['DELETE'])
+@APP.route("/clear/v1", methods=['DELETE'])
 def clear_server():
     return dumps(
         clear_v1

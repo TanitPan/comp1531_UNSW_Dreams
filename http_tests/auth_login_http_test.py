@@ -12,22 +12,22 @@ from src.config import url
 
 def test_valid_login():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123456",
         "name_first": "john",
         "name_last": "smith",
     })
-    requests.post(f"{url}/auth/login_v2", json={
+    requests.post(f"{url}/auth/login/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123456",
     })
 
 def test_email_invalid():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    res = requests.post(f"{url}/auth/login_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    res = requests.post(f"{url}/auth/login/v2", json={
         "email": "john", # invalid email
         "password": "123456",
     })
@@ -37,8 +37,8 @@ def test_email_invalid():
 
 def test_email_unregistered():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    res = requests.post(f"{url}/auth/login_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    res = requests.post(f"{url}/auth/login/v2", json={
         "email": "johnsmith@gmail.com", # unregistered email
         "password": "123456",
     })
@@ -47,14 +47,14 @@ def test_email_unregistered():
 
 def test_password_invalid():
     global url
-    requests.delete(f"{url}/clear_v1") # clear the data first
-    requests.post(f"{url}/auth/register_v2", json={
+    requests.delete(f"{url}/clear/v1") # clear the data first
+    requests.post(f"{url}/auth/register/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "123456",
         "name_first": "john",
         "name_last": "smith",
     })
-    res = requests.post(f"{url}/auth/login_v2", json={
+    res = requests.post(f"{url}/auth/login/v2", json={
         "email": "johnsmith@gmail.com",
         "password": "password", # invalid password
     })
