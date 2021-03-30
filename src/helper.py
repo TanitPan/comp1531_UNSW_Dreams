@@ -4,10 +4,12 @@ This is a helper file containing useful functions used in other files
 
 from data import data
 import re
+import jwt
 from src.error import InputError, AccessError
 
 # Valid email input
 RE = '^[a-zA-Z0-9]+[\\._]?[a-zA-Z0-9]+[@]\\w+[.]\\w{2,3}$'
+SECRET = 'COMP1531'
 
 def check_email_valid(email):
     '''
@@ -115,3 +117,10 @@ def check_valid_user(user_token):
     if valid_user_id == False:
         raise AccessError("The auth_user_id input is not a valid id.")
 
+def generate_token(auth_user_id):
+    """
+    A function which given a auth_user_id, generates a token for that user and returns
+    it
+    """
+    return jwt.encode({"auth_user_id": auth_user_id}, SECRET, algorithm='HS256').decode('utf-8')
+    
