@@ -1,13 +1,14 @@
 '''
 This file contains the implementation of auth_login_v1 and auth_register_v1
 '''
+import jwt
 
 from data import data
 from src.error import InputError
 import re
 import src.helper as helper
 
-def auth_login_v1(email, password):
+def auth_login_v2(email, password):
     '''
     This function returns the auth_user_id of a user given a valid
     and existing email and password
@@ -40,7 +41,7 @@ def auth_login_v1(email, password):
         'auth_user_id': id,
     }
 
-def auth_register_v1(email, password, name_first, name_last):
+def auth_register_v2(email, password, name_first, name_last):
     '''
     This function registers a user to the dataframe, given a valid email, password, first
     name and last name. Returns their auth_user_id
@@ -59,7 +60,10 @@ def auth_register_v1(email, password, name_first, name_last):
                      1 and 50 characters inclusively in length
 
     Return value:
-        returns {auth_user_id : auth_user_id} on successful registration
+        returns {
+            'auth_user_id' : auth_user_id,
+            'token' token
+        } on successful registration
     '''
     # Check that email is valid
     helper.check_email_valid(email)
@@ -94,7 +98,7 @@ def auth_register_v1(email, password, name_first, name_last):
 	    'password': password, 
         'permission_id': permission_id, #1 for owner, 2 for member 
     })
-    
     return {
         'auth_user_id': id,
+        'token': helper.generate_token(id)
     }
