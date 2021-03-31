@@ -22,7 +22,7 @@ def test_valid_logout(url):
     })
     payload = user.json()
     token = payload['token']
-    res = requests.post(f"{url}/auth/logout/v1", methods=['POST'], json={
+    res = requests.post(f"{url}/auth/logout/v1", json={
         'token': token
     })
     payload = res.json()
@@ -40,7 +40,7 @@ def test_inactive_token(url):
         "name_last": "smith",
     })
     token = generate_token(42) # random token
-    res = requests.post(f"{url}/auth/logout/v1", methods=['POST'], json={
+    res = requests.post(f"{url}/auth/logout/v1", json={
         'token': token
     })
     payload = res.json()
