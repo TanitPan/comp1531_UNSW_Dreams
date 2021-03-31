@@ -123,4 +123,14 @@ def generate_token(auth_user_id):
     it
     """
     return jwt.encode({'auth_user_id': auth_user_id}, SECRET, algorithm='HS256')
-    
+
+def valid_token(token):
+    """
+    A function which, given a token, returns the auth_user_id if valid, or an
+    Access Error if the token is invalid
+    """
+    id = jwt.decode(token, SECRET, algorithm='HS256')
+    for user in data['users']:
+        if (id == user['auth_user_id']):
+            return id
+    raise AccessError("Token is invalid")

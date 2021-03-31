@@ -10,7 +10,7 @@ import src.helper as helper
 
 def auth_login_v2(email, password):
     '''
-    This function returns the auth_user_id of a user given a valid
+    This function returns the auth_user_id and token of a user given a valid
     and existing email and password
 
     Arguments:
@@ -106,3 +106,26 @@ def auth_register_v2(email, password, name_first, name_last):
         'token': helper.generate_token(id),
         'auth_user_id': id
     }
+
+def auth_logout_v1(token):
+    """
+    This function logs a user out of the server, given a valid token, returns
+    a is_success boolean whether the logout was successful or not
+
+    Arguments:
+        token (str) - a string of the users hashed token
+        
+    Exceptions:
+        N/A
+
+    Return value:
+        returns {
+            'is_success'
+        } boolean
+    """
+    try:
+        helper.valid_token(token)
+    except AccessError:
+        return {'is_success': False}
+    
+    return {'is_success': True}
