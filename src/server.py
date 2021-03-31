@@ -41,7 +41,7 @@ AUTH ROUTES
 
 @APP.route("/auth/register/v2", methods=['POST'])
 def auth_register_server():
-    payload = request.json
+    payload = request.get_json()
     
     email = payload['email']
     password = payload['password']
@@ -54,7 +54,7 @@ def auth_register_server():
 
 @APP.route("/auth/login/v2", methods=['POST'])
 def auth_login_server():
-    payload = request.json
+    payload = request.get_json()
     
     email = payload['email']
     password = payload['password']
@@ -65,8 +65,8 @@ def auth_login_server():
 
 @APP.route("/auth/logout/v1", methods=['POST'])
 def auth_logout_server():
-    payload = request.json
-
+    payload = request.get_json()
+    
     token = payload['token']
 
     return dumps(
@@ -80,7 +80,7 @@ OTHER ROUTES
 @APP.route("/clear/v1", methods=['DELETE'])
 def clear_server():
     return dumps(
-        clear_v1
+        clear_v1()
     )
 
 if __name__ == "__main__":

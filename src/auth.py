@@ -4,7 +4,7 @@ This file contains the implementation of auth_login_v1 and auth_register_v1
 import jwt
 
 from data import data
-from src.error import InputError
+from src.error import InputError, AccessError
 import re
 import src.helper as helper
 
