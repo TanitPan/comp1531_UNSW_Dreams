@@ -5,7 +5,7 @@ from flask_cors import CORS
 from src.error import InputError
 from src import config
 
-from src.auth import auth_register_v2, auth_login_v2
+from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
 from src.other import clear_v1
 
 def defaultHandler(err):
@@ -62,6 +62,17 @@ def auth_login_server():
     return dumps(
         auth_login_v2(email, password)
     )
+
+@APP.route("/auth/logout/v1", methods=['POST'])
+def auth_logout_server():
+    payload = request.json
+
+    token = payload['token']
+
+    return dumps(
+        auth_logout_v1(token)
+    )
+
 
 """
 OTHER ROUTES
