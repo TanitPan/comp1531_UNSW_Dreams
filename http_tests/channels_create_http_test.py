@@ -93,14 +93,14 @@ def test_channels_create_invalid_user():
     unauthorised_user_id = authorised_user_id + 1
     unauthorised_token = generate_token(unauthorised_user_id)
 
-    # Attempt to create a new channel
+    # Attempted to create a new channel
     request = requests.post(f"{url}/channels/create/v2", json = {
         'token': unauthorised_token, 
         'name': 'Channel2', 
         'is_public': True
     })     
     
-    # Test the code to ensure a 400 error code has been raised
+    # Test the code to ensure a 403 error code has been raised
     payload = request.json()
     assert payload['code'] == 403
 

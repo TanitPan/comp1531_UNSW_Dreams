@@ -6,6 +6,7 @@ from src.error import InputError
 from src import config
 
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
+from src.channels import channels_create_v2
 from src.other import clear_v1
 
 def defaultHandler(err):
@@ -73,6 +74,15 @@ def auth_logout_server():
         auth_logout_v1(token)
     )
 
+@APP.route("/channels/create/v2", methods = ['POST'])
+def channels_create_server():
+    payload = request.get_json()
+    token = payload['token']
+    name = payload['name']
+    is_public = payload['is_public']
+    return dumps(
+        channels_create_v2(token, name, is_public)
+    )
 
 """
 OTHER ROUTES
