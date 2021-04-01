@@ -31,19 +31,22 @@ def test_channels_create_multiple():
         'name': 'Channel1', 
         'is_public': True
     })     
+    # Check that the HTML request has succeeded with a successful request   
+    assert request.status_code == 200 
+    
     # Test the channel_id to make sure it begins at 1 as per the assumptions
     payload = request.json()
     assert payload['channel_id'] == 1
-    
+        
     # Recall the request and verify a new, iterative channel_id has been created
     request = requests.post(f"{url}/channels/create/v2", json = {
         'token': authorised_token, 
         'name': 'Channel2', 
         'is_public': False
-    })     
+    })  
     payload = request.json()
     assert payload['channel_id'] == 2
-
+    
 # Test to check if a status code of 400 (Input Error) is raised for a channel
 # name that is over 20 characters
 def test_channels_create_invalid_length():
@@ -66,11 +69,9 @@ def test_channels_create_invalid_length():
         'token': authorised_token, 
         'name': 'this_is_a_very_long_channel_name', 
         'is_public': True
-    }) 
-        
+    })        
     # Test the code to ensure a 400 error code has been raised
-    payload = request.json()
-    assert payload['code'] == 400
+    assert request.status_code == 400 
 
 # Test to confirm a 403 status code is given for an authorised token that is 
 # passed in [i.e. it is not of a valid user_id]
@@ -98,11 +99,9 @@ def test_channels_create_invalid_user():
         'token': unauthorised_token, 
         'name': 'Channel2', 
         'is_public': True
-    })     
-    
-    # Test the code to ensure a 403 error code has been raised
-    payload = request.json()
-    assert payload['code'] == 403
+    })  
+    # Test the code to ensure a 403 error code has been raised   
+    assert request.status_code == 403
 
 
 
