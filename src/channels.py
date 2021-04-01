@@ -141,9 +141,9 @@ def channels_create_v2(token, name, is_public):
         'dm_id': 0, #assume default
         'messages': [
             {
-                'message_id' : new_messages_id, #Assuming this is greater than 0
+                'message_id' : new_messages_id, #Assuming it is greater than 0
                 'message' : "",
-                'timestamp' : "", 
+                'timestamp' : 0, # will replace this with the correct timestamp 
                 'auth_user_id' : auth_user_id, 
             }
         ]
