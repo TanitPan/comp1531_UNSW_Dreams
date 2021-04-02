@@ -138,7 +138,7 @@ def channels_create_v2(token, name, is_public):
         'owner_members': owner_list, 
         'all_members': all_member_list, 
         'is_public': is_public,
-        'dm_id': 0, #assume default
+        'dm_id': -1, #assume default
         'messages': [
             {
                 'message_id' : new_messages_id, #Assuming it is greater than 0
