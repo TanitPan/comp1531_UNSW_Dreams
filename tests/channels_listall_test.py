@@ -55,7 +55,7 @@ def test_channels_listall_nonauthorised_user():
     with pytest.raises(AccessError):
         assert (channels_listall_v2(non_authorised_token))
 
-# Tests the number of lists are added to the channel once the channels_create 
+# Tests the number of lists added to the channel after the channels_create 
 # function is called twice.  
 def test_channels_listall_multiplechannel():
     clear_v1()
