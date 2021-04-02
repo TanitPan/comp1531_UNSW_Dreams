@@ -1,6 +1,7 @@
 '''
 This file contains HTTP server tests for the functions of channels_create in 
-src.channels, testing for multiple valid channels being created
+src.channels, testing for multiple valid channels being created, and the correct
+input and access errors are called. 
 '''
 import src.auth as auth
 import src.channels as channels
