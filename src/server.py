@@ -6,7 +6,7 @@ from src.error import InputError
 from src import config
 
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
-from src.channels import channels_create_v2
+from src.channels import channels_create_v2, channels_listall_v2
 from src.other import clear_v1
 
 def defaultHandler(err):
@@ -84,6 +84,12 @@ def channels_create_server():
         channels_create_v2(token, name, is_public)
     )
 
+@APP.route("/channels/listall/v2", methods = ['GET'])
+def channels_listall_server():
+    token = request.args.get('token') 
+    return dumps(
+        channels_listall_v2(token)
+    )
 """
 OTHER ROUTES
 """
