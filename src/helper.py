@@ -17,7 +17,7 @@ def check_email_valid(email):
     InputError otherwise
     '''
     if not re.search(RE, email):
-        raise InputError
+        raise InputError("Invalid email")
 
 def search_email(email):
     '''
@@ -34,7 +34,7 @@ def check_password_valid(password):
     A function which checks if a password is valid, raises InputError if not
     '''
     if len(password) < 6:
-        raise InputError
+        raise InputError("Invalid password")
 
 def check_name_length(name):
     '''
@@ -42,7 +42,7 @@ def check_name_length(name):
     raises InputError otherwise
     '''
     if len(name) not in range(1, 51):
-        raise InputError
+        raise InputError("Invalid name length")
 
 def generate_auth_user_id():
     '''
@@ -136,3 +136,10 @@ def valid_token(token):
             return id
     
     raise AccessError("Token is invalid")
+
+def decrypt_token(token):
+    """
+    A function which returns a user's auth_user_id given a valid token
+    """
+    valid_token(token)
+    return jwt.decode(token, SECRET, algorithms=['HS256'])

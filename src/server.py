@@ -75,10 +75,6 @@ def auth_logout_server():
         auth_logout_v1(token)
     )
 
-"""
-CHANNELS ROUTES
-"""
-
 @APP.route("/channels/create/v2", methods = ['POST'])
 def channels_create_server():
     payload = request.get_json()

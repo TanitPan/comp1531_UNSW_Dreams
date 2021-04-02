@@ -49,62 +49,93 @@ def user_profile_v2(token, u_id):
     
 
 
-def user_profile_setname_v1(auth_user_id, name_first, name_last):
+def user_profile_setname_v2(auth_user_id, name_first, name_last):
     """
-    <Brief description of what the function does>
+    Given an auth_user_id, valid first and last name, updates the user
+    info
 
     Arguments:
-        <name> (<data type>)    - <description>
-        <name> (<data type>)    - <description>
-        ...
+        auth_user_id <int>    - the user's identification number, a positive integer
+        name_first <string>    - the new name the user wants to use
+        name_last <string> - the new name the user wants to use
 
     Exceptions:
-        InputError  - Occurs when ...
-        AccessError - Occurs when ...
+        InputError  - Occurs when name_first is not between 1 and 50 characters inclusively in length
+        InputError  - Occurs when name_last is not between 1 and 50 characters inclusively in length
+        AccessError - Occurs when the token given isn't valid
 
     Return Value:
-        Returns <return value> on <condition>
-        Returns <return value> on <condition>
-    """
+        Returns {} , an empty dictionary on success
+    """    
+    # Validate the length of the name, return InputError if invalid
+    check_name_length(name_first)
+    check_name_length(name_last)
+
+    id = helper.decrypt_token(token) # Also validates the token, raises AccessError when token is invalid
+    # Change the name associated with the user
+    for user in data['users']:
+        if user['auth_user_id'] == id:
+            user['name_first'] = name_first
+            user['name_last'] = name_last
+            break
     return {
     }
 
-def user_profile_setemail_v1(auth_user_id, email):
+def user_profile_setemail_v2(token, email):
     """
-    <Brief description of what the function does>
+    Given an auth_user_id and valid email, updates the user info
 
     Arguments:
-        <name> (<data type>)    - <description>
-        <name> (<data type>)    - <description>
-        ...
+        auth_user_id <int>    - the user's identification number, a positive integer
+        email <string>        - the user's email
 
     Exceptions:
-        InputError  - Occurs when ...
-        AccessError - Occurs when ...
+        InputError  - Email entered is not a valid email
+        InputError  - Email address is already being used by another user
+        AccessError - Occurs when the token given isn't valid
 
     Return Value:
-        Returns <return value> on <condition>
-        Returns <return value> on <condition>
+        Returns {} , an empty dictionary on success
     """
+    helper.check_email_valid(email) # Raises InputError if email is invalid
+    if helper.search_email(email) is not None:
+        raise InputError("Email is taken")
+    
+    id = helper.decrypt_token(token) # Also validates the token, raises AccessError when token is invalid
+    # Change the name associated with the user
+    for user in data['users']:
+        if user['auth_user_id'] == id:
+            user['email'] = email
+            break
+
     return {
     }
 
-def user_profile_sethandle_v1(auth_user_id, handle_str):
+def user_profile_sethandle_v1(token, handle_str):
     """
-    <Brief description of what the function does>
+    Given an auth_user_id and valid handle_str, updates the user's info
 
     Arguments:
-        <name> (<data type>)    - <description>
-        <name> (<data type>)    - <description>
-        ...
+        auth_user_id <int>    - the user's identification number, a positive integer
+        handle_str <string>   - the user's handle
 
     Exceptions:
-        InputError  - Occurs when ...
-        AccessError - Occurs when ...
+        InputError  - Handle entered is not a valid handle
+        InputError  - handle_str is already being used by another user
+        AccessError - Occurs when the token given isn't valid
 
     Return Value:
-        Returns <return value> on <condition>
-        Returns <return value> on <condition>
+        Returns {} , an empty dictionary on success
     """
+    if len(handle_str) < 3 or len(handle_str) > 20:
+        raise InputError("Invalid handle_str")
+    if helper.search_handle(handle_str) is not None:
+        raise InputError("Handle_str is taken")
+    
+    for user in data['users']:
+        if user['auth_user_id'] == id:
+            user['handle_str'] = handle_str
+            break
+
     return {
     }
