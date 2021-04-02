@@ -29,7 +29,8 @@ def user_profile_v2(token, u_id):
         helper.check_valid_user(u_id) # Raises AccessError when u_id is invalid
         helper.valid_token(token) # Raises AccessError when u_id is invalid
     except AccessError:
-        raise InputError
+        raise InputError from AccessError
+
     
     # Find the user with the given data
     for user in data['users']:
@@ -42,9 +43,10 @@ def user_profile_v2(token, u_id):
                     'handle_str' : user['handle_str'], 
 	                'email': user['email'], 
 	                'password': user['password'], 
-                    'permission_id'  = user['permission_id'],
-                }
+                    'permission_id': user['permission_id'],
+                },
             }
+    
 
 
 def user_profile_setname_v1(auth_user_id, name_first, name_last):

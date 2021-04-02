@@ -108,3 +108,4 @@ def clear_server():
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
+    
