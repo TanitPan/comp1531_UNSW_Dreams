@@ -37,7 +37,7 @@ def channels_list_v2(token):
                     'name': channel['name'],}
                 authorised_channels.append(new_dict)
                 break 
-    # Return a dictionary structure with its value being a list of dictionaries
+    # Return a dictionary structure with its value a list of dictionaries
     return {
         'channels': authorised_channels
     }
