@@ -51,11 +51,11 @@ def channels_listall_v2(token):
                              valid user is requesting for this information 
                                                   
     Exceptions:
-        AccessError - Occurs when the token is invalid and it doesn't
-                      belong to the user group
+        AccessError - Occurs when the token is invalid and it wasn't generated 
+                      by someone belonging to the user group
 
     Return Value:
-        Returns a list consisting of dictionaries, with the information about a 
+        Returns a list consisting of dictionaries with information about a 
         channel ('channel_id' and 'name')
     '''
 
@@ -68,7 +68,8 @@ def channels_listall_v2(token):
     for channel in data['channels']:
         all_channel_dict = {
             'channel_id': channel['channel_id'], 
-            'name': channel['name'],}
+            'name': channel['name'],
+        }
         channels_list.append(all_channel_dict)
      
     # A dictionary with a value of a list of dictionaries is returned
