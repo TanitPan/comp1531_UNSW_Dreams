@@ -96,17 +96,17 @@ def user_profile_server():
         user_profile_v2(token, id)
     )
 
-@App.route("/user/profile/setname/v2", methods=['PUT'])
+@APP.route("/user/profile/setname/v2", methods=['PUT'])
 def user_profile_setname():
     payload = request.get_json()
     token = payload['token']
     name_first = payload['name_first']
-    nam_last = payload['nam_last']
+    name_last = payload['name_last']
     return dumps(
         user_profile_setname_v2(token, name_first, name_last)
     )
 
-@App.route("/user/profile/setemail/v2", methods=['PUT'])
+@APP.route("/user/profile/setemail/v2", methods=['PUT'])
 def user_profile_setemail():
     payload = request.get_json()
     token = payload['token']
@@ -116,11 +116,11 @@ def user_profile_setemail():
         user_profile_setemail_v2(token, email)
     )
 
-@App.route("/user/profile/sethandle/v1", methods=['PUT'])
+@APP.route("/user/profile/sethandle/v1", methods=['PUT'])
 def user_profile_sethandle():
     payload = request.get_json()
     token = payload['token']
-    handle_str = payload['email']
+    handle_str = payload['handle_str']
 
     return dumps(
         user_profile_sethandle_v1(token, handle_str)

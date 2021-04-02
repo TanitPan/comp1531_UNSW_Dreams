@@ -68,8 +68,8 @@ def user_profile_setname_v2(auth_user_id, name_first, name_last):
         Returns {} , an empty dictionary on success
     """    
     # Validate the length of the name, return InputError if invalid
-    check_name_length(name_first)
-    check_name_length(name_last)
+    helper.check_name_length(name_first)
+    helper.check_name_length(name_last)
 
     id = helper.decrypt_token(token) # Also validates the token, raises AccessError when token is invalid
     # Change the name associated with the user
