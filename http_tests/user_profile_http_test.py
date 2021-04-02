@@ -2,13 +2,12 @@
 This file contains the tests for the HTTP server of user/profile route
 '''
 
-#import src.auth as auth
-#from src.helper import generate_token
-
 import pytest
 import requests
 import json
 from src.config import url
+
+import urllib # for query string generation
 
 def test_valid_input():
     global url
@@ -23,10 +22,13 @@ def test_valid_input():
     print("USER PAYLOAD = ", payload)
     id = payload['auth_user_id']
     token = payload['token']
-    res = requests.get(f"{url}/user/profile/v2", json={
-        "token": token,
-        "auth_user_id": id,
+    # Generate a query string for get request
+    query = urllib.parse.urlencode({
+        'token': token,
+        'u_id': id
     })
+
+    res = requests.get(f"{url}/user/profile/v2?{query}")
     payload = res.json()
     print("PAYLOAD1 = ", payload)
     assert payload == {
@@ -51,12 +53,14 @@ def test_invalid_uid():
         "name_last": "smith",
     })
     payload = user.json()
-    id = -5.5 # Invalid user id since auth_user_id >= 0 integers
+    id = -5 # Invalid user id since auth_user_id >= 0 
     token = payload['token']
-    res = requests.get(f"{url}/user/profile/v2", json={
-        "token": token,
-        "auth_user_id": id,
+    # Generate a query string for get request
+    query = urllib.parse.urlencode({
+        'token': token,
+        'u_id': id
     })
+    res = requests.get(f"{url}/user/profile/v2?{query}")
     payload = res.json()
     print("PAYLOAD2 = ", payload)
     assert payload['code'] == 400 # InputError

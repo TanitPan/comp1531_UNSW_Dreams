@@ -90,9 +90,8 @@ USER ROUTES
 """
 @APP.route("/user/profile/v2", methods=['GET'])
 def user_profile_server():
-    payload = request.get_json()
-    token = payload['token']
-    id = payload['auth_user_id']
+    token = request.args.get('token')
+    id = int(request.args.get('u_id'))
     return dumps(
         user_profile_v2(token, id)
     )
