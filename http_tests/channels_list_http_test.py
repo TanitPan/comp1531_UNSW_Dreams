@@ -10,7 +10,7 @@ from src.helper import generate_token
 
 import json
 import pytest
-import reques
+import requests
 
 # Test that an authorised user can add multiple channels to the list
 def test_channels_list_multiple_channels():
