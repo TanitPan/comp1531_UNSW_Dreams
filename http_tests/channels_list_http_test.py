@@ -3,7 +3,7 @@ This file contains HTTP server tests for the functions of channels_listall in
 src.channels, testing that the correct output is received for multiple channels 
 created by the same user and different, and that the AccessError works
 '''
-import src.auth as auth_register
+import src.auth as auth
 import src.channels as channels
 from src.config import url
 from src.helper import generate_token
