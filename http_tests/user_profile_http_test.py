@@ -19,7 +19,6 @@ def test_valid_input():
         "name_last": "smith",
     })
     payload = user.json()
-    print("USER PAYLOAD = ", payload)
     id = payload['auth_user_id']
     token = payload['token']
     # Generate a query string for get request
@@ -30,7 +29,6 @@ def test_valid_input():
 
     res = requests.get(f"{url}/user/profile/v2?{query}")
     payload = res.json()
-    print("PAYLOAD1 = ", payload)
     assert payload == {
         'user': {
             'auth_user_id': id,
@@ -62,6 +60,5 @@ def test_invalid_uid():
     })
     res = requests.get(f"{url}/user/profile/v2?{query}")
     payload = res.json()
-    print("PAYLOAD2 = ", payload)
     assert payload['code'] == 400 # InputError
     
