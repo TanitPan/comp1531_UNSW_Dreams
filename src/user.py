@@ -1,4 +1,4 @@
-def user_profile_v1(auth_user_id, u_id):
+def user_profile_v2(token, u_id):
     return {
         'user': {
             'u_id': 1,
