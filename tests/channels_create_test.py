@@ -1,3 +1,7 @@
+'''This file consists of Python tests for channels_create_v2 in channels.py, 
+testing the return value type, multiple calls of the function, InputError and
+AccessError'''
+
 import pytest
 
 from src.channels import channels_create_v2
@@ -5,8 +9,6 @@ from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.helper import generate_token
 from src.other import clear_v1
-
-'''This file consists of Python tests for channels_create_v2 in channels.py'''
 
 # Test the type of the return value of channels_create to ensure it produces a
 # dictionary (Specs 6.1.1)
