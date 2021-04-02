@@ -7,6 +7,7 @@ from src import config
 
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
 from src.channels import channels_create_v2
+from src.user import user_profile_v2
 from src.other import clear_v1
 
 def defaultHandler(err):
@@ -85,6 +86,17 @@ def channels_create_server():
     )
 
 """
+USER ROUTES
+"""
+@APP.route("/user/profile/v2", methods=['GET'])
+def user_profile_server():
+    token = request.args.get('token')
+    id = int(request.args.get('u_id'))
+    return dumps(
+        user_profile_v2(token, id)
+    )
+
+"""
 OTHER ROUTES
 """
 @APP.route("/clear/v1", methods=['DELETE'])
@@ -95,3 +107,4 @@ def clear_server():
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
+    
