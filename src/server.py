@@ -7,7 +7,7 @@ from src import config
 
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
 from src.channels import channels_create_v2
-from src.user import user_profile_v2
+from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1
 from src.other import clear_v1
 
 def defaultHandler(err):
@@ -75,6 +75,10 @@ def auth_logout_server():
         auth_logout_v1(token)
     )
 
+"""
+CHANNELS ROUTES
+"""
+
 @APP.route("/channels/create/v2", methods = ['POST'])
 def channels_create_server():
     payload = request.get_json()
@@ -94,6 +98,36 @@ def user_profile_server():
     id = int(request.args.get('u_id'))
     return dumps(
         user_profile_v2(token, id)
+    )
+
+@App.route("/user/profile/setname/v2", methods=['PUT'])
+def user_profile_setname():
+    payload = request.get_json()
+    token = payload['token']
+    name_first = payload['name_first']
+    nam_last = payload['nam_last']
+    return dumps(
+        user_profile_setname_v2(token, name_first, name_last)
+    )
+
+@App.route("/user/profile/setemail/v2", methods=['PUT'])
+def user_profile_setemail():
+    payload = request.get_json()
+    token = payload['token']
+    email = payload['email']
+
+    return dumps(
+        user_profile_setemail_v2(token, email)
+    )
+
+@App.route("/user/profile/sethandle/v1", methods=['PUT'])
+def user_profile_sethandle():
+    payload = request.get_json()
+    token = payload['token']
+    handle_str = payload['email']
+
+    return dumps(
+        user_profile_sethandle_v1(token, handle_str)
     )
 
 """
