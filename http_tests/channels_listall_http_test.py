@@ -103,10 +103,10 @@ def test_channels_listall_invalid_user():
     requests.delete(f"{url}/clear/v1") 
     # Collate all the values for each key required in the auth_register/v2
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        'email': 'z1111111@gmail.com', 
-        'password': 'unswstudent', 
-        'name_first': 'anne', 
-        'name_last': 'student'
+        'email': 'wonderland2020@gmail.com', 
+        'password': 'madhatter', 
+        'name_first': 'alice', 
+        'name_last': 'wonderland'
     })   
     # Extract the user_id and an unauthorised id, which is one greater than it. 
     # Generate a token with the unauthorised id, passing this unauthorised_token
