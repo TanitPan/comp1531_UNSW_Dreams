@@ -1,6 +1,6 @@
 '''This file contains Python tests for channels_listall_v2 in channels.py, 
-testing the type of the return value, whether an AccessError will be called
-and multiple function calls'''
+testing the type of the return value, the success of multiple function calls
+and if an AccessError will be called for an invalid token'''
 
 import pytest
 
