@@ -1,8 +1,8 @@
 ''' This file implements channels_list, channels_listall and channels_create '''
 
 from data import data
-from src.error import InputError, AccessError
 from src.auth import auth_register_v2
+from src.error import InputError, AccessError
 from src.helper import valid_token
 
 def channels_list_v1(auth_user_id):
@@ -83,7 +83,7 @@ def channels_create_v2(token, name, is_public):
     public or private (if the authorised user is not a global Dream user). 
 
     Arguments:
-        token (string)  - input token that ensures a user that is given 
+        token (string)      - input token that ensures a user that is given 
                               access has been validated. 
         name (string)       - name of the channel. 
         is_public (boolean) - checks whether a channel is public (assumed to be
@@ -106,7 +106,7 @@ def channels_create_v2(token, name, is_public):
 
     # Raises InputError if the length of the name is greater than 20 characters
     if len(name) > 20:
-        raise InputError("The name input is more than 20 characters.")
+        raise InputError('The name input is more than 20 characters.')
 
     # Our assumptions began the channel_id at 1 and increase iteratively. To 
     # give a new channel_id, loop through the channels, record the highest id  
@@ -142,7 +142,7 @@ def channels_create_v2(token, name, is_public):
         'messages': [
             {
                 'message_id' : new_messages_id, #Assuming it is greater than 0
-                'message' : "",
+                'message' : '',
                 'timestamp' : 0, # will replace this with the correct timestamp 
                 'auth_user_id' : auth_user_id, 
             }
