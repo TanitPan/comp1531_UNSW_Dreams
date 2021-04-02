@@ -41,26 +41,26 @@ def channels_list_v1(auth_user_id):
         'channels': authorised_channels
     }
        
-def channels_listall_v1(auth_user_id):
+def channels_listall_v2(token):
     ''' 
     This function returns the total number of channels that have been created, 
     regardless of whether the user has been added to the group or not. 
 
     Arguments:
-        auth_user_id (int)-  an input token that hints that an authorised and 
+        token (string)    -  an input token that hints that an authorised and 
                              valid user is requesting for this information 
                                                   
     Exceptions:
-        AccessError - Occurs when the auth_user_id is invalid and it doesn't
-                      belong to the group
+        AccessError - Occurs when the token is invalid and it wasn't generated 
+                      by someone belonging to the user group
 
     Return Value:
-        Returns a list consisting of dictionaries, with the information about a 
-        channel (likely to be 'channel_id' and 'name'
+        Returns a list consisting of dictionaries with information about a 
+        channel ('channel_id' and 'name')
     '''
 
-    # An AccessError is raised when the auth_user_id passed is not authorised
-    check_valid_user(auth_user_id)
+    # An AccessError is raised when the token passed is not authorised
+    valid_token(token)
     
     # Create an empty list to store the channel_id and name of all channels. 
     # Loop through all of the channels and append each of these to the list. 
@@ -68,10 +68,10 @@ def channels_listall_v1(auth_user_id):
     for channel in data['channels']:
         all_channel_dict = {
             'channel_id': channel['channel_id'], 
-            'name': channel['name'],}
+            'name': channel['name'],
+        }
         channels_list.append(all_channel_dict)
-
-        
+     
     # A dictionary with a value of a list of dictionaries is returned
     return {
         'channels': channels_list
