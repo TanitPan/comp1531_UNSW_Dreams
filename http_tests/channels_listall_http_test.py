@@ -14,7 +14,7 @@ import requests
 
 # Test that multiple channels are successfully displayed if they are by the same
 # user
-def test_channels_listall_multiplechannel():
+def test_channels_listall_multiple_channels():
     # Clears data and collates the necessary information for auth_register/v2 
     requests.delete(f"{url}/clear/v1") 
     auth_data = {
@@ -52,7 +52,7 @@ def test_channels_listall_multiplechannel():
 
 # Test that the function returns the list of channels for all authorised users 
 # that have created a channel
-def test_channels_listall_multipleusers():
+def test_channels_listall_multiple_users():
     # Clear data
     requests.delete(f"{url}/clear/v1") 
     # Collate all the parameters and register the first user
