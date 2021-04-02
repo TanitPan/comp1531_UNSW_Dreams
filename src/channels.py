@@ -5,23 +5,24 @@ from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.helper import valid_token
 
-def channels_list_v1(auth_user_id):
+def channels_list_v2(token):
     '''
     Taking in the auth_user_id, this function returns all channels the 
     authorised user has access to 
     Arguments:
-        auth_user_id (int) - an input token that hints that an authorised and
-                             valid user is requesting for this information 
+        token (string) - an input token that hints that an authorised and
+                          valid user is requesting for this information 
                                                   
     Exceptions:
         AccessError - Occurs when the auth_user_id is invalid and it doesn't 
                       belong to the group
     Return Value:
-        Returns a list consisting of dictionaries, with the information about a 
+        Returns a list consisting of dictionaries, with information about a 
         channel ('channel_id' and 'name')
     ''' 
-    # Check the user_id to ensure that they were included as a channel member 
-    check_valid_user(auth_user_id)
+    
+    # Check the user_id from the token to ensure that the user was valid 
+    auth_user_id = valid_token(token)
    
     # Created an empty list to store the information of the channels the 
     # authorised user has access to.
