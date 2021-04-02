@@ -11,3 +11,7 @@ Assumptions:
     AccessError will be raised.
 - Assume that if the authorised user is joining a channel he is already a member of, AccessError
     will be raised.
+    
+Iteration Two
+- Assume that the message_id will be iterative and begin at 1
+- Assume that a message being sent to a channel is a DM by default (-1)
