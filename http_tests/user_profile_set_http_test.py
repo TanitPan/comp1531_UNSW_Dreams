@@ -114,7 +114,7 @@ def test_valid_email(register_user):
     user = register_user
     token = user['token']
     newEmail = "newemail@gmail.com"
-    requests.put(f"{url}/user/profile/setname/v2", json={
+    requests.put(f"{url}/user/profile/setemail/v2", json={
         'token': token,
         'email': newEmail,
     })
@@ -127,7 +127,7 @@ def test_invalid_email(register_user):
     user = register_user
     token = user['token']
     newEmail = "invalid"
-    requests.put(f"{url}/user/profile/setname/v2", json={
+    requests.put(f"{url}/user/profile/setemail/v2", json={
         'token': token,
         'email': newEmail,
     })
@@ -141,7 +141,7 @@ def test_taken_email(register_user):
 
     token = user['token']
     newEmail = "batman@gmail.com"
-    requests.put(f"{url}/user/profile/setname/v2", json={
+    requests.put(f"{url}/user/profile/setemail/v2", json={
         'token': token,
         'email': newEmail,
     })
@@ -158,7 +158,7 @@ def test_valid_handle(register_user):
 
     token = user['token']
     newHandle = 'jasonbourne'
-    requests.put(f"{url}/user/profile/setname/v2", json={
+    requests.put(f"{url}/user/profile/sethandle/v1", json={
         'token': token,
         'handle_str': newHandle,
     })
@@ -171,7 +171,7 @@ def test_invalid_handle(register_user):
 
     token = user['token']
     newHandle = 'jasonbourne'*5 # invalid string length
-    requests.put(f"{url}/user/profile/setname/v2", json={
+    requests.put(f"{url}/user/profile/sethandle/v1", json={
         'token': token,
         'handle_str': newHandle,
     })
@@ -184,7 +184,7 @@ def test_taken_handle(register_user):
 
     token = user['token']
     newHandle = 'batman' # handle is taken by another user
-    requests.put(f"{url}/user/profile/setname/v2", json={
+    requests.put(f"{url}/user/profile/sethandle/v1", json={
         'token': token,
         'handle_str': newHandle,
     })
