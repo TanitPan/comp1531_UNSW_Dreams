@@ -6,7 +6,12 @@ from src.error import InputError
 from src import config
 
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
+<<<<<<< HEAD
 from src.channels import channels_create_v2, channels_listall_v2
+=======
+from src.channels import channels_create_v2
+from src.user import user_profile_v2
+>>>>>>> master
 from src.other import clear_v1
 
 def defaultHandler(err):
@@ -74,6 +79,9 @@ def auth_logout_server():
         auth_logout_v1(token)
     )
 
+"""
+CHANNEL ROUTES
+"""
 @APP.route("/channels/create/v2", methods = ['POST'])
 def channels_create_server():
     payload = request.get_json()
@@ -90,6 +98,18 @@ def channels_listall_server():
     return dumps(
         channels_listall_v2(token)
     )
+    
+"""
+USER ROUTES
+"""
+@APP.route("/user/profile/v2", methods=['GET'])
+def user_profile_server():
+    token = request.args.get('token')
+    id = int(request.args.get('u_id'))
+    return dumps(
+        user_profile_v2(token, id)
+    )
+
 """
 OTHER ROUTES
 """
@@ -101,3 +121,4 @@ def clear_server():
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
+    
