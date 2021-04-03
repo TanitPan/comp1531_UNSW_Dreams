@@ -1,9 +1,9 @@
 from src.error import InputError, AccessError
 from data import data
-from src.helper import check_valid_user
+from src.helper import check_valid_user, valid_token
 
 
-def channel_invite_v1(auth_user_id, channel_id, u_id):
+def channel_invite_v2(token, channel_id, u_id):
     """
     This function invites the user to given channel. 
     On success, add the user data to the channel.
@@ -21,14 +21,13 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
     Return Value:
         Returns an empty dictionary on completeion
     """
+    # Check token validity
+    auth_user_id = valid_token(token)
 
     # Flags to check for invalid input or invalid access
     valid_channel = False
     valid_uid = False
     ismember = False
-
-    # Loop to check if auth_user_id is valid
-    check_valid_user(auth_user_id)
 
     new_member = {}
     # Loop to check if user id is valid and store that user info
