@@ -3,11 +3,12 @@ This file contains test function for channel_invite function in channel.py
 """
 import pytest
 from src.channel import channel_invite_v1
-from src.channels import channels_create_v1, channels_list_v1
-from src.auth import auth_register_v1
+from src.channels import channels_create_v2, channels_list_v2
+from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.other import clear_v1
 from data import data
+
 
 
 def test_channel_invite():
@@ -20,15 +21,18 @@ def test_channel_invite():
     clear_v1()
 
     # Call other functions to create the data and store in data structure
-    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_dict1 = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_dict2 = auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
-    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
+    auth_token1 = auth_dict1["token"]
+    auth_token2 = auth_dict2["token"]
 
-    channel_invite_v1(auth_id1["auth_user_id"], channel_id1["channel_id"], auth_id2["auth_user_id"])
+    channel_id1 = channels_create_v2(auth_token1, "Chill Soc", True)
+
+    channel_invite_v1(auth_token1, channel_id1["channel_id"], auth_token2)
    
     # Check if the new u_id is added to channel
-    assert channels_list_v1(auth_id2["auth_user_id"]) == {
+    assert channels_list_v2(auth_token2) == {
         'channels': [
         	{
         		'channel_id': 1, # channel id start at 1 or 0 is worth checking ?
