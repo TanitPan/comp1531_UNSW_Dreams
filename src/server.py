@@ -6,6 +6,7 @@ from src.error import InputError
 from src import config
 
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
+from src.admin import admin_user_remove_v1, admin_userpermission_change_v1
 from src.channels import channels_create_v2, channels_list_v2, channels_listall_v2
 from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1
 from src.other import users_all_v1, clear_v1
@@ -143,6 +144,29 @@ def user_profile_sethandle():
     return dumps(
         user_profile_sethandle_v1(token, handle_str)
     )
+
+"""
+ADMIN ROUTES
+"""
+@APP.route("/admin/user/remove/v1", methods=['POST'])
+def user_profile_server():
+    payload = request.get_json()
+    token = payload['token']
+    u_id = payload['u_id']
+    return dumps(
+        admin_user_remove_v1(token, u_id)
+    )
+    
+@APP.route("/admin/userpermission/change/v1", methods=['POST'])
+def user_profile_server():
+    payload = request.get_json()
+    token = payload['token']
+    u_id = payload['u_id']
+    permission_id = payload['permission_id']
+    return dumps(
+        admin_userpermission_change_v1(token, u_id, permission_id)
+    )
+
 
 """
 OTHER ROUTES
