@@ -42,19 +42,21 @@ def test_valid_token(register_user):
         'users': [
             {
                 "auth_user_id": 0,
-                "email": "batman@gmail.com",
-                "password": "123456",
                 "name_first": "bat",
                 "name_last": "man",
-                "handle_str": "batman"
+                "handle_str": "batman",
+                "email": "batman@gmail.com",
+                "password": "123456",
+                "permission_id": 1                              
             },
             {
-                "auth_user_id": 1
-                "email": "johnsmith@gmail.com",
-                "password": "123456",
+                "auth_user_id": 1,
                 "name_first": "john",
                 "name_last": "smith",
-                "handle_str": "johnsmith"
+                "handle_str": "johnsmith",
+                "email": "johnsmith@gmail.com",
+                "password": "123456",
+                "permission_id": 2               
             }
         ]
     }
