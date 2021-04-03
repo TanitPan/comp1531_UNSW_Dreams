@@ -2,12 +2,13 @@
 valid responses, access error (unauthorised token user), and input errors 
 (invalid u_id, removed user is the only dreams owner)'''
 
+import pytest
 from src.admin import admin_user_remove_v1
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
-from src.channel import channel_removeowner, channel_leave_v1, channel_messages_v2
+from src.channel import channel_removeowner_v1, channel_leave_v1, channel_messages_v1
 from src.channels import channels_create_v2
-from src.messages import message_send_v2
+from src.message import message_send_v1
 from src.other import clear_v1
 
 ''' Test that after the function is called, the necessary information is removed
@@ -71,7 +72,7 @@ def admin_user_remove_messages():
     message_send_v2(token2, "Channel_1", "Hello")
     admin_user_remove_v1(token1, user_id)
     # Extract the messages and ensure the message contents have changed
-    messages = channel_messages_v2(token2, channel_id, 0)
+    messages = channel_messages_v1(token2, channel_id, 0)
     for message in messages['message']:
         assert messages['message'] == [{'Removed user'}]
 
@@ -105,7 +106,7 @@ def test_admin_user_remove_invalid_user():
 def test_admin_user_remove_unauthorised_user(): 
     # Clear and register a user to be the owner
     clear_v1()
-    auth_register_v2("tom.smith@ymail.com", "tommo", "tom", "smith")
+    auth_register_v2("tom.smith@ymail.com", "tom00smith", "tom", "smith")
     # Extract the token from a new registration
     user1 = auth_register_v2("john.smith@yahoo.com", "passwd", "johnny", "smith")
     invalid_token = user1['token']
