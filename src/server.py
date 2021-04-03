@@ -147,6 +147,13 @@ def user_profile_sethandle():
 """
 OTHER ROUTES
 """
+@APP.route("/users/all/v1", methods=['GET'])
+def users_all_server():
+    token = request.args.get('token')
+    return dumps(
+        users_all_v1(token)
+    )
+
 @APP.route("/clear/v1", methods=['DELETE'])
 def clear_server():
     return dumps(
