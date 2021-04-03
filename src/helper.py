@@ -97,7 +97,7 @@ def check_password(user, password):
         return user['auth_user_id']
     raise InputError
 
-def check_valid_user(user_token):	
+def check_valid_user(u_id):	
     """ Checks the validity of the auth_user_id, by checking if it was added to
     the data file as a part of the 'users' information."""
 
@@ -108,14 +108,14 @@ def check_valid_user(user_token):
     # to the list if auth_register_v1 was called. The flag changes to True once  
     # the user_token has been found. 
     for user in data['users']:
-        if user['auth_user_id'] == user_token:
+        if user['auth_user_id'] == u_id and user['name_first'] != 'Removed':
             valid_user_id = True 
             break
     
     # If the flag remains False, it is not in the authorised user list and an 
-    # AccessError is printed. 
+    # InputError is printed. 
     if valid_user_id == False:
-        raise AccessError("The auth_user_id input is not a valid id.")
+        raise InputError("The auth_user_id input is not a valid id.")
 
 def generate_token(auth_user_id):
     """
@@ -143,3 +143,28 @@ def decrypt_token(token):
     """
     valid_token(token)
     return jwt.decode(token, SECRET, algorithms=['HS256'])
+    
+def check_only_dreams_owner(u_id):
+    """ A function which tests whether the given user is the only owner of the
+    dreams channel, by checking their permission"""   
+    dream_owners = []
+    for user in data['users']:
+        if user['permission_id'] == 1:
+            owners_dict = {'auth_user_id': user['auth_user_id']}
+            dream_owners.append(owners_dict)
+    number_owners = len(owners_dict)
+    for owner in dream_owners:
+        if owner['auth_user_id'] == u_id and number_owners == 1:
+            raise InputError("This user is the only owner of Dreams")
+
+def check_dreams_owner(auth_user_id):
+    """Confirm that the authorised user is an owner of Dreams by checking their
+    permission ID in data['users']"""
+    valid_dreams_owner = False
+    for user in data['users']:
+        if user['auth_user_id'] == auth_user_id and user['permission_id'] == 1: 
+            valid_dreams_owner = True
+            break       
+    if valid_dreams_owner == False:
+        raise AccessError("The authorised user is not an owner of Dreams")  
+        
