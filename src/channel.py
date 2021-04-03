@@ -1,9 +1,9 @@
 from src.error import InputError, AccessError
 from data import data
-from src.helper import check_valid_user
+from src.helper import check_valid_user, valid_token
 
 
-def channel_invite_v1(auth_user_id, channel_id, u_id):
+def channel_invite_v2(token, channel_id, u_id):
     """
     This function invites the user to given channel. 
     On success, add the user data to the channel.
@@ -21,14 +21,13 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
     Return Value:
         Returns an empty dictionary on completeion
     """
+    # Check token validity
+    auth_user_id = valid_token(token)
 
     # Flags to check for invalid input or invalid access
     valid_channel = False
     valid_uid = False
     ismember = False
-
-    # Loop to check if auth_user_id is valid
-    check_valid_user(auth_user_id)
 
     new_member = {}
     # Loop to check if user id is valid and store that user info
@@ -40,7 +39,7 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
 
     # Raise exception for invalid u_id
     if valid_uid == False:
-        raise InputError("u_id is not valid user")
+        raise InputError(description = "u_id is not valid user")
 
     # Loop to check if channel id is valid
     for channel in data["channels"]:
@@ -55,15 +54,15 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
             # Loop to check if u_id is already in channel
             for member in channel["all_members"]:
                 if member["auth_user_id"] == u_id:
-                    raise AccessError("Repetitive invite! This u_id already in channel")
+                    raise AccessError(description = "Repetitive invite! This u_id already in channel")
 
             break
 
     # Raise exception when detect invalid access/input
     if valid_channel == False:
-        raise InputError("channel_id is not a valid channel")
+        raise InputError(description = "channel_id is not a valid channel")
     if ismember == False:
-        raise AccessError("authorised user not a member of channel")
+        raise AccessError(description = "authorised user not a member of channel")
 
     # Loop over the target channel and add u_id into channel
     for channel in data["channels"]:
