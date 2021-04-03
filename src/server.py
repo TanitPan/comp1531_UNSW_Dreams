@@ -148,7 +148,7 @@ def user_profile_sethandle():
 """
 ADMIN ROUTES
 """
-@APP.route("/admin/user/remove/v1", methods=['POST'])
+@APP.route("/admin/user/remove/v1", methods=['DELETE'])
 def admin_user_remove_server():
     payload = request.get_json()
     token = payload['token']
