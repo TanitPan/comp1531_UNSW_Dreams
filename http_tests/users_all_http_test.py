@@ -1,5 +1,5 @@
 """
-This file contains the tests for user/all route.
+This file contains the tests for user/all route
 """
 
 import pytest
