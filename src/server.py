@@ -153,6 +153,7 @@ def channel_invite_server():
     payload = request.get_json()
     token = payload["token"]
     channel_id = payload["channel_id"]
+    print(channel_id)
     u_id = payload["u_id"]
     return dumps(
         channel_invite_v2(token, channel_id, u_id)

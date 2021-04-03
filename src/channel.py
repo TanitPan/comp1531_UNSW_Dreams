@@ -39,7 +39,7 @@ def channel_invite_v2(token, channel_id, u_id):
 
     # Raise exception for invalid u_id
     if valid_uid == False:
-        raise InputError("u_id is not valid user")
+        raise InputError(description = "u_id is not valid user")
 
     # Loop to check if channel id is valid
     for channel in data["channels"]:
@@ -54,15 +54,15 @@ def channel_invite_v2(token, channel_id, u_id):
             # Loop to check if u_id is already in channel
             for member in channel["all_members"]:
                 if member["auth_user_id"] == u_id:
-                    raise AccessError("Repetitive invite! This u_id already in channel")
+                    raise AccessError(description = "Repetitive invite! This u_id already in channel")
 
             break
 
     # Raise exception when detect invalid access/input
     if valid_channel == False:
-        raise InputError("channel_id is not a valid channel")
+        raise InputError(description = "channel_id is not a valid channel")
     if ismember == False:
-        raise AccessError("authorised user not a member of channel")
+        raise AccessError(description = "authorised user not a member of channel")
 
     # Loop over the target channel and add u_id into channel
     for channel in data["channels"]:
