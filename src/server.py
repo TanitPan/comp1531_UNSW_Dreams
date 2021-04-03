@@ -147,20 +147,6 @@ def user_profile_sethandle():
     )
 
 """
-<<<<<<< HEAD
-CHANNEL ROUTES
-"""
-@APP.route("/channel/invite/v2", methods = ['POST'])
-def channel_invite_server():
-    payload = request.get_json()
-    token = payload["token"]
-    channel_id = payload["channel_id"]
-    print(channel_id)
-    u_id = payload["u_id"]
-    return dumps(
-        channel_invite_v2(token, channel_id, u_id)
-    )
-=======
 ADMIN ROUTES
 """
 @APP.route("/admin/user/remove/v1", methods=['DELETE'])
@@ -182,7 +168,19 @@ def admin_userpermission_change_server():
         admin_userpermission_change_v1(token, u_id, permission_id)
     )
 
->>>>>>> master
+"""
+CHANNEL ROUTES
+"""
+@APP.route("/channel/invite/v2", methods = ['POST'])
+def channel_invite_server():
+    payload = request.get_json()
+    token = payload["token"]
+    channel_id = payload["channel_id"]
+    print(channel_id)
+    u_id = payload["u_id"]
+    return dumps(
+        channel_invite_v2(token, channel_id, u_id)
+    )
 
 """
 OTHER ROUTES
