@@ -75,6 +75,23 @@ def auth_logout_server():
         auth_logout_v1(token)
     )
 
+"""
+CHANNEL ROUTES
+"""
+@APP.route("/channels/list/v2", methods = ['GET'])
+def channels_list_server():
+    token = request.args.get('token') 
+    return dumps(
+        channels_list_v2(token)
+    )
+    
+@APP.route("/channels/listall/v2", methods = ['GET'])
+def channels_listall_server():
+    token = request.args.get('token') 
+    return dumps(
+        channels_listall_v2(token)
+    )
+    
 @APP.route("/channels/create/v2", methods = ['POST'])
 def channels_create_server():
     payload = request.get_json()
@@ -84,6 +101,7 @@ def channels_create_server():
     return dumps(
         channels_create_v2(token, name, is_public)
     )
+
 
 """
 USER ROUTES
