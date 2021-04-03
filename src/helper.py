@@ -108,7 +108,7 @@ def check_valid_user(u_id):
     # to the list if auth_register_v1 was called. The flag changes to True once  
     # the user_token has been found. 
     for user in data['users']:
-        if user['auth_user_id'] == u_id && user['name_first'] != 'Removed':
+        if user['auth_user_id'] == u_id and user['name_first'] != 'Removed':
             valid_user_id = True 
             break
     
@@ -153,6 +153,18 @@ def check_only_dreams_owner(u_id):
             owners_dict = {'auth_user_id': user['auth_user_id']}
             dream_owners.append(owners_dict)
     number_owners = len(owners_dict)
-    for owner in owners_dict:
-        if owner['auth_user_id'] == u_id && number_owners == 1:
+    for owner in dream_owners:
+        if owner['auth_user_id'] == u_id and number_owners == 1:
             raise InputError("This user is the only owner of Dreams")
+
+def check_dreams_owner(auth_user_id):
+    """Confirm that the authorised user is an owner of Dreams by checking their
+    permission ID in data['users']"""
+    valid_dreams_owner = False
+    for user in data['users']:
+        if user['auth_user_id'] == auth_user_id and user['permission_id'] == 1: 
+            valid_dreams_owner = True
+            break       
+    if valid_dreams_owner == False:
+        raise AccessError("The authorised user is not an owner of Dreams")  
+        
