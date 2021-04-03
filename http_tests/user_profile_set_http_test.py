@@ -1,6 +1,6 @@
 '''
 This file contains the tests for the HTTP server of user/profile/setname,
-user/profile/setemail, user/profile/sethandle routes
+user/profile/setemail, user/profile/sethandle routes.
 '''
 
 import pytest
