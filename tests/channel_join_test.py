@@ -21,17 +21,17 @@ def test_channel_join():
    
 
     # Call other functions to create the data and store in data structure
-    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_id1 = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
-    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
+    channel_id1 = channels_create_v2(auth_id1["auth_user_id"], "Chill Soc", True)
     
     
     channel_join_v1(auth_id2["auth_user_id"], channel_id1["channel_id"])
 
     # Black box testing version in waiting
     # Check if the user is successfully added to the channel data frame
-    assert channels_list_v1(auth_id2["auth_user_id"]) == {
+    assert channels_list_v2(auth_id2["auth_user_id"]) == {
         'channels': [
         	{
         		'channel_id': 1, # channel id start at 1 or 0 is worth checking ? It's currently start at 1.
@@ -49,10 +49,10 @@ def test_channel_join_except_channel():
     # Clear the data structure
     clear_v1()
     # Call other functions to create the data and store in data structure
-    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_id1 = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
-    channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
+    channels_create_v2(auth_id1["auth_user_id"], "Chill Soc", True)
 
     
     with pytest.raises(InputError):
@@ -66,8 +66,8 @@ def test_channel_join_except_invalid_auth():
     # Clear the data structure
     clear_v1()
     # Call other functions to create the data and store in data structure
-    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_id1 = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
     channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", True)
 
@@ -84,10 +84,10 @@ def test_channel_join_except_private():
     # Clear the data structure
     clear_v1()
     # Call other functions to create the data and store in data structure
-    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_id1 = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
-    channel_id1 = channels_create_v1(auth_id1["auth_user_id"], "Chill Soc", False)
+    channel_id1 = channels_create_v2(auth_id1["auth_user_id"], "Chill Soc", False)
 
     
     with pytest.raises(AccessError):
@@ -101,16 +101,16 @@ def test_channel_join_private_global():
     # Clear the data structure
     clear_v1()
     # Call other functions to create the data and store in data structure
-    auth_id1 = auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_id1 = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
-    channel_id1 = channels_create_v1(auth_id2["auth_user_id"], "Chill Soc", False)
+    channel_id1 = channels_create_v2(auth_id2["auth_user_id"], "Chill Soc", False)
 
     # Global DREAM owner attempt to join a private channel  
     channel_join_v1(auth_id1["auth_user_id"], channel_id1["channel_id"])
 
     # Check if the global owner successfully join private channel
-    assert channels_list_v1(auth_id1["auth_user_id"]) == {
+    assert channels_list_v2(auth_id1["auth_user_id"]) == {
         'channels': [
         	{
         		'channel_id': 1, # channel id start at 1 or 0 is worth checking ? It's currently start at 1.
@@ -129,10 +129,10 @@ def test_channel_join_except_repetitive():
     # Clear the data structure
     clear_v1()
     # Call other functions to create the data and store in data structure
-    auth_register_v1("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_id2 = auth_register_v1("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
+    auth_id2 = auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
-    channel_id1 = channels_create_v1(auth_id2["auth_user_id"], "Chill Soc", True)
+    channel_id1 = channels_create_v2(auth_id2["auth_user_id"], "Chill Soc", True)
 
     
     with pytest.raises(AccessError):

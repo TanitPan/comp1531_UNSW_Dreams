@@ -25,7 +25,7 @@ def test_clear_channels():
     # Register a valid user and extract their auth_user_id from the dictionary 
     authorised_dict = auth_register_v2('jane.doe@gmail.com', 'janedoe2021', 
                        'jane', 'doe')
-    authorised_token = authorised_dict['auth_user_id']
+    authorised_token = authorised_dict['token']
     # Create a channel and store it into channels['users']
     channels_create_v2(authorised_token, "Channel0", True) 
     
