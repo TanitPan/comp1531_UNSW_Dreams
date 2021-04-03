@@ -149,7 +149,7 @@ def user_profile_sethandle():
 ADMIN ROUTES
 """
 @APP.route("/admin/user/remove/v1", methods=['POST'])
-def user_profile_server():
+def admin_user_remove_server():
     payload = request.get_json()
     token = payload['token']
     u_id = payload['u_id']
@@ -158,7 +158,7 @@ def user_profile_server():
     )
     
 @APP.route("/admin/userpermission/change/v1", methods=['POST'])
-def user_profile_server():
+def admin_userpermission_change_server():
     payload = request.get_json()
     token = payload['token']
     u_id = payload['u_id']
