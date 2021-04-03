@@ -49,7 +49,7 @@ def user_profile_v2(token, u_id):
     
 
 
-def user_profile_setname_v2(auth_user_id, name_first, name_last):
+def user_profile_setname_v2(token, name_first, name_last):
     """
     Given an auth_user_id, valid first and last name, updates the user
     info
