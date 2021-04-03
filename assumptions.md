@@ -15,3 +15,5 @@ Assumptions:
 Iteration Two
 - Assume that the message_id will be iterative and begin at 1
 - Assume that a message being sent to a channel is a DM by default (-1)
+- Assume that "value permission" means that the permission id is merely an 
+  integer rather than the specific (1 or 2) required
