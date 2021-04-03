@@ -96,7 +96,6 @@ def admin_userpermission_change_v1(token, u_id, permission_id):
 	# permitted permission_id.  
     for user in data['users']:
         if user["auth_user_id"] == u_id:
-            valid_user = True
             user['permission_id'] = permission_id
             break
     
