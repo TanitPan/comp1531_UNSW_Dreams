@@ -1,6 +1,6 @@
 '''
 This file contains other functions relating to the implementation of 
-the backend project. Currently contains the clear function
+the backend project. Currently contains the clear function.
 '''
 
 from data import data

@@ -145,7 +145,7 @@ def user_profile_sethandle():
     )
 
 """
-OTHER ROUTES
+OTHER ROUTES.
 """
 @APP.route("/users/all/v1", methods=['GET'])
 def users_all_server():
