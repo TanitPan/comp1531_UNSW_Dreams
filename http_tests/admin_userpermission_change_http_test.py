@@ -20,7 +20,7 @@ def test_admin_userpermission_change_validinput():
         'name_first': 'termone', 
         'name_last': 'student',
     })  
-    payload = authorised_info2.json()
+    payload = authorised_info1.json()
     authorised_token1 = payload['token']
     
     authorised_info2 = requests.post(f"{url}/auth/register/v2", json = {
@@ -99,7 +99,7 @@ def test_admin_userpermission_change_invalid_user():
 def test_admin_user_permission_change_noninteger_permission_id():
     requests.delete(f"{url}/clear/v1") 
     # After clearing data, extract token and user_id 
-    authorised_info1 = requests.post(f"{url}/auth/register/v2", json = {
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
         'email': 'z5555555@gmail.com', 
         'password': 'unswstudent', 
         'name_first': 'termone', 
@@ -120,7 +120,6 @@ def test_admin_user_permission_change_noninteger_permission_id():
 
 # Test that an unauthorised token is prevented from changing permissions
 def test_admin_userpermission_change_unauthorised_tokenuser():
-    clear_v1()
     requests.delete(f"{url}/clear/v1") 
     # After clearing data, extract  user_id 
     authorised_info1 = requests.post(f"{url}/auth/register/v2", json = {
@@ -129,7 +128,7 @@ def test_admin_userpermission_change_unauthorised_tokenuser():
         'name_first': 'termone', 
         'name_last': 'student',
     }) 
-    payload = authorised_info.json()
+    payload = authorised_info1.json()
     user_id = payload['auth_user_id']
     # Adjust token by adding a string to the end of it to make it invalid and
     # use this token in the request
