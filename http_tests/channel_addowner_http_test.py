@@ -11,15 +11,16 @@ import requests
 
 # Test to ensure that a valid input passes through the various tests
 def test_channel_addowner_valid():
-    # Clears data and register an user
+    # Clears data and register an use
     requests.delete(f"{url}/clear/v1") 
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        "email": "j.smith@gmail.com",
+        "email": "j.smith1@gmail.com",
         "password": "pass1234",
         "name_first": "john",
         "name_last": "smith",
     })
     payload = authorised_info.json()
+    print(payload)
     authorised_token1 = payload['token']
 
     # Using this user's details, create a channel and obtain the channel id
@@ -33,7 +34,7 @@ def test_channel_addowner_valid():
 
     # Register a second user
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        "email": "jane.doe@gmail.com",
+        "email": "jane.doe2@gmail.com",
         "password": "jane1234",
         "name_first": "jane",
         "name_last": "doe",
@@ -65,7 +66,7 @@ def test_channel_addowner_invalid_channel():
     # Clears data and returns the information of the  registered user
     requests.delete(f"{url}/clear/v1") 
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        "email": "j.smith@gmail.com",
+        "email": "j.smith3@gmail.com",
         "password": "pass1234",
         "name_first": "john",
         "name_last": "smith",
@@ -87,7 +88,7 @@ def test_channel_addowner_already_owner():
     # Clear data and register an user
     requests.delete(f"{url}/clear/v1") 
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        "email": "j.smith@gmail.com",
+        "email": "j.smith4@gmail.com",
         "password": "pass1234",
         "name_first": "john",
         "name_last": "smith",
@@ -120,7 +121,7 @@ def test_channel_addowner_unauthorised_user():
     # Clear data and register an user, who is the dreams owner
     requests.delete(f"{url}/clear/v1") 
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        "email": "j.smith@gmail.com",
+        "email": "j.smith5@gmail.com",
         "password": "pass1234",
         "name_first": "john",
         "name_last": "smith",
@@ -138,7 +139,7 @@ def test_channel_addowner_unauthorised_user():
     
     # Create a second user and obtain their user id and token
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        "email": "jane.doe@gmail.com",
+        "email": "jane.doe6@gmail.com",
         "password": "jane1234",
         "name_first": "jane",
         "name_last": "doe",
@@ -160,7 +161,7 @@ def test_channel_addowner_invalid_token():
     # Clear data and register an user
     requests.delete(f"{url}/clear/v1") 
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        "email": "j.smith@gmail.com",
+        "email": "j.smith7@gmail.com",
         "password": "pass1234",
         "name_first": "john",
         "name_last": "smith",
@@ -178,7 +179,7 @@ def test_channel_addowner_invalid_token():
 
     # Register a new user 
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
-        "email": "jane.doe@gmail.com",
+        "email": "jane.doe8@gmail.com",
         "password": "jane1234",
         "name_first": "jane",
         "name_last": "doe",
