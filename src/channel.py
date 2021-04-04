@@ -1,6 +1,6 @@
 from src.error import InputError, AccessError
 from data import data
-from src.helper import check_valid_user
+from src.helper import check_valid_user, valid_channel, check_existing_owner, check_dreams_owner, valid_token
 
 
 def channel_invite_v1(auth_user_id, channel_id, u_id):
@@ -172,10 +172,57 @@ def channel_join_v1(auth_user_id, channel_id):
     return {
     }
 
-def channel_addowner_v1(auth_user_id, channel_id, u_id):
+def channel_addowner_v1(token, channel_id, u_id):
+    auth_user = valid_token(token)
+    valid_channel(channel_id)
+    if check_existing_owner(u_id, channel_id):
+        raise InputError("The user is already an owner of the channel.")
+    if check_existing_owner(auth_user, channel_id) == False:
+         check_dreams_owner(auth_user)
+	
+    new_owner = {"auth_user_id": u_id}    
+    for channel in data['channels']:	
+        for owner in channel['owner_members']:
+            channel['owner_members'].append(new_owner)
+            break
+		
+    member_valid = False
+    for member in channel['all_members']:
+        if u_id == member['auth_user_id']: 
+            member_valid = True	
+            break 	
+	
+    if member_valid == False:
+        channel['all_members'].append(new_owner)
+    
     return {
     }
 
-def channel_removeowner_v1(auth_user_id, channel_id, u_id):
+
+def channel_removeowner_v1(token, channel_id, u_id):
+    auth_user = valid_token(token)
+    valid_channel(channel_id)
+    if check_existing_owner(u_id, channel_id) == False:
+        raise InputError("The user is not an owner of the channel.")
+    if check_existing_owner(auth_user, channel_id) == False:
+         check_dreams_owner(auth_user)
+    
+    for channel in data["channels"]:
+        if channel_id == channel["channel_id"]:
+            for owner in channel["owner_members"]:
+                if owner["auth_user_id"] == u_id and len(channel["owner_members"]) == 1:
+                    raise InputError("The owner is the only channel owner")
+   
+    removed_owner = {"auth_user_id": u_id}    
+    for channel in data['channels']:	
+        for owner in channel['owner_members']:
+            if removed_owner == owner:
+            #if u_id == owner['auth_user_id']:  
+                channel['owner_members'].remove(removed_owner)
+                break
     return {
     }
+
+
+  
+    
