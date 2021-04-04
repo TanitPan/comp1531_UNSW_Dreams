@@ -33,7 +33,7 @@ def test_admin_userpermission_change_valid():
    
     # Verify that the second user can remove the first user as an owner, which 
     # is only possible if they are an owner of Dreams (not channel owner)
-    channel_removeowner_v1(token2, channel_id1, user_id1) 
+    channel_removeowner_v1(token2, channel_id1['channel_id'], user_id1) 
     # Make sure the second user cannot add themselves back as an owner, as they
     # are no longer an owner
     """with pytest.raises(AccessError):
