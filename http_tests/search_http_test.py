@@ -28,8 +28,7 @@ def test_search_empty_messages():
         params= {"token": token, "query_str": "Good morning"})
     assert request.status_code == 200 
     payload = request.json()
-    messages = payload["messages"]   
-    assert messages = {}
+    assert (payload == [])
     
 def test_search_overlimit_querystr():
     requests.delete(f"{url}/clear/v1") 
