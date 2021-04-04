@@ -225,7 +225,7 @@ def channel_addowner_v1(token, channel_id, u_id):
     }
 
 def channel_removeowner_v1(token, channel_id, u_id):
-  '''
+    '''
     With the arguments of a token, channel_id and u_id, this function adds a
     new owner to a channel if the authorised user is a Dreams/channel owner
     Arguments:
@@ -245,6 +245,7 @@ def channel_removeowner_v1(token, channel_id, u_id):
     Return Value:
         Returns an empty dictionary
     ''' 
+    
     # Confirm the token and channel are both valid
     auth_user = valid_token(token)
     valid_channel(channel_id)
