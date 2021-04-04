@@ -61,7 +61,7 @@ def test_admin_userpermission_change_validinput():
     }) 
     payload = authorised_info2.json()
     auth_user_id3 = payload['auth_user_id']
-    """
+
     # Check that the second user was able to add the third user to the group
     # as an owner as they have global permissions
     request = requests.post(f"{url}/channel/addowner/v1", json = {
@@ -69,7 +69,7 @@ def test_admin_userpermission_change_validinput():
         'channel_id': channel_id, 
         'u_id': auth_user_id3,
     })  
-    assert request.status_code == 200 """
+    assert request.status_code == 200 
 
 # Test that an error will be raised for attempting to change the permission of 
 # an invalid user permission [not in users]

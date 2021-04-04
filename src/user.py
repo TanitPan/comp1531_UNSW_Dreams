@@ -38,12 +38,10 @@ def user_profile_v2(token, u_id):
             return {
                 'user': {
                     'auth_user_id': user['auth_user_id'],
+                    'email': user['email'],
                     'name_first' : user['name_first'], 
 	                'name_last' : user['name_last'], 
-                    'handle_str' : user['handle_str'], 
-	                'email': user['email'], 
-	                'password': user['password'], 
-                    'permission_id': user['permission_id'],
+                    'handle_str' : user['handle_str'] 	                 
                 },
             }
     
