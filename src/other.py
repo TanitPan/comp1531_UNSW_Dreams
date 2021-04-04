@@ -38,11 +38,34 @@ def clear_v1():
     
 
 def search_v2(token, query_str):
+    '''
+    Returns a collection of messages that contain the substring, query_str, in 
+    its exact forms. These will only contain the DM_ids that have been sent to 
+    a channel as implied by channels/DM in 6.2. 
+    
+    Arguments:
+        token (string) - an input token that signals an authorised and valid 
+                         user has signed in or registered
+        query_str (string) - substring containing the message that needs to be
+        
+    Exceptions:
+        InputError  - Occurs when the query string contains more than 1000 
+                      characters
+        AccessError - Occurs when the token is invalid and it doesn't 
+                      belong to the group
+    Return Value:
+        Returns a list of dictionaries, with information about a message
+         ('message_id', 'u_id', 'message', 'time_created')
+    '''         
+    # Confirms that the token is valid and that the query string is less than 
+    # 1000 characters. Otherwise, an error is raised.    
     auth_user_id = helper.valid_token(token)
     if len(query_str) > 1000:
         raise InputError("Query string is too long")
         
-    # Created empty list
+    # Created empty list, looping through the channels. If the user is a member 
+    # of the channel and they have sent a DM, it will append this message to 
+    # the list as a dictionary and return this list 
     messages_list = []
     for channel in data["channels"]:
         for member in channel['all_members']:
@@ -56,4 +79,6 @@ def search_v2(token, query_str):
                             "time_created": message["timestamp"],
                         }
                         messages_list.append(mess_dict)
-    return messages_list
+    return {
+        'messages': messages_list
+    }
