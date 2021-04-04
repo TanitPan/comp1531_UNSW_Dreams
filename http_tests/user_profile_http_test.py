@@ -32,12 +32,10 @@ def test_valid_input():
     assert payload == {
         'user': {
             'auth_user_id': id,
+            'email': 'johnsmith@gmail.com',
             'name_first' : 'john', 
 	        'name_last' : 'smith', 
             'handle_str' : 'johnsmith', 
-	        'email': 'johnsmith@gmail.com', 
-	        'password': '123456', 
-            'permission_id': 1, #1 for owner, 2 for member 
         }
     }
 
