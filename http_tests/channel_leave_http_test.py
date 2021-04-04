@@ -45,7 +45,7 @@ def test_channel_leave_valid():
         'token': authorised_token,
     })
     payload = request.json() 
-    assert payload['channels'] == [{}]
+    assert payload['channels'] == []
     
 # Test that an invalid channel ID argument will raise an InputError
 def test_channel_leave_invalid_channelid():
