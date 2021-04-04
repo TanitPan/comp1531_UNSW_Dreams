@@ -190,4 +190,3 @@ def check_existing_owner(u_id, channel_id):
 		            already_owner = True 
 		            break
     return already_owner
-    
