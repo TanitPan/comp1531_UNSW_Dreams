@@ -238,6 +238,3 @@ def test_channel_removeowner_unauthorised_user():
         'u_id': new_user,
     })
     assert request.status_code == 400
-
-
-
