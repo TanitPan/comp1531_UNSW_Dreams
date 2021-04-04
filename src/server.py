@@ -10,7 +10,7 @@ from src.admin import admin_user_remove_v1, admin_userpermission_change_v1
 from src.channels import channels_create_v2, channels_list_v2, channels_listall_v2
 from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1
 from src.other import users_all_v1, clear_v1
-from src.channel import channel_invite_v2
+from src.channel import channel_invite_v2, channel_addowner_v1, channel_removeowner_v1
 
 def defaultHandler(err):
     response = err.get_response()
@@ -78,7 +78,7 @@ def auth_logout_server():
     )
 
 """
-CHANNEL ROUTES
+CHANNELS ROUTES
 """
 @APP.route("/channels/list/v2", methods = ['GET'])
 def channels_list_server():
@@ -176,11 +176,35 @@ def channel_invite_server():
     payload = request.get_json()
     token = payload["token"]
     channel_id = payload["channel_id"]
-    print(channel_id)
+    # print(channel_id)
     u_id = payload["u_id"]
     return dumps(
         channel_invite_v2(token, channel_id, u_id)
     )
+
+@APP.route("/channel/addowner/v1", methods = ['POST'])
+def channel_addowner_server():
+    payload = request.get_json()
+    token = payload["token"]
+    channel_id = payload["channel_id"]
+    u_id = payload["u_id"]
+    return dumps(
+        channel_addowner_v1(token, channel_id, u_id)
+    )
+
+@APP.route("/channel/removeowner/v1", methods = ['POST'])
+def channel_removeowner_server():
+    payload = request.get_json()
+    token = payload["token"]
+    channel_id = payload["channel_id"]
+    u_id = payload["u_id"]
+    return dumps(
+        channel_removeowner_v1(token, channel_id, u_id)
+    )
+
+
+
+
 
 """
 OTHER ROUTES
