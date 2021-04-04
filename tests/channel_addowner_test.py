@@ -70,18 +70,25 @@ def test_channel_addowner_invalid_channel():
 
 # Test that an InputError is raised when someone tries to add an user_id who is 
 # an already existing owner 
-def test_channel_addowner_existingowner():
+def test_channel_addowner_existing_owner():
     # Clear and register an user, storing their token and user_id
     clear_v1() 
-    authorised_info = auth_register_v2("c.debussey@gmail.com", "clairdelune", 
+    authorised_info1 = auth_register_v2("c.debussey@gmail.com", "clairdelune", 
                       "claude", "debussey")
-    token = authorised_info["token"]
-    auth_user_id = authorised_info["auth_user_id"]
+    token1 = authorised_info1["token"]
+    auth_user_id1 = authorised_info1["auth_user_id"]
     # Create an channel, making the user the default owner of the channel
-    channel_id = channels_create_v2(token, "Channel_4", True) 
-    # Test that an InputError is raised for the attempt to add an existing owner
+    channel_id = channels_create_v2(token1, "Channel_4", True) 
+    # Create a new user and add them to the channel as an owner
+    authorised_info = auth_register_v2("j.brahms@gmail.com", "music", 
+                      "johanne", "brahms")
+    token2 = authorised_info2["token"]
+    auth_user_id2 = authorised_info2["auth_user_id"]
+    channel_addowner_v1(token1, channel_id, auth_user_id2)                
+    # Test that an InputError is raised for the new owner's attempt to add 
+    # the original owner to the channel as an owner 
     with pytest.raises(InputError): 
-        channel_addowner_v1(token, channel_id, auth_user_id)
+        channel_addowner_v1(token2, channel_id, auth_user_id1)
 
 # Test an AccessError is raised for an invalid token ID
 def test_channel_addowner_invalidtoken():
