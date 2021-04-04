@@ -145,7 +145,6 @@ def test_channel_removeowner_unauthorised_usertoken():
     })
     payload = authorised_info.json()
     token = payload["token"]
-    user_id = payload["auth_user_id"]  
     
     # Create a new channel, making the user its owner and the Dreams owner 
     channel = requests.post(f"{url}/channels/create/v2", json = {
