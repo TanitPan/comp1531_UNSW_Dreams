@@ -7,7 +7,7 @@ from src.admin import admin_user_remove_v1
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.channel import (channel_addowner_v1, channel_removeowner_v1, 
-channel_join_v2, channel_leave_v1, channel_messages_v2)
+channel_invite_v2, channel_leave_v1, channel_messages_v2)
 from src.channels import channels_create_v2
 from src.message import message_send_v2
 from src.other import clear_v1
@@ -32,7 +32,7 @@ def admin_user_remove_owners():
     # Confirm the function works by ensuring an InputError is raised for the
     # removal of this user as a owner [should have had their details cleared]
     with pytest.raises(InputError):
-        channel_removeowner_v2(token1, channel_id, user_id)
+        channel_removeowner_v1(token1, channel_id, user_id)
 
 ''' Test that after the function is called, the necessary information is removed
 regarding channel members'''
@@ -48,7 +48,7 @@ def admin_user_remove_members():
     channel_id = channels_create_v2(token1, "Channel_1", True)
     # Ask the second user to join the channel and subsequently remove them 
     # from Dreams
-    channel_join_v2(token2, channel_id['channel_id'])   
+    channel_invite_v2(token1, channel_id['channel_id'], user_id)   
     admin_user_remove_v1(token2, user_id)
     # Confirm the function works by ensuring an AccessError is raised for the
     # this user attempting to leave [should have had their details removed]
@@ -68,7 +68,7 @@ def admin_user_remove_messages():
     # Using the first user's token, create a channel and add the second user as
     # an owner 
     channel_id = channels_create_v2(token1, "Channel_1", True)
-    channel_addowner_v2(token2, channel_id['channel_id'], user_id) 
+    channel_addowner_v1(token2, channel_id['channel_id'], user_id) 
     # Send a message using the second one's token and remove them from Dreams
     message_send_v2(token2, "Channel_1", "Hello")
     admin_user_remove_v1(token1, user_id)
