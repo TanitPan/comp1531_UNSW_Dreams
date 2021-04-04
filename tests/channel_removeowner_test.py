@@ -8,7 +8,7 @@ from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.other import clear_v1
 
-# Test that a removevd owner is still part of the channel using channel_list
+# Test that a removed owner is still part of the channel using channel_list
 def test_channel_removeowner_channel_list():
     # Clear and register two users
     clear_v1() 
