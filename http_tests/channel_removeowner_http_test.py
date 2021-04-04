@@ -9,25 +9,19 @@ import json
 import pytest
 import requests
 
-@pytest.fixture
-def registered_user():
-    # Registers an user
-    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+# Test that a removed owner can be re-added as an owner successfully 
+def test_channel_removeowner_adding_again():
+    # Clear and register two users
+    requests.delete(f"{url}/clear/v1") 
+    authorised_info1 = requests.post(f"{url}/auth/register/v2", json = {
         "email": "jane.doe@gmail.com",
         "password": "jane2021",
         "name_first": "jane",
         "name_last": "doe",
     })
-    payload = authorised_info.json()
-    return payload
-
-# Test that a removed owner can be re-added as an owner successfully 
-def test_channel_removeowner_adding_again():
-    # Clear and register two users
-    requests.delete(f"{url}/clear/v1") 
-    authorised_info1 = registered_user()     
-    token = authorised_info1["token"]  
-    auth_user_id1 = authorised_info1["auth_user_id"] 
+    payload = authorised_info1.json()
+    token1 = payload["token"]  
+    auth_user_id1 = payload["auth_user_id"] 
                              
     authorised_info2 = requests.post(f"{url}/auth/register/v2", json = {
         "email": "john.smith@gmail.com",
@@ -41,7 +35,7 @@ def test_channel_removeowner_adding_again():
  
     # Create a channel using the first user's token 
     channel = requests.post(f"{url}/channels/create/v2", json = {
-        'token': token, 
+        'token': token1, 
         'name': 'Channel_1', 
         'is_public': False,
     })
@@ -51,7 +45,7 @@ def test_channel_removeowner_adding_again():
     # Add the second user to the channel as an owner and subsequently remove 
     # the first user from owner status 
     request = requests.post(f"{url}/channel/addowner/v1", json = {
-        'token': token, 
+        'token': token1, 
         'channel_id': channel_id,
         'u_id': auth_user_id2,
     })
@@ -76,9 +70,15 @@ def test_channel_removeowner_adding_again():
 def test_channel_removeowner_invalid_channelid():
     # Clear and register an user
     requests.delete(f"{url}/clear/v1") 
-    authorised_info = registered_user()   
-    token = authorised_info["token"]
-    user_id = authorised_info["auth_user_id"]  
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+        "email": "jane.doe@gmail.com",
+        "password": "jane2021",
+        "name_first": "jane",
+        "name_last": "doe",
+    })
+    payload = authorised_info.json()
+    token = payload["token"]
+    user_id = payload["auth_user_id"]  
      
     # Create a channel, obtain its id and increment the id by one to create an 
     # invalid channel id       
@@ -104,9 +104,15 @@ def test_channel_removeowner_invalid_channelid():
 def test_channel_removeowner_sole_owner():
     # Clear data and register an user
     requests.delete(f"{url}/clear/v1") 
-    authorised_info = registered_user()   
-    token = authorised_info["token"]
-    user_id = authorised_info["auth_user_id"]  
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+        "email": "jane.doe@gmail.com",
+        "password": "jane2021",
+        "name_first": "jane",
+        "name_last": "doe",
+    })
+    payload = authorised_info.json()
+    token = payload["token"]
+    user_id = payload["auth_user_id"]  
     
     # Create a channel and make the registered user the only owner   
     channel = requests.post(f"{url}/channels/create/v2", json = {
@@ -131,9 +137,15 @@ def test_channel_removeowner_sole_owner():
 def test_channel_removeowner_unauthorised_usertoken():       
     # Clear data and register an user
     requests.delete(f"{url}/clear/v1") 
-    authorised_info = registered_user()   
-    token = authorised_info["token"]
-    user_id = authorised_info["auth_user_id"]  
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+        "email": "jane.doe@gmail.com",
+        "password": "jane2021",
+        "name_first": "jane",
+        "name_last": "doe",
+    })
+    payload = authorised_info.json()
+    token = payload["token"]
+    user_id = payload["auth_user_id"]  
     
     # Create a new channel, making the user its owner and the Dreams owner 
     channel = requests.post(f"{url}/channels/create/v2", json = {
@@ -141,6 +153,8 @@ def test_channel_removeowner_unauthorised_usertoken():
         'name': 'Channel_3', 
         'is_public': True
     }) 
+    payload = channel.json()
+    channel_id = payload["channel_id"]
     
     # Register a second user and add them as a channel owner 
     authorised_info2 = requests.post(f"{url}/auth/register/v2", json = {
@@ -150,8 +164,7 @@ def test_channel_removeowner_unauthorised_usertoken():
         "name_last": "smith",
     })
     payload = authorised_info2.json()
-    auth_user_id2 = payload["auth_user_id"]
-    
+    auth_user_id2 = payload["auth_user_id"]  
     request = requests.post(f"{url}/channel/addowner/v1", json = {
         'token': token, 
         'channel_id': channel_id,
@@ -177,12 +190,18 @@ def test_channel_removeowner_unauthorised_usertoken():
     # Confirm this raises a 403 error code
     assert request.status_code == 403
 
-# Test that an AccessError is raised if the user_id passed in does not belong to
+# Test that an InputError is raised if the user_id passed in does not belong to
 # an owner of the channel
 def test_channel_removeowner_unauthorised_user():
     # Clear data and register an user, using their token to create a channel 
     requests.delete(f"{url}/clear/v1") 
-    payload = registered_user()
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+        "email": "jane.doe@gmail.com",
+        "password": "jane2021",
+        "name_first": "jane",
+        "name_last": "doe",
+    })
+    payload = authorised_info.json()
     token1 = payload["token"]
     
     channel = requests.post(f"{url}/channels/create/v2", json = {
@@ -204,8 +223,8 @@ def test_channel_removeowner_unauthorised_user():
     auth_user_id2 = payload["auth_user_id"] 
     
     request = requests.post(f"{url}/channel/addowner/v1", json = {
-        'token': token, 
-        'channel_id': channel_id
+        'token': token1, 
+        'channel_id': channel_id,
         'u_id': auth_user_id2,
     })
    
@@ -218,7 +237,7 @@ def test_channel_removeowner_unauthorised_user():
         'channel_id': channel_id,
         'u_id': new_user,
     })
-    assert request.status_code == 403
+    assert request.status_code == 400
 
 
 
