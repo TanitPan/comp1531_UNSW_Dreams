@@ -167,4 +167,27 @@ def check_dreams_owner(auth_user_id):
             break       
     if valid_dreams_owner == False:
         raise AccessError("The authorised user is not an owner of Dreams")  
-        
+
+def valid_channel(channel_id):
+    """
+    This function checks if channel_id is valid. Return channel_id if valid and 
+    raise an InputError exception otherwise.
+    """
+    for channel in data["channels"]:
+        if channel["channel_id"] == channel_id:
+            return channel_id
+
+    raise InputError(description = "channel_id is not a valid channel")
+
+
+def check_existing_owner(u_id, channel_id):
+    for channel in data['channels']:	
+        already_owner = False 
+        if channel["channel_id"] == channel_id:
+            for owner in channel['owner_members']:
+	            if u_id == owner["auth_user_id"]:
+		            return True 
+   
+    if already_owner == False:
+        return False
+    
