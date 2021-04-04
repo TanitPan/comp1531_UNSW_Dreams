@@ -9,9 +9,10 @@ import json
 import pytest
 import requests
 
-@pytest.fixture
-def registered_user():
-    # Registers an user
+# Test to ensure that a valid input passes through the various tests
+def test_channel_addowner_valid():
+    # Clears data and register an user
+    requests.delete(f"{url}/clear/v1") 
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
         "email": "j.smith@gmail.com",
         "password": "pass1234",
@@ -19,22 +20,17 @@ def registered_user():
         "name_last": "smith",
     })
     payload = authorised_info.json()
-    return payload
-    
-# Test to ensure that a valid input passes through the various tests
-def test_channel_addowner_valid():
-    # Clears data and register an user
-    requests.delete(f"{url}/clear/v1") 
-    payload = registered_user()
-    token = payload["token"]
+    authorised_token1 = payload['token']
+
     # Using this user's details, create a channel and obtain the channel id
     request = requests.post(f"{url}/channels/create/v2", json = {
-        'token': token, 
-        'name': 'Channel_1', 
+        'token': authorised_token1, 
+        'name': 'channel_1', 
         'is_public': True
     })
     payload = request.json()
     channel_id = payload["channel_id"]
+
     # Register a second user
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
         "email": "jane.doe@gmail.com",
@@ -48,7 +44,7 @@ def test_channel_addowner_valid():
     # Using this user's user_id and the first user's token, add the second user
     # as an  owner
     request = requests.post(f"{url}/channel/addowner/v1", json = {
-        'token': token, 
+        'token': authorised_token1, 
         'channel_id': channel_id, 
         'u_id': auth_user_id,
     })
@@ -65,16 +61,22 @@ def test_channel_addowner_valid():
     assert payload['channels'] == [{'channel_id': 1, 'name': 'channel_1'}]
 
 # Test to confirm that an invalid channel returns an InputError
-def test_channel_addowner_invalid_channel():   
-    # Clears data and returns the information of the fixture's registered user
+def test_channel_addowner_invalid_channel():  
+    # Clears data and returns the information of the  registered user
     requests.delete(f"{url}/clear/v1") 
-    payload = registered_user()
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+        "email": "j.smith@gmail.com",
+        "password": "pass1234",
+        "name_first": "john",
+        "name_last": "smith",
+    })
+    payload = authorised_info.json()
     token = payload["token"]
     auth_user_id = payload["auth_user_id"]
     # Attempt to add them to a non-existing channel 
     request = requests.post(f"{url}/channel/addowner/v1", json = {
         'token': token, 
-        'channel_id': -1 #channel ids are all positive
+        'channel_id': -1, #channel ids are all positive
         'u_id': auth_user_id,
     })
     # Confirm an input error has been raised
@@ -84,7 +86,13 @@ def test_channel_addowner_invalid_channel():
 def test_channel_addowner_already_owner():   
     # Clear data and register an user
     requests.delete(f"{url}/clear/v1") 
-    payload = registered_user()
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+        "email": "j.smith@gmail.com",
+        "password": "pass1234",
+        "name_first": "john",
+        "name_last": "smith",
+    })
+    payload = authorised_info.json()
     token = payload["token"]
     auth_user_id = payload["auth_user_id"]
     
@@ -101,7 +109,7 @@ def test_channel_addowner_already_owner():
     # Bad request
     request = requests.post(f"{url}/channel/addowner/v1", json = {
         'token': token, 
-        'channel_id': channel_id
+        'channel_id': channel_id,
         'u_id': auth_user_id,
     })
     assert request.status_code == 400 
@@ -111,7 +119,13 @@ def test_channel_addowner_already_owner():
 def test_channel_addowner_unauthorised_user():
     # Clear data and register an user, who is the dreams owner
     requests.delete(f"{url}/clear/v1") 
-    payload = registered_user()
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+        "email": "j.smith@gmail.com",
+        "password": "pass1234",
+        "name_first": "john",
+        "name_last": "smith",
+    })
+    payload = authorised_info.json()
     token = payload["token"]
     # Create a channel from the token of first user (who is the channel's owner)
     channel = requests.post(f"{url}/channels/create/v2", json = {
@@ -136,7 +150,7 @@ def test_channel_addowner_unauthorised_user():
     # user id should generate in a Forbidden code 
     request = requests.post(f"{url}/channel/addowner/v1", json = {
         'token': new_token, 
-        'channel_id': channel_id
+        'channel_id': channel_id,
         'u_id': auth_user_id,
     })
     assert request.status_code == 403 
@@ -145,7 +159,13 @@ def test_channel_addowner_unauthorised_user():
 def test_channel_addowner_invalid_token():
     # Clear data and register an user
     requests.delete(f"{url}/clear/v1") 
-    payload = registered_user()
+    authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+        "email": "j.smith@gmail.com",
+        "password": "pass1234",
+        "name_first": "john",
+        "name_last": "smith",
+    })
+    payload = authorised_info.json()
     # Using their valid token, create a channel with a channel_id
     token1 = payload["token"]
     channel = requests.post(f"{url}/channels/create/v2", json = {
@@ -172,9 +192,9 @@ def test_channel_addowner_invalid_token():
     # Attempt to add an owner should again create an Access Error (code 403)
     request = requests.post(f"{url}/channel/addowner/v1", json = {
         'token': unauthorised_token, 
-        'channel_id': channel_id
+        'channel_id': channel_id,
         'u_id': auth_user_id,
     })
-    assert request.status_code == 403 
+    assert request.status_code == 403
   
 
