@@ -288,7 +288,7 @@ def channel_removeowner_v1(token, channel_id, u_id):
     Return Value:
         Returns an empty dictionary
     ''' 
-    
+
     # Confirm the token and channel are both valid
     auth_user = valid_token(token)
     valid_channel(channel_id)
@@ -310,8 +310,8 @@ def channel_removeowner_v1(token, channel_id, u_id):
                     raise InputError("The owner is the only channel owner")
                 elif removed_owner == owner:
                     channel['owner_members'].remove(removed_owner)
-                break
-    
+                    break
+
     # Return an empty dictionary
     return {
     }
