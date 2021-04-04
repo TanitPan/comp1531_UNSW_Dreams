@@ -190,3 +190,16 @@ def check_existing_owner(u_id, channel_id):
 		            already_owner = True 
 		            break
     return already_owner
+    
+def save_data(data):
+    """ This function contains a possible way to keep data persistence by 
+    dumping it into a file"""
+    output = "data = " +json.dumps(data) 
+    # Edits the boolean features so they capitalised 
+    output = output.replace("true", "True")
+    output = output.replace("false", "False")
+    # Writes it to the file
+    f = open("data.py", "w+")		
+    f.write(output)
+    f.close()
+
