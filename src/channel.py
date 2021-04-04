@@ -247,7 +247,7 @@ def channel_addowner_v1(token, channel_id, u_id):
 	# owner members list
     new_owner = {"auth_user_id": u_id}    
     for channel in data['channels']:	
-        for owner in channel['owner_members']:
+        if channel["channel_id"] == channel_id:
             channel['owner_members'].append(new_owner)
             break
             
