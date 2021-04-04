@@ -22,12 +22,12 @@ def registered_user():
     return payload
     
 # Test to ensure that a valid input passes through the various tests
-def test_channels_create_multiple():
+def test_channel_addowner_valid():
     # Clears data and register an user
     requests.delete(f"{url}/clear/v1") 
     payload = registered_user()
     token = payload["token"]
-    # Using this user's details, create a channel and obtian the channel id
+    # Using this user's details, create a channel and obtain the channel id
     request = requests.post(f"{url}/channels/create/v2", json = {
         'token': token, 
         'name': 'Channel_1', 
@@ -46,7 +46,7 @@ def test_channels_create_multiple():
     auth_user_id = payload["auth_user_id"]
     new_token = payload["token"]
     # Using this user's user_id and the first user's token, add the second user
-    # as an  ownerr 
+    # as an  owner
     request = requests.post(f"{url}/channel/addowner/v1", json = {
         'token': token, 
         'channel_id': channel_id, 
