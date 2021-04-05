@@ -120,4 +120,3 @@ def test_admin_user_remove_unauthorised_user():
     with pytest.raises(AccessError):
         admin_user_remove_v1(invalid_token, user_id)
 
-
