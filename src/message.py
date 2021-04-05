@@ -1,4 +1,4 @@
-def message_send_v1(auth_user_id, channel_id, message):
+def message_send_v2(token, channel_id, message):
     return {
         'message_id': 1,
     }
