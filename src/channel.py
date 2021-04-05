@@ -1,6 +1,6 @@
 from src.error import InputError, AccessError
 from data import data
-from src.helper import check_valid_user, valid_token
+from src.helper import check_valid_user, valid_token, search_user_data
 
 def channel_invite_v2(token, channel_id, u_id):
     """
@@ -128,6 +128,8 @@ def channel_details_v2(token, channel_id):
     # Assign the channel name into new dictionary channel_details
     channel_details['name'] = channel_data['name']
     
+    channel_details['is_public'] = channel_data['is_public']
+
     # Loops through the owner_members in channel data
     # Calling the search_user_data to return the user data and assign it into owner
     # Append the user data into the list owners_list
