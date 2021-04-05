@@ -45,9 +45,10 @@ def test_admin_user_remove_user():
     user_id = payload['auth_user_id']
     
     # Add the second user to the channel created by the first user
-    request = requests.post(f"{url}/channel/join/v2", json = {
-        'token': authorised_token2, 
+    request = requests.post(f"{url}/channel/invite/v2", json = {
+        'token': authorised_token1, 
         'channel_id': channel_id,
+        'u_id': user_id,
     })
     
     # Remove the second user from the dreams channel, using the first user's 
