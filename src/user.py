@@ -76,6 +76,8 @@ def user_profile_setname_v2(token, name_first, name_last):
             user['name_first'] = name_first
             user['name_last'] = name_last
             break
+    # Save the data persistently
+    helper.save_data(data)
     return {
     }
 
@@ -105,7 +107,8 @@ def user_profile_setemail_v2(token, email):
         if user['auth_user_id'] == id:
             user['email'] = email
             break
-
+    # Save the data persistently
+    helper.save_data(data)
     return {
     }
 
@@ -134,6 +137,7 @@ def user_profile_sethandle_v1(token, handle_str):
         if user['auth_user_id'] == id:
             user['handle_str'] = handle_str
             break
-
+    # Save the data persistently
+    helper.save_data(data)
     return {
     }

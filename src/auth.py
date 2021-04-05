@@ -102,6 +102,8 @@ def auth_register_v2(email, password, name_first, name_last):
 	    'password': password, 
         'permission_id': permission_id, #1 for owner, 2 for member 
     })
+    # Save the data persistently
+    helper.save_data(data)
     return {
         'token': helper.generate_token(id),
         'auth_user_id': id
