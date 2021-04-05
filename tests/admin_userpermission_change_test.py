@@ -25,7 +25,6 @@ def test_admin_userpermission_change_valid():
     # Extract the token and user id of the first user and create a channel, 
     # making them both a global owner and the channel owner
     token1 = authorised_dict1['token']
-    user_id1 = authorised_dict1['auth_user_id']
     channel = channels_create_v2(token1, 'Channel_1', True)
     channel_id1 = channel['channel_id']
     
