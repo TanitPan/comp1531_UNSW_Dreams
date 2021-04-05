@@ -7,6 +7,24 @@ from src.error import InputError, AccessError
 from src.helper import valid_token, save_data, check_valid_user
 
 def dm_create_v1(token, u_ids):
+    """
+    This function creates a dm channel for the user. 
+    On success, add new dm channel to the data structure.
+
+    Arguments:
+        token (string) - Input token which signify that an authorised and
+                          valid user is requesting for this information
+        u_ids (list) - List of IDs of the user allow in the dm channel
+
+    Exceptions:
+        InputError - Occurs when u_id is invalid.
+        AccessError - Occurs when authorised user (token) is invalid.
+    Return Value:
+        Returns a dictionary containing dm_id and dm_name. Then dm_name is made up
+        of handles.
+        dm_id (int)
+        dm_name (string)
+    """
     auth_id = valid_token(token)
     for u_id in u_ids:
         check_valid_user(u_id)
@@ -65,13 +83,24 @@ def dm_create_v1(token, u_ids):
 
     # Append the newly create dm channel to channels
     data["channels"].append(new_dm)
-    
+
     # Writes data to file for persistence
     save_data(data)
 
     return {"dm_id": dm_id, "dm_name": dm_name}
 
 def dm_list_v1(token):
+    """
+    This function list all the dm channels the user has access to.
+
+    Arguments:
+        token (string) - Input token which signify that an authorised and
+                          valid user is requesting for this information
+    Exceptions:
+        AccessError - Occurs when authorised user (token) is invalid.
+    Return Value:
+        Returns a list of dictionary containing DMs made from {dm_id, name}. 
+    """
 
     auth_id = valid_token(token)
     dm_list = []

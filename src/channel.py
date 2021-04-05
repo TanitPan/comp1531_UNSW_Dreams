@@ -9,7 +9,8 @@ def channel_invite_v2(token, channel_id, u_id):
     On success, add the user data to the channel.
 
     Arguments:
-        auth_user_id (int) - the user ID of the person inviting
+        token (string) - Input token which signify that an authorised and
+                          valid user is requesting for this information
         channel_id (int) - the ID of the channel to invite a user to
         u_id (int) - the ID of the user being invited to the channel
 
@@ -164,7 +165,8 @@ def channel_join_v2(token, channel_id):
     channel_id provided.
 
     Arguments:
-        auth_user_id (int) - the user ID of the person joining a channel
+        token (string) - Input token which signify that an authorised and
+                          valid user is requesting for this information
         channel_id (int) - the ID of the channel the user want to join
 
     Exceptions:
