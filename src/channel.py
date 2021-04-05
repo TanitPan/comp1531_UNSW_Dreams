@@ -1,6 +1,7 @@
 from src.error import InputError, AccessError
 from data import data
-from src.helper import check_valid_user, valid_token, valid_channel, check_existing_owner, check_dreams_owner
+from src.helper import (check_valid_user, valid_token, valid_channel, 
+check_existing_owner, check_dreams_owner, save_data)
 
 def channel_invite_v2(token, channel_id, u_id):
     """
@@ -149,7 +150,11 @@ def channel_leave_v1(token, channel_id):
     # Raise an AccessError if this user does not belong to the group 
     if member_valid == False:
         raise AccessError("Authorised user is not a member in the channel") 
-
+    # Save data for persistence
+    save_data(data)
+    return {
+    }
+    
 def channel_join_v2(token, channel_id):
     """
     This function adds a auth_user_id to a
@@ -258,7 +263,8 @@ def channel_addowner_v1(token, channel_id, u_id):
 	
     if member_valid == False:
         channel['all_members'].append(new_owner)    
-    
+    # Save data for persistence
+    save_data(data)    
     # Return an empty dictionary
     return {
     }
@@ -308,7 +314,9 @@ def channel_removeowner_v1(token, channel_id, u_id):
                 elif removed_owner == owner:
                     channel['owner_members'].remove(removed_owner)
                     break
-
+    # Save data for persistence
+    save_data(data)
+    
     # Return an empty dictionary
     return {
     }

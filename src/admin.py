@@ -2,7 +2,8 @@
 
 from data import data
 from src.error import InputError, AccessError
-from src.helper import valid_token, check_valid_user, check_only_dreams_owner, check_dreams_owner
+from src.helper import (valid_token, check_valid_user, check_only_dreams_owner, 
+check_dreams_owner, save_data)
 
 def admin_user_remove_v1(token, u_id):
     '''
@@ -54,6 +55,9 @@ def admin_user_remove_v1(token, u_id):
             if message['auth_user_id'] == u_id:
                 message.clear()
                 message = "Removed user"
+    
+    # Writes data to file for persistence
+    save_data(data)
     # Return an empty dictionary			
     return {
     }
@@ -97,6 +101,9 @@ def admin_userpermission_change_v1(token, u_id, permission_id):
         if user["auth_user_id"] == u_id:
             user['permission_id'] = permission_id
             break
+    
+    # Writes data to file for persistence
+    save_data(data)
     
     # Return an empty dictionary			
     return {
