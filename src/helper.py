@@ -11,6 +11,9 @@ from src.error import InputError, AccessError
 RE = '^[a-zA-Z0-9]+[\\._]?[a-zA-Z0-9]+[@]\\w+[.]\\w{2,3}$'
 SECRET = 'COMP1531'
 
+# Message Counter
+msg_counter = 1
+
 def check_email_valid(email):
     '''
     Check that email is valid, given an email and using a regex, returns an
@@ -136,3 +139,32 @@ def valid_token(token):
             return id
     
     raise AccessError("Token is invalid")
+
+def get_user_data(user_id):
+    ''' This function to search and return the user data (e.g., u_id, name, email,...) 
+        from the data file'''
+
+    # Loops through the data file to find the user_id, and return the user
+    for user in data['users']:
+        if user['auth_user_id'] == user_id['auth_user_id']:
+            return user
+
+    # Return False if there are no user
+    return None
+
+def search_user_data(user_id):
+    ''' This function is to return the user_data from '''
+    # Assign a new dictionary
+    user_data = {}
+    
+    # Call the function get_user_data to get the data of the user
+    user = get_user_data(user_id)
+
+    # Add the specific data from user into user_data dictionary
+    user_data['auth_user_id'] =  user['auth_user_id']
+    user_data['name_first'] = user['name_first']
+    user_data['name_last'] = user['name_last']
+    user_data['handle_str'] = user['handle_str']
+    user_data['email'] = user['email']
+    
+    return user_data
