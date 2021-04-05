@@ -47,8 +47,8 @@ def dm_create_v1(token, u_ids):
     new_dm = {
         "channel_id": -1, # default value
         "name": dm_name,
-        "owner_members": owner_list ,
-        "all_members": ,
+        "owner_members": owner_list,
+        "all_members": all_member_list,
         "is_public": False, # Assume false since its a dm
         "dm_id": dm_id,
         "messages": [
@@ -56,7 +56,7 @@ def dm_create_v1(token, u_ids):
                 "message_id" : new_message_id, # Assume it is greater than 0
                 "message" : "",
                 "timestamp" : 0,
-                "auth_user_id" : auth_user_id
+                "auth_user_id" : auth_id
             }
 
         ]
