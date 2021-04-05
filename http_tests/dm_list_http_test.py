@@ -22,12 +22,23 @@ def test_dm_list_valid():
         "name_last": "smith",
     }
 
+    user2_data = {
+        "email": "michaelbush@gmail.com",
+        "password": "123456",
+        "name_first": "michael",
+        "name_last": "bush",
+    }
+
     # Call other routes to create the data and store in data structure
     auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
     payload = auth_user1_info.json()
     token1 = payload["token"]
 
-    u_ids = [auth_id2, auth_id3]
+    auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+    payload = auth_user2_info.json()
+    auth_id2 = payload["auth_user_id"]
+
+    u_ids = [auth_id2]
 
     dm_response = requests.post(f"{url}/dm/create/v1", json = {
         "token": token1, 
@@ -38,9 +49,10 @@ def test_dm_list_valid():
 
     # Check if the HTML request is successful
     assert dm_response.status_code == 200
-
+  
     payload = dm_response.json()
-    assert payload["dms"] == [{"dm_id": 1, "name": "alexcactus,johnsmith,michaelbush"}]
+    print(payload)
+    assert payload["dms"] == [{"dm_id": 1, "name": "johnsmith,michaelbush"}]
 
 def test_dm_invalid_auth():
     """
@@ -57,20 +69,31 @@ def test_dm_invalid_auth():
         "name_last": "smith",
     }
 
+    user2_data = {
+        "email": "michaelbush@gmail.com",
+        "password": "123456",
+        "name_first": "michael",
+        "name_last": "bush",
+    }
+
     # Call other routes to create the data and store in data structure
     auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
     payload = auth_user1_info.json()
     token1 = payload["token"]
 
+    auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+    payload = auth_user2_info.json()
+    auth_id2 = payload["auth_user_id"]
+
     invalid_user = 88
     invalid_token = generate_token(invalid_user)
-    u_ids = [auth_id2, auth_id3]
+    u_ids = [auth_id2]
 
     dm_response = requests.post(f"{url}/dm/create/v1", json = {
         "token": token1, 
         "u_ids": u_ids
     })
-    
+
     dm_response = requests.get(f"{url}/dm/list/v1", params= {"token": invalid_token})
 
     # Test invalid token by checking if 403 status code is raised

@@ -67,3 +67,16 @@ def dm_create_v1(token, u_ids):
     data["channels"].append(new_dm)
 
     return {"dm_id": dm_id, "dm_name": dm_name}
+
+def dm_list_v1(token):
+
+    auth_id = valid_token(token)
+    dm_list = []
+    for channel in data["channels"]:
+        for member in channel["all_members"]:
+            if channel["channel_id"] == -1 and auth_id == member["auth_user_id"]:
+                new_dict = {"dm_id": channel["dm_id"], "name": channel["name"]}
+                dm_list.append(new_dict)
+                break
+
+    return {"dms": dm_list}
