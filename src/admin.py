@@ -86,10 +86,9 @@ def admin_userpermission_change_v1(token, u_id, permission_id):
     auth_user_id = valid_token(token)
     check_valid_user(u_id)
     check_dreams_owner(auth_user_id)
-    
     # Raise an InputError if the permission_id is not an integer value 
-    if isinstance(permission_id, int) == False:
-        raise InputError("Permission ID does not refer to an integer value")
+    if permission_id != 1 and permission_id != 2:
+        raise InputError("Permission ID does not refer to a valid value")
 	
 	# If it passes all the tests, loop through the user data until the id 
 	# matches the inputted data. Edit the permission_id for that user to the

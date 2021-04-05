@@ -15,8 +15,8 @@ Assumptions:
 Iteration Two
 - Assume that the message_id will be iterative and begin at 1
 - Assume that a message being sent to a channel is a DM by default (-1)
-- Assume that "value permission" means that the permission id is merely an 
-  integer rather than the specific (1 or 2) required
+- Assume that "value permission" means that the permission id is the specific 
+  integers (1 or 2) required for an owner/member
 - Assume that the last member/owner can leave a channel in channel_leave as
   in channel_removeowner this was explicitly specified as forbidden and in this
   scenario, no mention of it has been added

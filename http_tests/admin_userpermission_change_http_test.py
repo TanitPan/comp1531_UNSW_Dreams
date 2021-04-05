@@ -59,7 +59,7 @@ def test_admin_userpermission_change_validinput():
         'name_first': 'unsw', 
         'name_last': 'campus',
     }) 
-    payload = authorised_info2.json()
+    payload = authorised_info3.json()
     auth_user_id3 = payload['auth_user_id']
 
     # Check that the second user was able to add the third user to the group

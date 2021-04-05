@@ -45,10 +45,10 @@ def test_admin_user_remove_user():
     user_id = payload['auth_user_id']
     
     # Add the second user to the channel created by the first user
-    """request = requests.post(f"{url}/channel/join/v2", json = {
+    request = requests.post(f"{url}/channel/join/v2", json = {
         'token': authorised_token2, 
         'channel_id': channel_id,
-    })  """ 
+    })
     
     # Remove the second user from the dreams channel, using the first user's 
     # token and owner permission
@@ -60,11 +60,11 @@ def test_admin_user_remove_user():
        
     # Test channels_leave to ensure the second user cannot leave the channel as
     # they have already been removed. This should raise an AccessError
-    """request = requests.post(f"{url}/channel/leave/v1", json = {
+    request = requests.post(f"{url}/channel/leave/v1", json = {
         'token': authorised_token2, 
         'channel_id': channel_id,
     })  
-    assert request.status_code == 403"""
+    assert request.status_code == 403
 
 
 '''Test to check if an InputError will be raised with invalid user_id inputs'''

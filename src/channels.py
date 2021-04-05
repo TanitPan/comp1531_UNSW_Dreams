@@ -14,7 +14,7 @@ def channels_list_v2(token):
                           valid user is requesting for this information 
                                                   
     Exceptions:
-        AccessError - Occurs when the auth_user_id is invalid and it doesn't 
+        AccessError - Occurs when the token is invalid and it doesn't 
                       belong to the group
     Return Value:
         Returns a list consisting of dictionaries, with information about a 
