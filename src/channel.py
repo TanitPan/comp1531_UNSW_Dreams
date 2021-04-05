@@ -78,7 +78,7 @@ def channel_details_v2(token, channel_id):
         channel name, the owners data and the all members data 
         
     Arguments:
-        auth_user_id (int) - the user ID of the members
+        token () - the user ID of the members
         channel_id (int) - the ID of the channel
 
     Exceptions:
