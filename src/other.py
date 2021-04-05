@@ -35,6 +35,8 @@ def clear_v1():
     '''
     data['users'].clear()
     data['channels'].clear()
+    # Save the data persistently
+    helper.save_data(data)
     
 
 def search_v2(token, query_str):

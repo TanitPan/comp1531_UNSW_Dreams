@@ -4,8 +4,9 @@ This file contains the test functions for the auth.py functions
 import pytest
 
 from src.other import clear_v1
-from src.auth import auth_register_v2, auth_login_v2
+from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
 from src.error import InputError, AccessError
+from src.helper import generate_token
 
 def test_register():
     '''
@@ -71,3 +72,18 @@ def test_login():
     # flag InputError when password is incorrect
     with pytest.raises(InputError):
         auth_login_v2("johnsmith@gmail.com", "654321")
+
+def test_logout():
+    """
+    This function tests auth_logout function
+    """
+    clear_v1()
+    user = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
+    token = user['token']
+    # test valid logout
+    res = auth_logout_v1(token)
+    assert res['is_success'] == True
+    # attempt to logout inactive token
+    inv_token = generate_token(42)
+    res2 = auth_logout_v1(inv_token)
+    assert res2['is_success'] == False
