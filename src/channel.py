@@ -97,7 +97,7 @@ def channel_messages_v2(token, channel_id, start):
             {
                 'message_id': 1,
                 'u_id': 1,
-                'message': "",
+                'message': "Hello world",
                 'time_created': 1582426789,
             }
         ],
