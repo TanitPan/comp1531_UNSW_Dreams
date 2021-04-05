@@ -68,6 +68,9 @@ def channel_invite_v2(token, channel_id, u_id):
     for channel in data["channels"]:
         if channel_id == channel["channel_id"]:
             channel["all_members"].append(new_member)
+
+    # Writes data to file for persistence
+    save_data(data)
         
     return {
     }
@@ -210,6 +213,9 @@ def channel_join_v2(token, channel_id):
                 channel["all_members"].append(new_user_info)
     else:
         raise AccessError("channel ID refer to a private channel")
+
+    # Writes data to file for persistence
+    save_data(data)
 
     return {
     }
