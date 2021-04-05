@@ -9,7 +9,7 @@ from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.helper import generate_token
 from src.other import clear_v1
-"""
+
 # Test the type of the return value of channels_create to ensure it produces a
 # dictionary (Specs 6.1.1)
 def test_channels_create_type():
@@ -75,7 +75,7 @@ def test_channels_create_long_name():
         channels_create_v2(authorised_token, "123456789012345678901", False)
     with pytest.raises(InputError):
         channels_create_v2(authorised_token, "#!!!!!!!!!!!!!!!!!!!!#", True)
-"""      
+      
 # Test multiple calls of channels_create_v2 to verify the dict has been updated
 def test_channels_create_multiple():
     clear_v1()
@@ -89,7 +89,7 @@ def test_channels_create_multiple():
     assert (channel_id2 == {'channel_id': 2})
     channel_id3 =  channels_create_v2(authorised_token, "Channel6", True) 
     assert (channel_id3 == {'channel_id': 3})
-"""
+
  # Tests that the channels created by an unauthorised user is not listed 
 def test_channels_create_unauthorised():
     clear_v1()
@@ -103,5 +103,5 @@ def test_channels_create_unauthorised():
     non_authorised_token = generate_token(non_authorised_user)
     channels_create_v2(authorised_token, 'Channel0', True)
     with pytest.raises(AccessError):
-        channels_create_v2(non_authorised_token, 'Channel1', True)"""
+        channels_create_v2(non_authorised_token, 'Channel1', True)
 
