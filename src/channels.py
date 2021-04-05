@@ -3,7 +3,7 @@
 from data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
-from src.helper import valid_token
+from src.helper import valid_token, save_data
 
 def channels_list_v2(token):
     '''
@@ -38,6 +38,7 @@ def channels_list_v2(token):
                 authorised_channels.append(new_dict)
                 break 
     # Return a dictionary structure with its value a list of dictionaries
+
     return {
         'channels': authorised_channels
     }
@@ -100,11 +101,10 @@ def channels_create_v2(token, name, is_public):
         Returns a dictionary consisting of the channel_id values provided the
         token is valid and the name is less than 20 characters in length. 
     '''
-
     # Calls the valid_token function to ensure the token is validated, returning
     # the user_id if it has been. An AccessError is else raised. 
     auth_user_id = valid_token(token)
-
+    
     # Raises InputError if the length of the name is greater than 20 characters
     if len(name) > 20:
         raise InputError('The name input is more than 20 characters.')
@@ -151,8 +151,8 @@ def channels_create_v2(token, name, is_public):
     }
 
     data['channels'].append(new_channels)
+    # Writes data to file for persistence
+    save_data(data)
     return {
 	    'channel_id': new_id,
     }
-
-
