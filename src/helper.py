@@ -5,6 +5,7 @@ This is a helper file containing useful functions used in other files
 from data import data
 import re
 import jwt
+import json
 from src.error import InputError, AccessError
 
 # Valid email input
@@ -20,7 +21,7 @@ def check_email_valid(email):
     InputError otherwise
     '''
     if not re.search(RE, email):
-        raise InputError
+        raise InputError("Invalid email")
 
 def search_email(email):
     '''
@@ -37,7 +38,7 @@ def check_password_valid(password):
     A function which checks if a password is valid, raises InputError if not
     '''
     if len(password) < 6:
-        raise InputError
+        raise InputError("Invalid password")
 
 def check_name_length(name):
     '''
@@ -45,7 +46,7 @@ def check_name_length(name):
     raises InputError otherwise
     '''
     if len(name) not in range(1, 51):
-        raise InputError
+        raise InputError("Invalid name length")
 
 def generate_auth_user_id():
     '''
@@ -100,7 +101,7 @@ def check_password(user, password):
         return user['auth_user_id']
     raise InputError
 
-def check_valid_user(user_token):	
+def check_valid_user(u_id):	
     """ Checks the validity of the auth_user_id, by checking if it was added to
     the data file as a part of the 'users' information."""
 
@@ -111,14 +112,14 @@ def check_valid_user(user_token):
     # to the list if auth_register_v1 was called. The flag changes to True once  
     # the user_token has been found. 
     for user in data['users']:
-        if user['auth_user_id'] == user_token:
+        if user['auth_user_id'] == u_id and user['name_first'] != 'Removed':
             valid_user_id = True 
             break
     
     # If the flag remains False, it is not in the authorised user list and an 
-    # AccessError is printed. 
+    # InputError is printed. 
     if valid_user_id == False:
-        raise AccessError("The auth_user_id input is not a valid id.")
+        raise InputError("The auth_user_id input is not a valid id.")
 
 def generate_token(auth_user_id):
     """
@@ -168,3 +169,70 @@ def search_user_data(user_id):
     user_data['email'] = user['email']
     
     return user_data
+    
+def decrypt_token(token):
+    """
+    A function which returns a user's auth_user_id given a valid token
+    """
+    valid_token(token)
+    return jwt.decode(token, SECRET, algorithms=['HS256'])
+    
+def check_only_dreams_owner(u_id):
+    """ A function which tests whether the given user is the only owner of the
+    dreams channel, by checking their permission"""   
+    dream_owners = []
+    for user in data['users']:
+        if user['permission_id'] == 1:
+            owners_dict = {'auth_user_id': user['auth_user_id']}
+            dream_owners.append(owners_dict)
+    number_owners = len(owners_dict)
+    for owner in dream_owners:
+        if owner['auth_user_id'] == u_id and number_owners == 1:
+            raise InputError("This user is the only owner of Dreams")
+
+def check_dreams_owner(auth_user_id):
+    """Confirm that the authorised user is an owner of Dreams by checking their
+    permission ID in data['users']"""
+    valid_dreams_owner = False
+    for user in data['users']:
+        if user['auth_user_id'] == auth_user_id and user['permission_id'] == 1: 
+            valid_dreams_owner = True
+            break       
+    if valid_dreams_owner == False:
+        raise AccessError("The authorised user is not an owner of Dreams")  
+
+def valid_channel(channel_id):
+    """
+    This function checks if channel_id is valid. Return channel_id if valid and 
+    raise an InputError exception otherwise.
+    """
+    for channel in data["channels"]:
+        if channel["channel_id"] == channel_id:
+            return channel_id
+
+    raise InputError(description = "channel_id is not a valid channel")
+
+def check_existing_owner(u_id, channel_id):
+    """ This functions checks if the user id belongs to an existing owner. 
+    Returns the result of the flag already_owner as True or False"""
+    for channel in data['channels']:	
+        already_owner = False 
+        if channel["channel_id"] == channel_id:
+            for owner in channel['owner_members']:
+	            if u_id == owner["auth_user_id"]:
+		            already_owner = True 
+		            break
+    return already_owner
+    
+def save_data(data):
+    """ This function contains a possible way to keep data persistence by 
+    dumping it into a file"""
+    output = "data = " +json.dumps(data) 
+    # Edits the boolean features so they capitalised 
+    output = output.replace("true", "True")
+    output = output.replace("false", "False")
+    # Writes it to the file
+    f = open("data.py", "w+")		
+    f.write(output)
+    f.close()
+
