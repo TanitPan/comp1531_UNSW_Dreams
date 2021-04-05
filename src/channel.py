@@ -246,6 +246,7 @@ def channel_messages_v2(token, channel_id, start):
 
     # Return the message, start, and end
     return_msg = {'messages':msg, 'start': start, 'end':end}
+    
     return(return_msg)
 
     '''
