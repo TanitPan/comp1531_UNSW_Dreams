@@ -5,7 +5,7 @@ import pytest
 from src.channels import channels_create_v2
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
-from src.message import message_send_v1
+from src.message import message_send_v2
 from src.helper import generate_token
 from src.other import clear_v1, search_v2
 
@@ -35,7 +35,7 @@ def test_search_toolarge_querystr():
     query_str = "abcde" * 201
     with pytest.raises(InputError):
         search_v2(token, query_str)
-"""   
+   
 # Need to adjust when updated code is pushed   
 # Test confirming that the code works for an instance where a particular message
 # is in the list   
@@ -49,12 +49,12 @@ def test_search_messages():
     # Create a channel and send a message to that channel 
     channel = channels_create_v2(token, "Channel0", False)
     channel_id = channel["channel_id"]
-    message_send_v1(token, channel_id, "Hello everyone")
+    message_send_v2(token, channel_id, "Hello everyone")
     # Confirm this message is available after searching for it
     messages = search_v2(token, "Hello")  
     msg = messages['messages'] 
     mssge = msg[0]
-    assert (mssge["message"] == "Hello everyone")"""
+    assert (mssge["message"] == "Hello everyone")
 
 # Test that an invalid token will raise an AccessError                     
 def test_search_invalidtoken():
