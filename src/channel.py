@@ -150,7 +150,7 @@ def channel_leave_v1(token, channel_id):
     if member_valid == False:
         raise AccessError("Authorised user is not a member in the channel") 
 
-def channel_join_v1(auth_user_id, channel_id):
+def channel_join_v2(token, channel_id):
     """
     This function adds a auth_user_id to a
     channel_id provided.
@@ -168,15 +168,16 @@ def channel_join_v1(auth_user_id, channel_id):
     Return Value:
         Returns an empty dictionary on completeion
     """
+    # Check token validity
+    auth_user_id = valid_token(token)
+
     # Flags to check for invalid input or invalid access
-    valid_auth = False
     valid_channel = False
     new_user_info = {}
 
-    # Loop to check if auth_user_id is valid and store user info
+    # Loop to store user info
     for user in data["users"]:
         if user["auth_user_id"] == auth_user_id:
-            valid_auth = True
             global_permission = user["permission_id"]
             new_user_info["auth_user_id"] = user["auth_user_id"]
             break
@@ -192,10 +193,6 @@ def channel_join_v1(auth_user_id, channel_id):
                 if member["auth_user_id"] == auth_user_id:
                     raise AccessError("Repetitive join! You are already a member of channel !")
             break
-
-    # Raise exception when detect invalid auth_user_id
-    if not valid_auth:
-        raise AccessError("authorised user ID is invalid")
 
     # Raise excpetion when detect invalid channel
     if not valid_channel:
