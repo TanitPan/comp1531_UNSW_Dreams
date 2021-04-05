@@ -91,13 +91,13 @@ def channel_details_v1(auth_user_id, channel_id):
         ],
     }
 
-def channel_messages_v1(auth_user_id, channel_id, start):
+def channel_messages_v2(token, channel_id, start):
     return {
         'messages': [
             {
                 'message_id': 1,
                 'u_id': 1,
-                'message': 'Hello world',
+                'message': "",
                 'time_created': 1582426789,
             }
         ],
