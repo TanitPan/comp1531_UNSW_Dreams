@@ -223,7 +223,7 @@ def channel_messages_v2(token, channel_id, start):
 
     # Return -1 if the function returned the least recent message in the channel
     # to indicate there are no more messages to load after this return.
-    if len(channel['messages']) == start + msg_counter:
+    if len_message == start + msg_counter:
         end = -1
 
     # Return the message, start, and end
