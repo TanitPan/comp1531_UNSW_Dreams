@@ -106,7 +106,6 @@ def channels_create_server():
         channels_create_v2(token, name, is_public)
     )
 
-
 """
 USER ROUTES
 """
@@ -222,6 +221,56 @@ def channel_join_server():
         channel_join_v2(token, channel_id)
     )
 
+@APP.route("/channel/details/v2", methods = ['GET'])
+def channel_details_server():
+    payload = request.get_json()
+    token = payload['token']
+    channel_id = payload['channel_id']
+    return dumps(
+        channel_details_v2(token,channel_id)
+    )
+
+@APP.route("/channel/messages/v2", methods = ['GET'])
+def channel_messages_server():
+    payload = request.get_json()
+    token = payload['token']
+    channel_id = payload['channel_id']
+    start = payload['start']
+    return dumps(
+        channel_messages_v2(token,channel_id,start)
+    )
+
+"""
+MESSAGE ROUTES
+"""
+@APP.route("/message/send/v2", methods = ['POST'])
+def message_send_server():
+    payload = request.get_json()
+    token = payload['token']
+    channel_id = payload['channel_id']
+    message = payload['message']
+    return dumps(
+        message_send_v2(token,channel_id,message)
+    )
+
+@APP.route("/message/remove/v1", methods = ['DELETE'])
+def message_send_server():
+    payload = request.get_json()
+    token = payload['token']
+    message_id = payload['message_id']
+    return dumps(
+        message_remove_v1(token,message_id,)
+    )
+
+@APP.route("/message/edit/v2", methods = ['PUT'])
+def message_edit_server():
+    payload = request.get_json()
+    token = payload['token']
+    message_id = payload['message_id']
+    message = payload['message']
+    return dumps(
+        message_edit_v2(token,message_id,message)
+    )
 
 """
 OTHER ROUTES
