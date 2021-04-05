@@ -20,7 +20,6 @@ def test_channel_addowner_valid():
         "name_last": "smith",
     })
     payload = authorised_info.json()
-    print(payload)
     authorised_token1 = payload['token']
 
     # Using this user's details, create a channel and obtain the channel id
