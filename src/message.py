@@ -55,7 +55,6 @@ def message_send_v2(token, channel_id, message):
     if len(message) > 1000:
         raise InputError("Message is too long")
 
-    
     # Generate the message_id and assign it into dictionary msg['message_id']
     # Added 1 to msg_counter
     msg['message_id'] = helper.msg_counter
@@ -79,11 +78,6 @@ def message_send_v2(token, channel_id, message):
     return {
         'message_id': msg['message_id']
     }
-    '''
-    return {
-        'message_id': 1,
-    }
-    '''
 
 def message_remove_v1(token, message_id):
     ''' 
@@ -108,7 +102,8 @@ def message_remove_v1(token, message_id):
     # Assign new variables to check
     valid_msg_id = False
     valid_owner = False
-    
+    valid_dream_owner = False
+
     # Looped through the data['channels']
     # Looped through the channel['messages']
     # Find the message with the same message_id and the input message_id
@@ -125,13 +120,23 @@ def message_remove_v1(token, message_id):
                     valid_owner = True
                     break
 
+    # Looped through the data['users']
+    # Find the user with the same auth_user_id
+    # Assign the valid_dream_owner to True if the permission_id is 1
+    for user in data['users']:
+        if user['auth_user_id'] == u_id:
+            if user['permission_id'] == 1: 
+                valid_dream_owner = True
+                break   
+
     # If message_id is not exist, it raise InputError
     if valid_msg_id == False:
         raise InputError("Message no longer exists!")
 
-    # If the owner of the message is not the same with the auth_user_id from input token,
-    # It raise AccessError
-    if valid_owner == False:
+    # Raise AccessError if:
+    # - The owner of the message is not the same with the auth_user_id from input token,
+    # - Not the dream owner
+    if valid_owner == False or valid_dream_owner == False:
         raise AccessError("Not Authorised User!")
 
     # Looped through the data['channels']
@@ -176,6 +181,7 @@ def message_edit_v1(token, message_id, message):
     # Assign new variables to check
     valid_msg_id = False
     valid_owner = False
+    valid_dream_owner = False
 
     # Looped through the data['channels']
     # Looped through the channel['messages']
@@ -193,6 +199,15 @@ def message_edit_v1(token, message_id, message):
                     valid_owner = True
                     break
 
+    # Looped through the data['users']
+    # Find the user with the same auth_user_id
+    # Assign the valid_dream_owner to True if the permission_id is 1
+    for user in data['users']:
+        if user['auth_user_id'] == u_id:
+            if user['permission_id'] == 1: 
+                valid_dream_owner = True
+                break   
+
     # Raise Input Error when:
     # - the message_id does not exists
     # - Length of the message exceed 1000
@@ -201,9 +216,10 @@ def message_edit_v1(token, message_id, message):
     if len(message) > 1000:
         raise InputError("Message too long!")
 
-    # Raise AccessError when:
-    # - the owner's auth_user_id of the message is not the same as the token's auth_user_id.
-    if valid_owner == False:
+    # Raise AccessError if:
+    # - The owner of the message is not the same with the auth_user_id from input token,
+    # - Not the dream owner
+    if valid_owner == False or valid_dream_owner == False:
         raise AccessError("Not Authorised User!")
 
     # If the message is empty, it remove the message
