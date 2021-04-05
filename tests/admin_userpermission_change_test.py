@@ -13,32 +13,40 @@ from src.other import clear_v1
 # Test the function by changing the admin permission of a user to owner and 
 # verify they have global owner status
 def test_admin_userpermission_change_valid():
-    # Clear data and register two users
+    # Clear data and register three users
     clear_v1()
     authorised_dict1 = auth_register_v2('john.smith@gmail.com', 'password', 
                        'john', 'smith')
     authorised_dict2 = auth_register_v2('jane_doe@gmail.com', 'pass1234', 
-                       'jane', 'smith')
+                       'jane', 'doe')
+    authorised_dict3 = auth_register_v2('matt_brown@gmail.com', '123456', 
+                       'matt', 'brown')
     
     # Extract the token and user id of the first user and create a channel, 
     # making them both a global owner and the channel owner
     token1 = authorised_dict1['token']
-    user_id1 = authorised_dict1['auth_user_id']
-    channel_id1 = channels_create_v2(token1, 'Channel_1', True)
+    channel = channels_create_v2(token1, 'Channel_1', True)
+    channel_id1 = channel['channel_id']
     
     # Extracting the second user's token and user id, make them a global owner
     token2 = authorised_dict2['token']
     user_id2 = authorised_dict2['auth_user_id']
     admin_userpermission_change_v1(token1, user_id2, 1) #owner = 1
-   
-    # Verify that the second user can remove the first user as an owner, which 
+
+    # Verify the second user can add the third user as an owner
+    user_id3 = authorised_dict3['auth_user_id']
+    token3 = authorised_dict3['token']
+    channel_addowner_v1(token2, channel_id1, user_id3)
+    
+    # Verify that the second user can remove the third user as an owner, which 
     # is only possible if they are an owner of Dreams (not channel owner)
-    channel_removeowner_v1(token2, channel_id1['channel_id'], user_id1) 
-    # Make sure the second user cannot add themselves back as an owner, as they
+
+    channel_removeowner_v1(token2, channel_id1, user_id3) 
+    # Make sure the third user cannot add themselves back as an owner, as they
+
     # are no longer an owner
-    """with pytest.raises(AccessError):
-        channel_addowner_v1(token1, channel_id1, user_id1)"""
-        # will uncomment after add the code in
+    with pytest.raises(AccessError):
+        channel_addowner_v1(token3, channel_id1, user_id3)
 
 # Test that the permissions of an invalid user_id cannot be changed 
 def test_admin_userpermission_change_invalid_user():
