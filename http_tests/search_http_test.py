@@ -20,13 +20,12 @@ def test_search_empty_messages():
     token = payload["token"]
     
     # Create a channel and obtain the channel ID
-    request = requests.post(f"{url}/channels/create/v2", json = {
+    requests.post(f"{url}/channels/create/v2", json = {
         'token': token, 
         'name': 'channel1', 
         'is_public': True
     })
-    payload = request.json()
-    channel_id = payload["channel_id"]   
+  
     # Confirm calling the status code will return a 200 status code 
     request = requests.get(f"{url}/search/v2", 
         params= {"token": token, "query_str": "Good morning"})
