@@ -11,6 +11,7 @@ from src.channels import channels_create_v2, channels_list_v2, channels_listall_
 from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1
 from src.other import users_all_v1, clear_v1, search_v2
 from src.channel import channel_invite_v2, channel_addowner_v1, channel_removeowner_v1, channel_leave_v1, channel_join_v2
+from src.dm import dm_create_v1
 
 
 def defaultHandler(err):
@@ -243,6 +244,18 @@ def search_server():
     query_str = request.args.get("query_str")
     return dumps(
         search_v2(token, query_str)
+    )
+
+"""
+DM ROUTES
+"""
+@APP.route("/dm/create/v1", methods=['POST'])
+def dm_create_server():
+    payload = request.get_json()
+    token = payload["token"]
+    u_ids = payload["u_ids"]
+    return dumps(
+        dm_create_v1(token, u_ids)
     )
 
 if __name__ == "__main__":

@@ -45,13 +45,13 @@ def test_dm_create_valid():
     payload = auth_user2_info.json()
     
     auth_id2 = payload["auth_user_id"]
-    token2 = payload["token"]
+    
 
     auth_user3_info = requests.post(f"{url}/auth/register/v2", json = user3_data)
     payload = auth_user3_info.json()
     
     auth_id3 = payload["auth_user_id"]
-    token3 = payload["token"]
+    
     u_ids = [auth_id2, auth_id3]
 
     dm_response = requests.post(f"{url}/dm/create/v1", json = {
@@ -63,7 +63,7 @@ def test_dm_create_valid():
     assert dm_response.status_code == 200
     payload = dm_response.json()
     assert payload["dm_id"] == 1
-    assert payload["dm_name"] == ["alexcactus", "johnsmith", "michaelbush"]
+    assert payload["dm_name"] == "alexcactus,johnsmith,michaelbush"
 
     u_ids = [auth_id3]
 
@@ -75,7 +75,7 @@ def test_dm_create_valid():
     # Check incrementation of dm_id
     payload = dm_response.json()
     assert payload["dm_id"] == 2
-    assert payload["dm_name"] == ["alexcactus", "johnsmith"]
+    assert payload["dm_name"] == "alexcactus,johnsmith"
 
 def test_dm_create_invalid_uid():
     """
@@ -115,13 +115,11 @@ def test_dm_create_invalid_uid():
     payload = auth_user2_info.json()
     
     auth_id2 = payload["auth_user_id"]
-    token2 = payload["token"]
 
     auth_user3_info = requests.post(f"{url}/auth/register/v2", json = user3_data)
     payload = auth_user3_info.json()
     
-    auth_id3 = payload["auth_user_id"]
-    token3 = payload["token"]
+
     invalid_user = 88
     u_ids = [auth_id2, invalid_user]
 
@@ -165,19 +163,19 @@ def test_dm_create_invalid_auth():
     # Call other routes to create the data and store in data structure
     auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
     payload = auth_user1_info.json()
-    token1 = payload["token"]
+    
 
     auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
     payload = auth_user2_info.json()
     
     auth_id2 = payload["auth_user_id"]
-    token2 = payload["token"]
+    
 
     auth_user3_info = requests.post(f"{url}/auth/register/v2", json = user3_data)
     payload = auth_user3_info.json()
     
     auth_id3 = payload["auth_user_id"]
-    token3 = payload["token"]
+   
     invalid_user = 88
     invalid_token = generate_token(invalid_user)
     u_ids = [auth_id2, auth_id3]

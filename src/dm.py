@@ -66,4 +66,4 @@ def dm_create_v1(token, u_ids):
     # Append the newly create dm channel to channels
     data["channels"].append(new_dm)
 
-    return {"dm_id": 1, "dm_name": dm_name}
+    return {"dm_id": dm_id, "dm_name": dm_name}
