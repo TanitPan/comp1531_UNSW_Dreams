@@ -21,3 +21,4 @@ Iteration Two
   in channel_removeowner this was explicitly specified as forbidden and in this
   scenario, no mention of it has been added
 - Assume channel_addowner allows you to add an owner who is not already a member
+- Assume that the global owner has owner permissions in every channel, regardless of whether they have joined them. 
