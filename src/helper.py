@@ -196,7 +196,7 @@ def save_data(data):
     """ This function contains a possible way to keep data persistence by 
     dumping it into a file"""
     output = "data = " +json.dumps(data) 
-    # Edits the boolean features so they capitalised 
+    # Edits the boolean features so they are capitalised 
     output = output.replace("true", "True")
     output = output.replace("false", "False")
     # Writes it to the file
