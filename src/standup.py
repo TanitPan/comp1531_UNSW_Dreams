@@ -69,7 +69,7 @@ def standup_start_v1(token, channel_id, length):
     # UTC timestamp
     # Source: https://www.tutorialspoint.com/How-to-convert-Python-date-to-Unix-timestamp
     time_finish = int(finish_time.replace(tzinfo=timezone.utc).timestamp())
-    return {time_finish}
+    return {"time_finish": time_finish}
 
 def standup_active_v1(token, channel_id):
     ''' 
@@ -112,9 +112,9 @@ def standup_active_v1(token, channel_id):
     # If is_active is true, the value of the finish time will be the converted
     # UTC timestamp. Else, it will be equal to None. Add it to the dictionary
     if return_value["is_active"]:
-        return_value["finish_time"] = int(
+        return_value["time_finish"] = int(
             finish_time.replace(tzinfo=timezone.utc).timestamp())
     else:
-        return_value["finish_time"] = None
+        return_value["time_finish"] = None
     # Return the is_active and finish_time values in a dictionary
     return return_value
