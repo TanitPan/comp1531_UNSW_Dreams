@@ -21,11 +21,12 @@ def test_standup_active_norunning():
     token = authorised_info["token"] 
     channel = channels_create_v2(token, "Channel1", False) 
     channel_id = channel["channel_id"]
-    # Call the function and confirm the return values for is_active and 
-    # time_finish are False and None
+    # Call the function, confirminng the return value is a dictionary and the 
+    # values for is_active and time_finish are False and None
     standup_return = standup_active_v1(token, channel_id)
+    assert (isinstance(standup_return, dict) == True)
     assert standup_return["is_active"] == False
-    assert standup_return["finish_time"] == None
+    assert standup_return["time_finish"] == None
 
 # Test confirming standup_active works when a standup is currently running
 def test_standup_active_running():
@@ -44,7 +45,7 @@ def test_standup_active_running():
     # are correct, checking the type of the latter
     standup_return = standup_active_v1(token, channel_id)
     assert standup_return["is_active"]
-    assert isinstance(standup_return["finish_time"], int)
+    assert isinstance(standup_return["time_finish"], int)
 
 # Test confirming standup_active works when multiple standups are running for 
 # separate channels 
