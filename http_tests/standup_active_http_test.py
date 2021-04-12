@@ -51,8 +51,8 @@ def test_standup_active_inactivestandup(register_authorised_user, create_channel
     payload = request.json()
     is_active = payload["is_active"]
     assert is_active == False
-    time_finish = payload["time_finish"]
-    assert time_finish == None
+    finish_time = payload["finish_time"]
+    assert finish_time == None
     
 # Test confirming that standup_active returns True and the UTC timezone when  
 # an active standup is called 
@@ -79,11 +79,11 @@ def test_standup_active_activestandup(register_authorised_user, create_channel):
     payload = request.json()
     is_active = payload["is_active"]
     assert is_active == True 
-    time_finish = payload["time_finish"]
-    assert isinstance(time_finish, int)    
+    finish_time = payload["finish_time"]
+    assert isinstance(finish_time, int)    
 
-# Test checking that invalid channel id will raise an InputError
-def test_standup_start_invalidchannel(register_authorised_user, create_channel):
+# Test checking that an invalid channel id will raise an InputError
+def test_standup_active_invalidchannel(register_authorised_user, create_channel):
     token = register_authorised_user()
     # Increment the fixture to generate an invalid_channel_id, passing it as
     # a parameter to the standup_active call 
@@ -98,7 +98,7 @@ def test_standup_start_invalidchannel(register_authorised_user, create_channel):
 
 # Test that an invalid token being passed in as a parameter will cause an 
 # AccessError
-def test_standup_start_alreadyactive(create_channel):
+def test_standup_active_alreadyactive(create_channel):
     requests.delete(f"{url}/clear/v1") 
     standups.clear() 
     # Using a random user_id, generate a token
