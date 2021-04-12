@@ -7,14 +7,6 @@ import json
 import pytest
 import requests
 
-
-import pytest
-import requests
-import json
-import urllib
-from src.config import url
-
-from src.helper import generate_token
 @pytest.fixture
 # Clear all data and register a user, extracting its token
 def register_authorised_user():
