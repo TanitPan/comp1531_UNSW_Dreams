@@ -1,8 +1,6 @@
 '''This file consists of Python tests for standup_start_v1 in standup.py'''
-from data import data 
 
 import pytest
-
 from src.auth import auth_register_v2
 from src.channels import channels_create_v2, channels_list_v2
 from src.error import InputError, AccessError
@@ -81,7 +79,7 @@ def test_standup_start_invalid_token():
     with pytest.raises(AccessError): 
         standup_start_v1(token2, channel_id, 1)
 
-# Test that an authorised user who is not a member of the account cannot 
+# Test that an authorised user who is not a member of the channel cannot 
 # start a standup
 def test_standup_start_unauthorised_user():
     # Clear data, register a user and create a channel 
@@ -99,5 +97,3 @@ def test_standup_start_unauthorised_user():
     # Test that an AccessError is raised when this second token is passed in
     with pytest.raises(AccessError): 
         standup_start_v1(token2, channel_id, 1)
-        
-
