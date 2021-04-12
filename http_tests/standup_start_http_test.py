@@ -90,6 +90,7 @@ def test_standup_start_alreadyactive(create_channel):
     standups.clear() 
     # Using a random user_id, generate a token
     token = generate_token(100)
+    channel_id = create_channel()
     # Pass this token in and confirm an 403 AccessError is raised
     request = requests.post(f"{url}/standup/start/v1", json = {
         "token": token,
