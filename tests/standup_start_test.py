@@ -20,13 +20,16 @@ def test_standup_start_valid():
     token = authorised_info['token'] 
     channel = channels_create_v2(token, "Channel_1", True) 
     channel_id = channel["channel_id"]
-    # Call the standup start function and ensure the result is an integer
+    # Call the standup start function and ensure the result is a dictionary, 
+    # containing an integer
     timestamp = standup_start_v1(token, channel_id, 5)
-    assert (isinstance(timestamp, int) == True)
+    assert (isinstance(timestamp, dict) == True)
+    time_finish = timestamp["time_finish"]
+    assert (isinstance(time_finish, int) == True)
     # Confirm that the current timestamp is less than the called timestamp
     now = datetime.now()
     now_timestamp = int(now.replace(tzinfo=timezone.utc).timestamp())
-    assert (timestamp > now_timestamp)
+    assert (time_finish > now_timestamp)
 
 # Test confirming an error is raised when the standup_start is called when the
 # standup is already active
