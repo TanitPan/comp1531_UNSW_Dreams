@@ -89,9 +89,7 @@ def test_standup_start_alreadyactive(register_authorised_user, create_channel):
     assert request.status_code == 400 
 
 # Test that an invalid token cannot begin a standup
-def test_standup_start_alreadyactive(create_channel):
-    requests.delete(f"{url}/clear/v1") 
-    standups.clear()
+def test_standup_start_invalidtoken(create_channel):
     # Clear data
     requests.delete(f"{url}/clear/v1") 
     standups.clear() 
@@ -112,7 +110,7 @@ def test_standup_start_unauthorised_user(register_authorised_user, create_channe
     requests.delete(f"{url}/clear/v1") 
     standups.clear()
     # Clear data, register a user and create a channel 
-    token = register_authorised_user
+    register_authorised_user
     channel_id = create_channel
     # Register a second user and extract their token
     authorised_info2 = requests.post(f"{url}/auth/register/v2", json = {
@@ -129,4 +127,4 @@ def test_standup_start_unauthorised_user(register_authorised_user, create_channe
         "channel_id": channel_id,
         "length": 1,
     })
-    assert request.status_code == 403"""
+    assert request.status_code == 403
