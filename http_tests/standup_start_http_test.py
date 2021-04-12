@@ -23,7 +23,8 @@ def register_authorised_user():
 
 @pytest.fixture
 # Creates a channel, extracting its ID
-def create_channel():
+def create_channel(register_authorised_user):
+    token = register_authorised_user()
     channel = requests.post(f"{url}/channels/create/v2", json = {
         'token': token, 
         'name': 'channel_1', 
