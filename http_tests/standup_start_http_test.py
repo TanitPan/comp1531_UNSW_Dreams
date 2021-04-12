@@ -48,6 +48,7 @@ def test_standup_start_success(register_authorised_user):
     print(request)
     assert request.status_code == 200 
     payload = request.json()
+    time_finish = payload["time_finish"]
     # Confirm the return value is an integer
     assert isinstance(payload, int)
 
