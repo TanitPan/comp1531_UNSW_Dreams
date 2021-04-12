@@ -98,7 +98,7 @@ def test_standup_active_invalidchannel(register_authorised_user, create_channel)
 
 # Test that an invalid token being passed in as a parameter will cause an 
 # AccessError
-def test_standup_active_alreadyactive(create_channel):
+def test_standup_active_invalidtoken(create_channel):
     requests.delete(f"{url}/clear/v1") 
     standups.clear() 
     # Using a random user_id, generate a token
