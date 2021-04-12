@@ -204,3 +204,15 @@ def save_data(data):
     f.write(output)
     f.close()
 
+def valid_member(user_id, channel_id):
+    """ This function checks if someone is a member of a channel, raising an 
+    AccessError if they aren't"""
+    valid_member = False
+    for channel in data['channels']:	
+        if channel_id == channel["channel_id"]:
+            for member in channel['all_members']:     
+                if member['auth_user_id'] == user_id:
+                    valid_member = True
+     
+    if not valid_member:
+        raise AccessError("The authorised user is not an member of the channel")  
