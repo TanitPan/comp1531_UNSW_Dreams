@@ -45,15 +45,15 @@ def test_standup_active_inactivestandup(register_authorised_user, create_channel
         "token": token,
         "channel_id": channel_id,
     })
-    assert request.status_code == 200 
+    assert request.status_code == 200
     
     # Extract the is_active and time_finish values, checking them against the 
     # expected values of False and None respectively
     payload = request.json()
     is_active = payload["is_active"]
     assert is_active == False
-    finish_time = payload["finish_time"]
-    assert finish_time == None
+    time_finish = payload["time_finish"]
+    assert time_finish == None
     
 # Test confirming that standup_active returns True and the UTC timezone when  
 # an active standup is called 
@@ -83,8 +83,8 @@ def test_standup_active_activestandup(register_authorised_user, create_channel):
     payload = request.json()
     is_active = payload["is_active"]
     assert is_active == True 
-    finish_time = payload["finish_time"]
-    assert isinstance(finish_time, int)    
+    time_finish = payload["time_finish"]
+    assert isinstance(time_finish, int)    
 
 # Test checking that an invalid channel id will raise an InputError
 def test_standup_active_invalidchannel(register_authorised_user, create_channel):
