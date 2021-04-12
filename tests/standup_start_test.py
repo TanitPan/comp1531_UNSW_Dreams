@@ -81,7 +81,7 @@ def test_standup_start_invalid_token():
     with pytest.raises(AccessError): 
         standup_start_v1(token2, channel_id, 1)
 
-# Test than an authorised user who is not a member of the account cannot 
+# Test that an authorised user who is not a member of the account cannot 
 # start a standup
 def test_standup_start_unauthorised_user():
     # Clear data, register a user and create a channel 
