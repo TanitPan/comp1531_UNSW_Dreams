@@ -279,7 +279,7 @@ def standup_start_server():
     )
 
 @APP.route("/standup/active/v1", methods = ['GET'])
-def standup_start_server():
+def standup_active_server():
     token = request.args.get('token')
     channel_id = request.args.get('channel_id') 
     return dumps(
