@@ -238,6 +238,7 @@ def clear_server():
     return dumps(
         clear_v1()
     )
+    
 @APP.route("/search/v2", methods=["GET"])
 def search_server():
     token = request.args.get("token")
@@ -264,7 +265,27 @@ def dm_list_server():
         dm_list_v1(token)
     )
 
+"""
+STANDUP ROUTES
+"""
+@APP.route("/standup/start/v1", methods = ['POST'])
+def standup_start_server():
+    payload = request.get_json()
+    token = payload["token"]
+    channel_id = payload["channel_id"]
+    length = int(payload["length"])
+    return dumps(
+        standup_start_v1(token, channel_id, length)
+    )
 
+@APP.route("/standup/active/v1", methods = ['GET'])
+def standup_start_server():
+    token = request.args.get('token')
+    channel_id = request.args.get('channel_id') 
+    return dumps(
+        standup_active_v1(token, channel_id)
+    )
+ 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
     
