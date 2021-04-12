@@ -50,7 +50,7 @@ def test_standup_start_success(register_authorised_user):
     payload = request.json()
     time_finish = payload["time_finish"]
     # Confirm the return value is an integer
-    assert isinstance(payload, int)
+    assert isinstance(time_finish, int)
 
 # Test checking that an error is raised when an invalid channel_id is passed in
 def test_standup_start_invalidchannel(register_authorised_user, create_channel):
