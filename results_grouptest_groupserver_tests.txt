@@ -1,0 +1,48 @@
+============================= test session starts ==============================
+platform linux -- Python 3.7.3, pytest-6.2.3, py-1.10.0, pluggy-0.13.1
+rootdir: /tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore, configfile: pytest.ini
+plugins: forked-1.3.0, xdist-2.2.1, hypothesis-6.1.1, timeout-1.4.2
+collected 164 items
+
+http_tests/admin_user_remove_http_test.py ....                           [  2%]
+http_tests/admin_userpermission_change_http_test.py ....                 [  4%]
+http_tests/auth_login_http_test.py ....                                  [  7%]
+http_tests/auth_logout_http_test.py ..                                   [  8%]
+http_tests/auth_register_http_test.py ......                             [ 12%]
+http_tests/channel_addowner_http_test.py .....                           [ 15%]
+http_tests/channel_invite_http_test.py ......                            [ 18%]
+http_tests/channel_join_http_test.py ......                              [ 22%]
+http_tests/channel_leave_http_test.py ....                               [ 25%]
+http_tests/channel_removeowner_http_test.py .....                        [ 28%]
+http_tests/channels_create_http_test.py ...                              [ 29%]
+http_tests/channels_list_http_test.py ...                                [ 31%]
+http_tests/channels_listall_http_test.py ...                             [ 33%]
+http_tests/dm_create_http_test.py ...                                    [ 35%]
+http_tests/dm_list_http_test.py ..                                       [ 36%]
+http_tests/echo_http_test.py .                                           [ 37%]
+http_tests/search_http_test.py ...                                       [ 39%]
+http_tests/user_profile_http_test.py ..                                  [ 40%]
+http_tests/user_profile_set_http_test.py ...........                     [ 46%]
+http_tests/users_all_http_test.py ..                                     [ 48%]
+src/auth_test.py ..                                                      [ 49%]
+tests/admin_user_remove_test.py ...                                      [ 51%]
+tests/admin_userpermission_change_test.py ....                           [ 53%]
+tests/auth_test.py ...                                                   [ 55%]
+tests/channel_addowner_test.py ......                                    [ 59%]
+tests/channel_invite_test.py ......                                      [ 62%]
+tests/channel_join_test.py ......                                        [ 66%]
+tests/channel_leave_test.py .....                                        [ 69%]
+tests/channel_removeowner_test.py .......                                [ 73%]
+tests/channels_create_test.py ......                                     [ 77%]
+tests/channels_list_test.py .....                                        [ 80%]
+tests/channels_listall_test.py ....                                      [ 82%]
+tests/dm_create_test.py ...                                              [ 84%]
+tests/dm_list_test.py ..                                                 [ 85%]
+tests/echo_test.py ..                                                    [ 87%]
+tests/other_test.py ..                                                   [ 88%]
+tests/search_test.py ....                                                [ 90%]
+tests/user_profile_set_test.py ...........                               [ 97%]
+tests/user_profile_test.py ..                                            [ 98%]
+tests/users_all_test.py ..                                               [100%]
+
+============================= 164 passed in 3.65s ==============================
