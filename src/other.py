@@ -23,7 +23,16 @@ def users_all_v1(token):
     helper.valid_token(token) # Raises AccessError on invalid token
     users = []
     for user in data['users']:
-        users.append(user)
+        #users.append(user)
+        # return custom user data
+        myuser = {
+            'auth_user_id': user['auth_user_id'],
+            'email': user['email'],
+            'name_first': user['name_first'],
+            'name_last': user['name_last'],
+            'handle_str': user['handle_str']
+        }
+        users.append(myuser)
     
     return {
         'users': users
@@ -38,7 +47,6 @@ def clear_v1():
     # Save the data persistently
     helper.save_data(data)
     
-
 def search_v2(token, query_str):
     '''
     Returns a collection of messages that contain the substring, query_str, in 

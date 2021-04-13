@@ -7,6 +7,7 @@ from src.error import InputError, AccessError
 import re
 import src.helper as helper
 
+import time
 
 def user_profile_v2(token, u_id):
     """
@@ -53,7 +54,7 @@ def user_profile_setname_v2(token, name_first, name_last):
     info
 
     Arguments:
-        auth_user_id <int>    - the user's identification number, a positive integer
+        token <string> - the user's hashed auth_user_id 
         name_first <string>    - the new name the user wants to use
         name_last <string> - the new name the user wants to use
 
@@ -86,7 +87,7 @@ def user_profile_setemail_v2(token, email):
     Given an auth_user_id and valid email, updates the user info
 
     Arguments:
-        auth_user_id <int>    - the user's identification number, a positive integer
+        token <string> - the user's hashed auth_user_id 
         email <string>        - the user's email
 
     Exceptions:
@@ -140,4 +141,34 @@ def user_profile_sethandle_v1(token, handle_str):
     # Save the data persistently
     helper.save_data(data)
     return {
+    }
+
+def user_stats_v1(token):
+    """
+    Given a valid token, Fetches the required statistics about this user's use of UNSW Dreams
+
+    Arguments:
+        token <string> - the user's hashed auth_user_id 
+
+    Exceptions:
+        AccessError - Occurs when the token given isn't valid
+
+    Return Value:
+        Returns {user_stats}
+    """
+    id = helper.decrypt_token(token) # Also validates the token, raises AccessError when token is invalid
+    
+    num_channels_joined = 0
+    num_dms_joined = 0
+    num_msgs_sent = 0
+
+    num_dreams_channels = 0
+    num_dreams_dms = 0
+    num_dreams_msgs = 0
+    involvement_rate = sum(num_channels_joined, num_dms_joined, num_msgs_sent)/sum(num_dreams_channels, num_dreams_dms, num_dreams_msgs)
+    return {
+        'channels_joined': [{num_channels_joined, time_stamp}],
+        'dms_joined': [{num_dms_joined, time_stamp}], 
+        'messages_sent': [{num_messages_sent, time_stamp}], 
+        'involvement_rate': involvement_rate
     }
