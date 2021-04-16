@@ -44,7 +44,6 @@ def test_valid_input(register_user):
         'token': token
     })
     res = requests.get(f"{url}/user/stats/v1?{query}")
-    payload = res.json()
     assert res.status_code == 200 
 
 def test_invalid_token():
