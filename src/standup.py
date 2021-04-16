@@ -46,7 +46,6 @@ def standup_start_v1(token, channel_id, length):
     if return_value["is_active"]:
         raise InputError("An active standup is currently running in this channel")   
     
-    updated_standup = False # Flag
     # Loops through the standups and it adds or edits the information of the 
     # length, starting and finishing times, having converted it to an isoformat. 
     # Otherwise, this information is appended to data list as a dictionary 
