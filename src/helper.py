@@ -176,10 +176,10 @@ def valid_channel(channel_id):
     This function checks if channel_id is valid. Return channel_id if valid and 
     raise an InputError exception otherwise.
     """
-    for channel in data["channels"]:
-        if channel["channel_id"] == channel_id:
+    channel_id = int(channel_id)
+    for channel in data["channels"]:     
+        if channel["channel_id"] == channel_id:           
             return channel_id
-
     raise InputError(description = "channel_id is not a valid channel")
 
 def check_existing_owner(u_id, channel_id):
@@ -217,18 +217,28 @@ def update_user_stats(token, stat_name, change):
             'timestamp': timestamp
             })
             return
-    
-
-
 
 def save_data(data):
     """ This function contains a possible way to keep data persistence by 
     dumping it into a file"""
     output = "data = " +json.dumps(data) 
-    # Edits the boolean features so they capitalised 
+    # Edits the boolean features so they are capitalised 
     output = output.replace("true", "True")
     output = output.replace("false", "False")
     # Writes it to the file
     f = open("data.py", "w+")		
     f.write(output)
     f.close()
+
+def valid_member(user_id, channel_id):
+    """ This function checks if someone is a member of a channel, raising an 
+    AccessError if they aren't"""
+    valid_member = False
+    for channel in data['channels']:	
+        if channel_id == channel["channel_id"]:
+            for member in channel['all_members']:     
+                if member['auth_user_id'] == user_id:
+                    valid_member = True
+     
+    if not valid_member:
+        raise AccessError("The authorised user is not an member of the channel")  
