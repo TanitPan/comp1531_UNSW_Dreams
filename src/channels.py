@@ -142,12 +142,14 @@ def channels_create_v2(token, name, is_public):
         'dm_id': -1, #assume default
         'messages': [
             {
-                'message_id' : new_messages_id, #Assuming it is greater than 0
-                'message' : '',
-                'timestamp' : 0, # will replace this with the correct timestamp 
-                'auth_user_id' : auth_user_id, 
+                    'message_id' : new_messages_id, #Assuming it is greater than 0
+                    'message' : '',
+                    'timestamp' : 0, # will replace this with the correct timestamp 
+                    'auth_user_id' : auth_user_id, 
             }
-        ]
+        ], 
+        "standups": { # empty dictionary, which can be updated in standup,py
+        }
     }
 
     data['channels'].append(new_channels)
