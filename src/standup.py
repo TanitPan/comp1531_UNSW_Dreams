@@ -86,7 +86,8 @@ def standup_active_v1(token, channel_id):
     '''
     # Confirm that the channel id and token are valid, and have been included
     # in the data frame
-    valid_token(token)
+    valid_token(token)    
+    channel_id = int(channel_id) # Convert to an integer
     valid_channel(channel_id)
     return_value = {} # empty dictionary to store values
     is_active = False # Flag
