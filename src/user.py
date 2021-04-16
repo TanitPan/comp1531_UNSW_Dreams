@@ -1,5 +1,5 @@
 """
-This file contains the user function implementations used by the HTTP routes
+This file contains the user function implementations used by the HTTP routes.
 """
 
 from data import data
