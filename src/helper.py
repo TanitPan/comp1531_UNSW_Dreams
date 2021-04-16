@@ -174,10 +174,10 @@ def valid_channel(channel_id):
     This function checks if channel_id is valid. Return channel_id if valid and 
     raise an InputError exception otherwise.
     """
-    for channel in data["channels"]:
-        if channel["channel_id"] == channel_id:
+    channel_id = int(channel_id)
+    for channel in data["channels"]:     
+        if channel["channel_id"] == channel_id:           
             return channel_id
-
     raise InputError(description = "channel_id is not a valid channel")
 
 def check_existing_owner(u_id, channel_id):
