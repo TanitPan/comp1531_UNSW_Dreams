@@ -3,7 +3,7 @@
 from data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
-from src.helper import valid_token, save_data
+from src.helper import valid_token, save_data, update_user_stats
 
 def channels_list_v2(token):
     '''
@@ -151,6 +151,10 @@ def channels_create_v2(token, name, is_public):
     }
 
     data['channels'].append(new_channels)
+
+    # update the users stats
+    update_user_stats(token, 'channels_joined', 1) 
+    
     # Writes data to file for persistence
     save_data(data)
     return {

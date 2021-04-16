@@ -6,6 +6,8 @@ from data import data
 import re
 import jwt
 import json
+import time
+import math
 from src.error import InputError, AccessError
 
 # Valid email input
@@ -191,7 +193,34 @@ def check_existing_owner(u_id, channel_id):
 		            already_owner = True 
 		            break
     return already_owner
+
+def update_user_stats(token, stat_name, change):
+    '''
+    Given a stat name of either 'channels_joined', 'dms_joined', or 'messages_sent', 
+    update the user stats and timestamp the change, depending on whether the change is 
+    positive or negative. Updates the data associated with a user of a valid token
+    '''
+    if stat_name not in ['channels_joined', 'dms_joined', 'messages_sent']:
+        raise InputError("Invalid stat_name given")
+
+    id = valid_token(token)
+    for user in data['users']:
+        if id == user['auth_user_id']:
+            timestamp = math.floor(time.time())
+            # list always >= 1
+            # get the most recent value +- the change
+            lst = user[stat_name]
+            num_statname = lst[-1]['num_'+stat_name] + change
+
+            lst.append({
+            'num_'+stat_name: num_statname, 
+            'timestamp': timestamp
+            })
+            return
     
+
+
+
 def save_data(data):
     """ This function contains a possible way to keep data persistence by 
     dumping it into a file"""
@@ -203,4 +232,3 @@ def save_data(data):
     f = open("data.py", "w+")		
     f.write(output)
     f.close()
-

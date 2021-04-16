@@ -20,21 +20,17 @@ def test_valid_token(register_user):
         'users': [
             {
                 "auth_user_id": 0,
+                "email": "batman@gmail.com",
                 "name_first": "bat",
                 "name_last": "man",
-                "handle_str": "batman",
-                "email": "batman@gmail.com",
-                "password": "123456",
-                "permission_id": 1                              
+                "handle_str": "batman"              
             },
             {
                 "auth_user_id": 1,
+                "email": "johnsmith@gmail.com",
                 "name_first": "john",
                 "name_last": "smith",
-                "handle_str": "johnsmith",
-                "email": "johnsmith@gmail.com",
-                "password": "123456",
-                "permission_id": 2               
+                "handle_str": "johnsmith"    
             }
         ]
     }
