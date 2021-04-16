@@ -1,5 +1,5 @@
 '''
-This file contains the implementation of auth_login_v1 and auth_register_v1
+This file contains the implementation of auth_login and auth_register, and auth_logout
 '''
 import jwt
 import time
