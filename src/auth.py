@@ -99,8 +99,11 @@ def auth_register_v2(email, password, name_first, name_last):
 	    'name_last' : name_last, 
         'handle_str' : handle, 
 	    'email': email, 
-	    'password': password, 
-        'permission_id': permission_id, #1 for owner, 2 for member 
+	    'password': password,
+        'channels_joined': [],
+        'dms_joined': [],
+        'messages_sent': [], 
+        'permission_id': permission_id #1 for owner, 2 for member 
     })
     # Save the data persistently
     helper.save_data(data)
