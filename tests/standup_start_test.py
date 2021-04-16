@@ -6,14 +6,13 @@ from src.channels import channels_create_v2, channels_list_v2
 from src.error import InputError, AccessError
 from src.helper import generate_token
 from src.other import clear_v1
-from src.standup import standup_start_v1, standups, standup_active_v1
+from src.standup import standup_start_v1, standup_active_v1
 from datetime import datetime, timezone
 
 # Confirms that a valid startup can be started 
 def test_standup_start_valid():
-    # Clear data and the standups global variable 
+    # Clear data 
     clear_v1() 
-    standups.clear() 
     # Register a user and create a channel 
     authorised_info = auth_register_v2('j.smith@gmail.com', 'newpassword', 
                            'jack', 'smith')
@@ -30,13 +29,12 @@ def test_standup_start_valid():
     now = datetime.now()
     now_timestamp = int(now.replace(tzinfo=timezone.utc).timestamp())
     assert (time_finish > now_timestamp)
-
+   
 # Test confirming an error is raised when the standup_start is called when the
 # standup is already active
 def test_standup_start_repeated():
     # Clear all data, register a dummy account and create a channel 
     clear_v1() 
-    standups.clear()
     authorised_info = auth_register_v2('j.smith@gmail.com', 'newpassword', 
                            'jack', 'smith')
     token = authorised_info['token'] 
@@ -52,7 +50,6 @@ def test_standup_start_repeated():
 def test_standup_start_invalid_channel():
     # Clear data and register an user
     clear_v1() 
-    standups.clear()
     authorised_info = auth_register_v2('j.smith@gmail.com', 'newpassword', 
                            'jack', 'smith')
     token = authorised_info['token'] 
@@ -67,7 +64,6 @@ def test_standup_start_invalid_channel():
 def test_standup_start_invalid_token():
     # Clear data, register a user and create a channel 
     clear_v1() 
-    standups.clear()
     authorised_info = auth_register_v2('j.smith@gmail.com', 'newpassword', 
                            'jack', 'smith')
     token = authorised_info['token'] 
@@ -87,7 +83,6 @@ def test_standup_start_invalid_token():
 def test_standup_start_unauthorised_user():
     # Clear data, register a user and create a channel 
     clear_v1() 
-    standups.clear()
     authorised_info = auth_register_v2('j.smith@gmail.com', 'newpassword', 
                            'jack', 'smith')
     token = authorised_info['token'] 
