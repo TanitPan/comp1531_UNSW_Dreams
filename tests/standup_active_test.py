@@ -6,7 +6,7 @@ from src.channels import channels_create_v2, channels_list_v2
 from src.error import InputError, AccessError
 from src.helper import generate_token
 from src.other import clear_v1
-from src.standup import standup_start_v1, standups, standup_active_v1
+from src.standup import standup_start_v1, standup_active_v1
 from datetime import datetime, timezone
 
 # Test confirming that standup_active works successfully when no standup is 
@@ -14,7 +14,6 @@ from datetime import datetime, timezone
 def test_standup_active_norunning():
     # Clear data
     clear_v1() 
-    standups.clear() 
     # Register a user and create a channel, extracting token and id
     authorised_info = auth_register_v2("hayden.smith@gmail.com", "pass1234", 
                            "hayden", "smith")
@@ -32,7 +31,6 @@ def test_standup_active_norunning():
 def test_standup_active_running():
     # Clear data
     clear_v1() 
-    standups.clear() 
     # Register a user and create a channel
     authorised_info = auth_register_v2("hayden.smith@gmail.com", "pass1234", 
                            "hayden", "smith")
@@ -52,7 +50,6 @@ def test_standup_active_running():
 def test_standup_active_multiple():
     # Clear all data
     clear_v1() 
-    standups.clear() 
     # Register a user and create two channels
     authorised_info = auth_register_v2("hayden.smith@gmail.com", "pass1234", 
                            "hayden", "smith")
@@ -76,7 +73,6 @@ def test_standup_active_multiple():
 def test_standup_active_channelinvalid():
     # Clear all data
     clear_v1() 
-    standups.clear() 
     # Register a user and create a channel
     authorised_info = auth_register_v2("hayden.smith@gmail.com", "pass1234", 
                            "hayden", "smith")
@@ -93,7 +89,6 @@ def test_standup_active_channelinvalid():
 def test_standup_start_invalidtoken():
     # Clear all data, generate a token from a valid user and create a channel 
     clear_v1() 
-    standups.clear() 
     authorised_info = auth_register_v2("hayden.smith@gmail.com", "pass1234", 
                            "hayden", "smith")
     token = authorised_info["token"]
