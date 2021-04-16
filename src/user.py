@@ -156,19 +156,50 @@ def user_stats_v1(token):
     Return Value:
         Returns {user_stats}
     """
-    id = helper.decrypt_token(token) # Also validates the token, raises AccessError when token is invalid
-    
-    num_channels_joined = 0
-    num_dms_joined = 0
-    num_msgs_sent = 0
+    id = helper.valid_token(token) # Also validates the token, raises AccessError when token is invalid
+
+    found = False
+    for user in data['users']:
+        if id == user['auth_user_id']:
+            myUser = user        
+            #if len(user['channels_joined']) > 0:
+            print(user['channels_joined'])
+            num_channels_joined = user['channels_joined'][-1]['num_channels_joined']
+      
+            #if len(user['dms_joined']) > 0:
+            num_dms_joined = user['dms_joined'][-1]['num_dms_joined']
+
+            #if len(user['messages_sent']) > 0:
+            num_messages_sent = user['messages_sent'][-1]['num_messages_sent']
+            
+            found = True
+            
+    if found == False:
+        raise(InputError)
 
     num_dreams_channels = 0
+    for channel in data['channels']:
+        if channel['dm_id'] == -1: # indicates a channel and not a DM
+            num_dreams_channels += 1
+
     num_dreams_dms = 0
+    for channel in data['channels']:
+        if channel['dm_id'] == 1: # indicates a DM and not a channel
+            num_dreams_dms += 1
+    
     num_dreams_msgs = 0
-    involvement_rate = sum(num_channels_joined, num_dms_joined, num_msgs_sent)/sum(num_dreams_channels, num_dreams_dms, num_dreams_msgs)
+    for channel in data['channels']:
+        num_dreams_msgs += len(channel['messages'])
+
+    numerator = num_channels_joined + num_dms_joined + num_messages_sent
+    denominator = num_dreams_channels + num_dreams_dms + num_dreams_msgs
+    if denominator == 0:
+        involvement_rate = 0
+    else:
+        involvement_rate = numerator/denominator
     return {
-        'channels_joined': [{num_channels_joined, time_stamp}],
-        'dms_joined': [{num_dms_joined, time_stamp}], 
-        'messages_sent': [{num_messages_sent, time_stamp}], 
+        'channels_joined': myUser['channels_joined'],
+        'dms_joined': myUser['dms_joined'],
+        'messages_sent': myUser['messages_sent'],
         'involvement_rate': involvement_rate
     }

@@ -4,7 +4,7 @@ This file implement dm(direct message) functionality of DREAM
 from data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
-from src.helper import valid_token, save_data, check_valid_user
+from src.helper import valid_token, save_data, check_valid_user, update_user_stats
 
 def dm_create_v1(token, u_ids):
     """
@@ -83,6 +83,9 @@ def dm_create_v1(token, u_ids):
 
     # Append the newly create dm channel to channels
     data["channels"].append(new_dm)
+
+    # update the users stats
+    update_user_stats(token, 'dms_joined', 1) 
 
     # Writes data to file for persistence
     save_data(data)

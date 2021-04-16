@@ -2,6 +2,8 @@
 This file contains the implementation of auth_login_v1 and auth_register_v1
 '''
 import jwt
+import time
+import math
 
 from data import data
 from src.error import InputError, AccessError
@@ -39,7 +41,7 @@ def auth_login_v2(email, password):
     # Check that the password is valid
     id = helper.check_password(user, password)
 
-    # Return their auth_user_id
+    # Return their auth_user_id and token
     return {
         'token': helper.generate_token(id),
         'auth_user_id': id
@@ -93,6 +95,7 @@ def auth_register_v2(email, password, name_first, name_last):
         permission_id = 2 # global member
 
     # Register data to the dataframe
+    timestamp = math.floor(time.time())
     data['users'].append({
         'auth_user_id' : id, 
 	    'name_first' : name_first, 
@@ -100,11 +103,12 @@ def auth_register_v2(email, password, name_first, name_last):
         'handle_str' : handle, 
 	    'email': email, 
 	    'password': password,
-        'channels_joined': [],
-        'dms_joined': [],
-        'messages_sent': [], 
+        'channels_joined': [{'num_channels_joined': 0, 'timestamp': timestamp}],
+        'dms_joined': [{'num_dms_joined': 0, 'timestamp': timestamp}],
+        'messages_sent': [{'num_messages_sent': 0, 'timestamp': timestamp}], 
         'permission_id': permission_id #1 for owner, 2 for member 
     })
+
     # Save the data persistently
     helper.save_data(data)
     return {
