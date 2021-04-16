@@ -45,7 +45,7 @@ def test_valid_input(register_user):
     })
     res = requests.get(f"{url}/user/stats/v1?{query}")
     payload = res.json()
-    assert payload['code'] == 200
+    assert res.status_code == 200 
 
 def test_invalid_token():
     requests.delete(f"{url}/clear/v1") # Clear the data
@@ -55,4 +55,4 @@ def test_invalid_token():
     })
     res = requests.get(f"{url}/user/stats/v1?{query}")
     payload = res.json() 
-    assert payload['code'] == 400 # AccessError
+    assert payload['code'] == 403 # AccessError
