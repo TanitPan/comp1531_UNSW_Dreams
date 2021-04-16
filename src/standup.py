@@ -2,12 +2,9 @@
 
 from data import data
 from src.error import InputError, AccessError
-from src.helper import valid_token, save_data, valid_member, valid_channel
+from src.helper import valid_token, save_data, valid_member, valid_channel, save_data
 import time
 from datetime import datetime, timedelta, timezone
-
-# Created a global list, which would keep a list of the standups 
-standups = []
 
 def standup_start_v1(token, channel_id, length):
     ''' 
@@ -43,7 +40,6 @@ def standup_start_v1(token, channel_id, length):
     start_time = datetime.now()
     # Adds the inputted length to the start time to calculate the finish_time
     finish_time = start_time + timedelta(seconds = length)
-    global standups     # Calls the global variable 
     # Checks if a standup is currently running in the channel and, if so, raises
     # an error
     return_value = standup_active_v1(token, channel_id)
@@ -51,20 +47,17 @@ def standup_start_v1(token, channel_id, length):
         raise InputError("An active standup is currently running in this channel")   
     
     updated_standup = False # Flag
-    # Loops through the standups and if a standup exists for this channel, it 
-    # edits the information of the length, starting and finishing times. 
-    # Otherwise, this information is appended to the standup as a dictionary 
-    for standup in standups:
-        if standup["channel_id"] == channel_id:
-            standup["length"] = length
-            standup["start_time"] = start_time
-            standup["finish_time"] = finish_time
-            updated_standup = True
-    if not updated_standup:
-        standup = {"length": length, "channel_id": channel_id,
-            "start_time": start_time, "finish_time": finish_time}
-        standups.append(standup)
-    
+    # Loops through the standups and it adds or edits the information of the 
+    # length, starting and finishing times, having converted it to an isoformat. 
+    # Otherwise, this information is appended to data list as a dictionary 
+    for channel in data["channels"]:
+        if channel["channel_id"] == channel_id:
+            channel["standups"]["length"] = length
+            channel["standups"]["start_time"] = start_time.isoformat()
+            channel["standups"]["finish_time"] = finish_time.isoformat()
+    # Saves data
+    save_data(data)
+   
     # Returns the integer conversion of the timestamp, having converted it to an
     # UTC timestamp
     # Source: https://www.tutorialspoint.com/How-to-convert-Python-date-to-Unix-timestamp
@@ -72,7 +65,7 @@ def standup_start_v1(token, channel_id, length):
     return {"time_finish": time_finish}
 
 def standup_active_v1(token, channel_id):
-    ''' 
+    '''
     This function checks if there is a currently running standup by looking at 
     the global variable and returns when the standup will finish. 
     Arguments:
@@ -95,18 +88,22 @@ def standup_active_v1(token, channel_id):
     # in the data frame
     valid_token(token)
     valid_channel(channel_id)
-    global standups # Call the global variable
     return_value = {} # empty dictionary to store values
     is_active = False # Flag
 
-    # If a standup matches the channel_id passed in, check if the current time 
+    # If a channel_id matches the channel_id passed in, check if the current time 
     # is more recent than the expected finish time. If so, change the is_active
     # value to True
-    for standup in standups:
-        if standup["channel_id"] == channel_id:
-            if datetime.now() < standup["finish_time"]:
-                is_active = True
-                finish_time = standup["finish_time"]
+    for channel in data["channels"]:
+        if channel["channel_id"] == channel_id:
+            # Firstly checks if the finish time has been added to the llist
+            if "finish_time" in channel["standups"]:
+                if datetime.now() < datetime.fromisoformat(
+                channel["standups"]["finish_time"]):
+                    is_active = True
+                    finish_time = datetime.fromisoformat(
+                        channel["standups"]["finish_time"])            
+    
     # Add the is_active response to the dictionary as a key
     return_value["is_active"] = is_active
     # If is_active is true, the value of the finish time will be the converted
