@@ -32,8 +32,7 @@ def test_valid_input(register_user):
 
 def test_channels_stats(register_user):
     token = register_user
-    channel1 = channels_create_v2(token, "General", True)
-    channel_id1 = channel1['channel_id']
+    channels_create_v2(token, "General", True)
 
     res = users_stats_v1(token)
     # make sure the channels_exist stat and utilization rate are updated
