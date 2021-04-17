@@ -3,8 +3,12 @@
 from data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
+<<<<<<< HEAD
 from src.auth import auth_register_v2
 from src.helper import valid_token, save_data
+=======
+from src.helper import valid_token, save_data, update_user_stats, update_users_stats
+>>>>>>> master
 
 
 def channels_list_v2(token):
@@ -144,15 +148,22 @@ def channels_create_v2(token, name, is_public):
         'dm_id': -1, #assume default
         'messages': [
             {
-                'message_id' : new_messages_id, #Assuming it is greater than 0
-                'message' : '',
-                'timestamp' : 0, # will replace this with the correct timestamp 
-                'auth_user_id' : auth_user_id, 
+                    'message_id' : new_messages_id, #Assuming it is greater than 0
+                    'message' : '',
+                    'timestamp' : 0, # will replace this with the correct timestamp 
+                    'auth_user_id' : auth_user_id, 
             }
-        ]
+        ], 
+        "standups": { # empty dictionary, which can be updated in standup,py
+        }
     }
 
     data['channels'].append(new_channels)
+
+    # update the user and users stats
+    update_user_stats(token, 'channels_joined', 1)
+    update_users_stats(token, 'channels_exist', 1) 
+    
     # Writes data to file for persistence
     save_data(data)
     return {

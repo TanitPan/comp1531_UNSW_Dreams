@@ -6,6 +6,8 @@ from data import data
 import re
 import jwt
 import json
+import time
+import math
 from src.error import InputError, AccessError
 
 # Valid email input
@@ -206,10 +208,10 @@ def valid_channel(channel_id):
     This function checks if channel_id is valid. Return channel_id if valid and 
     raise an InputError exception otherwise.
     """
-    for channel in data["channels"]:
-        if channel["channel_id"] == channel_id:
+    channel_id = int(channel_id)
+    for channel in data["channels"]:     
+        if channel["channel_id"] == channel_id:           
             return channel_id
-
     raise InputError(description = "channel_id is not a valid channel")
 
 def check_existing_owner(u_id, channel_id):
@@ -223,12 +225,53 @@ def check_existing_owner(u_id, channel_id):
 		            already_owner = True 
 		            break
     return already_owner
-    
+
+def update_user_stats(token, stat_name, change):
+    '''
+    Given a stat name of either 'channels_joined', 'dms_joined', or 'messages_sent', 
+    update the user stats and timestamp the change, depending on whether the change is 
+    positive or negative. Updates the data associated with a user of a valid token
+    '''
+    if stat_name not in ['channels_joined', 'dms_joined', 'messages_sent']:
+        raise InputError("Invalid stat_name given")
+
+    id = valid_token(token)
+    for user in data['users']:
+        if id == user['auth_user_id']:
+            timestamp = math.floor(time.time())
+            # list always >= 1
+            # get the most recent value +- the change
+            lst = user[stat_name]
+            num_statname = lst[-1]['num_'+stat_name] + change
+
+            lst.append({
+            'num_'+stat_name: num_statname, 
+            'timestamp': timestamp
+            })
+            return
+
+def update_users_stats(token, stat_name, change):
+    '''
+    Given a stat name of either 'channels_exist', 'dms_exist', or 'messages_exist', 
+    update the users stats and timestamp the change, depending on whether the change is 
+    positive or negative. Updates the data associated with a user of a valid token
+    '''
+    if stat_name not in ['channels_exist', 'dms_exist', 'messages_exist']:
+        raise InputError("Invalid stat_name given")
+    timestamp = math.floor(time.time())
+    lst = data[stat_name]
+    num_statname = lst[-1]['num_'+stat_name] + change
+
+    lst.append({
+        'num_'+stat_name: num_statname,
+        'timestamp': timestamp
+    })
+
 def save_data(data):
     """ This function contains a possible way to keep data persistence by 
     dumping it into a file"""
     output = "data = " +json.dumps(data) 
-    # Edits the boolean features so they capitalised 
+    # Edits the boolean features so they are capitalised 
     output = output.replace("true", "True")
     output = output.replace("false", "False")
     # Writes it to the file
@@ -236,3 +279,16 @@ def save_data(data):
     f.write(output)
     f.close()
 
+def valid_member(user_id, channel_id):
+    """ This function checks if someone is a member of a channel, raising an 
+    AccessError if they aren't"""
+    valid_member = False
+    for channel in data['channels']:	
+        if channel_id == channel["channel_id"]:
+            for member in channel['all_members']:     
+                if member['auth_user_id'] == user_id:
+                    valid_member = True
+     
+    if not valid_member:
+        raise AccessError("The authorised user is not an member of the channel")  
+    

@@ -1,8 +1,13 @@
 from src.error import InputError, AccessError
 from data import data
 from src.helper import (check_valid_user, valid_token, valid_channel, 
+<<<<<<< HEAD
     check_existing_owner, check_dreams_owner, save_data, search_user_data)
     
+=======
+check_existing_owner, check_dreams_owner, save_data, update_user_stats, generate_token)
+
+>>>>>>> master
 def channel_invite_v2(token, channel_id, u_id):
     """
     This function invites the user to given channel. 
@@ -69,6 +74,9 @@ def channel_invite_v2(token, channel_id, u_id):
     for channel in data["channels"]:
         if channel_id == channel["channel_id"]:
             channel["all_members"].append(new_member)
+
+    myUserToken = generate_token(u_id)
+    update_user_stats(myUserToken, 'channels_joined', 1) # update the user's stats
 
     # Writes data to file for persistence
     save_data(data)
@@ -279,7 +287,9 @@ def channel_leave_v1(token, channel_id):
                     break
     # Raise an AccessError if this user does not belong to the group 
     if member_valid == False:
-        raise AccessError("Authorised user is not a member in the channel") 
+        raise AccessError("Authorised user is not a member in the channel")
+    # Decrease the number of channels joined by the user
+    update_user_stats(token, 'channels_joined', -1) 
     # Save data for persistence
     save_data(data)
     return {
@@ -341,7 +351,8 @@ def channel_join_v2(token, channel_id):
                 channel["all_members"].append(new_user_info)
     else:
         raise AccessError("channel ID refer to a private channel")
-
+    # Increase the number of channels joined by the user
+    update_user_stats(token, 'channels_joined', 1)
     # Writes data to file for persistence
     save_data(data)
 
@@ -396,7 +407,11 @@ def channel_addowner_v1(token, channel_id, u_id):
             break 	
 	
     if member_valid == False:
-        channel['all_members'].append(new_owner)    
+        channel['all_members'].append(new_owner)
+        # if they aren't already a member, update their user stats to reflect
+        # another channel joined
+        update_user_stats(token, 'channels_joined', 1) # update the user's stats 
+           
     # Save data for persistence
     save_data(data)    
     # Return an empty dictionary

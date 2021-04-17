@@ -1,4 +1,5 @@
 from data import data
+<<<<<<< HEAD
 from src.error import InputError, AccessError
 import src.helper as helper
 from datetime import timezone, datetime
@@ -77,6 +78,17 @@ def message_send_v2(token, channel_id, message):
     curr_channel['is_pinned'] = False
 
     # Return the message_id
+=======
+from src.helper import valid_token, update_user_stats, update_users_stats, save_data
+
+def message_send_v2(token, channel_id, message):
+    valid_token(token) # raises AccessError on invalid token
+    #update the user and users stats
+    update_user_stats(token, 'messages_sent', 1)
+    update_users_stats(token, 'messages_exist', 1)
+    # save the data persistently
+    save_data(data)
+>>>>>>> master
     return {
         'message_id': msg['message_id']
     }

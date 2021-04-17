@@ -8,11 +8,11 @@ from src import config
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
 from src.admin import admin_user_remove_v1, admin_userpermission_change_v1
 from src.channels import channels_create_v2, channels_list_v2, channels_listall_v2
-from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1
-from src.other import users_all_v1, clear_v1, search_v2
+from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1, user_stats_v1
+from src.other import users_all_v1, users_stats_v1, clear_v1, search_v2
 from src.channel import channel_invite_v2, channel_addowner_v1, channel_removeowner_v1, channel_leave_v1, channel_join_v2
 from src.dm import dm_create_v1, dm_list_v1
-
+from src.standup import standup_start_v1, standup_active_v1
 
 def defaultHandler(err):
     response = err.get_response()
@@ -145,6 +145,13 @@ def user_profile_sethandle():
 
     return dumps(
         user_profile_sethandle_v1(token, handle_str)
+    )
+
+@APP.route("/user/stats/v1", methods=['GET'])
+def user_stats_server():
+    token = request.args.get('token')
+    return dumps(
+        user_stats_v1(token)
     )
 
 """
@@ -282,11 +289,19 @@ def users_all_server():
         users_all_v1(token)
     )
 
+@APP.route("/users/stats/v1", methods=['GET'])
+def users_stats_server():
+    token = request.args.get('token')
+    return dumps(
+        users_stats_v1(token)
+    )
+
 @APP.route("/clear/v1", methods=['DELETE'])
 def clear_server():
     return dumps(
         clear_v1()
     )
+    
 @APP.route("/search/v2", methods=["GET"])
 def search_server():
     token = request.args.get("token")
@@ -313,7 +328,27 @@ def dm_list_server():
         dm_list_v1(token)
     )
 
+"""
+STANDUP ROUTES
+"""
+@APP.route("/standup/start/v1", methods = ['POST'])
+def standup_start_server():
+    payload = request.get_json()
+    token = payload["token"]
+    channel_id = payload["channel_id"]
+    length = int(payload["length"])
+    return dumps(
+        standup_start_v1(token, channel_id, length)
+    )
 
+@APP.route("/standup/active/v1", methods = ['GET'])
+def standup_active_server():
+    token = request.args.get('token')
+    channel_id = request.args.get('channel_id') 
+    return dumps(
+        standup_active_v1(token, channel_id)
+    )
+ 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
     

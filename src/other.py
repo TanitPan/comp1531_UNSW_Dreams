@@ -1,7 +1,9 @@
 '''
 This file contains other functions relating to the implementation of 
-the backend project. Currently contains the clear function.
+the backend project. 
 '''
+import time
+import math
 
 from data import data
 from src.error import InputError, AccessError
@@ -23,10 +25,60 @@ def users_all_v1(token):
     helper.valid_token(token) # Raises AccessError on invalid token
     users = []
     for user in data['users']:
-        users.append(user)
+        #users.append(user)
+        # return custom user data
+        myuser = {
+            'auth_user_id': user['auth_user_id'],
+            'email': user['email'],
+            'name_first': user['name_first'],
+            'name_last': user['name_last'],
+            'handle_str': user['handle_str']
+        }
+        users.append(myuser)
     
     return {
         'users': users
+    }
+
+def users_stats_v1(token):
+    """
+    Given a valid token, fetches the required statistics about the use of UNSW Dreams
+
+    Arguments:
+        token <string>    - the user's token
+        
+    Exceptions:
+        AccessError - Occurs when the token given isn't valid
+
+    Return Value:
+        Returns {dreams_stats} on success
+    """
+    helper.valid_token(token) # Raises AccessError on invalid token
+
+    num_users_who_have_joined_at_least_one_channel_or_dm = 0
+
+    unique_ids = []
+    for channel in data['channels']:
+        for id in channel['all_members']:
+            if id not in unique_ids:
+                unique_ids.append(id)
+        for id in channel['owner_members']:
+            if id not in unique_ids:
+                unique_ids.append(id)
+                
+    num_users_who_have_joined_at_least_one_channel_or_dm = len(unique_ids)
+
+    total_num_users = len(data['users'])
+    util_rate = num_users_who_have_joined_at_least_one_channel_or_dm / total_num_users
+
+    #num_channels_exist = data['channels_exist'][-1]['num_channels_exist']
+    #num_dms_exist = data['dms_exist'][-1]['num_dms_exist']
+    #num_messages_exist = data['messages_exist'][-1]['num_messages_exist']
+    return {
+        'channels_exist': data['channels_exist'],
+        'dms_exist': data['dms_exist'],
+        'messages_exist': data['messages_exist'],
+        'utilization_rate': util_rate
     }
 
 def clear_v1():
@@ -35,10 +87,17 @@ def clear_v1():
     '''
     data['users'].clear()
     data['channels'].clear()
+    data['channels_exist'].clear()
+    data['messages_exist'].clear()
+    data['dms_exist'].clear()
+    # new dreams instance requires initialisation of dreams analytics timestamps
+    timestamp = math.floor(time.time())
+    data['channels_exist'].append({'num_channels_exist': 0, 'timestamp': timestamp})
+    data['messages_exist'].append({'num_messages_exist': 0, 'timestamp': timestamp})
+    data['dms_exist'].append({'num_dms_exist': 0, 'timestamp': timestamp})
     # Save the data persistently
     helper.save_data(data)
     
-
 def search_v2(token, query_str):
     '''
     Returns a collection of messages that contain the substring, query_str, in 
