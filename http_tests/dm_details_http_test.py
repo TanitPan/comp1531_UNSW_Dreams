@@ -150,7 +150,6 @@ def test_dm_details_invalid_member():
     
     auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
     payload = auth_user2_info.json()
-    auth_id2 = payload["auth_user_id"]
     token2 = payload["token"]
 
     u_ids = []
