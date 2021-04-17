@@ -74,6 +74,8 @@ def message_send_v2(token, channel_id, message):
     # Insert dictionary 'msg' into the channel['messages']
     curr_channel['messages'].insert(0,msg)
 
+    curr_channel['is_pinned'] = False
+
     # Return the message_id
     return {
         'message_id': msg['message_id']
@@ -248,4 +250,203 @@ def message_edit_v1(token, message_id, message):
     return {
     }
 
+def message_sendlater_v1(token, channel_id, message, time_sent):
+    # Assign empty dictionary 'msg'
+    msg = {}
+
+    # Assign new variables to check
+    is_member = False
+
+    # Get the user['auth_user_id']
+    u_id = helper.valid_token(token)
+
+    # Looped through the data['channels']
+    # Find the channel['channel_id'] with the same input channel_id
+    # Assign the channel to curr_channel
+    # Looped through the channel['all_members']
+    # Find the member['auth_user_id'] with the same u_id
+    # If the member is part of the channel, assign is_member to True
+    for channel in data['channels']:
+        if channel['channel_id'] == channel_id:
+            curr_channel = channel
+            for member in channel['all_members']:
+                if member['auth_user_id'] == u_id:
+                    is_member = True
+                    break
+            break
+    
+    # If the member is to part of the channel, it raise AccesError
+    if is_member == False:
+        raise AccessError("Authorised user is not a member of channel")
+    
+    # If the length of the message exceed 1000, it raise InputError
+    if len(message) > 1000:
+        raise InputError("Message is too long")
+
+    # Generate the message_id and assign it into dictionary msg['message_id']
+    # Added 1 to msg_counter
+    msg['message_id'] = helper.msg_counter
+    helper.msg_counter += 1
+    
+    # Assign the user['auth_user_id'] who send the message into msg['auth_user_id']
+    msg['auth_user_id'] = u_id
+
+    # Assign the message into msg['message']
+    msg['message'] = message
+
+    #
+    dt = datetime.now(timezone.utc)
+    timestamp = int(dt.replace(tzinfo = timezone.utc).timestamp())
+
+    diff_time = time_sent - timestamp
+
+    if int(diff_time) < 0:
+        raise InputError("Unable to send message to a time in the past!")
+
+    msg['time_created'] = time_sent
+    
+    # Insert dictionary 'msg' into the channel['messages']
+    curr_channel['messages'].insert(0,msg)
+
+    # Return the message_id
+    return {
+        'message_id': msg['message_id']
+    }
+
+def message_pin(token, message_id):
+
+    # Get the user['auth_user_id']
+    u_id = helper.valid_token(token)
+
+    # Assign new variables to check
+    valid_msg_id = False
+    valid_owner = False
+    valid_dream_owner = False
+
+    # Looped through the data['channels']
+    # Looped through the channel['messages']
+    # Find the message with the same message_id and the input message_id
+    # Assign the channel['channel_id] into chan_id
+    # If the message_id is exist, assign valid_msg_id to True
+    # Find the message['auth_user_id] with the same user's auth_user_id
+    # If the message's auth_user_id is the same with the user's auth_user_id, assign valid_owner to True
+    for channel in data['channels']:
+        for message in channel['messages']:
+            if message['message_id'] == message_id:
+                chan_id = channel['channel_id']
+                valid_msg_id = True
+                if message['auth_user_id'] == u_id:
+                    valid_owner = True
+                    break
+
+    # Looped through the data['users']
+    # Find the user with the same auth_user_id
+    # Assign the valid_dream_owner to True if the permission_id is 1
+    for user in data['users']:
+        if user['auth_user_id'] == u_id:
+            if user['permission_id'] == 1: 
+                valid_dream_owner = True
+                break   
+
+    # If message_id is not exist, it raise InputError
+    if valid_msg_id == False:
+        raise InputError("Message no longer exists!")
+
+    # Raise AccessError if:
+    # - The owner of the message is not the same with the auth_user_id from input token,
+    # - Not the dream owner
+    if valid_owner == False or valid_dream_owner == False:
+        raise AccessError("Not Authorised User!")
+
+    # Looped through the data['channels']
+    # Find the channel with the same channel_id
+    # Assign the channel into curr_chan
+    for channel in data['channels']:
+        if channel['channel_id'] == chan_id:
+            curr_chan = channel
+
+    # Looped through the channel['messages']
+    # Find the message with the same message_id
+    # Remove the message
+    for message in curr_chan['messages']:
+        if message['message_id'] == message_id:
+            curr_msg = message
+    
+    if curr_msg['is_pinned'] == True:
+        raise InputError("Message is already pinned")
+
+    else:
+        curr_msg['is_pinned'] = True
+    # Return None
+    return {
+    }
+
+def message_unpin(token, message_id):
+
+    # Get the user['auth_user_id']
+    u_id = helper.valid_token(token)
+
+    # Assign new variables to check
+    valid_msg_id = False
+    valid_owner = False
+    valid_dream_owner = False
+
+    # Looped through the data['channels']
+    # Looped through the channel['messages']
+    # Find the message with the same message_id and the input message_id
+    # Assign the channel['channel_id] into chan_id
+    # If the message_id is exist, assign valid_msg_id to True
+    # Find the message['auth_user_id] with the same user's auth_user_id
+    # If the message's auth_user_id is the same with the user's auth_user_id, assign valid_owner to True
+    for channel in data['channels']:
+        for message in channel['messages']:
+            if message['message_id'] == message_id:
+                chan_id = channel['channel_id']
+                valid_msg_id = True
+                if message['auth_user_id'] == u_id:
+                    valid_owner = True
+                    break
+
+    # Looped through the data['users']
+    # Find the user with the same auth_user_id
+    # Assign the valid_dream_owner to True if the permission_id is 1
+    for user in data['users']:
+        if user['auth_user_id'] == u_id:
+            if user['permission_id'] == 1: 
+                valid_dream_owner = True
+                break   
+
+    # If message_id is not exist, it raise InputError
+    if valid_msg_id == False:
+        raise InputError("Message no longer exists!")
+
+    # Raise AccessError if:
+    # - The owner of the message is not the same with the auth_user_id from input token,
+    # - Not the dream owner
+    if valid_owner == False or valid_dream_owner == False:
+        raise AccessError("Not Authorised User!")
+
+    # Looped through the data['channels']
+    # Find the channel with the same channel_id
+    # Assign the channel into curr_chan
+    for channel in data['channels']:
+        if channel['channel_id'] == chan_id:
+            curr_chan = channel
+
+    # Looped through the channel['messages']
+    # Find the message with the same message_id
+    # Remove the message
+    for message in curr_chan['messages']:
+        if message['message_id'] == message_id:
+            curr_msg = message
+    
+    if curr_msg['is_pinned'] == False:
+        raise InputError("Message is already unpinned")
+
+    else:
+        curr_msg['is_pinned'] = False
+        
+    # Return None
+    return {
+    }
 
