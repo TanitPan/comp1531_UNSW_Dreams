@@ -258,5 +258,4 @@ def valid_member(user_id, channel_id):
                     valid_member = True
      
     if not valid_member:
-        raise AccessError("The authorised user is not an member of the channel")  
-    
+        raise AccessError("The authorised user is not an member of the channel")

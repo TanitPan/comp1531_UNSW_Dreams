@@ -8,11 +8,13 @@ from src import config
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
 from src.admin import admin_user_remove_v1, admin_userpermission_change_v1
 from src.channels import channels_create_v2, channels_list_v2, channels_listall_v2
-from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1, user_stats_v1
+from src.user import (user_profile_v2, user_profile_setname_v2, 
+user_profile_setemail_v2, user_profile_sethandle_v1, user_stats_v1)
 from src.other import users_all_v1, users_stats_v1, clear_v1, search_v2
-from src.channel import channel_invite_v2, channel_addowner_v1, channel_removeowner_v1, channel_leave_v1, channel_join_v2
+from src.channel import (channel_invite_v2, channel_addowner_v1, 
+channel_removeowner_v1, channel_leave_v1, channel_join_v2)
 from src.dm import dm_create_v1, dm_list_v1
-from src.standup import standup_start_v1, standup_active_v1
+from src.standup import standup_start_v1, standup_active_v1, standup_send_v1
 
 def defaultHandler(err):
     response = err.get_response()
@@ -106,7 +108,6 @@ def channels_create_server():
         channels_create_v2(token, name, is_public)
     )
 
-
 """
 USER ROUTES
 """
@@ -194,7 +195,7 @@ def channel_invite_server():
 def channel_addowner_server():
     payload = request.get_json()
     token = payload["token"]
-    channel_id = payload["channel_id"]
+    channel_id = int(payload["channel_id"])
     u_id = payload["u_id"]
     return dumps(
         channel_addowner_v1(token, channel_id, u_id)
@@ -204,7 +205,7 @@ def channel_addowner_server():
 def channel_removeowner_server():
     payload = request.get_json()
     token = payload["token"]
-    channel_id = payload["channel_id"]
+    channel_id = int(payload["channel_id"])
     u_id = payload["u_id"]
     return dumps(
         channel_removeowner_v1(token, channel_id, u_id)
@@ -214,7 +215,7 @@ def channel_removeowner_server():
 def channel_leave_server():
     payload = request.get_json()
     token = payload["token"]
-    channel_id = payload["channel_id"]
+    channel_id = int(payload["channel_id"])
     return dumps(
         channel_leave_v1(token, channel_id)
     )
@@ -295,11 +296,20 @@ def standup_start_server():
 @APP.route("/standup/active/v1", methods = ['GET'])
 def standup_active_server():
     token = request.args.get('token')
-    channel_id = request.args.get('channel_id') 
+    channel_id = int(request.args.get('channel_id'))
     return dumps(
         standup_active_v1(token, channel_id)
+    )
+
+@APP.route("/standup/send/v1", methods = ['POST'])
+def standup_send_server():
+    payload = request.get_json()
+    token = payload['token']
+    channel_id = int(payload['channel_id'])
+    message = payload['message']
+    return dumps(
+        standup_send_v1(token, channel_id, message)
     )
  
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
-    

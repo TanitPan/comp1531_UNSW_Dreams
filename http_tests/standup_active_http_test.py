@@ -10,7 +10,7 @@ import requests
 # there is no active standup returns 
 def test_standup_active_inactivestandup():
     # Clear all data and obtain the token and channel_id
-    requests.delete(f"{url}/clear/v1")
+    requests.delete(url + "clear/v1")
     authorised_info = requests.post(f"{url}/auth/register/v2", json = {
         'email': 'z5555555@gmail.com', 
         'password': 'unswstudent', 
