@@ -3,7 +3,7 @@
 from data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
-from src.helper import valid_token, save_data, update_user_stats
+from src.helper import valid_token, save_data, update_user_stats, update_users_stats
 from datetime import datetime, timezone
 import time 
 
