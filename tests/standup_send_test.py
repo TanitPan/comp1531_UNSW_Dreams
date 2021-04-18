@@ -97,12 +97,30 @@ def test_standup_send_inactive():
     authorised_info = auth_register_v2("hayden.smith@gmail.com", "pass1234", 
                            "hayden", "smith")
     token = authorised_info["token"]
-    channel = channels_create_v2(token, "Channel5", True)
+    channel = channels_create_v2(token, "Channel6", False)
     channel_id = channel["channel_id"]
     # Calling standup_send should register an InputError as an active standup is
     # not running 
     with pytest.raises(InputError):
         standup_send_v1(token, channel_id, "New message")  
+
+def test_standup_send_notmember():
+    """Test checking that a non-member of the channel cannot send a message"""
+    # Clear data, register a user, get a token and channel_id
+    clear_v1()
+    authorised_info1 = auth_register_v2("hayden.smith@gmail.com", "pass1234", 
+                           "hayden", "smith")
+    token1 = authorised_info1["token"]
+    channel = channels_create_v2(token1, "Channel7", True)
+    channel_id = channel["channel_id"]
+    # Register a new user who is not added as a member of the channel
+    authorised_info2 = auth_register_v2("john.doe@yahoo.com", "password2021", 
+                           "john", "doe")
+    token2 = authorised_info2["token"]
+    # An AccessError should be raised if the token of a non-member is passed in
+    with pytest.raises(AccessError):
+        standup_send_v1(token2, channel_id, "New message")  
+
     
 def test_standup_send_unauthorised_user():
     """Test verifying an unauthorised user cannot send a message in the standup"""
@@ -111,7 +129,7 @@ def test_standup_send_unauthorised_user():
     authorised_info = auth_register_v2("hayden.smith@gmail.com", "pass1234", 
                            "hayden", "smith")
     token1 = authorised_info["token"]
-    channel = channels_create_v2(token1, "Channel5", True)
+    channel = channels_create_v2(token1, "Channel6", True)
     channel_id = channel["channel_id"]
     # Increase the auth_user_id by one and use it to generate a second (invalid)
     # token
