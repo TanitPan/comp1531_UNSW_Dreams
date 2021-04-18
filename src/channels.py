@@ -158,8 +158,9 @@ def channels_create_v2(token, name, is_public):
 
     data['channels'].append(new_channels)
 
-    # update the users stats
-    update_user_stats(token, 'channels_joined', 1) 
+    # update the user and users stats
+    update_user_stats(token, 'channels_joined', 1)
+    update_users_stats(token, 'channels_exist', 1) 
     
     # Writes data to file for persistence
     save_data(data)

@@ -69,5 +69,8 @@ data = {
 
 data = { 
 	'users' : [], 
-	'channels' : [], 
+	'channels' : [],
+    'channels_exist': [],
+    'dms_exist': [],
+    'messages_exist': [], 
 } 

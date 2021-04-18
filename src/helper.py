@@ -218,6 +218,23 @@ def update_user_stats(token, stat_name, change):
             })
             return
 
+def update_users_stats(token, stat_name, change):
+    '''
+    Given a stat name of either 'channels_exist', 'dms_exist', or 'messages_exist', 
+    update the users stats and timestamp the change, depending on whether the change is 
+    positive or negative. Updates the data associated with a user of a valid token
+    '''
+    if stat_name not in ['channels_exist', 'dms_exist', 'messages_exist']:
+        raise InputError("Invalid stat_name given")
+    timestamp = math.floor(time.time())
+    lst = data[stat_name]
+    num_statname = lst[-1]['num_'+stat_name] + change
+
+    lst.append({
+        'num_'+stat_name: num_statname,
+        'timestamp': timestamp
+    })
+
 def save_data(data):
     """ This function contains a possible way to keep data persistence by 
     dumping it into a file"""
