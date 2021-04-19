@@ -288,20 +288,7 @@ def valid_member(user_id, channel_id):
                     valid_member = True
      
     if not valid_member:
-<<<<<<< HEAD
-        raise AccessError("The authorised user is not an member of the channel")  
-
-def add_msg_later(new_message, channel_id):
-    
-    for channel in data['channels']:
-        if channel['channel_id'] == channel_id:
-            curr_channel = channel
-            break
-
-    curr_channel['messages'].insert(0, new_message)
-=======
         raise AccessError("The authorised user is not an member of the channel")
-
 
 def valid_dm(dm_id):
     """
@@ -328,6 +315,12 @@ def valid_dm_member(user_id, dm_id):
     
     raise AccessError(description = "The authorised user is not a member of this DM")
 
+def add_msg_later(new_message, channel_id):
     
+    for channel in data['channels']:
+        if channel['channel_id'] == channel_id:
+            curr_channel = channel
+            break
 
->>>>>>> master
+    curr_channel['messages'].insert(0, new_message)
+
