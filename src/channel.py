@@ -1,5 +1,5 @@
 from src.error import InputError, AccessError
-from data import data
+from src.data import data
 from src.helper import (check_valid_user, valid_token, valid_channel, 
 check_existing_owner, check_dreams_owner, save_data, update_user_stats, generate_token)
 

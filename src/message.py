@@ -1,4 +1,4 @@
-from data import data
+from src.data import data
 from src.helper import valid_token, update_user_stats, update_users_stats, save_data
 
 def message_send_v2(token, channel_id, message):

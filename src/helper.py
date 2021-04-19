@@ -2,7 +2,7 @@
 This is a helper file containing useful functions used in other files
 '''
 
-from data import data
+from src.data import data
 import re
 import jwt
 import json

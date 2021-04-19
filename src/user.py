@@ -2,7 +2,7 @@
 This file contains the user function implementations used by the HTTP routes.
 """
 
-from data import data
+from src.data import data
 from src.error import InputError, AccessError
 from src.helper import save_data
 import re
