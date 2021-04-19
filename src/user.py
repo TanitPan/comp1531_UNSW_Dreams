@@ -4,10 +4,15 @@ This file contains the user function implementations used by the HTTP routes.
 
 from data import data
 from src.error import InputError, AccessError
+from src.helper import save_data
 import re
 import src.helper as helper
 
+import os
 import time
+import requests
+import urllib.request
+from PIL import Image
 
 def user_profile_v2(token, u_id):
     """
@@ -31,18 +36,18 @@ def user_profile_v2(token, u_id):
         helper.valid_token(token) # Raises AccessError when u_id is invalid
     except AccessError:
         raise InputError from AccessError
-
     
     # Find the user with the given data
     for user in data['users']:
         if u_id == user['auth_user_id']:
             return {
                 'user': {
-                    'auth_user_id': user['auth_user_id'],
+                    'u_id': user['auth_user_id'],
                     'email': user['email'],
                     'name_first' : user['name_first'], 
 	                'name_last' : user['name_last'], 
-                    'handle_str' : user['handle_str'] 	                 
+                    'handle_str' : user['handle_str'],
+                    'profile_img_url': user['profile_img_url'] 	                 
                 },
             }
     
@@ -203,3 +208,59 @@ def user_stats_v1(token):
         'messages_sent': myUser['messages_sent'],
         'involvement_rate': involvement_rate
     }
+
+def user_profile_uploadphoto_v1(token, url_path, img_url, x_start, y_start, x_end, y_end):
+    """
+    Given a valid token, Fetches the required statistics about this user's use of UNSW Dreams
+
+    Arguments:
+        token <string>   - the user's hashed auth_user_id
+        url_path <string>- the url path of the flask server 
+        img_url <string> - the url of the image the user wishes to upload
+        x_start <int>    - the starting x coordinate of the cropped image
+        y_start <int>    - the starting y coordinate of the cropped image
+        x_end <int>      - the ending x coordinate of the cropped image
+        y_end <int>      - the ending y coordinate of the cropped image
+
+    Exceptions:
+        AccessError      - Occurs when the token given isn't valid
+        InputError       - img_url returns an HTTP status other than 200.
+        InputError       - any of x_start, y_start, x_end, y_end are not 
+                           within the dimensions of the image at the URL.
+        InputError       - Image uploaded is not a JPG
+
+    Return Value:
+        Returns {}
+    """
+    id = helper.valid_token(token) # Also validates the token, raises AccessError when token is invalid
+
+    img_name = f"src/static/{id}.jpg"
+
+    try:
+        urllib.request.urlretrieve(img_url, img_name)
+    except Exception as ex:
+        raise InputError("Invalid URL") from ex
+    try:
+        img = Image.open(img_name)
+    except Exception as ex:
+        raise InputError("Invalid URL") from ex
+
+    width, height = img.size
+    if (x_start < 0) or (x_end > width) or (y_start < 0) or (y_end > height):
+        raise InputError("Cropping outsize image dimensions")
+    if (x_start > x_end) or (y_start > y_end):
+        raise InputError("Cropping outsize image dimensions")
+    # crop the image
+    cropped_img = img.crop((x_start, y_start, x_end, y_end))
+    # give the file a unique name for the user using their auth_user_id 
+    # and save the image save the image
+    
+    cropped_img.save(img_name)
+
+    # update the user data
+    for user in data['users']:
+        if id == user['auth_user_id']:
+            user['profile_img_url'] = url_path + img_name
+            break
+    save_data(data)
+    return {}
