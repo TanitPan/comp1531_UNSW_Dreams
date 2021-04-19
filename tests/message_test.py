@@ -198,9 +198,9 @@ def test_message_sendlater():
     channel_1 = channels_create_v2(u_1['token'], 'Channel10', True)
 
     now = datetime.datetime.now(timezone.utc)
-    send_at = now + datetime.timedelta(0,3)
+    send_time = now + datetime.timedelta(0,3)
 
-    message_timestamp = int(send_at.replace(tzinfo=timezone.utc).timestamp())
+    message_timestamp = int(send_time.replace(tzinfo=timezone.utc).timestamp())
 
     message_sendlater_v1(u_1['token'], channel_1['channel_id'], "COMP1531", message_timestamp)
     
