@@ -1,6 +1,6 @@
 import sys
 from json import dumps
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from src.error import InputError
 from src import config
@@ -8,7 +8,7 @@ from src import config
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
 from src.admin import admin_user_remove_v1, admin_userpermission_change_v1
 from src.channels import channels_create_v2, channels_list_v2, channels_listall_v2
-from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1, user_stats_v1
+from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1, user_stats_v1, user_profile_uploadphoto_v1
 from src.other import users_all_v1, users_stats_v1, clear_v1, search_v2
 from src.channel import channel_invite_v2, channel_addowner_v1, channel_removeowner_v1, channel_leave_v1, channel_join_v2
 from src.dm import dm_create_v1, dm_list_v1
@@ -25,7 +25,7 @@ def defaultHandler(err):
     response.content_type = 'application/json'
     return response
 
-APP = Flask(__name__)
+APP = Flask(__name__, static_url_path='/src/static/')
 CORS(APP)
 
 APP.config['TRAP_HTTP_EXCEPTIONS'] = True
@@ -154,6 +154,27 @@ def user_stats_server():
     return dumps(
         user_stats_v1(token)
     )
+
+@APP.route("/user/profile/uploadphoto/v1", methods = ['POST'])
+def user_profile_uploadphoto_server():
+    payload = request.get_json()
+    token = payload['token']
+    img_url = payload['img_url']
+    x_start = payload['x_start']
+    y_start = payload['y_start']
+    x_end = payload['x_end']
+    y_end = payload['y_end']
+    return dumps(
+        user_profile_uploadphoto_v1(token, config.url, img_url, x_start, y_start, x_end, y_end)
+    )
+'''
+@APP.route("/static/<path:path>", methods=['GET'])
+def send_js(path):
+    return send_from_directory('', path)
+'''
+APP.route("/static/<path:path>", methods=['GET'])
+def send_js(path):
+    return send_from_directory('', path)
 
 """
 ADMIN ROUTES
@@ -301,5 +322,6 @@ def standup_active_server():
     )
  
 if __name__ == "__main__":
+    clear_v1()
     APP.run(port=config.port) # Do not edit this port
     

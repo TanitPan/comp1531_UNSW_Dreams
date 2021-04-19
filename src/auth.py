@@ -4,10 +4,11 @@ This file contains the implementation of auth_login and auth_register, and auth_
 import jwt
 import time
 import math
+import re
 
 from data import data
 from src.error import InputError, AccessError
-import re
+from src import config
 import src.helper as helper
 
 def auth_login_v2(email, password):
@@ -94,6 +95,7 @@ def auth_register_v2(email, password, name_first, name_last):
     else:
         permission_id = 2 # global member
 
+    default_img_url = config.url + 'static/default.jpg'
     # Register data to the dataframe
     timestamp = math.floor(time.time())
     data['users'].append({
@@ -101,7 +103,8 @@ def auth_register_v2(email, password, name_first, name_last):
 	    'name_first' : name_first, 
 	    'name_last' : name_last, 
         'handle_str' : handle, 
-	    'email': email, 
+	    'email': email,
+        'profile_img_url': default_img_url,
 	    'password': password,
         'channels_joined': [{'num_channels_joined': 0, 'timestamp': timestamp}],
         'dms_joined': [{'num_dms_joined': 0, 'timestamp': timestamp}],
