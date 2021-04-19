@@ -295,7 +295,6 @@ def message_sendlater_v1(token, channel_id, message, time_sent):
     # If the member is part of the channel, assign is_member to True
     for channel in data['channels']:
         if channel['channel_id'] == channel_id:
-            curr_channel = channel
             for member in channel['all_members']:
                 if member['auth_user_id'] == u_id:
                     is_member = True
