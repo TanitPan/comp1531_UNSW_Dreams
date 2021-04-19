@@ -1,6 +1,6 @@
 ''' This file implements standup_start, standup_active and standup_send'''
 
-from data import data
+from src.data import data
 from src.error import InputError, AccessError
 from src.helper import valid_token, save_data, valid_member, valid_channel, save_data
 import time
