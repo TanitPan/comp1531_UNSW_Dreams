@@ -34,7 +34,7 @@ def test_valid_input():
     assert payload['user']['name_first'] == 'john'
     assert payload['user']['name_last'] == 'smith'
     assert payload['user']['handle_str'] == 'johnsmith'
-    assert payload['user']['profile_img_url'] == url + '/src/static/default.jpg'
+    assert payload['user']['profile_img_url'] == url + 'src/static/default.jpg'
 
 def test_invalid_uid():
     global url
