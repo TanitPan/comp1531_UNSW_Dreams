@@ -3,10 +3,11 @@ This file contains the tests for the implementation of user_profile_uploadphoto
 """
 
 import pytest
-from src.error import InputError
+from src.error import InputError, AccessError
 from src.auth import auth_register_v2
 from src.user import user_profile_v2, user_profile_uploadphoto_v1
 from src.other import clear_v1
+from src.helper import generate_token
 from src import config
 
 @pytest.fixture
@@ -16,6 +17,14 @@ def register_user():
     token = user['token']
     id = user['auth_user_id']
     return token, id
+
+def test_invalid_token():
+    clear_v1()
+    url_path = config.url
+    token = generate_token(42)
+    cute_cat_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Khaomanee_cat.jpg/1200px-Khaomanee_cat.jpg"
+    with pytest.raises(AccessError):
+        user_profile_uploadphoto_v1(token, url_path, cute_cat_url, 50, 50, 1000, 1000)
 
 def test_valid_input(register_user):
     token, id = register_user
