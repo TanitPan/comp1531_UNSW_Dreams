@@ -165,6 +165,8 @@ def test_message_pin():
 
     message_1 = channel_messages_v2(u_1['token'], channel_1['channel_id'], 0)
 
+    assert message_1['messages'][1]['message_id'] == message_id_2['message_id']
+    
     assert message_1['messages'][0]['is_pinned'] == True
     assert message_1['messages'][1]['is_pinned'] == False
     assert message_1['messages'][2]['is_pinned'] == True
