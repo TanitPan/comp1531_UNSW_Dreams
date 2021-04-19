@@ -289,4 +289,12 @@ def valid_member(user_id, channel_id):
      
     if not valid_member:
         raise AccessError("The authorised user is not an member of the channel")  
+
+def add_msg_later(new_message, channel_id):
     
+    for channel in data['channels']:
+        if channel['channel_id'] == channel_id:
+            curr_channel = channel
+            break
+
+    curr_channel['messages'].insert(0, new_message)
