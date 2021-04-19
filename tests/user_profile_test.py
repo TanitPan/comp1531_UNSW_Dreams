@@ -15,11 +15,15 @@ def register_user():
 def test_valid_input(register_user):
     token, id = register_user
     res = user_profile_v2(token, id)
-    assert res['user']['u_id'] == id
-    assert res['user']['email'] == 'johnsmith@gmail.com'
-    assert res['user']['name_first'] == 'john'
-    assert res['user']['name_last'] == 'smith'
-    assert res['user']['handle_str'] == 'johnsmith'
+    assert res == {
+        'user': {
+            'auth_user_id': id,
+            'email': 'johnsmith@gmail.com',
+            'name_first' : 'john', 
+	        'name_last' : 'smith', 
+            'handle_str' : 'johnsmith', 
+        }
+    }
 
 def test_invalid_uid(register_user):
     token, id = register_user

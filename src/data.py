@@ -31,7 +31,7 @@ data = {
     'channels' : [
     {      
 
-		'channel_id' :  1, # If DM, channel_id = -1
+		'channel_id' :  0, 
 
 		'name' :  'channel0', 
 
@@ -39,29 +39,7 @@ data = {
 
         'all_members' : [], 
 
-        'is_public' :  True, # Assumed to default to public
-
-        'dm_id' : -1, # If channel, dm_id = -1
-
-        'messages' : [
-            {
-                'message_id' : 0, # Assume that > 0
-
-                'message' : 'hello world',
-
-                'timestamp' : 12345678, # Do we need this for it 2?
-
-                'auth_user_id' : 0,
-            }
-        ], 
-        'standups' : 
-        {
-            'length': length,
-            
-            'start_time': 0, #isoformat
-            
-            'finish_time': 0 #isoformat
-        } 
+        'is_public' :  True, # Assumed to default to public 
     }
     ], 
 
@@ -69,8 +47,5 @@ data = {
 
 data = { 
 	'users' : [], 
-	'channels' : [],
-    'channels_exist': [],
-    'dms_exist': [],
-    'messages_exist': [], 
+	'channels' : [], 
 } 
