@@ -1,6 +1,5 @@
-from data import data
-<<<<<<< HEAD
 from src.error import InputError, AccessError
+from data import data
 import src.helper as helper
 from datetime import timezone, datetime
 
@@ -72,23 +71,14 @@ def message_send_v2(token, channel_id, message):
     timestamp = int(dt.replace(tzinfo = timezone.utc).timestamp())
     msg['time_created'] = timestamp 
     
+    #
+    msg['is_pinned'] = False
+
     # Insert dictionary 'msg' into the channel['messages']
     curr_channel['messages'].insert(0,msg)
 
-    curr_channel['is_pinned'] = False
 
     # Return the message_id
-=======
-from src.helper import valid_token, update_user_stats, update_users_stats, save_data
-
-def message_send_v2(token, channel_id, message):
-    valid_token(token) # raises AccessError on invalid token
-    #update the user and users stats
-    update_user_stats(token, 'messages_sent', 1)
-    update_users_stats(token, 'messages_exist', 1)
-    # save the data persistently
-    save_data(data)
->>>>>>> master
     return {
         'message_id': msg['message_id']
     }
@@ -316,6 +306,8 @@ def message_sendlater_v1(token, channel_id, message, time_sent):
         raise InputError("Unable to send message to a time in the past!")
 
     msg['time_created'] = time_sent
+
+    msg['is_pinned'] = False
     
     # Insert dictionary 'msg' into the channel['messages']
     curr_channel['messages'].insert(0,msg)
@@ -325,7 +317,7 @@ def message_sendlater_v1(token, channel_id, message, time_sent):
         'message_id': msg['message_id']
     }
 
-def message_pin(token, message_id):
+def message_pin_v1(token, message_id):
 
     # Get the user['auth_user_id']
     u_id = helper.valid_token(token)
@@ -393,7 +385,7 @@ def message_pin(token, message_id):
     return {
     }
 
-def message_unpin(token, message_id):
+def message_unpin_v1(token, message_id):
 
     # Get the user['auth_user_id']
     u_id = helper.valid_token(token)
