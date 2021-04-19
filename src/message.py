@@ -1,6 +1,7 @@
 from src.error import InputError, AccessError
 from data import data
 import src.helper as helper
+from src.helper import save_data
 from datetime import timezone, datetime
 from threading import Timer
 
@@ -78,6 +79,9 @@ def message_send_v2(token, channel_id, message):
     # Insert dictionary 'msg' into the channel['messages']
     curr_channel['messages'].insert(0,msg)
 
+    # Writes data to file for persistence
+    save_data(data)
+    
     # Return the message_id
     return {
         'message_id': msg['message_id']
@@ -156,6 +160,9 @@ def message_remove_v1(token, message_id):
     for message in curr_chan['messages']:
         if message['message_id'] == message_id:
             curr_chan['messages'].remove(message)
+
+    # Writes data to file for persistence
+    save_data(data)
 
     # Return None
     return {
@@ -249,6 +256,9 @@ def message_edit_v1(token, message_id, message):
                 msg['message'] = message
                 break
     
+    # Writes data to file for persistence
+    save_data(data)
+
     return {
     }
 
@@ -336,8 +346,8 @@ def message_sendlater_v1(token, channel_id, message, time_sent):
     t = Timer(diff_time, helper.add_msg_later, [msg, channel_id])
     t.start()
 
-    # Insert dictionary 'msg' into the channel['messages']
-    #curr_channel['messages'].insert(0,msg)
+    # Writes data to file for persistence
+    save_data(data)
 
     # Return the message_id
     return {
@@ -427,6 +437,10 @@ def message_pin_v1(token, message_id):
 
     else:
         curr_msg['is_pinned'] = True
+
+    # Writes data to file for persistence
+    save_data(data)
+
     # Return None
     return {
     }
@@ -514,7 +528,10 @@ def message_unpin_v1(token, message_id):
 
     else:
         curr_msg['is_pinned'] = False
-        
+    
+    # Writes data to file for persistence
+    save_data(data)
+    
     # Return None
     return {
     }
