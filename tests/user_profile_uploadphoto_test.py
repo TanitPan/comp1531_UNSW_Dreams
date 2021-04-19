@@ -27,7 +27,7 @@ def test_invalid_token():
 def test_valid_input(register_user):
     user = register_user
     token = user['token']
-    id = user['id']
+    id = user['auth_user_id']
     url_path = config.url
     cute_cat_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Khaomanee_cat.jpg/1200px-Khaomanee_cat.jpg"
     res = user_profile_uploadphoto_v1(token, url_path, cute_cat_url, 50, 50, 1000, 1000)
