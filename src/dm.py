@@ -161,18 +161,23 @@ def dm_remove_v1(token, dm_id):
     # Call helper function to check valid token
     auth_id = valid_token(token)
 
+    valid_dreams_owner = False
+    for user in data['users']:
+        if user['auth_user_id'] == auth_id and user['permission_id'] == 1: 
+            valid_dreams_owner = True
+            break       
+
     dm_creator = False
     for channel in data["channels"]:
         if channel["dm_id"] == dm_id:
-            dm_name = channel["name"]
-            owner_list = channel["owner_members"]
-            all_member_list = channel["all_member_list"]
             for member in channel["owner_members"]:
-                if member["auth_user_id"] == auth_id:
+                if member["auth_user_id"] == auth_id or valid_dreams_owner:
                     dm_creator = True
                     data["channels"].remove(channel)
-                    break
+                    save_data(data)
+                    return {}
           
 
     if not dm_creator:
         raise AccessError(description = "The authorised user is not original DM creator")
+    

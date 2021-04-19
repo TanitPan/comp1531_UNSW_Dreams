@@ -55,8 +55,11 @@ def test_dm_remove_valid():
         "token": token2,
         "dm_id": dm_id
     })
-
+  
+ 
     assert dm_response.status_code == 200
+
+    
 
 def test_dm_remove_invalid_dm():
     """
