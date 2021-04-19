@@ -1,13 +1,8 @@
 from src.error import InputError, AccessError
 from data import data
-from src.helper import (check_valid_user, valid_token, valid_channel, 
-<<<<<<< HEAD
-    check_existing_owner, check_dreams_owner, save_data, search_user_data)
-    
-=======
-check_existing_owner, check_dreams_owner, save_data, update_user_stats, generate_token)
+from src.helper import (check_valid_user, valid_token, valid_channel, check_existing_owner, 
+check_dreams_owner, save_data, update_user_stats, generate_token, search_user_data)
 
->>>>>>> master
 def channel_invite_v2(token, channel_id, u_id):
     """
     This function invites the user to given channel. 
@@ -154,13 +149,16 @@ def channel_details_v2(token, channel_id):
 
     # Loops through the all_members in channel data
     # Calling the search_user_data to return the user data and assign it into member
-    # Append the user data into the list memberss_list
+    # Append the user data into the list members_list
     # Add the list members_list into new dictionary channel_details
     for id_member in channel_data["all_members"]:
         member = search_user_data(id_member)
         members_list.append(member)
     channel_details['all_members'] = members_list
-            
+
+    # Writes data to file for persistence
+    save_data(data)
+    
     # return the new dictionary
     return(channel_details)
     
@@ -241,6 +239,9 @@ def channel_messages_v2(token, channel_id, start):
     # Return the message, start, and end
     return_msg = {'messages':msg, 'start': start, 'end':end}
     
+    # Writes data to file for persistence
+    save_data(data)
+
     return(return_msg)
 
 def channel_leave_v1(token, channel_id):
