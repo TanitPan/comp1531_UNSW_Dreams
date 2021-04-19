@@ -214,7 +214,7 @@ def user_profile_uploadphoto_v1(token, url_path, img_url, x_start, y_start, x_en
     Given a valid token, Fetches the required statistics about this user's use of UNSW Dreams
 
     Arguments:
-        token <string>   - the user's hashed auth_user_id
+        token <string>   - the user's token
         url_path <string>- the url path of the flask server 
         img_url <string> - the url of the image the user wishes to upload
         x_start <int>    - the starting x coordinate of the cropped image
