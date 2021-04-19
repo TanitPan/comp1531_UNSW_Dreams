@@ -11,16 +11,11 @@ from src.channels import channels_create_v2, channels_list_v2, channels_listall_
 from src.user import (user_profile_v2, user_profile_setname_v2, 
 user_profile_setemail_v2, user_profile_sethandle_v1, user_stats_v1)
 from src.other import users_all_v1, users_stats_v1, clear_v1, search_v2
-<<<<<<< HEAD
-from src.channel import channel_invite_v2, channel_addowner_v1, channel_removeowner_v1, channel_leave_v1, channel_join_v2
-from src.dm import dm_create_v1, dm_list_v1, dm_details_v1
-from src.standup import standup_start_v1, standup_active_v1
-=======
 from src.channel import (channel_invite_v2, channel_addowner_v1, 
 channel_removeowner_v1, channel_leave_v1, channel_join_v2)
-from src.dm import dm_create_v1, dm_list_v1
+from src.dm import dm_create_v1, dm_list_v1, dm_details_v1
 from src.standup import standup_start_v1, standup_active_v1, standup_send_v1
->>>>>>> master
+
 
 def defaultHandler(err):
     response = err.get_response()
