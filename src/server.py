@@ -170,12 +170,8 @@ def user_profile_uploadphoto_server():
     return dumps(
         user_profile_uploadphoto_v1(token, config.url, img_url, x_start, y_start, x_end, y_end)
     )
-'''
+
 @APP.route("/static/<path:path>", methods=['GET'])
-def send_js(path):
-    return send_from_directory('', path)
-'''
-APP.route("/static/<path:path>", methods=['GET'])
 def send_js(path):
     return send_from_directory('', path)
 
