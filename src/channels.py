@@ -4,6 +4,8 @@ from data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.helper import valid_token, save_data, update_user_stats, update_users_stats
+from datetime import datetime, timezone
+import time 
 
 
 def channels_list_v2(token):
@@ -134,6 +136,8 @@ def channels_create_v2(token, name, is_public):
     all_member_list = [{'auth_user_id': auth_user_id}]
 
     # Added new channel data to the dataframe.
+    current_time = datetime.now()
+    timestamp = int(current_time.replace(tzinfo=timezone.utc).timestamp())        
     new_channels = {
         'channel_id': new_id, 
         'name': name, 
@@ -143,10 +147,10 @@ def channels_create_v2(token, name, is_public):
         'dm_id': -1, #assume default
         'messages': [
             {
-                    'message_id' : new_messages_id, #Assuming it is greater than 0
-                    'message' : '',
-                    'timestamp' : 0, # will replace this with the correct timestamp 
-                    'auth_user_id' : auth_user_id, 
+                'message_id' : new_messages_id, #Assuming it is greater than 0
+                'message' : 'Welcome to the new channel', #default welcome message
+                'timestamp' : timestamp, 
+                'auth_user_id' : auth_user_id, 
             }
         ], 
         "standups": { # empty dictionary, which can be updated in standup,py

@@ -1,6 +1,6 @@
 import sys
 from json import dumps
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from src.error import InputError
 from src import config
@@ -8,12 +8,22 @@ from src import config
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v1
 from src.admin import admin_user_remove_v1, admin_userpermission_change_v1
 from src.channels import channels_create_v2, channels_list_v2, channels_listall_v2
-from src.user import user_profile_v2, user_profile_setname_v2, user_profile_setemail_v2, user_profile_sethandle_v1, user_stats_v1
+from src.user import (user_profile_v2, user_profile_setname_v2, 
+user_profile_setemail_v2, user_profile_sethandle_v1, user_stats_v1, 
+user_profile_uploadphoto_v1)
 from src.other import users_all_v1, users_stats_v1, clear_v1, search_v2
+<<<<<<< HEAD
 from src.channel import channel_invite_v2, channel_addowner_v1, channel_removeowner_v1, channel_leave_v1, channel_join_v2, channel_details_v2, channel_messages_v2
 from src.dm import dm_create_v1, dm_list_v1
 from src.standup import standup_start_v1, standup_active_v1
 from src.message import message_send_v2, message_edit_v1, message_remove_v1, message_sendlater_v1, message_pin_v1, message_unpin_v1
+=======
+from src.channel import (channel_invite_v2, channel_addowner_v1, 
+channel_removeowner_v1, channel_leave_v1, channel_join_v2)
+from src.dm import dm_create_v1, dm_list_v1, dm_details_v1
+from src.standup import standup_start_v1, standup_active_v1, standup_send_v1
+
+>>>>>>> master
 
 def defaultHandler(err):
     response = err.get_response()
@@ -26,7 +36,7 @@ def defaultHandler(err):
     response.content_type = 'application/json'
     return response
 
-APP = Flask(__name__)
+APP = Flask(__name__, static_url_path='/src/static/')
 CORS(APP)
 
 APP.config['TRAP_HTTP_EXCEPTIONS'] = True
@@ -155,6 +165,23 @@ def user_stats_server():
         user_stats_v1(token)
     )
 
+@APP.route("/user/profile/uploadphoto/v1", methods = ['POST'])
+def user_profile_uploadphoto_server():
+    payload = request.get_json()
+    token = payload['token']
+    img_url = payload['img_url']
+    x_start = payload['x_start']
+    y_start = payload['y_start']
+    x_end = payload['x_end']
+    y_end = payload['y_end']
+    return dumps(
+        user_profile_uploadphoto_v1(token, config.url, img_url, x_start, y_start, x_end, y_end)
+    )
+
+@APP.route("/static/<path:path>", methods=['GET'])
+def send_js(path):
+    return send_from_directory('', path)
+
 """
 ADMIN ROUTES
 """
@@ -194,7 +221,7 @@ def channel_invite_server():
 def channel_addowner_server():
     payload = request.get_json()
     token = payload["token"]
-    channel_id = payload["channel_id"]
+    channel_id = int(payload["channel_id"])
     u_id = payload["u_id"]
     return dumps(
         channel_addowner_v1(token, channel_id, u_id)
@@ -204,7 +231,7 @@ def channel_addowner_server():
 def channel_removeowner_server():
     payload = request.get_json()
     token = payload["token"]
-    channel_id = payload["channel_id"]
+    channel_id = int(payload["channel_id"])
     u_id = payload["u_id"]
     return dumps(
         channel_removeowner_v1(token, channel_id, u_id)
@@ -214,7 +241,7 @@ def channel_removeowner_server():
 def channel_leave_server():
     payload = request.get_json()
     token = payload["token"]
-    channel_id = payload["channel_id"]
+    channel_id = int(payload["channel_id"])
     return dumps(
         channel_leave_v1(token, channel_id)
     )
@@ -359,6 +386,14 @@ def dm_list_server():
         dm_list_v1(token)
     )
 
+@APP.route("/dm/details/v1", methods=['GET'])
+def dm_details_server():
+    token = request.args.get("token")
+    dm_id = request.args.get("dm_id")
+    return dumps(
+        dm_details_v1(token,dm_id)
+    )
+
 """
 STANDUP ROUTES
 """
@@ -375,11 +410,21 @@ def standup_start_server():
 @APP.route("/standup/active/v1", methods = ['GET'])
 def standup_active_server():
     token = request.args.get('token')
-    channel_id = request.args.get('channel_id') 
+    channel_id = int(request.args.get('channel_id'))
     return dumps(
         standup_active_v1(token, channel_id)
     )
+
+@APP.route("/standup/send/v1", methods = ['POST'])
+def standup_send_server():
+    payload = request.get_json()
+    token = payload['token']
+    channel_id = int(payload['channel_id'])
+    message = payload['message']
+    return dumps(
+        standup_send_v1(token, channel_id, message)
+    )
  
 if __name__ == "__main__":
+    clear_v1()
     APP.run(port=config.port) # Do not edit this port
-    
