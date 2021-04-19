@@ -24,7 +24,7 @@ def test_dm_remove_valid():
     auth_token1 = auth_dict1["token"]
     auth_token2 = auth_dict2["token"]
     auth_id1 = auth_dict1["auth_user_id"]
-    auth_id2 = auth_dict2["auth_user_id"]
+   
 
     dm_dict = dm_create_v1(auth_token2, [auth_id1])
     dm_id = dm_dict["dm_id"]
@@ -50,10 +50,10 @@ def test_dm_remove_invalid_dm():
     auth_dict1 = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
     auth_dict2 = auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
-    auth_token1 = auth_dict1["token"]
+
     auth_token2 = auth_dict2["token"]
     auth_id1 = auth_dict1["auth_user_id"]
-    auth_id2 = auth_dict2["auth_user_id"]
+    auth_dict2["auth_user_id"]
 
     dm_create_v1(auth_token2, [auth_id1])
     invalid_dm = 900
@@ -74,7 +74,7 @@ def test_dm_remove_not_owner():
     auth_token1 = auth_dict1["token"]
     auth_token2 = auth_dict2["token"]
     auth_id1 = auth_dict1["auth_user_id"]
-    auth_id2 = auth_dict2["auth_user_id"]
+    auth_dict2["auth_user_id"]
 
     dm_dict = dm_create_v1(auth_token1, [auth_id1])
     dm_id = dm_dict["dm_id"]
@@ -92,7 +92,7 @@ def test_dm_remove_invalid_auth():
 
     # Call other functions to create the data and store in data structure
     auth_dict1 = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
-    auth_dict2 = auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
+    auth_register_v2("harrypotter@gmail.com", "555555", "harry", "potter")
 
     auth_token1 = auth_dict1["token"]
     auth_id1 = auth_dict1["auth_user_id"]

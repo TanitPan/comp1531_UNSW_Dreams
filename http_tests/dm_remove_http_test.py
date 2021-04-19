@@ -34,12 +34,11 @@ def test_dm_remove_valid():
     # Call other routes to create the data and store in data structure
     auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
     payload = auth_user1_info.json()
-    token1 = payload["token"]
     auth_id1 = payload["auth_user_id"]
     
     auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
     payload = auth_user2_info.json()
-    auth_id2 = payload["auth_user_id"]
+
     token2 = payload["token"]
 
     u_ids = [auth_id1]
@@ -86,12 +85,12 @@ def test_dm_remove_invalid_dm():
     # Call other routes to create the data and store in data structure
     auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
     payload = auth_user1_info.json()
-    token1 = payload["token"]
+    
     auth_id1 = payload["auth_user_id"]
     
     auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
     payload = auth_user2_info.json()
-    auth_id2 = payload["auth_user_id"]
+   
     token2 = payload["token"]
 
     u_ids = [auth_id1]
@@ -100,8 +99,7 @@ def test_dm_remove_invalid_dm():
         "u_ids": u_ids
     })
 
-    payload = dm_response.json()
-    dm_id = payload["dm_id"]
+
     invalid_dm = 900
 
     dm_response = requests.delete(f"{url}/dm/remove/v1", json = {
@@ -138,7 +136,7 @@ def test_dm_remove_not_owner():
     auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
     payload = auth_user1_info.json()
     token1 = payload["token"]
-    auth_id1 = payload["auth_user_id"]
+    
     
     auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
     payload = auth_user2_info.json()
@@ -189,12 +187,12 @@ def test_dm_remove_invalid_auth():
     auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
     payload = auth_user1_info.json()
     token1 = payload["token"]
-    auth_id1 = payload["auth_user_id"]
+    
     
     auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
     payload = auth_user2_info.json()
     auth_id2 = payload["auth_user_id"]
-    token2 = payload["token"]
+    
 
     u_ids = [auth_id2]
     dm_response = requests.post(f"{url}/dm/create/v1", json = {
