@@ -233,11 +233,9 @@ def user_profile_uploadphoto_v1(token, url_path, img_url, x_start, y_start, x_en
         Returns {}
     """
     id = helper.valid_token(token) # Also validates the token, raises AccessError when token is invalid
-    # validate the URL status code
 
     img_name = f"src/static/{id}.jpg"
-    #if urllib.request.urlopen(img_url).getcode() != 200:
-    #    raise InputError("img_url returns an HTTP status other than 200.")
+
     try:
         urllib.request.urlretrieve(img_url, img_name)
     except Exception as ex:
@@ -262,7 +260,7 @@ def user_profile_uploadphoto_v1(token, url_path, img_url, x_start, y_start, x_en
     # update the user data
     for user in data['users']:
         if id == user['auth_user_id']:
-            user['profile_img_url'] == url_path + img_name
+            user['profile_img_url'] = url_path + img_name
             break
     save_data(data)
     return {}

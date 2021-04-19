@@ -29,8 +29,8 @@ def test_valid_input(register_user):
     token = user['token']
     id = user['auth_user_id']
     url_path = config.url
-    cute_cat_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Khaomanee_cat.jpg/1200px-Khaomanee_cat.jpg"
-    res = user_profile_uploadphoto_v1(token, url_path, cute_cat_url, 50, 50, 1000, 1000)
+    cute_cat_url = "https://thumbs.dreamstime.com/b/scottish-fold-cat-14577759.jpg"
+    res = user_profile_uploadphoto_v1(token, url_path, cute_cat_url, 50, 50, 500, 500)
     assert res == {}
     profile = user_profile_v2(token, id)
     assert profile['user']['profile_img_url'] != config.url + 'src/static/default.jpg'
