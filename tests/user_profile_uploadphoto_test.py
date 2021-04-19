@@ -14,9 +14,7 @@ from src import config
 def register_user():
     clear_v1()
     user = auth_register_v2("johnsmith@gmail.com", "123456", "john", "smith")
-    token = user['token']
-    id = user['auth_user_id']
-    return token, id
+    return user
 
 def test_invalid_token():
     clear_v1()
@@ -27,7 +25,9 @@ def test_invalid_token():
         user_profile_uploadphoto_v1(token, url_path, cute_cat_url, 50, 50, 1000, 1000)
 
 def test_valid_input(register_user):
-    token, id = register_user
+    user = register_user
+    token = user['token']
+    id = user['id']
     url_path = config.url
     cute_cat_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Khaomanee_cat.jpg/1200px-Khaomanee_cat.jpg"
     res = user_profile_uploadphoto_v1(token, url_path, cute_cat_url, 50, 50, 1000, 1000)
@@ -36,7 +36,8 @@ def test_valid_input(register_user):
     assert profile['user']['profile_img_url'] != config.url + 'default.jpg'
 
 def test_invalid_inputs(register_user):
-    token, id = register_user
+    user = register_user
+    token = user['token']
     url_path = config.url
     fake_url = "not_a_url"
     # test invalid url

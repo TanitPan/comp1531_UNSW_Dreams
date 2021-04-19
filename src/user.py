@@ -234,25 +234,18 @@ def user_profile_uploadphoto_v1(token, url_path, img_url, x_start, y_start, x_en
     """
     id = helper.valid_token(token) # Also validates the token, raises AccessError when token is invalid
     # validate the URL status code
-    '''
-    r = requests.get(img_url)
-    if r.status_code != 200:
-        raise InputError("img_url returns an HTTP status other than 200.")
-    img = Image.open(r.raw)
-    if img.format != 'JPEG':
-        raise InputError("Image uploaded is not a JPG")
-    '''
+
     img_name = f"src/static/{id}.jpg"
     #if urllib.request.urlopen(img_url).getcode() != 200:
     #    raise InputError("img_url returns an HTTP status other than 200.")
     try:
         urllib.request.urlretrieve(img_url, img_name)
-    except:
-        raise InputError("Invalid URL")
+    except Exception as ex:
+        raise InputError("Invalid URL") from ex
     try:
         img = Image.open(img_name)
-    except:
-        raise InputError("Invalid URL")
+    except Exception as ex:
+        raise InputError("Invalid URL") from ex
 
     width, height = img.size
     if (x_start < 0) or (x_end > width) or (y_start < 0) or (y_end > height):
