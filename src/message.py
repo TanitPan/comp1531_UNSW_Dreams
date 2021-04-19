@@ -2,6 +2,7 @@ from src.error import InputError, AccessError
 from data import data
 import src.helper as helper
 from datetime import timezone, datetime
+from threading import Timer
 
 def message_send_v2(token, channel_id, message):
 
@@ -76,7 +77,6 @@ def message_send_v2(token, channel_id, message):
 
     # Insert dictionary 'msg' into the channel['messages']
     curr_channel['messages'].insert(0,msg)
-
 
     # Return the message_id
     return {
@@ -253,6 +253,31 @@ def message_edit_v1(token, message_id, message):
     }
 
 def message_sendlater_v1(token, channel_id, message, time_sent):
+
+    ''' 
+    This function is to return the message_id of a message and store the dictionary 'msg' that includes
+    message_id, auth_user_id, message and time_created into channel['messages']. Moreover, this return the output at specified 
+    time in the future
+        
+    Arguments:
+        token - the user ID of the members
+        channel_id (int) - the ID of the channel
+        message - the input message
+        time_sent - integer (unix timestamp)
+
+    Exceptions:
+        InputError: 
+            - Occurs when the length of the message exceed 1000.
+            - Occurs when channel_id is not valid
+            - Occurs when time_sent is time in the past
+        AccessError:
+            - Occurs when the the authorised user has not joined the channel they are trying to post to.
+
+    Return Value:
+        Returns a dictionary 'msg' that includes that includes
+        message_id, auth_user_id, message and time_created
+    '''
+
     # Assign empty dictionary 'msg'
     msg = {}
 
@@ -309,8 +334,11 @@ def message_sendlater_v1(token, channel_id, message, time_sent):
 
     msg['is_pinned'] = False
     
+    t = Timer(diff_time, helper.add_msg_later, [msg, channel_id])
+    t.start()
+
     # Insert dictionary 'msg' into the channel['messages']
-    curr_channel['messages'].insert(0,msg)
+    #curr_channel['messages'].insert(0,msg)
 
     # Return the message_id
     return {
@@ -318,6 +346,25 @@ def message_sendlater_v1(token, channel_id, message, time_sent):
     }
 
 def message_pin_v1(token, message_id):
+
+    ''' 
+    This function is to pin a message in a channel.
+        
+    Arguments:
+        token - the user Token
+        message_id (int) - the ID of the message
+
+    Exceptions:
+        InputError: 
+            - Occurs when message_id is not valid
+            - Occurs when message with message_id is already pinned
+        AccessError:
+            - Occurs when the the authorised user has not joined the channel they are trying to pin messages.
+            - Occurs when the the authorised user is not an owner of the channel
+
+    Return Value:
+        None
+    '''
 
     # Get the user['auth_user_id']
     u_id = helper.valid_token(token)
@@ -386,6 +433,25 @@ def message_pin_v1(token, message_id):
     }
 
 def message_unpin_v1(token, message_id):
+
+    ''' 
+    This function is to unpin a message in a channel.
+        
+    Arguments:
+        token - the user Token
+        message_id (int) - the ID of the message
+
+    Exceptions:
+        InputError: 
+            - Occurs when message_id is not valid
+            - Occurs when message with message_id is already unpinned
+        AccessError:
+            - Occurs when the the authorised user has not joined the channel they are trying to unpin messages.
+            - Occurs when the the authorised user is not an owner of the channel
+
+    Return Value:
+        None
+    '''
 
     # Get the user['auth_user_id']
     u_id = helper.valid_token(token)
