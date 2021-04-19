@@ -6,6 +6,7 @@ from src.other import clear_v1 as clear
 from src.channel import channel_details_v2 as channel_details
 from src.channel import channel_invite_v2 as channel_invite
 from src.channels import channels_create_v2 as channels_create
+from src.helper import search_user_data
 from data import data
 
 # testing 1 channel 1 member
@@ -23,8 +24,6 @@ def test_channel_details_1():
                 'auth_user_id': auth_id1['auth_user_id'],
                 'name_first': "John",
                 'name_last': "Smith",
-                'email' : "johnsmith@gmail.com",
-                'handle_str': 'johnsmith'
             }
         ],
         'all_members': [
@@ -32,8 +31,6 @@ def test_channel_details_1():
                 'auth_user_id': auth_id1['auth_user_id'],
                 'name_first': "John",
                 'name_last': "Smith",
-                'email' : "johnsmith@gmail.com",
-                'handle_str': 'johnsmith'
             }
         ]
     }
@@ -57,8 +54,6 @@ def test_channel_details_2():
                 'auth_user_id': auth_id2['auth_user_id'],
                 'name_first': "Bat",
                 'name_last': "Man",
-                'email' : "batman@gmail.com",
-                'handle_str': 'batman'
             }
         ],
         'all_members': [
@@ -66,15 +61,11 @@ def test_channel_details_2():
                 'auth_user_id': auth_id2['auth_user_id'],
                 'name_first': "Bat",
                 'name_last': "Man",
-                'email' : "batman@gmail.com",
-                'handle_str': 'batman'
             },
             {
                 'auth_user_id': auth_id3['auth_user_id'],
                 'name_first': "Neo",
                 'name_last': "Amidis",
-                'email' : "aquabandit@gmail.com",
-                'handle_str': 'neoamidis'
             }
         ]
     }
