@@ -1,7 +1,7 @@
 """ 
 This file implement dm(direct message) functionality of DREAM
 """
-from data import data
+from src.data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.helper import valid_token, save_data, check_valid_user, update_user_stats, update_users_stats, valid_dm, valid_dm_member

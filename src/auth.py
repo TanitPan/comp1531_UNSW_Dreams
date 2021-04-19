@@ -6,7 +6,7 @@ import time
 import math
 import re
 
-from data import data
+from src.data import data
 from src.error import InputError, AccessError
 from src import config
 import src.helper as helper
