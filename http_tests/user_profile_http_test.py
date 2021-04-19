@@ -29,15 +29,13 @@ def test_valid_input():
 
     res = requests.get(f"{url}/user/profile/v2?{query}")
     payload = res.json()
-    assert payload == {
-        'user': {
-            'auth_user_id': id,
-            'email': 'johnsmith@gmail.com',
-            'name_first' : 'john', 
-	        'name_last' : 'smith', 
-            'handle_str' : 'johnsmith', 
-        }
-    }
+    assert payload['user']['u_id'] == id
+    assert payload['user']['email'] == 'johnsmith@gmail.com'
+    assert payload['user']['name_first'] == 'john'
+    assert payload['user']['name_last'] == 'smith'
+    assert payload['user']['handle_str'] == 'johnsmith'
+    assert payload['user']['profile_img_url'] == url + 'static/default.jpg'
+
 
 def test_invalid_uid():
     global url
