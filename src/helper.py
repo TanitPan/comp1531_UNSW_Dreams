@@ -260,6 +260,7 @@ def valid_member(user_id, channel_id):
     if not valid_member:
         raise AccessError("The authorised user is not an member of the channel")
 
+
 def valid_dm(dm_id):
     """
     This function checks for valid DM ID. Returns dm_id if valid and 
@@ -286,3 +287,4 @@ def valid_dm_member(user_id, dm_id):
     raise AccessError(description = "The authorised user is not a member of this DM")
 
     
+
