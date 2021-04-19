@@ -95,7 +95,7 @@ def auth_register_v2(email, password, name_first, name_last):
     else:
         permission_id = 2 # global member
 
-    default_img_url = config.url + 'static/default.jpg'
+    default_img_url = config.url + 'src/static/default.jpg'
     # Register data to the dataframe
     timestamp = math.floor(time.time())
     data['users'].append({
