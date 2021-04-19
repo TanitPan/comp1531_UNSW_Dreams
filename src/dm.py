@@ -4,7 +4,7 @@ This file implement dm(direct message) functionality of DREAM
 from data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
-from src.helper import valid_token, save_data, check_valid_user, update_user_stats, update_users_stats
+from src.helper import valid_token, save_data, check_valid_user, update_user_stats, update_users_stats, valid_dm, valid_dm_member
 
 def dm_create_v1(token, u_ids):
     """
@@ -116,3 +116,36 @@ def dm_list_v1(token):
                 break
 
     return {"dms": dm_list}
+
+def dm_details_v1(token, dm_id):
+
+    # Call helper function to check valid token
+    auth_id = valid_token(token)
+
+    # Call helper function to check valid DM channel ID
+    dm_id_valid = valid_dm(dm_id)
+
+    # Call helper function to check if an authorised user is
+    # in the DM channel.
+    valid_dm_member(auth_id, dm_id_valid)
+    members_list = []
+    for channel in data["channels"]:
+        if channel["dm_id"] == dm_id_valid:
+            members_list = channel["all_members"]
+            name = channel["name"]
+    
+    # Loop through to user to get user details and add them to list
+    members_data = []
+    for member in members_list:
+        for user in data["users"]:
+            if user["auth_user_id"] == member["auth_user_id"]:
+                info = {
+                    "auth_user_id": user["auth_user_id"],
+                    "name_first": user["name_first"],
+                    "name_last": user["name_last"],
+                    "handle_str": user["handle_str"],
+                    "email": user["email"]
+                }
+                members_data.append(info)
+
+    return {"name": name, "members": members_data}

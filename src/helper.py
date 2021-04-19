@@ -258,5 +258,33 @@ def valid_member(user_id, channel_id):
                     valid_member = True
      
     if not valid_member:
-        raise AccessError("The authorised user is not an member of the channel")  
+        raise AccessError("The authorised user is not an member of the channel")
+
+
+def valid_dm(dm_id):
+    """
+    This function checks for valid DM ID. Returns dm_id if valid and 
+    raises InputError if dm_id is invalid.
+    """
+    dm_id = int(dm_id)
+    for channel in data["channels"]:     
+        if channel["dm_id"] == dm_id and channel["channel_id"] == -1:           
+            return dm_id
+    raise InputError(description = "DM ID is not a valid DM")
+
+def valid_dm_member(user_id, dm_id):
+    """
+    This function check if a user is a member of that DM, if not raises
+    an AccessError.
+    """
+
+    for channel in data["channels"]:
+        if channel["dm_id"] == dm_id:
+            for member in channel["all_members"]:
+                if member["auth_user_id"] == user_id:
+                    return
     
+    raise AccessError(description = "The authorised user is not a member of this DM")
+
+    
+
