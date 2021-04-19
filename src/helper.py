@@ -167,8 +167,6 @@ def search_user_data(user_id):
     user_data['auth_user_id'] =  user['auth_user_id']
     user_data['name_first'] = user['name_first']
     user_data['name_last'] = user['name_last']
-    user_data['handle_str'] = user['handle_str']
-    user_data['email'] = user['email']
     
     return user_data
     
