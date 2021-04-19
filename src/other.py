@@ -5,7 +5,7 @@ the backend project.
 import time
 import math
 
-from data import data
+from src.data import data
 from src.error import InputError, AccessError
 import src.helper as helper
 
