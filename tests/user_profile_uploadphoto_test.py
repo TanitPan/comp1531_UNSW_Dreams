@@ -33,7 +33,7 @@ def test_valid_input(register_user):
     res = user_profile_uploadphoto_v1(token, url_path, cute_cat_url, 50, 50, 1000, 1000)
     assert res == {}
     profile = user_profile_v2(token, id)
-    assert profile['user']['profile_img_url'] != config.url + 'default.jpg'
+    assert profile['user']['profile_img_url'] != config.url + 'src/static/default.jpg'
 
 def test_invalid_inputs(register_user):
     user = register_user

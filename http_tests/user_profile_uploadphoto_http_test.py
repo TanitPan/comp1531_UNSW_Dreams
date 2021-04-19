@@ -33,7 +33,6 @@ def test_valid_input(register_user):
 
     user = register_user
     token = user['token']
-    print("TESTING1")
     res = requests.post(f"{url}/user/profile/uploadphoto/v1", json={
         "token": token,
         "img_url": CUTE_CAT_URL,
@@ -42,7 +41,6 @@ def test_valid_input(register_user):
         "x_end": 200,
         "y_end": 200,
     })
-    print("TESTING2")
     payload = res.json()
     assert payload == {}
 
