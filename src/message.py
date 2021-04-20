@@ -1,14 +1,9 @@
-<<<<<<< HEAD
 from src.error import InputError, AccessError
-from data import data
+from src.data import data
 import src.helper as helper
 from src.helper import save_data
 from datetime import timezone, datetime
 from threading import Timer
-=======
-from src.data import data
-from src.helper import valid_token, update_user_stats, update_users_stats, save_data
->>>>>>> master
 
 def message_send_v2(token, channel_id, message):
 
