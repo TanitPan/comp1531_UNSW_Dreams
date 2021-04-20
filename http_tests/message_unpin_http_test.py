@@ -222,6 +222,7 @@ def test_message_pin_unauthorized_notmember():
         'token': user3.json()['token'],
         'message_id': message_id1.json()['message_id']
     })
+    assert msg_id1_pin.status_code == 200
 
     msg_id1_unpin = requests.post(f"{url}/message/unpin/v1", json = {
         'token': user4.json()['token'],
@@ -271,6 +272,8 @@ def test_message_pin_unauthorized_notowner():
         'message_id': message_id1.json()['message_id']
     })
 
+    assert msg_id1_pin.status_code == 200
+
     msg_id1_unpin = requests.post(f"{url}/message/unpin/v1", json = {
         'token': user6.json()['token'],
         'message_id': message_id1.json()['message_id']
@@ -300,13 +303,14 @@ def test_message_pin_not_exist():
         'channel_id': channel1.json()['channel_id'],
         'message': "Hello, Welcome to COMP1531"
     })
+    assert message_id1.status_code == 200
 
     msg_id1_unpin = requests.post(f"{url}/message/unpin/v1", json = {
         'token': user7.json()['token'],
         'message_id': 100
     })
 
-    assert(msg_id1_unpin.status_code == 400)
+    assert msg_id1_unpin.status_code == 400
 
 def test_message_pin_by_owner():
     requests.delete(f"{url}/clear/v1")
