@@ -168,7 +168,7 @@ def test_message_pin_unauthorized_notmember():
     })
 
     user4 = requests.post(f"{url}/auth/register/v2", json = {
-        'email': 'Kanesmith@gmail.com',
+        'email': 'kanesmith@gmail.com',
         'password': 'password123',
         'name_first': 'Kane',
         'name_last': 'Smith',
@@ -240,7 +240,7 @@ def test_message_pin_not_exist():
     requests.delete(f"{url}/clear/v1")
 
     user7 = requests.post(f"{url}/auth/register/v2", json = {
-        'email': 'Qanesmith@gmail.com',
+        'email': 'qanesmith@gmail.com',
         'password': 'password123',
         'name_first': 'Qane',
         'name_last': 'Smith',
@@ -271,7 +271,7 @@ def test_message_pin_by_owner():
     requests.delete(f"{url}/clear/v1")
 
     user8 = requests.post(f"{url}/auth/register/v2", json = {
-        'email': 'Hanesmith@gmail.com',
+        'email': 'hanesmith@gmail.com',
         'password': 'password123',
         'name_first': 'Hane',
         'name_last': 'Smith',
