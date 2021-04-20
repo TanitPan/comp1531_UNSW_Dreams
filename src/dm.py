@@ -174,12 +174,6 @@ def dm_remove_v1(token, dm_id):
             for member in channel["owner_members"]:
                 if member["auth_user_id"] == auth_id or valid_dreams_owner:
                     dm_creator = True
-                    for user in channel["owner_members"]:
-                        # update the user and users stats
-                        user_id = user["auth_user_id"]
-                        user_token = generate_token(user_id)
-                        update_user_stats(user_token, 'dms_joined', -1)
-                    
                     for user in channel["all_members"]:
                         # update the user and users stats
                         user_id = user["auth_user_id"]
