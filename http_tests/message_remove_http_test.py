@@ -200,6 +200,8 @@ def test_message_edit_not_exist():
         'message': "Hello, Welcome to COMP1531"
     })
 
+    assert message_id1.status_code == 200
+
     msg_id1_remove = requests.delete(f"{url}/message/remove/v1", json = { 
         'token': user7.json()['token'],
         'message_id': 100,
@@ -251,6 +253,8 @@ def test_message_remove_by_owner():
         'token': user8.json()['token'],
         'message_id': message_id2.json()['message_id'],
     })
+
+    assert msg_id1_remove.status_code == 200
 
     res = requests.get(f"{url}/channel/messages/v2", params = {
         'token': user8.json()['token'],
