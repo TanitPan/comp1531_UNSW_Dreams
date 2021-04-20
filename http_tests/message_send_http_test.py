@@ -110,8 +110,9 @@ def test_message_send_unauthorized():
         'name_first': 'Bane',
         'name_last': 'Smith',
     })
+
     user4 = requests.post(f"{url}/auth/register/v2", json = {
-        'email': 'Kanesmith@gmail.com',
+        'email': 'kanesmith@gmail.com',
         'password': 'password123',
         'name_first': 'Kane',
         'name_last': 'Smith',
@@ -120,7 +121,7 @@ def test_message_send_unauthorized():
     channel1 = requests.post(f"{url}/channels/create/v2", json = {
         'token': user3.json()['token'], 
         'name': 'COMP1531', 
-        'is_public': True
+        'is_public': False
     })
 
     res = requests.post(f"{url}/message/send/v2", json = { 
@@ -128,7 +129,7 @@ def test_message_send_unauthorized():
         'channel_id': channel1.json()['channel_id'],
         'message': "Hello"
     })
-
+    
     assert(res.status_code == 403)
     
 def test_message_send_too_long():
