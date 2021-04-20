@@ -62,9 +62,7 @@ def users_stats_v1(token):
         for id in channel['all_members']:
             if id not in unique_ids:
                 unique_ids.append(id)
-        for id in channel['owner_members']:
-            if id not in unique_ids:
-                unique_ids.append(id)
+    
                 
     num_users_who_have_joined_at_least_one_channel_or_dm = len(unique_ids)
 
