@@ -4,7 +4,7 @@ This file implement dm(direct message) functionality of DREAM
 from src.data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
-from src.helper import valid_token, save_data, check_valid_user, update_user_stats, update_users_stats, valid_dm, valid_dm_member
+from src.helper import valid_token, save_data, check_valid_user, update_user_stats, update_users_stats, valid_dm, valid_dm_member, generate_token
 
 def dm_create_v1(token, u_ids):
     """
@@ -174,10 +174,23 @@ def dm_remove_v1(token, dm_id):
             for member in channel["owner_members"]:
                 if member["auth_user_id"] == auth_id or valid_dreams_owner:
                     dm_creator = True
+                    for user in channel["owner_members"]:
+                        # update the user and users stats
+                        user_id = user["auth_user_id"]
+                        user_token = generate_token(user_id)
+                        update_user_stats(user_token, 'dms_joined', -1)
+                    
+                    for user in channel["all_members"]:
+                        # update the user and users stats
+                        user_id = user["auth_user_id"]
+                        user_token = generate_token(user_id)
+                        update_user_stats(user_token, 'dms_joined', -1)
+
                     data["channels"].remove(channel)
+                    update_users_stats(token, 'dms_exist', -1)
                     save_data(data)
                     return {}
-          
+                   
 
     if not dm_creator:
         raise AccessError(description = "The authorised user is not original DM creator")
