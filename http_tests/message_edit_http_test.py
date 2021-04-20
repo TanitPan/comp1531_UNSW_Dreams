@@ -145,7 +145,7 @@ def test_message_edit_unauthorized():
     requests.delete(f"{url}/clear/v1")
 
     user4 = requests.post(f"{url}/auth/register/v2", json = {
-        'email': 'Kanesmith@gmail.com',
+        'email': 'kanesmith@gmail.com',
         'password': 'password123',
         'name_first': 'Kane',
         'name_last': 'Smith',
@@ -219,7 +219,7 @@ def test_message_edit_not_exist():
     requests.delete(f"{url}/clear/v1")
 
     user7 = requests.post(f"{url}/auth/register/v2", json = {
-        'email': 'Qanesmith@gmail.com',
+        'email': 'qanesmith@gmail.com',
         'password': 'password123',
         'name_first': 'Qane',
         'name_last': 'Smith',
@@ -251,7 +251,7 @@ def test_message_edit_empty():
     requests.delete(f"{url}/clear/v1")
 
     user8 = requests.post(f"{url}/auth/register/v2", json = {
-        'email': 'Yohnsmith@gmail.com',
+        'email': 'yohnsmith@gmail.com',
         'password': 'password123',
         'name_first': 'Yohn',
         'name_last': 'Smith',
