@@ -257,6 +257,7 @@ def test_message_pin_not_exist():
         'channel_id': channel1.json()['channel_id'],
         'message': "Hello, Welcome to COMP1531"
     })
+    assert message_id1.status_code == 400
 
     msg_id1_pin = requests.post(f"{url}/message/pin/v1", json = {
         'token': user7.json()['token'],
@@ -292,6 +293,8 @@ def test_message_pin_by_owner():
         'token': user8.json()['token'],
         'message_id': message_id1.json()['message_id']
     })
+
+    assert msg_id1_pin.status_code == 200
 
     msg_id2_pin = requests.post(f"{url}/message/pin/v1", json = {
         'token': user8.json()['token'],
