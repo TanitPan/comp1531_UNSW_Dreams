@@ -237,6 +237,8 @@ def test_message_edit_not_exist():
         'message': "Hello, Welcome to COMP1531"
     })
 
+    assert message_id1.status_code == 200
+
     msg_id1_edit = requests.put(f"{url}/message/edit/v2", json = { 
         'token': user7.json()['token'],
         'message_id': 100,
