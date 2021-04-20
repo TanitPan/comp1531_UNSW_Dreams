@@ -1,6 +1,6 @@
 ''' This file implements channels_list, channels_listall and channels_create '''
 
-from data import data
+from src.data import data
 from src.error import InputError, AccessError
 from src.helper import (valid_token, check_valid_user, check_only_dreams_owner, 
 check_dreams_owner, save_data)

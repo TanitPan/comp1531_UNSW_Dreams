@@ -44,6 +44,11 @@ def echo():
         'data': data
     })
 
+"""DEFAULT ROUTE"""
+@APP.route("/")
+def default_server():
+    return "Hello World"
+
 """
 AUTH ROUTES
 """

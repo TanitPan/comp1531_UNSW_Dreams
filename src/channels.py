@@ -1,6 +1,6 @@
 ''' This file implements channels_list, channels_listall and channels_create '''
 
-from data import data
+from src.data import data
 from src.auth import auth_register_v2
 from src.error import InputError, AccessError
 from src.helper import valid_token, save_data, update_user_stats, update_users_stats
