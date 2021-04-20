@@ -30,10 +30,10 @@ def test_message_remove():
         'channel_id': channel1.json()['channel_id'],
         'message': "World"
     })
-
+    print(message_id2.json())
     requests.delete(f"{url}/message/remove/v1", json = { 
         'token': user1.json()['token'],
-        'message_id': message_id2.json()['message_id'],
+        'message_id': message_id2.json()['message_id']
     })
 
     res = requests.get(f"{url}/channel/messages/v2", params = {
