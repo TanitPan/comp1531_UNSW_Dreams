@@ -261,7 +261,6 @@ def message_edit_v1(token, message_id, message):
 
     return {
     }
-<<<<<<< HEAD
 
 def message_sendlater_v1(token, channel_id, message, time_sent):
 
@@ -537,5 +536,3 @@ def message_unpin_v1(token, message_id):
     return {
     }
 
-=======
->>>>>>> master
