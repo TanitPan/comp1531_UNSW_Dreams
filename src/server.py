@@ -286,7 +286,7 @@ def message_remove_server():
     token = payload['token']
     message_id = payload['message_id']
     return dumps(
-        message_remove_v1(token,message_id,)
+        message_remove_v1(token,message_id)
     )
 
 @APP.route("/message/edit/v2", methods = ['PUT'])
