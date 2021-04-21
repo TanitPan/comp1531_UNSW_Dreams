@@ -1,0 +1,2573 @@
+============================= test session starts ==============================
+platform linux -- Python 3.7.3, pytest-6.2.3, py-1.10.0, pluggy-0.13.1 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default' -> database=DirectoryBasedExampleDatabase('/tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore/.hypothesis/examples')
+rootdir: /tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore, configfile: pytest.ini
+plugins: forked-1.3.0, xdist-2.2.1, hypothesis-6.1.1, timeout-1.4.2
+collecting ... collected 114 items
+
+http_tests/admin_user_remove_http_test.py::test_admin_user_remove_user PASSED [  0%]
+http_tests/admin_user_remove_http_test.py::test_admin_user_remove_invalid_uid PASSED [  1%]
+http_tests/admin_user_remove_http_test.py::test_admin_user_remove_only_owner PASSED [  2%]
+http_tests/admin_user_remove_http_test.py::test_admin_user_remove_unauthorised_user PASSED [  3%]
+http_tests/admin_user_remove_http_test.py::test_admin_user_remove_user PASSED [  3%]
+http_tests/admin_user_remove_http_test.py::test_admin_user_remove_invalid_uid PASSED [  3%]
+http_tests/admin_user_remove_http_test.py::test_admin_user_remove_only_owner PASSED [  3%]
+http_tests/admin_user_remove_http_test.py::test_admin_user_remove_unauthorised_user PASSED [  3%]
+http_tests/admin_userpermission_change_http_test.py::test_admin_userpermission_change_validinput PASSED [  4%]
+http_tests/admin_userpermission_change_http_test.py::test_admin_userpermission_change_invalid_user PASSED [  5%]
+http_tests/admin_userpermission_change_http_test.py::test_admin_user_permission_change_noninteger_permission_id FAILED [  6%]
+http_tests/admin_userpermission_change_http_test.py::test_admin_userpermission_change_unauthorised_tokenuser PASSED [  7%]
+http_tests/auth_login_http_test.py::test_valid_login PASSED              [  7%]
+http_tests/auth_login_http_test.py::test_email_invalid FAILED            [  8%]
+http_tests/auth_login_http_test.py::test_email_unregistered FAILED       [  9%]
+http_tests/auth_login_http_test.py::test_password_invalid FAILED         [ 10%]
+http_tests/auth_logout_http_test.py::test_valid_logout PASSED            [ 11%]
+http_tests/auth_logout_http_test.py::test_inactive_token FAILED          [ 12%]
+http_tests/auth_register_http_test.py::test_input_valid PASSED           [ 13%]
+http_tests/auth_register_http_test.py::test_email_invalid FAILED         [ 14%]
+http_tests/auth_register_http_test.py::test_email_taken FAILED           [ 14%]
+http_tests/auth_register_http_test.py::test_password_invalid FAILED      [ 15%]
+http_tests/auth_register_http_test.py::test_name_first_invalid FAILED    [ 16%]
+http_tests/auth_register_http_test.py::test_name_last_invalid FAILED     [ 17%]
+http_tests/channel_addowner_http_test.py::test_channel_addowner_valid FAILED [ 18%]
+http_tests/channel_addowner_http_test.py::test_channel_addowner_invalid_channel PASSED [ 19%]
+http_tests/channel_addowner_http_test.py::test_channel_addowner_already_owner PASSED [ 20%]
+http_tests/channel_addowner_http_test.py::test_channel_addowner_unauthorised_user PASSED [ 21%]
+http_tests/channel_addowner_http_test.py::test_channel_addowner_invalid_token PASSED [ 21%]
+http_tests/channel_invite_http_test.py::test_channel_invite_valid FAILED [ 22%]
+http_tests/channel_invite_http_test.py::test_channel_invite_except_channel PASSED [ 23%]
+http_tests/channel_invite_http_test.py::test_channel_invite_except_user PASSED [ 24%]
+http_tests/channel_invite_http_test.py::test_channel_invite_except_noaccess PASSED [ 25%]
+http_tests/channel_invite_http_test.py::test_channel_invite_except_invalid_auth PASSED [ 26%]
+http_tests/channel_invite_http_test.py::test_channel_invite_except_repetitive FAILED [ 27%]
+http_tests/channel_join_http_test.py::test_channel_join_valid FAILED     [ 28%]
+http_tests/channel_join_http_test.py::test_channel_join_except_channel PASSED [ 28%]
+http_tests/channel_join_http_test.py::test_channel_join_except_invalid_auth PASSED [ 29%]
+http_tests/channel_join_http_test.py::test_channel_join_except_private PASSED [ 30%]
+http_tests/channel_join_http_test.py::test_channel_join_private_global FAILED [ 31%]
+http_tests/channel_join_http_test.py::test_channel_join_except_repetitive FAILED [ 32%]
+http_tests/channel_leave_http_test.py::test_channel_leave_valid PASSED   [ 33%]
+http_tests/channel_leave_http_test.py::test_channel_leave_invalid_channelid PASSED [ 34%]
+http_tests/channel_leave_http_test.py::test_channel_leave_notamember PASSED [ 35%]
+http_tests/channel_leave_http_test.py::test_channel_leave_invalid_token PASSED [ 35%]
+http_tests/channel_removeowner_http_test.py::test_channel_removeowner_adding_again PASSED [ 36%]
+http_tests/channel_removeowner_http_test.py::test_channel_removeowner_invalid_channelid PASSED [ 37%]
+http_tests/channel_removeowner_http_test.py::test_channel_removeowner_sole_owner PASSED [ 38%]
+http_tests/channel_removeowner_http_test.py::test_channel_removeowner_unauthorised_usertoken PASSED [ 39%]
+http_tests/channel_removeowner_http_test.py::test_channel_removeowner_unauthorised_user PASSED [ 40%]
+http_tests/channels_create_http_test.py::test_channels_create_multiple FAILED [ 41%]
+http_tests/channels_create_http_test.py::test_channels_create_invalid_length PASSED [ 42%]
+http_tests/channels_create_http_test.py::test_channels_create_invalid_user PASSED [ 42%]
+http_tests/channels_list_http_test.py::test_channels_list_multiple_channels FAILED [ 43%]
+http_tests/channels_list_http_test.py::test_channels_list_verifying_user FAILED [ 44%]
+http_tests/channels_list_http_test.py::test_channels_list_invalid_user PASSED [ 45%]
+http_tests/channels_listall_http_test.py::test_channels_listall_multiple_channels FAILED [ 46%]
+http_tests/channels_listall_http_test.py::test_channels_listall_multiple_users FAILED [ 47%]
+http_tests/channels_listall_http_test.py::test_channels_listall_invalid_user PASSED [ 48%]
+http_tests/dm_create_http_test.py::test_dm_create_valid FAILED           [ 49%]
+http_tests/dm_create_http_test.py::test_dm_create_invalid_uid PASSED     [ 50%]
+http_tests/dm_create_http_test.py::test_dm_create_invalid_auth PASSED    [ 50%]
+http_tests/dm_details_http_test.py::test_dm_details_valid FAILED         [ 51%]
+http_tests/dm_details_http_test.py::test_dm_details_invalid_dm PASSED    [ 52%]
+http_tests/dm_details_http_test.py::test_dm_details_invalid_member PASSED [ 53%]
+http_tests/dm_details_http_test.py::test_dm_details_invalid_auth PASSED  [ 54%]
+http_tests/dm_list_http_test.py::test_dm_list_valid FAILED               [ 55%]
+http_tests/dm_list_http_test.py::test_dm_invalid_auth PASSED             [ 56%]
+http_tests/dm_remove_http_test.py::test_dm_remove_valid PASSED           [ 57%]
+http_tests/dm_remove_http_test.py::test_dm_remove_invalid_dm PASSED      [ 57%]
+http_tests/dm_remove_http_test.py::test_dm_remove_not_owner PASSED       [ 58%]
+http_tests/dm_remove_http_test.py::test_dm_remove_invalid_auth PASSED    [ 59%]
+http_tests/echo_http_test.py::test_echo FAILED                           [ 60%]
+http_tests/search_http_test.py::test_search_empty_messages PASSED        [ 61%]
+http_tests/search_http_test.py::test_search_overlimit_querystr PASSED    [ 62%]
+http_tests/search_http_test.py::test_search_invalidtoken PASSED          [ 63%]
+http_tests/standup_active_http_test.py::test_standup_active_inactivestandup PASSED [ 64%]
+http_tests/standup_active_http_test.py::test_standup_active_activestandup PASSED [ 64%]
+http_tests/standup_active_http_test.py::test_standup_active_invalidchannel PASSED [ 65%]
+http_tests/standup_active_http_test.py::test_standup_active_invalidtoken PASSED [ 66%]
+http_tests/standup_send_http_test.py::test_standup_send_valid PASSED     [ 67%]
+http_tests/standup_send_http_test.py::test_standup_send_invalid_channel PASSED [ 68%]
+http_tests/standup_send_http_test.py::test_standup_send_long_message PASSED [ 69%]
+http_tests/standup_send_http_test.py::test_standup_send_inactive_standup PASSED [ 70%]
+http_tests/standup_send_http_test.py::test_standup_send_not_member PASSED [ 71%]
+http_tests/standup_send_http_test.py::test_standup_send_invalid_token PASSED [ 71%]
+http_tests/standup_start_http_test.py::test_standup_start_success PASSED [ 72%]
+http_tests/standup_start_http_test.py::test_standup_start_invalidchannel PASSED [ 73%]
+http_tests/standup_start_http_test.py::test_standup_start_alreadyactive PASSED [ 74%]
+http_tests/standup_start_http_test.py::test_standup_start_invalidtoken PASSED [ 75%]
+http_tests/standup_start_http_test.py::test_standup_start_unauthorised_user PASSED [ 76%]
+http_tests/user_profile_http_test.py::test_valid_input FAILED            [ 77%]
+http_tests/user_profile_http_test.py::test_invalid_uid FAILED            [ 78%]
+http_tests/user_profile_set_http_test.py::test_valid_setname PASSED      [ 78%]
+http_tests/user_profile_set_http_test.py::test_short_first_name FAILED   [ 79%]
+http_tests/user_profile_set_http_test.py::test_long_first_name FAILED    [ 80%]
+http_tests/user_profile_set_http_test.py::test_short_last_name FAILED    [ 81%]
+http_tests/user_profile_set_http_test.py::test_long_last_name FAILED     [ 82%]
+http_tests/user_profile_set_http_test.py::test_valid_setemail PASSED     [ 83%]
+http_tests/user_profile_set_http_test.py::test_invalid_email FAILED      [ 84%]
+http_tests/user_profile_set_http_test.py::test_taken_email FAILED        [ 85%]
+http_tests/user_profile_set_http_test.py::test_valid_sethandle PASSED    [ 85%]
+http_tests/user_profile_set_http_test.py::test_invalid_handle FAILED     [ 86%]
+http_tests/user_profile_set_http_test.py::test_taken_handle FAILED       [ 87%]
+http_tests/user_profile_uploadphoto_http_test.py::test_valid_input PASSED [ 88%]
+http_tests/user_profile_uploadphoto_http_test.py::test_negative_dimensions FAILED [ 89%]
+http_tests/user_profile_uploadphoto_http_test.py::test_switched_dimensions FAILED [ 90%]
+http_tests/user_profile_uploadphoto_http_test.py::test_large_dimensions FAILED [ 91%]
+http_tests/user_stats_v1_http_test.py::test_valid_input PASSED           [ 92%]
+http_tests/user_stats_v1_http_test.py::test_invalid_token FAILED         [ 92%]
+http_tests/users_all_http_test.py::test_valid_token FAILED               [ 93%]
+http_tests/users_all_http_test.py::test_invalid_token FAILED             [ 94%]
+http_tests/users_stats_v1_http_test.py::test_valid_input FAILED          [ 95%]
+http_tests/users_stats_v1_http_test.py::test_invalid_token FAILED        [ 96%]
+
+=================================== FAILURES ===================================
+__________ test_admin_user_permission_change_noninteger_permission_id __________
+
+    def test_admin_user_permission_change_noninteger_permission_id():
+        requests.delete(f"{url}/clear/v1")
+        # After clearing data, extract token and user_id
+        authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+            'email': 'z5555555@gmail.com',
+            'password': 'unswstudent',
+            'name_first': 'termone',
+            'name_last': 'student',
+        })
+        payload = authorised_info.json()
+        authorised_token = payload['token']
+        user_id = payload['auth_user_id']
+    
+        # Use the valid token and user as parameters for the function. Use a string
+        # for the permission_id input and confirm an InputError is raised [400 code]
+        request = requests.post(f"{url}/admin/userpermission/change/v1", json = {
+            'token': authorised_token,
+            'u_id': user_id,
+            'permission_id': '2',
+        })
+>       assert request.status_code == 400
+E       assert 200 == 400
+E         +200
+E         -400
+
+http_tests/admin_userpermission_change_http_test.py:120: AssertionError
+______________________________ test_email_invalid ______________________________
+
+    def test_email_invalid():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        res = requests.post(f"{url}/auth/login/v2", json={
+            "email": "john", # invalid email
+            "password": "123456",
+        })
+>       payload = res.json()
+
+http_tests/auth_login_http_test.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email or password is incorrect</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+___________________________ test_email_unregistered ____________________________
+
+    def test_email_unregistered():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        res = requests.post(f"{url}/auth/login/v2", json={
+            "email": "doggo@gmail.com", # unregistered email
+            "password": "123456",
+        })
+>       payload = res.json()
+
+http_tests/auth_login_http_test.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email or password is incorrect</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+____________________________ test_password_invalid _____________________________
+
+    def test_password_invalid():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        requests.post(f"{url}/auth/register/v2", json={
+            "email": "johnsmith@gmail.com",
+            "password": "123456",
+            "name_first": "john",
+            "name_last": "smith",
+        })
+        res = requests.post(f"{url}/auth/login/v2", json={
+            "email": "johnsmith@gmail.com",
+            "password": "password", # invalid password
+        })
+>       payload = res.json()
+
+http_tests/auth_login_http_test.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email or password is incorrect</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_____________________________ test_inactive_token ______________________________
+
+    def test_inactive_token():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        # Register a user
+        token = generate_token(42) # random token
+        res = requests.post(f"{url}/auth/logout/v1", json={
+            'token': token
+        })
+>       payload = res.json()
+
+http_tests/auth_logout_http_test.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Not logged in bro</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+______________________________ test_email_invalid ______________________________
+
+    def test_email_invalid():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        res = requests.post(f"{url}/auth/register/v2", json={
+            "email": "john", # invalid email
+            "password": "123456",
+            "name_first": "john",
+            "name_last": "smith",
+        })
+        auth_user_id = 0
+        generate_token(auth_user_id)
+>       payload = res.json()
+
+http_tests/auth_register_http_test.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email is invalid</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_______________________________ test_email_taken _______________________________
+
+    def test_email_taken():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        requests.post(f"{url}/auth/register/v2", json={
+            "email": "johnsmith@gmail.com",
+            "password": "123456",
+            "name_first": "john",
+            "name_last": "smith",
+        })
+        res = requests.post(f"{url}/auth/register/v2", json={
+            "email": "johnsmith@gmail.com",
+            "password": "654321",
+            "name_first": "johnny",
+            "name_last": "smithson",
+        })
+>       payload = res.json()
+
+http_tests/auth_register_http_test.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>johnsmith@gmail.com already taken</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+____________________________ test_password_invalid _____________________________
+
+    def test_password_invalid():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        res = requests.post(f"{url}/auth/register/v2", json={
+            "email": "johnsmith@gmail.com",
+            "password": "123", #invalid password
+            "name_first": "john",
+            "name_last": "smith",
+        })
+>       payload = res.json()
+
+http_tests/auth_register_http_test.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Invalid password; too little characters</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+___________________________ test_name_first_invalid ____________________________
+
+    def test_name_first_invalid():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        res = requests.post(f"{url}/auth/register/v2", json={
+            "email": "johnsmith@gmail.com",
+            "password": "123456",
+            "name_first": "", # invalid first name, too short
+            "name_last": "smith",
+        })
+>       payload = res.json()
+
+http_tests/auth_register_http_test.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+____________________________ test_name_last_invalid ____________________________
+
+    def test_name_last_invalid():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        res = requests.post(f"{url}/auth/register/v2", json={
+            "email": "johnsmith@gmail.com",
+            "password": "123456",
+            "name_first": "john",
+            "name_last": "", # invalid last name, too short
+        })
+>       payload = res.json()
+
+http_tests/auth_register_http_test.py:99: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_________________________ test_channel_addowner_valid __________________________
+
+    def test_channel_addowner_valid():
+        # Clears data and register an use
+        requests.delete(f"{url}/clear/v1")
+        authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+            "email": "j.smith1@gmail.com",
+            "password": "pass1234",
+            "name_first": "john",
+            "name_last": "smith",
+        })
+        payload = authorised_info.json()
+        authorised_token1 = payload['token']
+    
+        # Using this user's details, create a channel and obtain the channel id
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token1,
+            'name': 'channel_1',
+            'is_public': True
+        })
+        payload = request.json()
+        channel_id = payload["channel_id"]
+    
+        # Register a second user
+        authorised_info = requests.post(f"{url}/auth/register/v2", json = {
+            "email": "jane.doe2@gmail.com",
+            "password": "jane1234",
+            "name_first": "jane",
+            "name_last": "doe",
+        })
+        payload = authorised_info.json()
+        auth_user_id = payload["auth_user_id"]
+        new_token = payload["token"]
+        # Using this user's user_id and the first user's token, add the second user
+        # as an  owner
+        request = requests.post(f"{url}/channel/addowner/v1", json = {
+            'token': authorised_token1,
+            'channel_id': channel_id,
+            'u_id': auth_user_id,
+        })
+        # Confirm the status code returns a success
+        assert request.status_code == 200
+    
+        # Pass in the second user's token and confirm channels_list is working
+        request = requests.get(f"{url}/channels/list/v2",
+            params= {'token': new_token})
+        assert request.status_code == 200
+        # Confirm the channels list contains the correct channel id and name of the
+        # channel the user has been added to
+        payload = request.json()
+>       assert payload['channels'] == [{'channel_id': 1, 'name': 'channel_1'}]
+E       AssertionError: assert [{'channel_id': 33, 'name': 'channel_1'}] == [{'channel_id': 1, 'name': 'channel_1'}]
+E         At index 0 diff: {'channel_id': 33, 'name': 'channel_1'} != {'channel_id': 1, 'name': 'channel_1'}
+E         Full diff:
+E         - [{'channel_id': 1, 'name': 'channel_1'}]
+E         ?                 ^
+E         + [{'channel_id': 33, 'name': 'channel_1'}]
+E         ?                 ^^
+
+http_tests/channel_addowner_http_test.py:61: AssertionError
+__________________________ test_channel_invite_valid ___________________________
+
+    def test_channel_invite_valid():
+        """
+        This function checks if the new user
+        detail added to the channel is correct.
+        """
+    
+        # Clear the data
+        requests.delete(f"{url}/clear/v1")
+    
+        # Users information to be pass in as json
+        user1_data = {
+            "email": "johnsmith@gmail.com",
+            "password": "password123",
+            "name_first": "john",
+            "name_last": "smith",
+        }
+    
+        user2_data = {
+            "email": "michaelbush@gmail.com",
+            "password": "123456",
+            "name_first": "michael",
+            "name_last": "bush",
+        }
+    
+        # Call other routes to create the data and store in data structure
+        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
+        payload = auth_user1_info.json()
+        token1 = payload["token"]
+    
+        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+        payload = auth_user2_info.json()
+    
+        auth_id2 = payload["auth_user_id"]
+        token2 = payload["token"]
+    
+        channels_response = requests.post(f"{url}/channels/create/v2", json = {
+            "token": token1,
+            "name": "Channel1",
+            "is_public": True
+        })
+    
+        payload = channels_response.json()
+    
+        channel_id = payload["channel_id"]
+        invite_response = requests.post(f"{url}/channel/invite/v2", json = {
+                "token": token1,
+                "channel_id": channel_id,
+                "u_id": auth_id2
+        })
+    
+        # Check if the HTML request is successful
+        assert invite_response.status_code == 200
+    
+        res = requests.get(f"{url}/channels/list/v2", params= {'token': token2})
+        payload = res.json()
+    
+>       assert payload == {
+            'channels': [
+            	{
+            		'channel_id': 1, # channel id start at 1 or 0 is worth checking ?
+            		'name': 'Channel1',
+            	}
+            ]
+        }
+E       AssertionError: assert {'channels': [{'channel_id': 46, 'name': 'Channel1'}]} == {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         Differing items:
+E         {'channels': [{'channel_id': 46, 'name': 'Channel1'}]} != {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         Full diff:
+E         - {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         ?                              ^
+E         + {'channels': [{'channel_id': 46, 'name': 'Channel1'}]}
+E         ?                              ^^
+
+http_tests/channel_invite_http_test.py:70: AssertionError
+____________________ test_channel_invite_except_repetitive _____________________
+
+    def test_channel_invite_except_repetitive():
+        """
+        This functions tests if the auth_user_id is
+        inviting a user already in the channel.
+        """
+    
+        # Clear the data
+        requests.delete(f"{url}/clear/v1")
+    
+        # Users information to be pass in as json
+        user1_data = {
+            "email": "johnsmith@gmail.com",
+            "password": "password123",
+            "name_first": "john",
+            "name_last": "smith",
+        }
+    
+        user2_data = {
+            "email": "michaelbush@gmail.com",
+            "password": "123456",
+            "name_first": "michael",
+            "name_last": "bush",
+        }
+    
+        # Call other routes to create the data and store in data structure
+        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
+        payload = auth_user1_info.json()
+        token1 = payload["token"]
+        auth_id1 = payload["auth_user_id"]
+    
+        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+        payload = auth_user2_info.json()
+    
+        channels_response = requests.post(f"{url}/channels/create/v2", json = {
+            "token": token1,
+            "name": "Channel1",
+            "is_public": True
+        })
+    
+        payload = channels_response.json()
+    
+        channel_id = payload["channel_id"]
+        invite_response = requests.post(f"{url}/channel/invite/v2", json = {
+                "token": token1,
+                "channel_id": channel_id,
+                "u_id": auth_id1
+        })
+    
+        # Check for repetitive invite. If u_id already in channel,
+        # raises status code 403 AccessError
+>       assert invite_response.status_code == 403
+E       assert 400 == 403
+E         +400
+E         -403
+
+http_tests/channel_invite_http_test.py:343: AssertionError
+___________________________ test_channel_join_valid ____________________________
+
+    def test_channel_join_valid():
+        """
+        This function checks if the user is successfully
+        added to the channel and store in the data structure.
+        """
+        # Clear the data
+        requests.delete(f"{url}/clear/v1")
+    
+        # Users information to be pass in as json
+        user1_data = {
+            "email": "johnsmith@gmail.com",
+            "password": "password123",
+            "name_first": "john",
+            "name_last": "smith",
+        }
+    
+        user2_data = {
+            "email": "michaelbush@gmail.com",
+            "password": "123456",
+            "name_first": "michael",
+            "name_last": "bush",
+        }
+    
+        # Call other routes to create the data and store in data structure
+        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
+        payload = auth_user1_info.json()
+        token1 = payload["token"]
+    
+        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+        payload = auth_user2_info.json()
+    
+        token2 = payload["token"]
+    
+        channels_response = requests.post(f"{url}/channels/create/v2", json = {
+            "token": token1,
+            "name": "Channel1",
+            "is_public": True
+        })
+    
+        payload = channels_response.json()
+    
+        channel_id = payload["channel_id"]
+        join_response = requests.post(f"{url}/channel/join/v2", json = {
+                "token": token2,
+                "channel_id": channel_id
+        })
+    
+        # Check if the HTML request is successful
+        assert join_response.status_code == 200
+    
+        res = requests.get(f"{url}/channels/list/v2", params= {'token': token2})
+        payload = res.json()
+    
+>       assert payload == {
+            'channels': [
+            	{
+            		'channel_id': 1, # channel id start at 1 or 0 is worth checking ?
+            		'name': 'Channel1',
+            	}
+            ]
+        }
+E       AssertionError: assert {'channels': [{'channel_id': 64, 'name': 'Channel1'}]} == {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         Differing items:
+E         {'channels': [{'channel_id': 64, 'name': 'Channel1'}]} != {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         Full diff:
+E         - {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         ?                              ^
+E         + {'channels': [{'channel_id': 64, 'name': 'Channel1'}]}
+E         ?                              ^^
+
+http_tests/channel_join_http_test.py:66: AssertionError
+_______________________ test_channel_join_private_global _______________________
+
+    def test_channel_join_private_global():
+        """
+        This function tests if the channel status
+        is private and user is global DREAM owner.
+        """
+        # Clear the data
+        requests.delete(f"{url}/clear/v1")
+    
+        # Users information to be pass in as json
+        user1_data = {
+            "email": "johnsmith@gmail.com",
+            "password": "password123",
+            "name_first": "john",
+            "name_last": "smith",
+        }
+    
+        user2_data = {
+            "email": "michaelbush@gmail.com",
+            "password": "123456",
+            "name_first": "michael",
+            "name_last": "bush",
+        }
+    
+        # Call other routes to create the data and store in data structure
+        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
+        payload = auth_user1_info.json()
+        token1 = payload["token"]
+    
+        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+        payload = auth_user2_info.json()
+    
+        token2 = payload["token"]
+    
+        channels_response = requests.post(f"{url}/channels/create/v2", json = {
+            "token": token2,
+            "name": "Channel1",
+            "is_public": False
+        })
+    
+        payload = channels_response.json()
+    
+        channel_id = payload["channel_id"]
+        join_response = requests.post(f"{url}/channel/join/v2", json = {
+                "token": token1,
+                "channel_id": channel_id
+        })
+    
+        # Check if HTTP request is successful
+        assert join_response.status_code == 200
+        res = requests.get(f"{url}/channels/list/v2", params= {'token': token1})
+        payload = res.json()
+    
+>       assert payload == {
+            'channels': [
+            	{
+            		'channel_id': 1, # channel id start at 1 or 0 is worth checking ?
+            		'name': 'Channel1',
+            	}
+            ]
+        }
+E       AssertionError: assert {'channels': [{'channel_id': 76, 'name': 'Channel1'}]} == {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         Differing items:
+E         {'channels': [{'channel_id': 76, 'name': 'Channel1'}]} != {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         Full diff:
+E         - {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E         ?                              ^
+E         + {'channels': [{'channel_id': 76, 'name': 'Channel1'}]}
+E         ?                              ^^
+
+http_tests/channel_join_http_test.py:278: AssertionError
+_____________________ test_channel_join_except_repetitive ______________________
+
+    def test_channel_join_except_repetitive():
+        """
+        This function tests if the user is already
+        a member in that channel.
+        """
+        # Clear the data
+        requests.delete(f"{url}/clear/v1")
+    
+        # Users information to be pass in as json
+        user1_data = {
+            "email": "johnsmith@gmail.com",
+            "password": "password123",
+            "name_first": "john",
+            "name_last": "smith",
+        }
+    
+        user2_data = {
+            "email": "michaelbush@gmail.com",
+            "password": "123456",
+            "name_first": "michael",
+            "name_last": "bush",
+        }
+    
+        # Call other routes to create the data and store in data structure
+        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
+        payload = auth_user1_info.json()
+    
+        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+        payload = auth_user2_info.json()
+        token2 = payload["token"]
+    
+        channels_response = requests.post(f"{url}/channels/create/v2", json = {
+            "token": token2,
+            "name": "Channel1",
+            "is_public": True
+        })
+    
+        payload = channels_response.json()
+    
+        channel_id = payload["channel_id"]
+        join_response = requests.post(f"{url}/channel/join/v2", json = {
+                "token": token2,
+                "channel_id": channel_id,
+        })
+    
+        # Check for repetitive join. If user already in channel,
+        # raises status code 403 AccessError
+>       assert join_response.status_code == 403
+E       assert 400 == 403
+E         +400
+E         -403
+
+http_tests/channel_join_http_test.py:334: AssertionError
+________________________ test_channels_create_multiple _________________________
+
+    def test_channels_create_multiple():
+        # Clears the data
+        requests.delete(f"{url}/clear/v1")
+        # Collate all the values for each key required in the auth_register/v2
+        auth_data = {
+            'email': 'john.smith@gmail.com',
+            'password': 'pass1234',
+            'name_first': 'john',
+            'name_last': 'smith'
+        }
+        authorised_info = requests.post(f"{url}/auth/register/v2", json = auth_data)
+    
+        # Extract the token to use in channels/create/v2
+        payload = authorised_info.json()
+        authorised_token = payload['token']
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token,
+            'name': 'Channel1',
+            'is_public': True
+        })
+        # Check that the HTML request has succeeded with a successful request
+        assert request.status_code == 200
+    
+        # Test the channel_id to make sure it begins at 1 as per the assumptions
+        payload = request.json()
+>       assert payload['channel_id'] == 1
+E       assert 103 == 1
+E         +103
+E         -1
+
+http_tests/channels_create_http_test.py:40: AssertionError
+_____________________ test_channels_list_multiple_channels _____________________
+
+    def test_channels_list_multiple_channels():
+        # Collate the data (email, password, name) to pass into auth_register_v
+        requests.delete(f"{url}/clear/v1")
+        auth_data = {
+            'email': 'comp1531@hotmail.com',
+            'password': 'hogwarts',
+            'name_first': 'harry',
+            'name_last': 'potter',
+        }
+        authorised_info = requests.post(f"{url}/auth/register/v2", json = auth_data)
+    
+        # Extracts the token provided by the registration to create new channels
+        payload = authorised_info.json()
+        authorised_token = payload['token']
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token,
+            'name': 'channel_1',
+            'is_public': False,
+        })
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token,
+            'name': 'channel_2',
+            'is_public': True,
+        })
+    
+        # Pass in the token as a parameter and insert the urll for channels_list
+        request = requests.get(f"{url}/channels/list/v2",
+            params= {'token': authorised_token})
+        # Check that the HTML request has succeeded through a 200 status code
+        assert request.status_code == 200
+    
+        # Confirm the channels list contains the correct channel id and names
+        payload = request.json()
+>       assert payload['channels'] == [{'channel_id': 1, 'name': 'channel_1'},
+                                      {'channel_id': 2, 'name': 'channel_2'}]
+E       AssertionError: assert [{'channel_id': 108, 'name': 'channel_1'},\n {'channel_id': 109, 'name': 'channel_2'}] == [{'channel_id': 1, 'name': 'channel_1'}, {'channel_id': 2, 'name': 'channel_2'}]
+E         At index 0 diff: {'channel_id': 108, 'name': 'channel_1'} != {'channel_id': 1, 'name': 'channel_1'}
+E         Full diff:
+E           [
+E         -  {'channel_id': 1,
+E         +  {'channel_id': 108,
+E         ?                  ++
+E             'name': 'channel_1'},
+E         -  {'channel_id': 2,
+E         ?                 ^
+E         +  {'channel_id': 109,
+E         ?                 ^^^
+E             'name': 'channel_2'},
+E           ]
+
+http_tests/channels_list_http_test.py:49: AssertionError
+______________________ test_channels_list_verifying_user _______________________
+
+    def test_channels_list_verifying_user():
+        # Clear data
+        requests.delete(f"{url}/clear/v1")
+        # Register the first user
+        auth_data = {
+            'email': 'autumn2021@hotmail.com',
+            'password': 'winter06',
+            'name_first': 'autumn',
+            'name_last': 'winters',
+        }
+        authorised_info1 = requests.post(f"{url}/auth/register/v2", json = auth_data)
+        payload = authorised_info1.json()
+        # Use this first user's token to create a channel
+        authorised_token1 = payload['token']
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token1,
+            'name': 'channel/3',
+            'is_public': False,
+        })
+    
+        # Create a second user registration and pass in the necessary data
+        auth_data = {
+            'email': 'summer2021@hotmail.com',
+            'password': 'spring09',
+            'name_first': 'summer',
+            'name_last': 'springs',
+        }
+        authorised_info2 = requests.post(f"{url}/auth/register/v2", json = auth_data)
+        payload = authorised_info2.json()
+        # Use the token generated from the registration to create a new channel
+        authorised_token2 = payload['token']
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token2,
+            'name': 'channel/4',
+            'is_public': True,
+        })
+        # Using the second user's account, request channels_list and verify that
+        # only one channel has been listed with the correct channel_id and name
+        request = requests.get(f"{url}/channels/list/v2", params = {
+            'token': authorised_token2,
+        })
+        assert request.status_code == 200  # Confirm the request is successful
+        payload = request.json()
+>       assert payload['channels'] == [{'channel_id': 2, 'name': 'channel/4'}]
+E       AssertionError: assert [{'channel_id': 113, 'name': 'channel/4'}] == [{'channel_id': 2, 'name': 'channel/4'}]
+E         At index 0 diff: {'channel_id': 113, 'name': 'channel/4'} != {'channel_id': 2, 'name': 'channel/4'}
+E         Full diff:
+E         - [{'channel_id': 2, 'name': 'channel/4'}]
+E         ?                 ^
+E         + [{'channel_id': 113, 'name': 'channel/4'}]
+E         ?                 ^^^
+
+http_tests/channels_list_http_test.py:97: AssertionError
+___________________ test_channels_listall_multiple_channels ____________________
+
+    def test_channels_listall_multiple_channels():
+        # Clears data and collates the necessary information for auth_register/v2
+        requests.delete(f"{url}/clear/v1")
+        auth_data = {
+            'email': 'z1111111@gmail.com',
+            'password': 'unswstudent',
+            'name_first': 'anne',
+            'name_last': 'student',
+        }
+        authorised_info = requests.post(f"{url}/auth/register/v2", json = auth_data)
+    
+        # Extracts the authorised token from the registration to create two channels
+        payload = authorised_info.json()
+        authorised_token = payload['token']
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token,
+            'name': 'Channel1',
+            'is_public': True,
+        })
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token,
+            'name': 'Channel_2',
+            'is_public': False,
+        })
+    
+        # Pass in the token as a parameter for listall
+        request = requests.get(f"{url}/channels/listall/v2",
+            params= {'token': authorised_token})
+        # Check that the HTML request has succeeded through a 200 status code
+        assert request.status_code == 200
+    
+        # Confirm the channels list contains the correct channel id and names
+        payload = request.json()
+>       assert payload['channels'] == [{'channel_id': 1, 'name': 'Channel1'},
+                                      {'channel_id': 2, 'name': 'Channel_2'}]
+E       AssertionError: assert [{'channel_id': 116, 'name': 'Channel1'},\n {'channel_id': 117, 'name': 'Channel_2'}] == [{'channel_id': 1, 'name': 'Channel1'}, {'channel_id': 2, 'name': 'Channel_2'}]
+E         At index 0 diff: {'channel_id': 116, 'name': 'Channel1'} != {'channel_id': 1, 'name': 'Channel1'}
+E         Full diff:
+E           [
+E         -  {'channel_id': 1,
+E         +  {'channel_id': 116,
+E         ?                  ++
+E             'name': 'Channel1'},
+E         -  {'channel_id': 2,
+E         ?                 ^
+E         +  {'channel_id': 117,
+E         ?                 ^^^
+E             'name': 'Channel_2'},
+E           ]
+
+http_tests/channels_listall_http_test.py:50: AssertionError
+_____________________ test_channels_listall_multiple_users _____________________
+
+    def test_channels_listall_multiple_users():
+        # Clear data
+        requests.delete(f"{url}/clear/v1")
+        # Collate all the parameters and register the first user
+        authorised_info1 = requests.post(f"{url}/auth/register/v2", json = {
+            'email': 'z1111111@gmail.com',
+            'password': 'unswstudent',
+            'name_first': 'anne',
+            'name_last': 'student',
+        })
+        # Obtain the token for the first authorised user
+        payload = authorised_info1.json()
+        authorised_token1 = payload['token']
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token1,
+            'name': 'Channel-3',
+            'is_public': True
+        })
+    
+        # Create and register a new user
+        authorised_info2 = requests.post(f"{url}/auth/register/v2", json = {
+            'email': 'z2222222@gmail.com',
+            'password': 'new_student1',
+            'name_first': 'henry',
+            'name_last': 'ford'
+        })
+        # Extract the token created by the second user and create a channel
+        payload = authorised_info2.json()
+        authorised_token2 = payload['token']
+        request = requests.post(f"{url}/channels/create/v2", json = {
+            'token': authorised_token2,
+            'name': 'Channel-4',
+            'is_public': True
+        })
+    
+        # Request for the listall function, passing a valid token in as a parameter
+        request = requests.get(f"{url}/channels/listall/v2",
+            params= {'token': authorised_token1})
+        # Check that the HTML request has succeeded with a status code of 200
+        assert request.status_code == 200
+    
+        # Confirm the request is of the correct format and content
+        payload = request.json()
+>       assert payload['channels'] == [{'channel_id': 1, 'name': 'Channel-3'},
+                                      {'channel_id': 2, 'name': 'Channel-4'}]
+E       AssertionError: assert [{'channel_id': 119, 'name': 'Channel-3'},\n {'channel_id': 121, 'name': 'Channel-4'}] == [{'channel_id': 1, 'name': 'Channel-3'}, {'channel_id': 2, 'name': 'Channel-4'}]
+E         At index 0 diff: {'channel_id': 119, 'name': 'Channel-3'} != {'channel_id': 1, 'name': 'Channel-3'}
+E         Full diff:
+E           [
+E         -  {'channel_id': 1,
+E         +  {'channel_id': 119,
+E         ?                  ++
+E             'name': 'Channel-3'},
+E         -  {'channel_id': 2,
+E         +  {'channel_id': 121,
+E         ?                 + +
+E             'name': 'Channel-4'},
+E           ]
+
+http_tests/channels_listall_http_test.py:98: AssertionError
+_____________________________ test_dm_create_valid _____________________________
+
+    def test_dm_create_valid():
+        """
+        This function test the successful creation of dm.
+        """
+        # Clear the data
+        requests.delete(f"{url}/clear/v1")
+    
+        # Users information to be pass in as json
+        user1_data = {
+            "email": "johnsmith@gmail.com",
+            "password": "password123",
+            "name_first": "john",
+            "name_last": "smith",
+        }
+    
+        user2_data = {
+            "email": "michaelbush@gmail.com",
+            "password": "123456",
+            "name_first": "michael",
+            "name_last": "bush",
+        }
+    
+        user3_data = {
+            "email": "alexcactus@gmail.com",
+            "password": "alex1234",
+            "name_first": "alex",
+            "name_last": "cactus",
+        }
+    
+        # Call other routes to create the data and store in data structure
+        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
+        payload = auth_user1_info.json()
+        token1 = payload["token"]
+    
+        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+        payload = auth_user2_info.json()
+    
+        auth_id2 = payload["auth_user_id"]
+    
+    
+        auth_user3_info = requests.post(f"{url}/auth/register/v2", json = user3_data)
+        payload = auth_user3_info.json()
+    
+        auth_id3 = payload["auth_user_id"]
+    
+        u_ids = [auth_id2, auth_id3]
+    
+        dm_response = requests.post(f"{url}/dm/create/v1", json = {
+            "token": token1,
+            "u_ids": u_ids
+        })
+    
+        # Check if the HTML request is successful
+        assert dm_response.status_code == 200
+        payload = dm_response.json()
+>       assert payload["dm_id"] == 1
+E       assert 126 == 1
+E         +126
+E         -1
+
+http_tests/dm_create_http_test.py:65: AssertionError
+____________________________ test_dm_details_valid _____________________________
+
+    def test_dm_details_valid():
+        """
+        This function test the valid case of dm_details_v1
+        """
+    
+        # Clear the data
+        requests.delete(f"{url}/clear/v1")
+    
+        # Users information to be pass in as json
+        user1_data = {
+            "email": "johnsmith@gmail.com",
+            "password": "password123",
+            "name_first": "john",
+            "name_last": "smith",
+        }
+    
+        user2_data = {
+            "email": "michaelbush@gmail.com",
+            "password": "123456",
+            "name_first": "michael",
+            "name_last": "bush",
+        }
+    
+        # Call other routes to create the data and store in data structure
+        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
+        payload = auth_user1_info.json()
+        token1 = payload["token"]
+    
+        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+        payload = auth_user2_info.json()
+        auth_id2 = payload["auth_user_id"]
+        token2 = payload["token"]
+    
+        u_ids = [auth_id2]
+        dm_response = requests.post(f"{url}/dm/create/v1", json = {
+            "token": token1,
+            "u_ids": u_ids
+        })
+    
+        payload = dm_response.json()
+        dm_id = payload["dm_id"]
+        dm_response = requests.get(f"{url}/dm/details/v1", params = {"token": token2, "dm_id":dm_id})
+    
+        # Check if the HTML request is successful
+        assert dm_response.status_code == 200
+        payload = dm_response.json()
+        res_name = payload["name"]
+        res_members = payload["members"]
+    
+>       assert res_name == "johnsmith,michaelbush"
+E       AssertionError: assert 'johnsmith, michaelbush' == 'johnsmith,michaelbush'
+E         - johnsmith,michaelbush
+E         + johnsmith, michaelbush
+E         ?           +
+
+http_tests/dm_details_http_test.py:59: AssertionError
+______________________________ test_dm_list_valid ______________________________
+
+    def test_dm_list_valid():
+        """
+        This function test the valid case of dm_list_v1
+        """
+         # Clear the data
+        requests.delete(f"{url}/clear/v1")
+    
+        # Users information to be pass in as json
+        user1_data = {
+            "email": "johnsmith@gmail.com",
+            "password": "password123",
+            "name_first": "john",
+            "name_last": "smith",
+        }
+    
+        user2_data = {
+            "email": "michaelbush@gmail.com",
+            "password": "123456",
+            "name_first": "michael",
+            "name_last": "bush",
+        }
+    
+        # Call other routes to create the data and store in data structure
+        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
+        payload = auth_user1_info.json()
+        token1 = payload["token"]
+    
+        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
+        payload = auth_user2_info.json()
+        auth_id2 = payload["auth_user_id"]
+    
+        u_ids = [auth_id2]
+    
+        dm_response = requests.post(f"{url}/dm/create/v1", json = {
+            "token": token1,
+            "u_ids": u_ids
+        })
+    
+        dm_response = requests.get(f"{url}/dm/list/v1", params= {"token": token1})
+    
+        # Check if the HTML request is successful
+        assert dm_response.status_code == 200
+    
+        payload = dm_response.json()
+        print(payload)
+>       assert payload["dms"] == [{"dm_id": 1, "name": "johnsmith,michaelbush"}]
+E       AssertionError: assert [{'dm_id': 147, 'name': 'johnsmith, michaelbush'}] == [{'dm_id': 1, 'name': 'johnsmith,michaelbush'}]
+E         At index 0 diff: {'dm_id': 147, 'name': 'johnsmith, michaelbush'} != {'dm_id': 1, 'name': 'johnsmith,michaelbush'}
+E         Full diff:
+E         - [{'dm_id': 1, 'name': 'johnsmith,michaelbush'}]
+E         + [{'dm_id': 147, 'name': 'johnsmith, michaelbush'}]
+E         ?             ++                     +
+
+http_tests/dm_list_http_test.py:55: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{'dms': [{'dm_id': 147, 'name': 'johnsmith, michaelbush'}]}
+__________________________________ test_echo ___________________________________
+
+    def test_echo():
+        '''
+        A simple test to check echo
+        '''
+        resp = requests.get(config.url + 'echo', params={'data': 'hello'})
+>       assert json.loads(resp.text) == {'data': 'hello'}
+
+http_tests/echo_http_test.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.7/json/__init__.py:348: in loads
+    return _default_decoder.decode(s)
+/usr/lib/python3.7/json/decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7fe5870aa550>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/usr/lib/python3.7/json/decoder.py:355: JSONDecodeError
+_______________________________ test_valid_input _______________________________
+
+    def test_valid_input():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        user = requests.post(f"{url}/auth/register/v2", json={
+            "email": "johnsmith@gmail.com",
+            "password": "123456",
+            "name_first": "john",
+            "name_last": "smith",
+        })
+        payload = user.json()
+        id = payload['auth_user_id']
+        token = payload['token']
+        # Generate a query string for get request
+        query = urllib.parse.urlencode({
+            'token': token,
+            'u_id': id
+        })
+    
+        res = requests.get(f"{url}/user/profile/v2?{query}")
+        payload = res.json()
+        assert payload['user']['u_id'] == id
+        assert payload['user']['email'] == 'johnsmith@gmail.com'
+        assert payload['user']['name_first'] == 'john'
+        assert payload['user']['name_last'] == 'smith'
+        assert payload['user']['handle_str'] == 'johnsmith'
+>       assert payload['user']['profile_img_url'] == url + 'src/static/default.jpg'
+E       AssertionError: assert '' == 'http://127.0.0.1:60811/src/static/default.jpg'
+E         - http://127.0.0.1:60811/src/static/default.jpg
+
+http_tests/user_profile_http_test.py:37: AssertionError
+_______________________________ test_invalid_uid _______________________________
+
+    def test_invalid_uid():
+        global url
+        requests.delete(f"{url}/clear/v1") # clear the data first
+        user = requests.post(f"{url}/auth/register/v2", json={
+            "email": "johnsmith@gmail.com", # valid email
+            "password": "123456",
+            "name_first": "john",
+            "name_last": "smith",
+        })
+        payload = user.json()
+        id = -5 # Invalid user id since auth_user_id >= 0
+        token = payload['token']
+        # Generate a query string for get request
+        query = urllib.parse.urlencode({
+            'token': token,
+            'u_id': id
+        })
+        res = requests.get(f"{url}/user/profile/v2?{query}")
+>       payload = res.json()
+
+http_tests/user_profile_http_test.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>-5 is not a valid ID</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+____________________________ test_short_first_name _____________________________
+
+register_user = {'auth_user_id': 203, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIwMywibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6ImEzODczY2U4LTYxN2ItNDhlYi04OWVhLWJkMTdlZWNmZjM2ZCJ9.z85WJa3GswlTVB87hIBz4SmrXHU74nRrt--5JENf-do'}
+
+    def test_short_first_name(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        newFirstName = ""
+        newLastName = "Bourne"
+        res = requests.put(f"{url}/user/profile/setname/v2", json={
+            'token': token,
+            'name_first': newFirstName,
+            'name_last': newLastName,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_set_http_test.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_____________________________ test_long_first_name _____________________________
+
+register_user = {'auth_user_id': 205, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIwNSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6IjA5ODNlZjNlLTczNmEtNGY3Mi1hNjcwLTBmMzI2N2M5NjI5YiJ9.bjYKqrffp9lHFoUTlMPb0_9MWpMRxWYOq56VxeknEDE'}
+
+    def test_long_first_name(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        newFirstName = "a"*51
+        newLastName = "Bourne"
+        res = requests.put(f"{url}/user/profile/setname/v2", json={
+            'token': token,
+            'name_first': newFirstName,
+            'name_last': newLastName,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_set_http_test.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_____________________________ test_short_last_name _____________________________
+
+register_user = {'auth_user_id': 207, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIwNywibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6IjRlNWVhNDg2LTBjZjAtNDQxNC05MmNlLWJlYWM4ZmVjNTgwNCJ9.inOLItisFH9pS0ZpLpvgk3W5jqcxgYxGKHqm2KD3HWM'}
+
+    def test_short_last_name(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        newFirstName = "Jason"
+        newLastName = ""
+        res = requests.put(f"{url}/user/profile/setname/v2", json={
+            'token': token,
+            'name_first': newFirstName,
+            'name_last': newLastName,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_set_http_test.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_____________________________ test_long_last_name ______________________________
+
+register_user = {'auth_user_id': 209, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIwOSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6IjBkYzdkMWMzLTQ5N2EtNGEyZC1iZWJjLTVjNDU1OGVhYTY2MSJ9.Vk4kVRF3fSa0X2rNS6qi4GsHfJog81TQGFxSeJzfxVk'}
+
+    def test_long_last_name(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        newFirstName = "Jason"
+        newLastName = "a"*51
+        res = requests.put(f"{url}/user/profile/setname/v2", json={
+            'token': token,
+            'name_first': newFirstName,
+            'name_last': newLastName,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_set_http_test.py:101: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+______________________________ test_invalid_email ______________________________
+
+register_user = {'auth_user_id': 213, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIxMywibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6ImI0YWQ1ZmEyLWJkY2QtNDFiYy05OTU4LTUzNmU3YjU3NzRjZCJ9.veGkJltacC9kav1X8KT5YJ_l7dNuX2La3VQjiq5SphA'}
+
+    def test_invalid_email(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        newEmail = "invalid"
+        res = requests.put(f"{url}/user/profile/setemail/v2", json={
+            'token': token,
+            'email': newEmail,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_set_http_test.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email is invalid</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_______________________________ test_taken_email _______________________________
+
+register_user = {'auth_user_id': 215, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIxNSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6ImJjMzdjMGUzLTZmZTMtNDk2Mi04MGY4LWU0ZGYxNDg4ODJkOSJ9.DHPLVgB1O0OXGw0bptq9AClewXNFC1IjbwUxeoMkviY'}
+
+    def test_taken_email(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        newEmail = "batman@gmail.com"
+        res = requests.put(f"{url}/user/profile/setemail/v2", json={
+            'token': token,
+            'email': newEmail,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_set_http_test.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>batman@gmail.com already taken</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_____________________________ test_invalid_handle ______________________________
+
+register_user = {'auth_user_id': 219, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIxOSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6ImIyMTViYmZkLTYzZDItNDUzYy04MTY2LTBjZWFmODdhNmRmOSJ9.LTSFFmW0Ie_GuUWQwCnPum3SGrygBcHlSsjGv4AhKNA'}
+
+    def test_invalid_handle(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        newHandle = 'jasonbourne'*5 # invalid string length
+        res = requests.put(f"{url}/user/profile/sethandle/v1", json={
+            'token': token,
+            'handle_str': newHandle,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_set_http_test.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Handle should be between 3 and 20 characters long</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+______________________________ test_taken_handle _______________________________
+
+register_user = {'auth_user_id': 221, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIyMSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6IjQxY2I4MmUxLTNmNjYtNDY4Ni1hOTYxLTUyZjI2NzVhY2VjNiJ9.1vrXOkqCCCpgvnlxHWSiPl03Moc5XBrHPGP3JSi_fRs'}
+
+    def test_taken_handle(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        newHandle = 'batman' # handle is taken by another user
+        res = requests.put(f"{url}/user/profile/sethandle/v1", json={
+            'token': token,
+            'handle_str': newHandle,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_set_http_test.py:179: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>batman already taken</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+___________________________ test_negative_dimensions ___________________________
+
+register_user = {'auth_user_id': 226, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIyNiwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6ImI3ZDA0OGU4LWE4YmQtNDFkOC1iMDkyLWNlZTJlOGUyOGFkYiJ9.v9MyhoB7_CLxqC3zFmag904dfs6kqhilvg_OAt62Mes'}
+
+    def test_negative_dimensions(register_user):
+        global url
+        user = register_user
+        token = user['token']
+    
+        res = requests.post(f"{url}/user/profile/uploadphoto/v1", json={
+            "token": token,
+            "img_url": CUTE_CAT_URL,
+            "x_start": -1,
+            "y_start": 0,
+            "x_end": 200,
+            "y_end": 200,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_uploadphoto_http_test.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Crop width invalid</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+___________________________ test_switched_dimensions ___________________________
+
+register_user = {'auth_user_id': 228, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIyOCwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6ImM0MGUxNDIxLTU5NDAtNDY0Ni04NWE4LWJmMGMzNTkyNzA5NyJ9.rXFbrmsU2_tBD4cNDN4yA7GTyqDFhHDsJVtnlJoB-WM'}
+
+    def test_switched_dimensions(register_user):
+        global url
+        user = register_user
+        token = user['token']
+    
+        res = requests.post(f"{url}/user/profile/uploadphoto/v1", json={
+            "token": token,
+            "img_url": CUTE_CAT_URL,
+            "x_start": 50,
+            "y_start": 50,
+            "x_end": 0,
+            "y_end": 0,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_uploadphoto_http_test.py:76: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Crop windows invalid</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+____________________________ test_large_dimensions _____________________________
+
+register_user = {'auth_user_id': 231, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIzMSwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6ImUwZTU3YTI1LTBiYWItNDdlZS05ZTY0LTA0YmM1NjlhNDk5OSJ9.bmhUZWpy21onSM7PYHj8TKUmRWye1q4GR9CFeSbKoXk'}
+
+    def test_large_dimensions(register_user):
+        global url
+        user = register_user
+        token = user['token']
+    
+        res = requests.post(f"{url}/user/profile/uploadphoto/v1", json={
+            "token": token,
+            "img_url": CUTE_CAT_URL,
+            "x_start": 0,
+            "y_start": 0,
+            "x_end": 100000,
+            "y_end": 100000,
+        })
+>       payload = res.json()
+
+http_tests/user_profile_uploadphoto_http_test.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Crop width invalid</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+______________________________ test_invalid_token ______________________________
+
+    def test_invalid_token():
+        requests.delete(f"{url}/clear/v1") # Clear the data
+        token = generate_token(42)
+        query = urllib.parse.urlencode({
+            'token': token
+        })
+        res = requests.get(f"{url}/user/stats/v1?{query}")
+>       payload = res.json()
+
+http_tests/user_stats_v1_http_test.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Invalid token</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_______________________________ test_valid_token _______________________________
+
+register_user = {'auth_user_id': 236, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIzNiwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6IjgxMjdlZTA3LTBkYzQtNDBhZC05NzQ0LWVlMWNiYzMwNGJjMyJ9.1QKibqAdv2G0hBDHA8WE69JTDuRh3LOVkKCyVg7O4b0'}
+
+    def test_valid_token(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        query = urllib.parse.urlencode({
+            'token': token
+        })
+        res = requests.get(f"{url}/users/all/v1?{query}")
+        payload = res.json()
+>       assert payload == {
+            'users': [
+                {
+                    "auth_user_id": 0,
+                    "email": "batman@gmail.com",
+                    "name_first": "bat",
+                    "name_last": "man",
+                    "handle_str": "batman"
+                },
+                {
+                    "auth_user_id": 1,
+                    "email": "johnsmith@gmail.com",
+                    "name_first": "john",
+                    "name_last": "smith",
+                    "handle_str": "johnsmith"
+                }
+            ]
+        }
+E       AssertionError: assert {'users': [{'email': 'batman@gmail.com',\n            'handle_str': 'batman',\n            'name_first': 'bat',\n            'name_last': 'man',\n            'profile_img_url': '',\n            'u_id': 235},\n           {'email': 'johnsmith@gmail.com',\n            'handle_str': 'johnsmith',\n            'name_first': 'john',\n            'name_last': 'smith',\n            'profile_img_url': '',\n            'u_id': 236}]} == {'users': [{'auth_user_id': 0,\n            'email': 'batman@gmail.com',\n            'handle_str': 'batman',\n            'name_first': 'bat',\n            'name_last': 'man'},\n           {'auth_user_id': 1,\n            'email': 'johnsmith@gmail.com',\n            'handle_str': 'johnsmith',\n            'name_first': 'john',\n            'name_last': 'smith'}]}
+E         Differing items:
+E         {'users': [{'email': 'batman@gmail.com', 'handle_str': 'batman', 'name_first': 'bat', 'name_last': 'man', ...}, {'email': 'johnsmith@gmail.com', 'handle_str': 'johnsmith', 'name_first': 'john', 'name_last': 'smith', ...}]} != {'users': [{'auth_user_id': 0, 'email': 'batman@gmail.com', 'handle_str': 'batman', 'name_first': 'bat', ...}, {'auth_user_id': 1, 'email': 'johnsmith@gmail.com', 'handle_str': 'johnsmith', 'name_first': 'john', ...}]}
+E         Full diff:
+E           {
+E         +  'users': [{'email': 'batman@gmail.com',
+E         -  'users': [{'auth_user_id': 0,
+E         -             'email': 'batman@gmail.com',
+E                       'handle_str': 'batman',
+E                       'name_first': 'bat',
+E         -             'name_last': 'man'},
+E         ?                               -
+E         +             'name_last': 'man',
+E         -            {'auth_user_id': 1,
+E         +             'profile_img_url': '',
+E         +             'u_id': 235},
+E         -             'email': 'johnsmith@gmail.com',
+E         ?            ^
+E         +            {'email': 'johnsmith@gmail.com',
+E         ?            ^
+E                       'handle_str': 'johnsmith',
+E                       'name_first': 'john',
+E         -             'name_last': 'smith'}],
+E         ?                                 --
+E         +             'name_last': 'smith',
+E         +             'profile_img_url': '',
+E         +             'u_id': 236}],
+E           }
+
+http_tests/users_all_http_test.py:41: AssertionError
+______________________________ test_invalid_token ______________________________
+
+register_user = {'auth_user_id': 238, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIzOCwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6Ijc0ZjgxOTc2LWYxNzYtNDFlZC04MjQwLTNhMzQ0YTRjMjM0ZiJ9.3FRMh1u49K_iZpiwnJMZ0Tzmd3k_DhTuA1biisTwE0Y'}
+
+    def test_invalid_token(register_user):
+        global url
+        # generate an invalid token
+        token = generate_token(100)
+        query = urllib.parse.urlencode({
+            'token': token
+        })
+        res = requests.get(f"{url}/users/all/v1?{query}")
+>       payload = res.json()
+
+http_tests/users_all_http_test.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Invalid token</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+_______________________________ test_valid_input _______________________________
+
+register_user = {'auth_user_id': 240, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjI0MCwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6ImY2MDZkNzhjLTAyOWItNDVkZC05ZTYyLTA2ODQzMGZjYzBjZiJ9.EgkeAc3bQPh_7n34bbUQPn-H_Fmomwt5aAd0NpGfz3Q'}
+
+    def test_valid_input(register_user):
+        global url
+        user = register_user
+        token = user['token']
+        query = urllib.parse.urlencode({
+            'token': token
+        })
+        res = requests.get(f"{url}/users/stats/v1?{query}")
+>       assert res.status_code == 200
+E       assert 404 == 200
+E         +404
+E         -200
+
+http_tests/users_stats_v1_http_test.py:47: AssertionError
+______________________________ test_invalid_token ______________________________
+
+    def test_invalid_token():
+        requests.delete(f"{url}/clear/v1") # Clear the data
+        token = generate_token(42)
+        query = urllib.parse.urlencode({
+            'token': token
+        })
+        res = requests.get(f"{url}/users/stats/v1?{query}")
+>       payload = res.json()
+
+http_tests/users_stats_v1_http_test.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+=========================== short test summary info ============================
+FAILED http_tests/admin_userpermission_change_http_test.py::test_admin_user_permission_change_noninteger_permission_id
+FAILED http_tests/auth_login_http_test.py::test_email_invalid - simplejson.er...
+FAILED http_tests/auth_login_http_test.py::test_email_unregistered - simplejs...
+FAILED http_tests/auth_login_http_test.py::test_password_invalid - simplejson...
+FAILED http_tests/auth_logout_http_test.py::test_inactive_token - simplejson....
+FAILED http_tests/auth_register_http_test.py::test_email_invalid - simplejson...
+FAILED http_tests/auth_register_http_test.py::test_email_taken - simplejson.e...
+FAILED http_tests/auth_register_http_test.py::test_password_invalid - simplej...
+FAILED http_tests/auth_register_http_test.py::test_name_first_invalid - simpl...
+FAILED http_tests/auth_register_http_test.py::test_name_last_invalid - simple...
+FAILED http_tests/channel_addowner_http_test.py::test_channel_addowner_valid
+FAILED http_tests/channel_invite_http_test.py::test_channel_invite_valid - As...
+FAILED http_tests/channel_invite_http_test.py::test_channel_invite_except_repetitive
+FAILED http_tests/channel_join_http_test.py::test_channel_join_valid - Assert...
+FAILED http_tests/channel_join_http_test.py::test_channel_join_private_global
+FAILED http_tests/channel_join_http_test.py::test_channel_join_except_repetitive
+FAILED http_tests/channels_create_http_test.py::test_channels_create_multiple
+FAILED http_tests/channels_list_http_test.py::test_channels_list_multiple_channels
+FAILED http_tests/channels_list_http_test.py::test_channels_list_verifying_user
+FAILED http_tests/channels_listall_http_test.py::test_channels_listall_multiple_channels
+FAILED http_tests/channels_listall_http_test.py::test_channels_listall_multiple_users
+FAILED http_tests/dm_create_http_test.py::test_dm_create_valid - assert 126 == 1
+FAILED http_tests/dm_details_http_test.py::test_dm_details_valid - AssertionE...
+FAILED http_tests/dm_list_http_test.py::test_dm_list_valid - AssertionError: ...
+FAILED http_tests/echo_http_test.py::test_echo - json.decoder.JSONDecodeError...
+FAILED http_tests/user_profile_http_test.py::test_valid_input - AssertionErro...
+FAILED http_tests/user_profile_http_test.py::test_invalid_uid - simplejson.er...
+FAILED http_tests/user_profile_set_http_test.py::test_short_first_name - simp...
+FAILED http_tests/user_profile_set_http_test.py::test_long_first_name - simpl...
+FAILED http_tests/user_profile_set_http_test.py::test_short_last_name - simpl...
+FAILED http_tests/user_profile_set_http_test.py::test_long_last_name - simple...
+FAILED http_tests/user_profile_set_http_test.py::test_invalid_email - simplej...
+FAILED http_tests/user_profile_set_http_test.py::test_taken_email - simplejso...
+FAILED http_tests/user_profile_set_http_test.py::test_invalid_handle - simple...
+FAILED http_tests/user_profile_set_http_test.py::test_taken_handle - simplejs...
+FAILED http_tests/user_profile_uploadphoto_http_test.py::test_negative_dimensions
+FAILED http_tests/user_profile_uploadphoto_http_test.py::test_switched_dimensions
+FAILED http_tests/user_profile_uploadphoto_http_test.py::test_large_dimensions
+FAILED http_tests/user_stats_v1_http_test.py::test_invalid_token - simplejson...
+FAILED http_tests/users_all_http_test.py::test_valid_token - AssertionError: ...
+FAILED http_tests/users_all_http_test.py::test_invalid_token - simplejson.err...
+FAILED http_tests/users_stats_v1_http_test.py::test_valid_input - assert 404 ...
+FAILED http_tests/users_stats_v1_http_test.py::test_invalid_token - simplejso...
+======================== 43 failed, 71 passed in 10.42s ========================
