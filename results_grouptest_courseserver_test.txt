@@ -1,125 +1,29 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.7.3, pytest-6.2.3, py-1.10.0, pluggy-0.13.1 -- /usr/bin/python3
-cachedir: .pytest_cache
-hypothesis profile 'default' -> database=DirectoryBasedExampleDatabase('/tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore/.hypothesis/examples')
+platform linux -- Python 3.7.3, pytest-6.2.3, py-1.10.0, pluggy-0.13.1
 rootdir: /tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore, configfile: pytest.ini
 plugins: forked-1.3.0, xdist-2.2.1, hypothesis-6.1.1, timeout-1.4.2
-collecting ... collected 114 items
+collected 83 items
 
-http_tests/admin_user_remove_http_test.py::test_admin_user_remove_user PASSED [  0%]
-http_tests/admin_user_remove_http_test.py::test_admin_user_remove_invalid_uid PASSED [  1%]
-http_tests/admin_user_remove_http_test.py::test_admin_user_remove_only_owner PASSED [  2%]
-http_tests/admin_user_remove_http_test.py::test_admin_user_remove_unauthorised_user PASSED [  3%]
-http_tests/admin_user_remove_http_test.py::test_admin_user_remove_user PASSED [  3%]
-http_tests/admin_user_remove_http_test.py::test_admin_user_remove_invalid_uid PASSED [  3%]
-http_tests/admin_user_remove_http_test.py::test_admin_user_remove_only_owner PASSED [  3%]
-http_tests/admin_user_remove_http_test.py::test_admin_user_remove_unauthorised_user PASSED [  3%]
-http_tests/admin_userpermission_change_http_test.py::test_admin_userpermission_change_validinput PASSED [  4%]
-http_tests/admin_userpermission_change_http_test.py::test_admin_userpermission_change_invalid_user PASSED [  5%]
-http_tests/admin_userpermission_change_http_test.py::test_admin_user_permission_change_noninteger_permission_id FAILED [  6%]
-http_tests/admin_userpermission_change_http_test.py::test_admin_userpermission_change_unauthorised_tokenuser PASSED [  7%]
-http_tests/auth_login_http_test.py::test_valid_login PASSED              [  7%]
-http_tests/auth_login_http_test.py::test_email_invalid FAILED            [  8%]
-http_tests/auth_login_http_test.py::test_email_unregistered FAILED       [  9%]
-http_tests/auth_login_http_test.py::test_password_invalid FAILED         [ 10%]
-http_tests/auth_logout_http_test.py::test_valid_logout PASSED            [ 11%]
-http_tests/auth_logout_http_test.py::test_inactive_token FAILED          [ 12%]
-http_tests/auth_register_http_test.py::test_input_valid PASSED           [ 13%]
-http_tests/auth_register_http_test.py::test_email_invalid FAILED         [ 14%]
-http_tests/auth_register_http_test.py::test_email_taken FAILED           [ 14%]
-http_tests/auth_register_http_test.py::test_password_invalid FAILED      [ 15%]
-http_tests/auth_register_http_test.py::test_name_first_invalid FAILED    [ 16%]
-http_tests/auth_register_http_test.py::test_name_last_invalid FAILED     [ 17%]
-http_tests/channel_addowner_http_test.py::test_channel_addowner_valid FAILED [ 18%]
-http_tests/channel_addowner_http_test.py::test_channel_addowner_invalid_channel PASSED [ 19%]
-http_tests/channel_addowner_http_test.py::test_channel_addowner_already_owner PASSED [ 20%]
-http_tests/channel_addowner_http_test.py::test_channel_addowner_unauthorised_user PASSED [ 21%]
-http_tests/channel_addowner_http_test.py::test_channel_addowner_invalid_token PASSED [ 21%]
-http_tests/channel_invite_http_test.py::test_channel_invite_valid FAILED [ 22%]
-http_tests/channel_invite_http_test.py::test_channel_invite_except_channel PASSED [ 23%]
-http_tests/channel_invite_http_test.py::test_channel_invite_except_user PASSED [ 24%]
-http_tests/channel_invite_http_test.py::test_channel_invite_except_noaccess PASSED [ 25%]
-http_tests/channel_invite_http_test.py::test_channel_invite_except_invalid_auth PASSED [ 26%]
-http_tests/channel_invite_http_test.py::test_channel_invite_except_repetitive FAILED [ 27%]
-http_tests/channel_join_http_test.py::test_channel_join_valid FAILED     [ 28%]
-http_tests/channel_join_http_test.py::test_channel_join_except_channel PASSED [ 28%]
-http_tests/channel_join_http_test.py::test_channel_join_except_invalid_auth PASSED [ 29%]
-http_tests/channel_join_http_test.py::test_channel_join_except_private PASSED [ 30%]
-http_tests/channel_join_http_test.py::test_channel_join_private_global FAILED [ 31%]
-http_tests/channel_join_http_test.py::test_channel_join_except_repetitive FAILED [ 32%]
-http_tests/channel_leave_http_test.py::test_channel_leave_valid PASSED   [ 33%]
-http_tests/channel_leave_http_test.py::test_channel_leave_invalid_channelid PASSED [ 34%]
-http_tests/channel_leave_http_test.py::test_channel_leave_notamember PASSED [ 35%]
-http_tests/channel_leave_http_test.py::test_channel_leave_invalid_token PASSED [ 35%]
-http_tests/channel_removeowner_http_test.py::test_channel_removeowner_adding_again PASSED [ 36%]
-http_tests/channel_removeowner_http_test.py::test_channel_removeowner_invalid_channelid PASSED [ 37%]
-http_tests/channel_removeowner_http_test.py::test_channel_removeowner_sole_owner PASSED [ 38%]
-http_tests/channel_removeowner_http_test.py::test_channel_removeowner_unauthorised_usertoken PASSED [ 39%]
-http_tests/channel_removeowner_http_test.py::test_channel_removeowner_unauthorised_user PASSED [ 40%]
-http_tests/channels_create_http_test.py::test_channels_create_multiple FAILED [ 41%]
-http_tests/channels_create_http_test.py::test_channels_create_invalid_length PASSED [ 42%]
-http_tests/channels_create_http_test.py::test_channels_create_invalid_user PASSED [ 42%]
-http_tests/channels_list_http_test.py::test_channels_list_multiple_channels FAILED [ 43%]
-http_tests/channels_list_http_test.py::test_channels_list_verifying_user FAILED [ 44%]
-http_tests/channels_list_http_test.py::test_channels_list_invalid_user PASSED [ 45%]
-http_tests/channels_listall_http_test.py::test_channels_listall_multiple_channels FAILED [ 46%]
-http_tests/channels_listall_http_test.py::test_channels_listall_multiple_users FAILED [ 47%]
-http_tests/channels_listall_http_test.py::test_channels_listall_invalid_user PASSED [ 48%]
-http_tests/dm_create_http_test.py::test_dm_create_valid FAILED           [ 49%]
-http_tests/dm_create_http_test.py::test_dm_create_invalid_uid PASSED     [ 50%]
-http_tests/dm_create_http_test.py::test_dm_create_invalid_auth PASSED    [ 50%]
-http_tests/dm_details_http_test.py::test_dm_details_valid FAILED         [ 51%]
-http_tests/dm_details_http_test.py::test_dm_details_invalid_dm PASSED    [ 52%]
-http_tests/dm_details_http_test.py::test_dm_details_invalid_member PASSED [ 53%]
-http_tests/dm_details_http_test.py::test_dm_details_invalid_auth PASSED  [ 54%]
-http_tests/dm_list_http_test.py::test_dm_list_valid FAILED               [ 55%]
-http_tests/dm_list_http_test.py::test_dm_invalid_auth PASSED             [ 56%]
-http_tests/dm_remove_http_test.py::test_dm_remove_valid PASSED           [ 57%]
-http_tests/dm_remove_http_test.py::test_dm_remove_invalid_dm PASSED      [ 57%]
-http_tests/dm_remove_http_test.py::test_dm_remove_not_owner PASSED       [ 58%]
-http_tests/dm_remove_http_test.py::test_dm_remove_invalid_auth PASSED    [ 59%]
-http_tests/echo_http_test.py::test_echo FAILED                           [ 60%]
-http_tests/search_http_test.py::test_search_empty_messages PASSED        [ 61%]
-http_tests/search_http_test.py::test_search_overlimit_querystr PASSED    [ 62%]
-http_tests/search_http_test.py::test_search_invalidtoken PASSED          [ 63%]
-http_tests/standup_active_http_test.py::test_standup_active_inactivestandup PASSED [ 64%]
-http_tests/standup_active_http_test.py::test_standup_active_activestandup PASSED [ 64%]
-http_tests/standup_active_http_test.py::test_standup_active_invalidchannel PASSED [ 65%]
-http_tests/standup_active_http_test.py::test_standup_active_invalidtoken PASSED [ 66%]
-http_tests/standup_send_http_test.py::test_standup_send_valid PASSED     [ 67%]
-http_tests/standup_send_http_test.py::test_standup_send_invalid_channel PASSED [ 68%]
-http_tests/standup_send_http_test.py::test_standup_send_long_message PASSED [ 69%]
-http_tests/standup_send_http_test.py::test_standup_send_inactive_standup PASSED [ 70%]
-http_tests/standup_send_http_test.py::test_standup_send_not_member PASSED [ 71%]
-http_tests/standup_send_http_test.py::test_standup_send_invalid_token PASSED [ 71%]
-http_tests/standup_start_http_test.py::test_standup_start_success PASSED [ 72%]
-http_tests/standup_start_http_test.py::test_standup_start_invalidchannel PASSED [ 73%]
-http_tests/standup_start_http_test.py::test_standup_start_alreadyactive PASSED [ 74%]
-http_tests/standup_start_http_test.py::test_standup_start_invalidtoken PASSED [ 75%]
-http_tests/standup_start_http_test.py::test_standup_start_unauthorised_user PASSED [ 76%]
-http_tests/user_profile_http_test.py::test_valid_input FAILED            [ 77%]
-http_tests/user_profile_http_test.py::test_invalid_uid FAILED            [ 78%]
-http_tests/user_profile_set_http_test.py::test_valid_setname PASSED      [ 78%]
-http_tests/user_profile_set_http_test.py::test_short_first_name FAILED   [ 79%]
-http_tests/user_profile_set_http_test.py::test_long_first_name FAILED    [ 80%]
-http_tests/user_profile_set_http_test.py::test_short_last_name FAILED    [ 81%]
-http_tests/user_profile_set_http_test.py::test_long_last_name FAILED     [ 82%]
-http_tests/user_profile_set_http_test.py::test_valid_setemail PASSED     [ 83%]
-http_tests/user_profile_set_http_test.py::test_invalid_email FAILED      [ 84%]
-http_tests/user_profile_set_http_test.py::test_taken_email FAILED        [ 85%]
-http_tests/user_profile_set_http_test.py::test_valid_sethandle PASSED    [ 85%]
-http_tests/user_profile_set_http_test.py::test_invalid_handle FAILED     [ 86%]
-http_tests/user_profile_set_http_test.py::test_taken_handle FAILED       [ 87%]
-http_tests/user_profile_uploadphoto_http_test.py::test_valid_input PASSED [ 88%]
-http_tests/user_profile_uploadphoto_http_test.py::test_negative_dimensions FAILED [ 89%]
-http_tests/user_profile_uploadphoto_http_test.py::test_switched_dimensions FAILED [ 90%]
-http_tests/user_profile_uploadphoto_http_test.py::test_large_dimensions FAILED [ 91%]
-http_tests/user_stats_v1_http_test.py::test_valid_input PASSED           [ 92%]
-http_tests/user_stats_v1_http_test.py::test_invalid_token FAILED         [ 92%]
-http_tests/users_all_http_test.py::test_valid_token FAILED               [ 93%]
-http_tests/users_all_http_test.py::test_invalid_token FAILED             [ 94%]
-http_tests/users_stats_v1_http_test.py::test_valid_input FAILED          [ 95%]
-http_tests/users_stats_v1_http_test.py::test_invalid_token FAILED        [ 96%]
+http_tests/admin_user_remove_http_test.py ........                       [  4%]
+http_tests/admin_userpermission_change_http_test.py ..F.                 [  9%]
+http_tests/auth_login_http_test.py .FFF                                  [ 14%]
+http_tests/auth_logout_http_test.py .F                                   [ 16%]
+http_tests/auth_register_http_test.py .FFFFF                             [ 24%]
+http_tests/channel_addowner_http_test.py F....                           [ 30%]
+http_tests/channel_invite_http_test.py F....F                            [ 37%]
+http_tests/channel_join_http_test.py F...FF                              [ 44%]
+http_tests/channel_leave_http_test.py ....                               [ 49%]
+http_tests/channel_removeowner_http_test.py .....                        [ 55%]
+http_tests/channels_create_http_test.py F..                              [ 59%]
+http_tests/channels_list_http_test.py FF.                                [ 62%]
+http_tests/channels_listall_http_test.py FF.                             [ 66%]
+http_tests/dm_create_http_test.py F..                                    [ 69%]
+http_tests/dm_list_http_test.py F.                                       [ 72%]
+http_tests/echo_http_test.py F                                           [ 73%]
+http_tests/search_http_test.py ...                                       [ 77%]
+http_tests/user_profile_http_test.py FF                                  [ 79%]
+http_tests/user_profile_set_http_test.py .FFFF.FF.FF                     [ 92%]
+http_tests/users_all_http_test.py FF
 
 =================================== FAILURES ===================================
 __________ test_admin_user_permission_change_noninteger_permission_id __________
@@ -146,8 +50,7 @@ __________ test_admin_user_permission_change_noninteger_permission_id __________
         })
 >       assert request.status_code == 400
 E       assert 200 == 400
-E         +200
-E         -400
+E        +  where 200 = <Response [200]>.status_code
 
 http_tests/admin_userpermission_change_http_test.py:120: AssertionError
 ______________________________ test_email_invalid ______________________________
@@ -171,9 +74,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email or password is incorrect</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -225,9 +128,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email or password is incorrect</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -285,9 +188,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email or password is incorrect</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -340,9 +243,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Not logged in bro</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -398,9 +301,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email is invalid</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -460,9 +363,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>johnsmith@gmail.com already taken</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -516,9 +419,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Invalid password; too little characters</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -572,9 +475,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -628,9 +531,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -712,13 +615,9 @@ _________________________ test_channel_addowner_valid __________________________
         # channel the user has been added to
         payload = request.json()
 >       assert payload['channels'] == [{'channel_id': 1, 'name': 'channel_1'}]
-E       AssertionError: assert [{'channel_id': 33, 'name': 'channel_1'}] == [{'channel_id': 1, 'name': 'channel_1'}]
+E       AssertionError: assert [{'channel_id... 'channel_1'}] == [{'channel_id... 'channel_1'}]
 E         At index 0 diff: {'channel_id': 33, 'name': 'channel_1'} != {'channel_id': 1, 'name': 'channel_1'}
-E         Full diff:
-E         - [{'channel_id': 1, 'name': 'channel_1'}]
-E         ?                 ^
-E         + [{'channel_id': 33, 'name': 'channel_1'}]
-E         ?                 ^^
+E         Use -v to get the full diff
 
 http_tests/channel_addowner_http_test.py:61: AssertionError
 __________________________ test_channel_invite_valid ___________________________
@@ -787,14 +686,10 @@ __________________________ test_channel_invite_valid ___________________________
             	}
             ]
         }
-E       AssertionError: assert {'channels': [{'channel_id': 46, 'name': 'Channel1'}]} == {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E       AssertionError: assert {'channels': ... 'Channel1'}]} == {'channels': ... 'Channel1'}]}
 E         Differing items:
 E         {'channels': [{'channel_id': 46, 'name': 'Channel1'}]} != {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
-E         Full diff:
-E         - {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
-E         ?                              ^
-E         + {'channels': [{'channel_id': 46, 'name': 'Channel1'}]}
-E         ?                              ^^
+E         Use -v to get the full diff
 
 http_tests/channel_invite_http_test.py:70: AssertionError
 ____________________ test_channel_invite_except_repetitive _____________________
@@ -851,8 +746,7 @@ ____________________ test_channel_invite_except_repetitive _____________________
         # raises status code 403 AccessError
 >       assert invite_response.status_code == 403
 E       assert 400 == 403
-E         +400
-E         -403
+E        +  where 400 = <Response [400]>.status_code
 
 http_tests/channel_invite_http_test.py:343: AssertionError
 ___________________________ test_channel_join_valid ____________________________
@@ -918,14 +812,10 @@ ___________________________ test_channel_join_valid ____________________________
             	}
             ]
         }
-E       AssertionError: assert {'channels': [{'channel_id': 64, 'name': 'Channel1'}]} == {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E       AssertionError: assert {'channels': ... 'Channel1'}]} == {'channels': ... 'Channel1'}]}
 E         Differing items:
 E         {'channels': [{'channel_id': 64, 'name': 'Channel1'}]} != {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
-E         Full diff:
-E         - {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
-E         ?                              ^
-E         + {'channels': [{'channel_id': 64, 'name': 'Channel1'}]}
-E         ?                              ^^
+E         Use -v to get the full diff
 
 http_tests/channel_join_http_test.py:66: AssertionError
 _______________________ test_channel_join_private_global _______________________
@@ -990,14 +880,10 @@ _______________________ test_channel_join_private_global _______________________
             	}
             ]
         }
-E       AssertionError: assert {'channels': [{'channel_id': 76, 'name': 'Channel1'}]} == {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
+E       AssertionError: assert {'channels': ... 'Channel1'}]} == {'channels': ... 'Channel1'}]}
 E         Differing items:
 E         {'channels': [{'channel_id': 76, 'name': 'Channel1'}]} != {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
-E         Full diff:
-E         - {'channels': [{'channel_id': 1, 'name': 'Channel1'}]}
-E         ?                              ^
-E         + {'channels': [{'channel_id': 76, 'name': 'Channel1'}]}
-E         ?                              ^^
+E         Use -v to get the full diff
 
 http_tests/channel_join_http_test.py:278: AssertionError
 _____________________ test_channel_join_except_repetitive ______________________
@@ -1051,8 +937,7 @@ _____________________ test_channel_join_except_repetitive ______________________
         # raises status code 403 AccessError
 >       assert join_response.status_code == 403
 E       assert 400 == 403
-E         +400
-E         -403
+E        +  where 400 = <Response [400]>.status_code
 
 http_tests/channel_join_http_test.py:334: AssertionError
 ________________________ test_channels_create_multiple _________________________
@@ -1084,8 +969,6 @@ ________________________ test_channels_create_multiple _________________________
         payload = request.json()
 >       assert payload['channel_id'] == 1
 E       assert 103 == 1
-E         +103
-E         -1
 
 http_tests/channels_create_http_test.py:40: AssertionError
 _____________________ test_channels_list_multiple_channels _____________________
@@ -1125,20 +1008,9 @@ _____________________ test_channels_list_multiple_channels _____________________
         payload = request.json()
 >       assert payload['channels'] == [{'channel_id': 1, 'name': 'channel_1'},
                                       {'channel_id': 2, 'name': 'channel_2'}]
-E       AssertionError: assert [{'channel_id': 108, 'name': 'channel_1'},\n {'channel_id': 109, 'name': 'channel_2'}] == [{'channel_id': 1, 'name': 'channel_1'}, {'channel_id': 2, 'name': 'channel_2'}]
+E       AssertionError: assert [{'channel_id... 'channel_2'}] == [{'channel_id... 'channel_2'}]
 E         At index 0 diff: {'channel_id': 108, 'name': 'channel_1'} != {'channel_id': 1, 'name': 'channel_1'}
-E         Full diff:
-E           [
-E         -  {'channel_id': 1,
-E         +  {'channel_id': 108,
-E         ?                  ++
-E             'name': 'channel_1'},
-E         -  {'channel_id': 2,
-E         ?                 ^
-E         +  {'channel_id': 109,
-E         ?                 ^^^
-E             'name': 'channel_2'},
-E           ]
+E         Use -v to get the full diff
 
 http_tests/channels_list_http_test.py:49: AssertionError
 ______________________ test_channels_list_verifying_user _______________________
@@ -1187,13 +1059,9 @@ ______________________ test_channels_list_verifying_user _______________________
         assert request.status_code == 200  # Confirm the request is successful
         payload = request.json()
 >       assert payload['channels'] == [{'channel_id': 2, 'name': 'channel/4'}]
-E       AssertionError: assert [{'channel_id': 113, 'name': 'channel/4'}] == [{'channel_id': 2, 'name': 'channel/4'}]
+E       AssertionError: assert [{'channel_id... 'channel/4'}] == [{'channel_id... 'channel/4'}]
 E         At index 0 diff: {'channel_id': 113, 'name': 'channel/4'} != {'channel_id': 2, 'name': 'channel/4'}
-E         Full diff:
-E         - [{'channel_id': 2, 'name': 'channel/4'}]
-E         ?                 ^
-E         + [{'channel_id': 113, 'name': 'channel/4'}]
-E         ?                 ^^^
+E         Use -v to get the full diff
 
 http_tests/channels_list_http_test.py:97: AssertionError
 ___________________ test_channels_listall_multiple_channels ____________________
@@ -1233,20 +1101,9 @@ ___________________ test_channels_listall_multiple_channels ____________________
         payload = request.json()
 >       assert payload['channels'] == [{'channel_id': 1, 'name': 'Channel1'},
                                       {'channel_id': 2, 'name': 'Channel_2'}]
-E       AssertionError: assert [{'channel_id': 116, 'name': 'Channel1'},\n {'channel_id': 117, 'name': 'Channel_2'}] == [{'channel_id': 1, 'name': 'Channel1'}, {'channel_id': 2, 'name': 'Channel_2'}]
+E       AssertionError: assert [{'channel_id... 'Channel_2'}] == [{'channel_id... 'Channel_2'}]
 E         At index 0 diff: {'channel_id': 116, 'name': 'Channel1'} != {'channel_id': 1, 'name': 'Channel1'}
-E         Full diff:
-E           [
-E         -  {'channel_id': 1,
-E         +  {'channel_id': 116,
-E         ?                  ++
-E             'name': 'Channel1'},
-E         -  {'channel_id': 2,
-E         ?                 ^
-E         +  {'channel_id': 117,
-E         ?                 ^^^
-E             'name': 'Channel_2'},
-E           ]
+E         Use -v to get the full diff
 
 http_tests/channels_listall_http_test.py:50: AssertionError
 _____________________ test_channels_listall_multiple_users _____________________
@@ -1296,19 +1153,9 @@ _____________________ test_channels_listall_multiple_users _____________________
         payload = request.json()
 >       assert payload['channels'] == [{'channel_id': 1, 'name': 'Channel-3'},
                                       {'channel_id': 2, 'name': 'Channel-4'}]
-E       AssertionError: assert [{'channel_id': 119, 'name': 'Channel-3'},\n {'channel_id': 121, 'name': 'Channel-4'}] == [{'channel_id': 1, 'name': 'Channel-3'}, {'channel_id': 2, 'name': 'Channel-4'}]
+E       AssertionError: assert [{'channel_id... 'Channel-4'}] == [{'channel_id... 'Channel-4'}]
 E         At index 0 diff: {'channel_id': 119, 'name': 'Channel-3'} != {'channel_id': 1, 'name': 'Channel-3'}
-E         Full diff:
-E           [
-E         -  {'channel_id': 1,
-E         +  {'channel_id': 119,
-E         ?                  ++
-E             'name': 'Channel-3'},
-E         -  {'channel_id': 2,
-E         +  {'channel_id': 121,
-E         ?                 + +
-E             'name': 'Channel-4'},
-E           ]
+E         Use -v to get the full diff
 
 http_tests/channels_listall_http_test.py:98: AssertionError
 _____________________________ test_dm_create_valid _____________________________
@@ -1370,68 +1217,8 @@ _____________________________ test_dm_create_valid _____________________________
         payload = dm_response.json()
 >       assert payload["dm_id"] == 1
 E       assert 126 == 1
-E         +126
-E         -1
 
 http_tests/dm_create_http_test.py:65: AssertionError
-____________________________ test_dm_details_valid _____________________________
-
-    def test_dm_details_valid():
-        """
-        This function test the valid case of dm_details_v1
-        """
-    
-        # Clear the data
-        requests.delete(f"{url}/clear/v1")
-    
-        # Users information to be pass in as json
-        user1_data = {
-            "email": "johnsmith@gmail.com",
-            "password": "password123",
-            "name_first": "john",
-            "name_last": "smith",
-        }
-    
-        user2_data = {
-            "email": "michaelbush@gmail.com",
-            "password": "123456",
-            "name_first": "michael",
-            "name_last": "bush",
-        }
-    
-        # Call other routes to create the data and store in data structure
-        auth_user1_info = requests.post(f"{url}/auth/register/v2", json = user1_data)
-        payload = auth_user1_info.json()
-        token1 = payload["token"]
-    
-        auth_user2_info = requests.post(f"{url}/auth/register/v2", json = user2_data)
-        payload = auth_user2_info.json()
-        auth_id2 = payload["auth_user_id"]
-        token2 = payload["token"]
-    
-        u_ids = [auth_id2]
-        dm_response = requests.post(f"{url}/dm/create/v1", json = {
-            "token": token1,
-            "u_ids": u_ids
-        })
-    
-        payload = dm_response.json()
-        dm_id = payload["dm_id"]
-        dm_response = requests.get(f"{url}/dm/details/v1", params = {"token": token2, "dm_id":dm_id})
-    
-        # Check if the HTML request is successful
-        assert dm_response.status_code == 200
-        payload = dm_response.json()
-        res_name = payload["name"]
-        res_members = payload["members"]
-    
->       assert res_name == "johnsmith,michaelbush"
-E       AssertionError: assert 'johnsmith, michaelbush' == 'johnsmith,michaelbush'
-E         - johnsmith,michaelbush
-E         + johnsmith, michaelbush
-E         ?           +
-
-http_tests/dm_details_http_test.py:59: AssertionError
 ______________________________ test_dm_list_valid ______________________________
 
     def test_dm_list_valid():
@@ -1480,16 +1267,13 @@ ______________________________ test_dm_list_valid ______________________________
         payload = dm_response.json()
         print(payload)
 >       assert payload["dms"] == [{"dm_id": 1, "name": "johnsmith,michaelbush"}]
-E       AssertionError: assert [{'dm_id': 147, 'name': 'johnsmith, michaelbush'}] == [{'dm_id': 1, 'name': 'johnsmith,michaelbush'}]
-E         At index 0 diff: {'dm_id': 147, 'name': 'johnsmith, michaelbush'} != {'dm_id': 1, 'name': 'johnsmith,michaelbush'}
-E         Full diff:
-E         - [{'dm_id': 1, 'name': 'johnsmith,michaelbush'}]
-E         + [{'dm_id': 147, 'name': 'johnsmith, michaelbush'}]
-E         ?             ++                     +
+E       AssertionError: assert [{'dm_id': 13...michaelbush'}] == [{'dm_id': 1,...michaelbush'}]
+E         At index 0 diff: {'dm_id': 135, 'name': 'johnsmith, michaelbush'} != {'dm_id': 1, 'name': 'johnsmith,michaelbush'}
+E         Use -v to get the full diff
 
 http_tests/dm_list_http_test.py:55: AssertionError
 ----------------------------- Captured stdout call -----------------------------
-{'dms': [{'dm_id': 147, 'name': 'johnsmith, michaelbush'}]}
+{'dms': [{'dm_id': 135, 'name': 'johnsmith, michaelbush'}]}
 __________________________________ test_echo ___________________________________
 
     def test_echo():
@@ -1507,7 +1291,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <json.decoder.JSONDecoder object at 0x7fe5870aa550>
+self = <json.decoder.JSONDecoder object at 0x7f121dad94a8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
 idx = 0
 
@@ -1549,16 +1333,21 @@ _______________________________ test_valid_input _______________________________
     
         res = requests.get(f"{url}/user/profile/v2?{query}")
         payload = res.json()
-        assert payload['user']['u_id'] == id
-        assert payload['user']['email'] == 'johnsmith@gmail.com'
-        assert payload['user']['name_first'] == 'john'
-        assert payload['user']['name_last'] == 'smith'
-        assert payload['user']['handle_str'] == 'johnsmith'
->       assert payload['user']['profile_img_url'] == url + 'src/static/default.jpg'
-E       AssertionError: assert '' == 'http://127.0.0.1:60811/src/static/default.jpg'
-E         - http://127.0.0.1:60811/src/static/default.jpg
+>       assert payload == {
+            'user': {
+                'auth_user_id': id,
+                'email': 'johnsmith@gmail.com',
+                'name_first' : 'john',
+    	        'name_last' : 'smith',
+                'handle_str' : 'johnsmith',
+            }
+        }
+E       AssertionError: assert {'user': {'em...'smith', ...}} == {'user': {'au... 'john', ...}}
+E         Differing items:
+E         {'user': {'email': 'johnsmith@gmail.com', 'handle_str': 'johnsmith', 'name_first': 'john', 'name_last': 'smith', ...}} != {'user': {'auth_user_id': 143, 'email': 'johnsmith@gmail.com', 'handle_str': 'johnsmith', 'name_first': 'john', ...}}
+E         Use -v to get the full diff
 
-http_tests/user_profile_http_test.py:37: AssertionError
+http_tests/user_profile_http_test.py:32: AssertionError
 _______________________________ test_invalid_uid _______________________________
 
     def test_invalid_uid():
@@ -1581,7 +1370,7 @@ _______________________________ test_invalid_uid _______________________________
         res = requests.get(f"{url}/user/profile/v2?{query}")
 >       payload = res.json()
 
-http_tests/user_profile_http_test.py:57: 
+http_tests/user_profile_http_test.py:60: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
     return complexjson.loads(self.text, **kwargs)
@@ -1591,9 +1380,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>-5 is not a valid ID</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1626,7 +1415,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 ____________________________ test_short_first_name _____________________________
 
-register_user = {'auth_user_id': 203, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIwMywibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6ImEzODczY2U4LTYxN2ItNDhlYi04OWVhLWJkMTdlZWNmZjM2ZCJ9.z85WJa3GswlTVB87hIBz4SmrXHU74nRrt--5JENf-do'}
+register_user = {'auth_user_id': 148, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE0OCwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6ImEzYzI3NGM1LWJlMzMtNGE4OC1hZGY2LTYxZDY5ODRjYWY3OSJ9.gQcR7vOywPNfti1IrawoRIHeWJLZ55gssErihVKo6nQ'}
 
     def test_short_first_name(register_user):
         global url
@@ -1651,9 +1440,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1686,7 +1475,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 _____________________________ test_long_first_name _____________________________
 
-register_user = {'auth_user_id': 205, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIwNSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6IjA5ODNlZjNlLTczNmEtNGY3Mi1hNjcwLTBmMzI2N2M5NjI5YiJ9.bjYKqrffp9lHFoUTlMPb0_9MWpMRxWYOq56VxeknEDE'}
+register_user = {'auth_user_id': 150, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE1MCwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6ImUwMGUwOWViLWVlYWQtNDMzNS04ZDg2LTE1YTEzNDUzMzc2OCJ9.g1AVdyrODNbliwvIWQbyrlPlctAT-Z4nLOviWjqlglQ'}
 
     def test_long_first_name(register_user):
         global url
@@ -1711,9 +1500,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1746,7 +1535,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 _____________________________ test_short_last_name _____________________________
 
-register_user = {'auth_user_id': 207, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIwNywibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6IjRlNWVhNDg2LTBjZjAtNDQxNC05MmNlLWJlYWM4ZmVjNTgwNCJ9.inOLItisFH9pS0ZpLpvgk3W5jqcxgYxGKHqm2KD3HWM'}
+register_user = {'auth_user_id': 152, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE1MiwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6Ijk2OTQ1MDA5LTc1ZjMtNDFhNS1hOWM4LWY0ZmE0YmNlNjEwYSJ9.LW61bnU7fywwnZnQ3JDPo0J4whw3y90MTg_PiqLqqns'}
 
     def test_short_last_name(register_user):
         global url
@@ -1771,9 +1560,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1806,7 +1595,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 _____________________________ test_long_last_name ______________________________
 
-register_user = {'auth_user_id': 209, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIwOSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6IjBkYzdkMWMzLTQ5N2EtNGEyZC1iZWJjLTVjNDU1OGVhYTY2MSJ9.Vk4kVRF3fSa0X2rNS6qi4GsHfJog81TQGFxSeJzfxVk'}
+register_user = {'auth_user_id': 154, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE1NCwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6ImQ3ZmFlZjExLWRlMjItNDkxOS1hYjZjLWJlMmM0NWRlNjAxOCJ9.yNND4It5WlTxKnMF4hzrePNWYWbd2o5iBY-QuQBp2qM'}
 
     def test_long_last_name(register_user):
         global url
@@ -1831,9 +1620,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Name must be between 1 and 50 characters inclusive</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1866,7 +1655,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 ______________________________ test_invalid_email ______________________________
 
-register_user = {'auth_user_id': 213, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIxMywibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6ImI0YWQ1ZmEyLWJkY2QtNDFiYy05OTU4LTUzNmU3YjU3NzRjZCJ9.veGkJltacC9kav1X8KT5YJ_l7dNuX2La3VQjiq5SphA'}
+register_user = {'auth_user_id': 158, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE1OCwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6IjI1YWZkNjZjLWU0MTAtNGY0NS05YzcwLTcwZGY0NWI2NmRhYyJ9._ypGcajpCwD8TgHfEzuD4UUo6nKaQk00ky59u8Ky4xs'}
 
     def test_invalid_email(register_user):
         global url
@@ -1889,9 +1678,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Email is invalid</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1924,7 +1713,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 _______________________________ test_taken_email _______________________________
 
-register_user = {'auth_user_id': 215, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIxNSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6ImJjMzdjMGUzLTZmZTMtNDk2Mi04MGY4LWU0ZGYxNDg4ODJkOSJ9.DHPLVgB1O0OXGw0bptq9AClewXNFC1IjbwUxeoMkviY'}
+register_user = {'auth_user_id': 160, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE2MCwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6IjFmYjkzNGZhLTU1MTYtNDExNi1iZjhlLTZhYzgyM2E4OWQzZSJ9.lKNCSiWso_4ZEvAbtP9Sj_YMHHvTuKIpCutNkMUBSJw'}
 
     def test_taken_email(register_user):
         global url
@@ -1947,9 +1736,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>batman@gmail.com already taken</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1982,7 +1771,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 _____________________________ test_invalid_handle ______________________________
 
-register_user = {'auth_user_id': 219, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIxOSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6ImIyMTViYmZkLTYzZDItNDUzYy04MTY2LTBjZWFmODdhNmRmOSJ9.LTSFFmW0Ie_GuUWQwCnPum3SGrygBcHlSsjGv4AhKNA'}
+register_user = {'auth_user_id': 164, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE2NCwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6IjYyZWM1MzBjLWVjNmUtNGRkMy1iMWYzLWI0MDkwZDI1NThhNCJ9.VrzVxCm_AUfYIuSAMocqjKOmnznKQmIr19e0DQJE1kk'}
 
     def test_invalid_handle(register_user):
         global url
@@ -2005,9 +1794,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Handle should be between 3 and 20 characters long</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -2040,7 +1829,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 ______________________________ test_taken_handle _______________________________
 
-register_user = {'auth_user_id': 221, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIyMSwibG9naW5fdGltZSI6MTYxODk0ODUzOCwic2FsdCI6IjQxY2I4MmUxLTNmNjYtNDY4Ni1hOTYxLTUyZjI2NzVhY2VjNiJ9.1vrXOkqCCCpgvnlxHWSiPl03Moc5XBrHPGP3JSi_fRs'}
+register_user = {'auth_user_id': 166, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE2NiwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6ImIwYWQ1YWE4LTZlZTMtNDk0Ny05NDNmLWM3YWQ4MzNjYzBlYSJ9.94rWuAwLhOkK6cOLOgCWyvuQpCOvovgYY_FLW-GU_s0'}
 
     def test_taken_handle(register_user):
         global url
@@ -2063,249 +1852,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>batman already taken</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-___________________________ test_negative_dimensions ___________________________
-
-register_user = {'auth_user_id': 226, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIyNiwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6ImI3ZDA0OGU4LWE4YmQtNDFkOC1iMDkyLWNlZTJlOGUyOGFkYiJ9.v9MyhoB7_CLxqC3zFmag904dfs6kqhilvg_OAt62Mes'}
-
-    def test_negative_dimensions(register_user):
-        global url
-        user = register_user
-        token = user['token']
-    
-        res = requests.post(f"{url}/user/profile/uploadphoto/v1", json={
-            "token": token,
-            "img_url": CUTE_CAT_URL,
-            "x_start": -1,
-            "y_start": 0,
-            "x_end": 200,
-            "y_end": 200,
-        })
->       payload = res.json()
-
-http_tests/user_profile_uploadphoto_http_test.py:60: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Crop width invalid</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-___________________________ test_switched_dimensions ___________________________
-
-register_user = {'auth_user_id': 228, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIyOCwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6ImM0MGUxNDIxLTU5NDAtNDY0Ni04NWE4LWJmMGMzNTkyNzA5NyJ9.rXFbrmsU2_tBD4cNDN4yA7GTyqDFhHDsJVtnlJoB-WM'}
-
-    def test_switched_dimensions(register_user):
-        global url
-        user = register_user
-        token = user['token']
-    
-        res = requests.post(f"{url}/user/profile/uploadphoto/v1", json={
-            "token": token,
-            "img_url": CUTE_CAT_URL,
-            "x_start": 50,
-            "y_start": 50,
-            "x_end": 0,
-            "y_end": 0,
-        })
->       payload = res.json()
-
-http_tests/user_profile_uploadphoto_http_test.py:76: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Crop windows invalid</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-____________________________ test_large_dimensions _____________________________
-
-register_user = {'auth_user_id': 231, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIzMSwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6ImUwZTU3YTI1LTBiYWItNDdlZS05ZTY0LTA0YmM1NjlhNDk5OSJ9.bmhUZWpy21onSM7PYHj8TKUmRWye1q4GR9CFeSbKoXk'}
-
-    def test_large_dimensions(register_user):
-        global url
-        user = register_user
-        token = user['token']
-    
-        res = requests.post(f"{url}/user/profile/uploadphoto/v1", json={
-            "token": token,
-            "img_url": CUTE_CAT_URL,
-            "x_start": 0,
-            "y_start": 0,
-            "x_end": 100000,
-            "y_end": 100000,
-        })
->       payload = res.json()
-
-http_tests/user_profile_uploadphoto_http_test.py:92: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>Crop width invalid</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-______________________________ test_invalid_token ______________________________
-
-    def test_invalid_token():
-        requests.delete(f"{url}/clear/v1") # Clear the data
-        token = generate_token(42)
-        query = urllib.parse.urlencode({
-            'token': token
-        })
-        res = requests.get(f"{url}/user/stats/v1?{query}")
->       payload = res.json()
-
-http_tests/user_stats_v1_http_test.py:56: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Invalid token</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -2338,7 +1887,7 @@ E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (cha
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
 _______________________________ test_valid_token _______________________________
 
-register_user = {'auth_user_id': 236, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIzNiwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6IjgxMjdlZTA3LTBkYzQtNDBhZC05NzQ0LWVlMWNiYzMwNGJjMyJ9.1QKibqAdv2G0hBDHA8WE69JTDuRh3LOVkKCyVg7O4b0'}
+register_user = {'auth_user_id': 168, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE2OCwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6IjMwMTQ0NTA5LWUyNjMtNGE0Yy1hMjFmLWFmZjg0NWQxYzUxMyJ9.f_FJwbSkfSS13f6yc0EDswBgXc4Z1sTxn5gL0bGk0MY'}
 
     def test_valid_token(register_user):
         global url
@@ -2353,53 +1902,33 @@ register_user = {'auth_user_id': 236, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1
             'users': [
                 {
                     "auth_user_id": 0,
-                    "email": "batman@gmail.com",
                     "name_first": "bat",
                     "name_last": "man",
-                    "handle_str": "batman"
+                    "handle_str": "batman",
+                    "email": "batman@gmail.com",
+                    "password": "123456",
+                    "permission_id": 1
                 },
                 {
                     "auth_user_id": 1,
-                    "email": "johnsmith@gmail.com",
                     "name_first": "john",
                     "name_last": "smith",
-                    "handle_str": "johnsmith"
+                    "handle_str": "johnsmith",
+                    "email": "johnsmith@gmail.com",
+                    "password": "123456",
+                    "permission_id": 2
                 }
             ]
         }
-E       AssertionError: assert {'users': [{'email': 'batman@gmail.com',\n            'handle_str': 'batman',\n            'name_first': 'bat',\n            'name_last': 'man',\n            'profile_img_url': '',\n            'u_id': 235},\n           {'email': 'johnsmith@gmail.com',\n            'handle_str': 'johnsmith',\n            'name_first': 'john',\n            'name_last': 'smith',\n            'profile_img_url': '',\n            'u_id': 236}]} == {'users': [{'auth_user_id': 0,\n            'email': 'batman@gmail.com',\n            'handle_str': 'batman',\n            'name_first': 'bat',\n            'name_last': 'man'},\n           {'auth_user_id': 1,\n            'email': 'johnsmith@gmail.com',\n            'handle_str': 'johnsmith',\n            'name_first': 'john',\n            'name_last': 'smith'}]}
+E       AssertionError: assert {'users': [{'...smith', ...}]} == {'users': [{'...'john', ...}]}
 E         Differing items:
 E         {'users': [{'email': 'batman@gmail.com', 'handle_str': 'batman', 'name_first': 'bat', 'name_last': 'man', ...}, {'email': 'johnsmith@gmail.com', 'handle_str': 'johnsmith', 'name_first': 'john', 'name_last': 'smith', ...}]} != {'users': [{'auth_user_id': 0, 'email': 'batman@gmail.com', 'handle_str': 'batman', 'name_first': 'bat', ...}, {'auth_user_id': 1, 'email': 'johnsmith@gmail.com', 'handle_str': 'johnsmith', 'name_first': 'john', ...}]}
-E         Full diff:
-E           {
-E         +  'users': [{'email': 'batman@gmail.com',
-E         -  'users': [{'auth_user_id': 0,
-E         -             'email': 'batman@gmail.com',
-E                       'handle_str': 'batman',
-E                       'name_first': 'bat',
-E         -             'name_last': 'man'},
-E         ?                               -
-E         +             'name_last': 'man',
-E         -            {'auth_user_id': 1,
-E         +             'profile_img_url': '',
-E         +             'u_id': 235},
-E         -             'email': 'johnsmith@gmail.com',
-E         ?            ^
-E         +            {'email': 'johnsmith@gmail.com',
-E         ?            ^
-E                       'handle_str': 'johnsmith',
-E                       'name_first': 'john',
-E         -             'name_last': 'smith'}],
-E         ?                                 --
-E         +             'name_last': 'smith',
-E         +             'profile_img_url': '',
-E         +             'u_id': 236}],
-E           }
+E         Use -v to get the full diff
 
 http_tests/users_all_http_test.py:41: AssertionError
 ______________________________ test_invalid_token ______________________________
 
-register_user = {'auth_user_id': 238, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIzOCwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6Ijc0ZjgxOTc2LWYxNzYtNDFlZC04MjQwLTNhMzQ0YTRjMjM0ZiJ9.3FRMh1u49K_iZpiwnJMZ0Tzmd3k_DhTuA1biisTwE0Y'}
+register_user = {'auth_user_id': 170, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjE3MCwibG9naW5fdGltZSI6MTYxOTE4NTQ1MSwic2FsdCI6IjdjYWJiZDc0LWJhZjgtNGYzYS05MGNkLWJjNTQ5MWY0M2RlZSJ9.0xXbJxr_16iIXnCn5I9uAK9LYLXTHL2iH9xMWZPhxkA'}
 
     def test_invalid_token(register_user):
         global url
@@ -2411,7 +1940,7 @@ register_user = {'auth_user_id': 238, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1
         res = requests.get(f"{url}/users/all/v1?{query}")
 >       payload = res.json()
 
-http_tests/users_all_http_test.py:68: 
+http_tests/users_all_http_test.py:72: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
     return complexjson.loads(self.text, **kwargs)
@@ -2421,81 +1950,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
+self = <simplejson.decoder.JSONDecoder object at 0x7f121d0d46d8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Invalid token</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-_______________________________ test_valid_input _______________________________
-
-register_user = {'auth_user_id': 240, 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjI0MCwibG9naW5fdGltZSI6MTYxODk0ODUzOSwic2FsdCI6ImY2MDZkNzhjLTAyOWItNDVkZC05ZTYyLTA2ODQzMGZjYzBjZiJ9.EgkeAc3bQPh_7n34bbUQPn-H_Fmomwt5aAd0NpGfz3Q'}
-
-    def test_valid_input(register_user):
-        global url
-        user = register_user
-        token = user['token']
-        query = urllib.parse.urlencode({
-            'token': token
-        })
-        res = requests.get(f"{url}/users/stats/v1?{query}")
->       assert res.status_code == 200
-E       assert 404 == 200
-E         +404
-E         -200
-
-http_tests/users_stats_v1_http_test.py:47: AssertionError
-______________________________ test_invalid_token ______________________________
-
-    def test_invalid_token():
-        requests.delete(f"{url}/clear/v1") # Clear the data
-        token = generate_token(42)
-        query = urllib.parse.urlencode({
-            'token': token
-        })
-        res = requests.get(f"{url}/users/stats/v1?{query}")
->       payload = res.json()
-
-http_tests/users_stats_v1_http_test.py:56: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7fe5866ba048>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7fe586edd9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7f121d9459f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -2549,7 +2006,6 @@ FAILED http_tests/channels_list_http_test.py::test_channels_list_verifying_user
 FAILED http_tests/channels_listall_http_test.py::test_channels_listall_multiple_channels
 FAILED http_tests/channels_listall_http_test.py::test_channels_listall_multiple_users
 FAILED http_tests/dm_create_http_test.py::test_dm_create_valid - assert 126 == 1
-FAILED http_tests/dm_details_http_test.py::test_dm_details_valid - AssertionE...
 FAILED http_tests/dm_list_http_test.py::test_dm_list_valid - AssertionError: ...
 FAILED http_tests/echo_http_test.py::test_echo - json.decoder.JSONDecodeError...
 FAILED http_tests/user_profile_http_test.py::test_valid_input - AssertionErro...
@@ -2562,12 +2018,6 @@ FAILED http_tests/user_profile_set_http_test.py::test_invalid_email - simplej...
 FAILED http_tests/user_profile_set_http_test.py::test_taken_email - simplejso...
 FAILED http_tests/user_profile_set_http_test.py::test_invalid_handle - simple...
 FAILED http_tests/user_profile_set_http_test.py::test_taken_handle - simplejs...
-FAILED http_tests/user_profile_uploadphoto_http_test.py::test_negative_dimensions
-FAILED http_tests/user_profile_uploadphoto_http_test.py::test_switched_dimensions
-FAILED http_tests/user_profile_uploadphoto_http_test.py::test_large_dimensions
-FAILED http_tests/user_stats_v1_http_test.py::test_invalid_token - simplejson...
 FAILED http_tests/users_all_http_test.py::test_valid_token - AssertionError: ...
 FAILED http_tests/users_all_http_test.py::test_invalid_token - simplejson.err...
-FAILED http_tests/users_stats_v1_http_test.py::test_valid_input - assert 404 ...
-FAILED http_tests/users_stats_v1_http_test.py::test_invalid_token - simplejso...
-======================== 43 failed, 71 passed in 10.42s ========================
+======================== 36 failed, 47 passed in 3.03s =========================
