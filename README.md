@@ -1398,3 +1398,34 @@ Relevant scholarship authorities will be informed if students holding scholarshi
 Do not provide or show your project work to any other person, except for your group and the teaching staff of COMP1531. If you knowingly provide or show your assignment work to another person for any reason, and work derived from it is submitted you may be penalized, even if the work was submitted without your knowledge or consent. This may apply even if your work is submitted by a third party unknown to you.
 
 Note, you will not be penalized if your work has the potential to be taken without your consent or knowledge.
+
+## Rust rewrite (new)
+
+A new Rust backend is included in `rust_server/` using `axum`.
+
+### Run
+
+```bash
+cd rust_server
+cargo run
+```
+
+Server listens on `http://localhost:8080`.
+
+### Implemented endpoints
+
+- `GET /`
+- `GET /echo?echo=...`
+- `DELETE /clear/v1`
+- `POST /auth/register/v2`
+- `POST /auth/login/v2`
+- `POST /auth/logout/v1`
+- `POST /channels/create/v2`
+- `GET /channels/list/v2?token=...`
+- `GET /channels/listall/v2?token=...`
+- `POST /channel/join/v2`
+- `GET /channel/details/v2?token=...&channel_id=...`
+- `POST /message/send/v1`
+- `GET /channel/messages/v2?token=...&channel_id=...&start=...`
+
+Data is persisted to `rust_server/data/store.json` whenever state changes.
